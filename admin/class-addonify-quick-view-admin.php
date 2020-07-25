@@ -41,6 +41,15 @@ class Addonify_Quick_View_Admin {
 	private $version;
 
 	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $settings_page_slug = 'addonify_quick_view';
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -51,7 +60,6 @@ class Addonify_Quick_View_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -83,34 +91,34 @@ class Addonify_Quick_View_Admin {
 	
 			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
 
-
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array( 'jquery' ), $this->version, false );
 
 		}
-
 
 	}
 
 
 	// admin menu
 	public function add_menu(){
-		add_menu_page( 'Addonify Quick View Settings', 'Quick View', 'manage_options', 'addonify_quick_view', array($this, 'settings_page_ui'), 'dashicons-sticky', 76 );
+		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui'), 'dashicons-slides', 76 );
+		
+		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui'), 76 );
+
 	}
 
 	
-	public function settings_page_ui(){
+	public function quick_view_settings_page_ui(){
 	
 ?>
 		<div class="wrap">
             <div id="icon-options-general" class="icon32"></div>
             <h1>Quick View Options</h1>
-            <form method="post" action="options.php">
+			<p style="margin: 10px 0 35px">This is a sample settings page for this plugin</p>
+            <form method="POST" action="options.php">
                 <?php
-               
-                    settings_fields("general_options");
-                    do_settings_sections("addonify_quick_view");
+					settings_fields("quick_views");
+                    do_settings_sections($this->settings_page_slug);
                     submit_button();
-                   
                 ?>         
             </form>
         </div>
@@ -119,8 +127,7 @@ class Addonify_Quick_View_Admin {
 	}
 
 
-
-	public function settings_fields_ui() {
+	public function settings_page_ui() {
 
 		// ---------------------------------------------
 		// General Options
@@ -128,9 +135,10 @@ class Addonify_Quick_View_Admin {
 
 		$settings_args = array(
 			'section_id' 		=> 'general_options',
-			'section_label'		=> 'General Options',
+			'section_label'		=> __('GENERAL OPTIONS'),
 			'section_callback'	=> '',
-			'screen'			=> 'addonify_quick_view',
+			'screen'			=> $this->settings_page_slug,
+			'option_group'		=> 'quick_views',
 			'fields'			=> array(
 				array(
 					'field_id'				=> 'enable_quick_view',
@@ -206,7 +214,7 @@ class Addonify_Quick_View_Admin {
 
 
 	
-	// create settings section, fields and register that settings
+	// this function will create settings section, fields and register that settings in a single callback
 	public function create_settings($args){
 		
 		// define section ---------------------------
@@ -216,31 +224,38 @@ class Addonify_Quick_View_Admin {
 			
 			add_settings_field( $field['field_id'], $field['field_label'], $field['field_callback'], $args['screen'], $args['section_id'], $field['field_callback_args'] );
 			
+			register_setting( $args['option_group'],  $field['field_id'] );
 		}
 		
-		// register_setting( $args['section_id'],  $args['setting_name'] );	
 	}
 	
 
+	// -------------------------------------------------
+	// form element helpers 
+	// -------------------------------------------------
 
-
-	// input types ---------------
 	public function text_box($args){
-		$db_value = get_option($args['name']);
-		$placeholder = ( $db_value ) ? $db_value : $args['placeholder'];
-		echo '<input type="text" name="'.$args['name'].'" placeholder="'.$placeholder .'" id="'.$args['name'].'" value="'. $db_value .'" />';
+		$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
+		$db_value = get_option($args['name'], $placeholder);
+		echo '<input type="text" class="regular-text" name="'. $args['name'] .'" id="'. $args['name'] .'" value="'.$db_value . '" />';
 	}
 
 	public function toggle_switch($args){
 		$state = ( array_key_exists('checked', $args) ) ? $args['checked'] : 1;
-		echo '<input type="checkbox" class="lc_switch" name="'.$args['name'].'"  data-checked="'. $state .'" />';
+		$db_value = get_option($args['name']);
+		echo '<input type="checkbox" class="lc_switch" id="'. $args['name'] .'" name="'. $args['name'] .'"  data-checked="'. $state .'" />';
 	}
 
 	public function select($args){
+		$db_value = get_option($args['name']);
 		$options = ( array_key_exists('options', $args) ) ? $args['options'] : array();
-		echo '<select  name="'.$args['name'].'" id="'. $args['name'] .'" >';
+		echo '<select  name="'. $args['name'] .'" id="'. $args['name'] .'" >';
 			foreach($options as $value => $label){
-				echo '<option value="'. $value .'">'.$label.'</option>';
+				echo '<option value="'. $value .'" ';
+				if( $db_value == $value ) {
+					echo 'selected';
+				} 
+				echo ' >' . $label . '</option>';
 			}
 		echo '</select>';
 	}

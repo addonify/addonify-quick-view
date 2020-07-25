@@ -160,9 +160,8 @@ class Addonify_Quick_View {
 		// admin menu
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 
-
-		// show settings page ui elements
-		add_action("admin_init", array($plugin_admin, "settings_fields_ui") );
+		// show settings page ui 
+		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
 
 	}
 
