@@ -25,7 +25,7 @@
  * @since      1.0.0
  * @package    Addonify_Quick_View
  * @subpackage Addonify_Quick_View/includes
- * @author     Addonify <addonify@gmail.com>
+ * @author     Addonify <info@addonify.com>
  */
 class Addonify_Quick_View {
 
@@ -156,6 +156,13 @@ class Addonify_Quick_View {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		// admin menu
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
+
+
+		// show settings page ui elements
+		add_action("admin_init", array($plugin_admin, "settings_fields_ui") );
 
 	}
 

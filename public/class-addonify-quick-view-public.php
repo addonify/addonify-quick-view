@@ -18,7 +18,7 @@
  *
  * @package    Addonify_Quick_View
  * @subpackage Addonify_Quick_View/public
- * @author     Addonify <addonify@gmail.com>
+ * @author     Addonify <info@addonify.com>
  */
 class Addonify_Quick_View_Public {
 
