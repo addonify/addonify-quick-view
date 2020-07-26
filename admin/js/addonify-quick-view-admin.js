@@ -2,23 +2,31 @@
 	'use strict';
 
 	$(window).load(function(){
+
+		// ios style switch
 		$('input.lc_switch').lc_switch();
 
-		$('input.lc_switch').each(function(){
-			if( $(this).data('checked') == 1 ){
-				$(this).lcs_on();
-			}
-			else{
-				$(this).lcs_off();
-			}
+		// color picker
+		$('.color-picker').spectrum({type: "text" });
+
+
+		// settings page tabs
+
+		$('#addonify-settings-tabs a').click(function(e){
+			e.preventDefault();
+			
+			// rest
+			$('#addonify-settings-tabs a').removeClass('active');
+			$('.addonify-content').removeClass('active');
+
+			// select correct tab item
+			$(this).addClass('active');
+			
+			// show proper content
+			let target_elem = $(this).attr('href');
+			$(target_elem).addClass('active');
 		})
-
-
-		// $('body').delegate('.lc_switch','lcs-statuschange',function() {
-		// 	//   var status = ($(this).is(':checked')) ?'checked' :'unchecked';
-		// 	  $(this).prop("checked", !$(this).prop("checked") )
-		// 	//   console.log('field changed status: '+ status );
-		// 	});
+	
 	})
 
 })( jQuery );

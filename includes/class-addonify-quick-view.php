@@ -163,6 +163,9 @@ class Addonify_Quick_View {
 		// show settings page ui 
 		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
 
+		// show admin notices
+		$this->loader->add_action('admin_notices', $plugin_admin, 'form_submission_notification' );
+
 	}
 
 	/**
@@ -187,7 +190,9 @@ class Addonify_Quick_View {
 	 * @since    1.0.0
 	 */
 	public function run() {
+
 		$this->loader->run();
+		
 	}
 
 	/**
