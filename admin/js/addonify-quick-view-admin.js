@@ -1,14 +1,14 @@
 (function( $ ) {
 	'use strict';
 
-	$(window).load(function(){
+	let color_picker_is_open = 0;
+
+	$(document).ready(function(){
 
 		// ios style switch
 		$('input.lc_switch').lc_switch();
 
-		// color picker
-		$('.color-picker').spectrum({type: "text" });
-
+		$('.color-picker').wpColorPicker();
 
 		// settings page tabs
 

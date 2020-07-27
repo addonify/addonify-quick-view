@@ -1,3 +1,7 @@
+.addonify-settings-wrapper *:focus{
+    box-shadow: none !important;
+}
+
 #addonify-settings-wrapper{
     margin-top: 15px;
 }
@@ -26,7 +30,6 @@
 }
 
 #addonify-settings-tabs a:focus {
-    outline: none !important;
     box-shadow: none !important;
 }
 
@@ -39,7 +42,6 @@
     background: #fff;
     padding: 15px 25px 20px;
     display: none;
-    /* box-shadow: 0px 4px 8px #ccc; */
 }
 
 .addonify-content.active{
@@ -61,4 +63,36 @@
     border: solid 1px #000;
     height: 30px;
     border-radius: 3px;
+}
+
+.addonify-content .checkbox-group{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+
+
+.addonify-content .checkbox-group input[type="checkbox"]{
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.addonify-content .checkbox-group label{
+    float: left;
+}
+
+.addonify-content .colorpicker-group{
+    /* overflow: hidden; */
+    width: 260px;
+    float: left;
+}
+
+
+.addonify-content .colorpicker-group p{
+    font-weight: 600;
+    margin-bottom: 3px;
+} 
+
+.addonify-content .wp-picker-container .wp-color-result.button{
+    border-color: #0000001c;
 }

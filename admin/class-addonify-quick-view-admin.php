@@ -84,7 +84,11 @@ class Addonify_Quick_View_Admin {
 			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
 
 			// color picker
-			wp_enqueue_style( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.css' );
+			// wp_enqueue_style( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.css' );
+
+			// wp_enqueue_style( 'pickr', '//cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css' );
+
+			wp_enqueue_style( 'wp-color-picker' );
 
 			// admin css
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin.css', array(), $this->version, 'all' );
@@ -107,9 +111,11 @@ class Addonify_Quick_View_Admin {
 			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
 
 			// color picker
-			wp_enqueue_script( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.js', array( 'jquery' ), '', false );
+			// wp_enqueue_script( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.js', array( 'jquery' ), '', false );
 
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array( 'jquery' ), $this->version, false );
+			// wp_enqueue_script( 'pickr', '//cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js', array( 'jquery' ), '', false );
+
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 
 		}
 
@@ -193,76 +199,32 @@ class Addonify_Quick_View_Admin {
 					) 
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'button_position',
-					'field_label'			=> __('Button position', 'addonify-quick-view' ),
+					'field_id'				=> $this->db_field_initials . 'quick_view_btn_position',
+					'field_label'			=> __('Quick View Button Position', 'addonify-quick-view' ),
 					'field_callback'		=> array($this, "select"),
 					'field_callback_args'	=> array( 
 						array(
-							'name' 				=> $this->db_field_initials . 'button_position', 
+							'name' 				=> $this->db_field_initials . 'quick_view_btn_position', 
 							'options' 			=> array(
-								'before_add_to_cart' 	=> __('Before add to cart button', 'addonify-quick-view' ),
-								'after_add_to_cart'		=> __('After add to cart button', 'addonify-quick-view' ),
-								'overlay_on_image'		=> __('Overlay on the product image', 'addonify-quick-view' )
+								'before_add_to_cart' 	=> __('Before Add To Cart Button', 'addonify-quick-view' ),
+								'after_add_to_cart'		=> __('After Add To Cart Button', 'addonify-quick-view' ),
+								'overlay_on_image'		=> __('Overlay On The Product Image', 'addonify-quick-view' )
 							) ,
 						),
 					) 
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'button_label',
-					'field_label'			=> __('Button label', 'addonify-quick-view' ),
+					'field_id'				=> $this->db_field_initials . 'quick_view_btn_label',
+					'field_label'			=> __('Quick View Button Label', 'addonify-quick-view' ),
 					'field_callback'		=> array($this, "text_box"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			 => $this->db_field_initials . 'button_label', 
-							'placeholder'	 => __('Quick View') 
+							'name'			 => $this->db_field_initials . 'quick_view_btn_label', 
+							'placeholder'	 => __('Quick View', 'addonify-quick-view') 
 						)
 					), 
 				),
-				array(
-					'field_id'				=> $this->db_field_initials . 'display_view_details_btn',
-					'field_label'			=> __('Show View Details button', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "toggle_switch"),
-					'field_callback_args'	=> array( 
-						array(
-							'name' => $this->db_field_initials . 'display_view_details_btn'
-						)
-					) 
-				),
-				array(
-					'field_id'				=> $this->db_field_initials . 'view_details_button_label',
-					'field_label'			=> __('View Details button label', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "text_box"),
-					'field_callback_args'	=> array( 
-						array(
-							'name' 				=> $this->db_field_initials . 'view_details_button_label', 
-							'placeholder' 		=> __('View Details', 'addonify-quick-view' ) 
-						)
-					) 
-				),
-				array(
-					'field_id'				=> $this->db_field_initials . 'display_product_image_type',
-					'field_label'			=> __('Display', 'addonify-quick-view' ),
-					'field_callback'		=> array( $this, "select" ),
-					'field_callback_args'	=> array( 
-						array(
-							'name' 				=> $this->db_field_initials . 'display_product_image_type', 
-							'options' 			=> array(
-								'image' 		=> __('Product Image', 'addonify-quick-view' ),
-								'gallery'		=> __('Product Gallery', 'addonify-quick-view' )
-							) 
-						)
-					) 
-				),
-				array(
-					'field_id'				=> $this->db_field_initials . 'enable_lightbox_on_product_image',
-					'field_label'			=> __('Enable lightbox on product image', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "toggle_switch"),
-					'field_callback_args'	=> array( 
-						array(
-							'name' => $this->db_field_initials . 'enable_lightbox_on_product_image' 
-						)
-					) 
-				)
+				
 			)
 		);
 
@@ -271,30 +233,97 @@ class Addonify_Quick_View_Admin {
 
 
 		// ---------------------------------------------
-		// Contents to Show
+		// Contents Options
 		// ---------------------------------------------
 
 		$settings_args = array(
 			'settings_group_name'	=> 'quick_views',
 			'section_id' 			=> 'contents_to_show',
-			'section_label'			=> __('CONTENTS TO SHOW', 'addonify-quick-view' ),
+			'section_label'			=> __('CONTENTS OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
 			'screen'				=> $this->settings_page_slug.'-settings',
 			'fields'				=> array(
 				array(
 					'field_id'				=> $this->db_field_initials . 'show_product_image_field',
-					'field_label'			=> __('Product Image', 'addonify-quick-view' ),
+					'field_label'			=> __('Content To Display', 'addonify-quick-view' ),
 					'field_callback'		=> array($this, "checkbox_with_label"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> 'Product Image',
-							'name'	=> $this->db_field_initials . 'show_product_image'
+							'label'			=> __('Product Image', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_image'
 						),
 						array(
-							'label'			=> 'Product Image 2 ',
-							'name'	=> $this->db_field_initials . 'show_product_image_2'
+							'label'			=> __('Product Title', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_title'
+						),
+						array(
+							'label'			=> __('Product Rating', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_rating'
+						),
+						array(
+							'label'			=> __('Product Price', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_price'
+						),
+						array(
+							'label'			=> __('Product Excerpt', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_excerpt'
+						),
+						array(
+							'label'			=> __('Add To Cart Button', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_add_to_cart_btn'
+						),
+						array(
+							'label'			=> __('Product Meta', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'show_product_meta'
 						),
 					),
+				),
+				array(
+					'field_id'				=> $this->db_field_initials . 'product_image_display_type',
+					'field_label'			=> __('Product Image', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "select"),
+					'field_callback_args'	=> array( 
+						array(
+							'name' 				=> $this->db_field_initials . 'button_position', 
+							'options' 			=> array(
+								'image_only' 			=> __('Product Image Only', 'addonify-quick-view' ),
+								'image_or_gallery'		=> __('Product Image or Product Gallery', 'addonify-quick-view' ),
+							) ,
+						),
+					) 
+				),
+				array(
+					'field_id'				=> $this->db_field_initials . 'enable_lightbox',
+					'field_label'			=> __('Enable Lightbox', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "toggle_switch"),
+					'field_callback_args'	=> array( 
+						array(
+							'name' 			=> $this->db_field_initials . 'enable_lightbox', 
+							'checked' 		=> 1
+						)
+					) 
+				),
+				array(
+					'field_id'				=> $this->db_field_initials . 'display_view_detail_btn',
+					'field_label'			=> __('Display View Detail Button', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "toggle_switch"),
+					'field_callback_args'	=> array( 
+						array(
+							'name' 			=> $this->db_field_initials . 'display_view_detail_btn', 
+							'checked' 		=> 1
+						)
+					) 
+				),
+				array(
+					'field_id'				=> $this->db_field_initials . 'view_detail_btn_label',
+					'field_label'			=> __('View Detail Button Label', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "text_box"),
+					'field_callback_args'	=> array( 
+						array(
+							'name'			 => $this->db_field_initials . 'view_detail_btn_label', 
+							'placeholder'	 => __('View Detail', 'addonify-quick-view') 
+						)
+					), 
 				),
 				
 			)
@@ -312,113 +341,210 @@ class Addonify_Quick_View_Admin {
 		$settings_args = array(
 			'settings_group_name'	=> 'quick_views',
 			'section_id' 			=> 'style_options',
-			'section_label'			=> __('STYLES OPTIONS', 'addonify-quick-view' ),
+			'section_label'			=> __('STYLE OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
 			'screen'				=> $this->settings_page_slug.'-styles',
 			'fields'				=> array(
 				array(
-					'field_id'				=> $this->db_field_initials . 'load_plugin_css',
-					'field_label'			=> __('Load plugin CSS', 'addonify-quick-view' ),
+					'field_id'				=> $this->db_field_initials . 'load_styles_from_plugin',
+					'field_label'			=> __('Load Styles From Plugin', 'addonify-quick-view' ),
 					'field_callback'		=> array($this, "toggle_switch"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'load_plugin_css', 
+						array(
+							'name' 			=> $this->db_field_initials . 'load_styles_from_plugin', 
+							'checked' 		=> 1
+						)
 					) 
 				),
+			)
+		);
+
+		// create settings fields
+		$this->create_settings( $settings_args );
+
+
+
+		// ---------------------------------------------
+		// Content Colors
+		// ---------------------------------------------
+
+		$settings_args = array(
+			'settings_group_name'	=> 'quick_views',
+			'section_id' 			=> 'content_colors',
+			'section_label'			=> __('CONTENT COLORS', 'addonify-quick-view' ),
+			'section_callback'		=> '',
+			'screen'				=> $this->settings_page_slug.'-styles',
+			'fields'				=> array(
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_overlay_bck_color',
-					'field_label'			=> __('Modal overlay background color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'modal_box_color',
+					'field_label'			=> __('Modal Box', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_overlay_bck_color', 
-					) 
+						array(
+							'label'			=> __('Overlay Background Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'modal_overlay_bck_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Background Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'modal_bck_color',
+							'default'		=> '#ffffff',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_content_bck_color',
-					'field_label'			=> __('Content background color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_title_color',
+					'field_label'			=> __('Product Title', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_content_bck_color', 
-						'default'			=> 'white',
-					) 
+						array(
+							'name'			=> $this->db_field_initials . 'product_title_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_product_title_text_color',
-					'field_label'			=> __('Product title text color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_rating_color',
+					'field_label'			=> __('Product Rating', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_product_title_text_color', 
-					) 
+						array(
+							'label'			=> __('Empty Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_rating_empty_color',
+							'default'		=> '#cccccc',
+						),
+						array(
+							'label'			=> __('Full Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_rating_full_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_product_ratings_color',
-					'field_label'			=> __('Product ratings color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_price_color',
+					'field_label'			=> __('Product Price', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_product_ratings_color', 
-						'default'			=> 'red'
-					) 
+						array(
+							'label'			=> __('Regular Price Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_regular_price_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Sale Price Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_sale_price_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_product_price_color',
-					'field_label'			=> __('Product price color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_excerpt_color',
+					'field_label'			=> __('Product Excerpt', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_product_price_color', 
-						'default'			=> '#cccccc'
-					) 
+						array(
+							'name'			=> $this->db_field_initials . 'product_excerpt_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_product_excerpt_color',
-					'field_label'			=> __('Product excerpt color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_meta_color',
+					'field_label'			=> __('Product Meta', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_product_excerpt_color', 
-						'default'			=> '#000'
-					) 
+						array(
+							'label'			=> __('Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_meta_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Color - On Hover', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'product_meta_hover_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_product_meta_color',
-					'field_label'			=> __('Product meta color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_close_btn_color',
+					'field_label'			=> __('Close Button', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_product_meta_color', 
-						'default'			=> '#000'
-					) 
+						array(
+							'label'			=> __('Text Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'close_btn_text_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Background Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'close_btn_bck_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'close_btn_text_hover_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'close_btn_bck_hover_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
-					'field_id'				=> $this->db_field_initials . 'modal_btn_bck_color',
-					'field_label'			=> __('Button background color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
+					'field_id'				=> $this->db_field_initials . 'product_other_btn_color',
+					'field_label'			=> __('Other Buttons', 'addonify-quick-view' ),
+					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_btn_bck_color', 
-						'default'			=> 'black'
-					) 
-				),
-				array(
-					'field_id'				=> $this->db_field_initials . 'modal_btn_text_color',
-					'field_label'			=> __('Button text color', 'addonify-quick-view' ),
-					'field_callback'		=> array($this, "color_picker"),
-					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'modal_btn_text_color', 
-						'default'			=> '#ffffff'
-					) 
+						array(
+							'label'			=> __('Text Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'other_btn_text_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Background Color', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'other_btn_bck_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'other_btn_text_hover_color',
+							'default'		=> '#000000',
+						),
+						array(
+							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
+							'name'			=> $this->db_field_initials . 'other_btn_bck_hover_color',
+							'default'		=> '#000000',
+						),
+						
+					),
 				),
 				array(
 					'field_id'				=> $this->db_field_initials . 'custom_css',
 					'field_label'			=> __('Custom CSS', 'addonify-quick-view' ),
 					'field_callback'		=> array($this, "text_area"),
 					'field_callback_args'	=> array( 
-						'name' 				=> $this->db_field_initials . 'custom_css', 
-						'attr'				=> 'class="large-text code" rows="5"'
-					) 
+						array(
+							'name'			=> $this->db_field_initials . 'custom_css',
+							'attr'			=> 'rows="5" class="large-text code"'
+						),
+						
+					),
 				),
-				
 				
 			)
 		);
 
 		// create settings fields
-		// $this->create_settings( $settings_args );
+		$this->create_settings( $settings_args );
 		
 	}
 
@@ -440,13 +566,6 @@ class Addonify_Quick_View_Admin {
 				register_setting( $args['settings_group_name'],  $sub_field['name'] );
 			}
 
-			// }
-			// else{
-			// 	// generate field in database
-			// 	register_setting( $args['settings_group_name'],  $field['field_id'] );
-			// }
-
-
 		}
 		
 	}
@@ -465,11 +584,13 @@ class Addonify_Quick_View_Admin {
 		}
 	}
 
-	public function text_area($args){
-		$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
-		$db_value = get_option($args['name'], $placeholder);
-		$attr = isset( $args['attr'] ) ? $args['attr'] : '';
-		echo '<textarea type="text" name="'. $args['name'] .'" id="'. $args['name'] .'" '. $attr .' >'. $db_value .'</textarea>';
+	public function text_area($arguments){
+		foreach($arguments as $args){
+			$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
+			$db_value = get_option($args['name'], $placeholder);
+			$attr = isset( $args['attr'] ) ? $args['attr'] : '';
+			echo '<textarea type="text" name="'. $args['name'] .'" id="'. $args['name'] .'" '. $attr .' >'. $db_value .'</textarea>';
+		}
 	}
 
 
@@ -481,30 +602,31 @@ class Addonify_Quick_View_Admin {
 	}
 
 
-	public function color_picker($args){
-		$default = ( array_key_exists('default', $args) ) ? $args['default'] : '#000000';
-		$db_value = get_option($args['name'], $default);
-		$attr = ( array_key_exists('attr', $args) ) ? $args['attr'] : '';
+	public function color_picker_group($args){
+			
+		foreach($args as $arg){
 
-		echo '<input value="'. $db_value .'" class="color-picker" id="'. $args['name'] .'" name="'. $args['name'] .'" '. $attr . ' />';
+			$default =  isset( $arg['default'] )  ? $arg['default'] : '#000000';
+			$db_value = get_option($arg['name'], $default);
+
+			echo '<div class="colorpicker-group">';
+			if( isset($arg['label']) ) {
+				echo '<p>'. $arg['label'].'</p>';
+			}
+			echo '<input type="text" value="'. $db_value .'" name="'. $arg['name'] .'" id="'. $arg['name'] .'" class="color-picker" />';
+			echo '</div>';
+		}
 	}
 
 
 	public function checkbox_with_label($args){
-
-		// if( !array($args) ){
-		// 	echo '<label>'.  $args['label'] .'</label>';
-		// 	$this->checkbox($args);
-		// }
-		// else{
 			
-			foreach($args as $arg){
-				echo '<div class="checkbox-group">';
-				$this->checkbox($arg);
-				echo '<label>'.  $arg['label'] .'</label>';
-				echo '</div>';
-			}
-		// }
+		foreach($args as $arg){
+			echo '<div class="checkbox-group">';
+			$this->checkbox($arg);
+			echo '<label>'.  $arg['label'] .'</label>';
+			echo '</div>';
+		}
 	}
 
 
