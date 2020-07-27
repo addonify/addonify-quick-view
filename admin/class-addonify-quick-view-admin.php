@@ -58,6 +58,17 @@ class Addonify_Quick_View_Admin {
 	 */
 	private $db_field_initials = 'addonify_qv_';
 
+
+	/**  
+	 * Store name of all the db_fields used by this plugin
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $all_db_fields;
+
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -65,11 +76,15 @@ class Addonify_Quick_View_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
 
+	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
+		// store empty variables
+		$this->all_db_fields = array();
 	}
+
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -83,16 +98,11 @@ class Addonify_Quick_View_Admin {
 			// toggle switch
 			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
 
-			// color picker
-			// wp_enqueue_style( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.css' );
-
-			// wp_enqueue_style( 'pickr', '//cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css' );
-
+			// built in wp color picker
 			wp_enqueue_style( 'wp-color-picker' );
 
 			// admin css
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin.css', array(), $this->version, 'all' );
-			
 
 		}
 
@@ -110,11 +120,7 @@ class Addonify_Quick_View_Admin {
 			// toggle switch
 			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
 
-			// color picker
-			// wp_enqueue_script( 'spectrum', '//cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.js', array( 'jquery' ), '', false );
-
-			// wp_enqueue_script( 'pickr', '//cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js', array( 'jquery' ), '', false );
-
+			// use built in wp color picker as dependency
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 
 		}
@@ -126,13 +132,27 @@ class Addonify_Quick_View_Admin {
 	public function add_menu(){
 		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui'), 'dashicons-slides', 76 );
 		
+		// sub menu
+		// redirects to main plugin link
 		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui') );
 
 	}
 
+
+	// add custom "settings" link in the plugins.php page
+	public function custom_plugin_link( $links, $file ){
+		
+		if ( $file == plugin_basename(dirname(__FILE__, 2) . '/addonify-quick-view.php') ) {
+			
+			// add "Settings" link
+			$links[] = '<a href="admin.php?page='. $this->settings_page_slug .'">' . __('Settings','addonify-quick-view') . '</a>';
+			
+    	}
+		return $links;
+	}
+
 	
 	public function quick_view_settings_page_ui(){
-	
 ?>
 		<div class="wrap">
             <h1>Quick View Options</h1>
@@ -157,23 +177,25 @@ class Addonify_Quick_View_Admin {
 					<div id="addonify-styles-container" class="addonify-content">
 						<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>       
 					</div><!--addonify-styles-container-->
-					
-				</div><!--addonify-settings-wrapper-->
-				
-				<?php submit_button(); ?>
-            </form>
-        </div>
+			
+					<?php submit_button(); ?>
+
+				</form>
+
+			</div><!--addonify-settings-wrapper-->
+		</div> <!--wrap-->
 
 <?php
 	}
 
 
-
+	// show notification after form submission
 	public function form_submission_notification(){
 		settings_errors();
 	}
 
 
+	// generate settings page form elements
 	public function settings_page_ui() {
 
 		// ---------------------------------------------
@@ -548,7 +570,6 @@ class Addonify_Quick_View_Admin {
 		
 	}
 
-
 	
 	// this function will create settings section, fields and register that settings in a single callback
 	public function create_settings($args){
@@ -561,15 +582,17 @@ class Addonify_Quick_View_Admin {
 			// create label
 			add_settings_field( $field['field_id'], $field['field_label'], $field['field_callback'], $args['screen'], $args['section_id'], $field['field_callback_args'] );
 			
-
 			foreach( $field['field_callback_args'] as $sub_field){
 				register_setting( $args['settings_group_name'],  $sub_field['name'] );
+
+				// add this field in to $all_db_fields
+				// will be useful during plugin uninstall
+				$this->all_db_fields[] = $sub_field['name'];
 			}
 
 		}
 		
 	}
-
 
 
 	// -------------------------------------------------
@@ -593,19 +616,16 @@ class Addonify_Quick_View_Admin {
 		}
 	}
 
-
 	public function toggle_switch($arguments){
 		foreach($arguments as $args){
-			$args['css_class'] = 'lc_switch';
+			$args['attr'] = ' class="lc_switch"';
 			$this->checkbox($args);
 		}
 	}
 
-
 	public function color_picker_group($args){
 			
 		foreach($args as $arg){
-
 			$default =  isset( $arg['default'] )  ? $arg['default'] : '#000000';
 			$db_value = get_option($arg['name'], $default);
 
@@ -618,7 +638,6 @@ class Addonify_Quick_View_Admin {
 		}
 	}
 
-
 	public function checkbox_with_label($args){
 			
 		foreach($args as $arg){
@@ -629,15 +648,13 @@ class Addonify_Quick_View_Admin {
 		}
 	}
 
-
 	public function checkbox($args){
-		$css_class = ( array_key_exists('css_class', $args) ) ? $args['css_class'] : '';
-		$state = ( array_key_exists('checked', $args) ) ? $args['checked'] : 1;
-		$db_value = get_option($args['name'], $state);
+		$default_state = ( array_key_exists('checked', $args) ) ? $args['checked'] : 1;
+		$db_value = get_option($args['name'], $default_state);
 		$is_checked = ( $db_value ) ? 'checked' : '';
 		$attr = ( array_key_exists('attr', $args) ) ? $args['attr'] : '';
 
-		echo '<input type="checkbox" value="1" class="'. $css_class .'" id="'. $args['name'] .'" name="'. $args['name'] .'" '. $is_checked . ' ' . $attr .' />';
+		echo '<input type="checkbox" value="1" id="'. $args['name'] .'" name="'. $args['name'] .'" '. $is_checked . ' ' . $attr .' />';
 	}
 
 	public function select($arguments){
@@ -655,6 +672,13 @@ class Addonify_Quick_View_Admin {
 			}
 			echo '</select>';
 		}
+	}
+
+
+	// return names of all the fields used by this plugin to store data in database
+	// useful in plugin deletion
+	public function get_all_db_field_names(){
+		return $this->all_db_fields;
 	}
 
 
