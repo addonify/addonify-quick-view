@@ -140,6 +140,7 @@ class Addonify_Quick_View_Public {
 				</div><!-- // adfy-qvm-head -->
 				<div class="adfy-quick-view-modal-content">
 					<!-- // your query goes here -->
+					something should appear here
 				</div><!-- // adfy-quick-view-modal-content -->
 			</div><!-- // adfy-quick-view-model-inner -->
 		</div><!-- // addonify-quick-view-modal -->
