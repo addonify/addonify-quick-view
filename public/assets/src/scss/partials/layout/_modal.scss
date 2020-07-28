@@ -72,10 +72,10 @@ body.addonify-qvm-is-active #addonify-quick-view-modal {
 	animation-name: AddonifyQuickViewSpin;
     animation-duration: 500ms;
     animation-iteration-count: infinite;
-    animation-timing-function: linear; 
+    animation-timing-function: ease-in-out; 
 }
 
-#addonify-quick-view-modal .adfy-qvm-spinner.hide {
+#addonify-quick-view-modal #adfy-qvm-spinner.hide {
 
 	opacity:0;
 	visibility:hidden;
