@@ -103,7 +103,7 @@ class Addonify_Quick_View_Public {
 	
 
 	// add custom "Quick View" button in woocommerce loop
-	function show_custom_button_in_wc_loop($product_id, $product, $args) {
+	function show_custom_button_in_wc_loop($button, $product, $args) {
 
 		printf(
 			'<a href="%s" data-quantity="%s" class="%s" %s >%s</a>',
@@ -115,10 +115,11 @@ class Addonify_Quick_View_Public {
 		);
 
 		printf(
-			'<a href="%s" class="%s" >%s</a>',
+			'<a href="%s" class="%s" data-product_id="%s" rel="nofollow" >%s</a>',
 			'#',
 			'addonify-qvm-button button',
-			__('Quick View')
+			esc_attr( $product->get_id() ),
+			__('Quick View', 'addonify-quick-view')
 		);
 
 	}
