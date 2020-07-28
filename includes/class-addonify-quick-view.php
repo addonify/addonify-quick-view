@@ -194,7 +194,6 @@ class Addonify_Quick_View {
 		// add "Quick View" button in loop
 		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_custom_button_in_wc_loop', 10, 3 );
 
-
 		// add custom markup into footer
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer' );
 
