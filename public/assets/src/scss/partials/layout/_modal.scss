@@ -76,7 +76,8 @@ body.addonify-qvm-is-active #addonify-quick-view-modal {
 }
 
 #addonify-quick-view-modal #adfy-qvm-spinner.hide {
-
+	
+	display:none;
 	opacity:0;
 	visibility:hidden;
 }
