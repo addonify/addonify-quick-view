@@ -150,10 +150,12 @@ class Addonify_Quick_View {
 	 * @since    1.0.0
 	 * @access   private
 	 */
+
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Addonify_Quick_View_Admin( $this->get_plugin_name(), $this->get_version() );
-
+		
+		// enqueue admin styles and scripts
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
@@ -165,11 +167,15 @@ class Addonify_Quick_View {
 
 		// show settings page ui 
 		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
+		
+		//show notice if woocommerce is not active
+		$this->loader->add_action('admin_init', $plugin_admin, 'show_woocommerce_not_active_notice' );
 
-		// show admin notices
+		// show admin notices after form submission
 		$this->loader->add_action('admin_notices', $plugin_admin, 'form_submission_notification' );
 
 	}
+
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality

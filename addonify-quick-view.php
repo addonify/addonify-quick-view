@@ -74,27 +74,32 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-addonify-quick-view.php';
  *
  * @since    1.0.0
  */
+
+
 function run_addonify_quick_view() {
+
 	$plugin = new Addonify_Quick_View();
 	$plugin->run();
+
 }
 
+run_addonify_quick_view();
 
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-	// woocommerce is active
-	run_addonify_quick_view();
-}
-else{
+// if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+// 	// woocommerce is active
+// }
+// else{
 
-	// woocommerce is not active
-	function woocommerce_not_active_notice() {
-		echo '<div class="notice notice-error is-dismissible"><p>';
-		_e( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view' );
-		echo '</p></div>';
-	}
+// 	// woocommerce is not active
+// 	function woocommerce_not_active_notice() {
+// 		echo '<div class="notice notice-error is-dismissible"><p>';
+// 		_e( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view' );
+// 		echo '</p></div>';
+// 	}
 	
-	add_action( 'admin_notices', 'woocommerce_not_active_notice' );
+// 	add_action( 'admin_notices', 'woocommerce_not_active_notice' );
 
-}
+// }
 
 
+// add_action( 'admin_init', 'run_addonify_quick_view' );

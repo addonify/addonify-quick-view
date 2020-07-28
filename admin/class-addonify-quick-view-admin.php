@@ -127,9 +127,23 @@ class Addonify_Quick_View_Admin {
 
 	}
 
+	
+	// check if woocommerce is active
+	function is_woocommerce_active() {
+
+		if ( class_exists( 'woocommerce' ) )  return true; 
+		return false;
+
+	}
+
+
 
 	// admin menu
 	public function add_menu(){
+
+		// do not show menu if woocommerce is not active
+		if ( ! $this->is_woocommerce_active() )  return; 
+
 		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui'), 'dashicons-slides', 76 );
 		
 		// sub menu
@@ -681,5 +695,23 @@ class Addonify_Quick_View_Admin {
 		return $this->all_db_fields;
 	}
 
+
+	// show error message in dashboard if woocommerce is not active
+	function show_woocommerce_not_active_notice(){
+
+		if( ! $this->is_woocommerce_active() ){
+			add_action('admin_notices', 'woocommerce_not_active_notice' );
+		}
+
+
+		function woocommerce_not_active_notice() {
+			
+			echo '<div class="notice notice-error is-dismissible"><p>';
+			_e( 'Addonify Quick View is enabled but not active. It requires WooCommerce in order to work.', 'addonify-quick-view' );
+			echo '</p></div>';
+
+		}
+
+	}
 
 }
