@@ -85,12 +85,8 @@ class Addonify_Quick_View_Admin {
 		$this->all_db_fields = array();
 	}
 
-
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
+	
+	// enqueue styles
 	public function enqueue_styles() {
 
 		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
@@ -108,11 +104,8 @@ class Addonify_Quick_View_Admin {
 
 	}
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
+
+	// enqueue scripts
 	public function enqueue_scripts() {
 
 		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
@@ -172,62 +165,53 @@ class Addonify_Quick_View_Admin {
 ?>
 		<div class="wrap">
             <h1>Quick View Options</h1>
-			<!-- <p style="margin: 10px 0 35px">This is a sample settings page for this plugin</p> -->
 
 			<div id="addonify-settings-wrapper">
+					
+				<ul id="addonify-settings-tabs">
+					<li><a href="<?php echo $tab_url;?>settings" class="<?php if( $current_tab == 'settings') echo 'active';?> " >Settings</a></li>
+					<li><a href="<?php echo $tab_url;?>styles" class="<?php if( $current_tab == 'styles') echo 'active';?> " >Styles</a></li>
+				</ul>
 
+				<?php if( $current_tab == 'settings'):?>
+
+					<!-- settings tabs -->
+					<form method="POST" action="options.php">
+					
+						<!-- generate nonce -->
+						<?php settings_fields("quick_views_settings"); ?>
+
+						<div id="addonify-settings-container" class="addonify-content active">
+							<!-- display form fields -->
+							<?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
+						</div><!--addonify-settings-container-->
+
+						<?php submit_button(); ?>
+
+					</form>
 				
+				<?php elseif( $current_tab == 'styles'):?>
+
+					<!-- styles tabs -->
+					<form method="POST" action="options.php">
 					
-					<ul id="addonify-settings-tabs">
-						<li><a href="<?php echo $tab_url;?>settings" class="<?php if( $current_tab == 'settings') echo 'active';?> " >Settings</a></li>
-						<li><a href="<?php echo $tab_url;?>styles" class="<?php if( $current_tab == 'styles') echo 'active';?> " >Styles</a></li>
-					</ul>
+						<!-- generate nonce -->
+						<?php settings_fields("quick_views_styles"); ?>
 
-					<?php if( $current_tab == 'settings'):?>
+						<div id="addonify-styles-container" class="addonify-content active">
+							<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
+						</div><!--addonify-styles-container-->
 
-						<form method="POST" action="options.php">
-						
-							<!-- generate nonce -->
-							<?php settings_fields("quick_views_settings"); ?>
+						<?php submit_button(); ?>
 
-							<div id="addonify-settings-container" class="addonify-content active">
-								<!-- display form fields -->
-								<?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
-							</div><!--addonify-settings-container-->
+					</form>
 
-							<?php submit_button(); ?>
-
-						</form>
-					
-					<?php elseif( $current_tab == 'styles'):?>
-
-						<form method="POST" action="options.php">
-						
-							<!-- generate nonce -->
-							<?php settings_fields("quick_views_styles"); ?>
-
-							<div id="addonify-styles-container" class="addonify-content active">
-								<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
-							</div><!--addonify-styles-container-->
-
-							<?php submit_button(); ?>
-
-						</form>
-
-					<?php endif;?>
+				<?php endif;?>
 			
-					
-
 			</div><!--addonify-settings-wrapper-->
 		</div> <!--wrap-->
 
 <?php
-	}
-
-
-	// show notification after form submission
-	public function form_submission_notification(){
-		settings_errors();
 	}
 
 
@@ -607,7 +591,7 @@ class Addonify_Quick_View_Admin {
 	}
 
 	
-	// this function will create settings section, fields and register that settings in a single callback
+	// this function will create settings section, fields and register that settings in a database
 	public function create_settings($args){
 		
 		// define section ---------------------------
@@ -639,7 +623,8 @@ class Addonify_Quick_View_Admin {
 		foreach($arguments as $args){
 			$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
 			$db_value = get_option($args['name'], $placeholder);
-			echo '<input type="text" class="regular-text" name="'. $args['name'] .'" id="'. $args['name'] .'" value="'.$db_value . '" />';
+			
+			echo '<input type="text" class="regular-text" name="'. $args['name'] .'" id="'. $args['name'] .'" value="'.$db_value . '" placeholder="'. $placeholder . '"   />';
 		}
 	}
 
@@ -711,10 +696,9 @@ class Addonify_Quick_View_Admin {
 	}
 
 
-	// return names of all the fields used by this plugin to store data in database
-	// useful in plugin deletion
-	public function get_all_db_field_names(){
-		return $this->all_db_fields;
+	// show notification after form submission
+	public function form_submission_notification(){
+		settings_errors();
 	}
 
 
