@@ -167,6 +167,8 @@ class Addonify_Quick_View_Admin {
 
 	
 	public function quick_view_settings_page_ui(){
+		$current_tab = ( isset($_GET['tabs']) ) ? $_GET['tabs'] : 'settings';
+		$tab_url = "admin.php?page=$this->settings_page_slug&tabs=";
 ?>
 		<div class="wrap">
             <h1>Quick View Options</h1>
@@ -174,27 +176,47 @@ class Addonify_Quick_View_Admin {
 
 			<div id="addonify-settings-wrapper">
 
-				<form method="POST" action="options.php">
-					<!-- generate nonce -->
-					<?php settings_fields("quick_views"); ?>
+				
 					
 					<ul id="addonify-settings-tabs">
-						<li><a href="#addonify-settings-container" class="active">Settings</a></li>
-						<li><a href="#addonify-styles-container">Styles</a></li>
+						<li><a href="<?php echo $tab_url;?>settings" class="<?php if( $current_tab == 'settings') echo 'active';?> " >Settings</a></li>
+						<li><a href="<?php echo $tab_url;?>styles" class="<?php if( $current_tab == 'styles') echo 'active';?> " >Styles</a></li>
 					</ul>
 
-					<div id="addonify-settings-container" class="addonify-content active">
-						<!-- display form fields -->
-						<?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
-					</div><!--addonify-settings-container-->
+					<?php if( $current_tab == 'settings'):?>
 
-					<div id="addonify-styles-container" class="addonify-content">
-						<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>       
-					</div><!--addonify-styles-container-->
+						<form method="POST" action="options.php">
+						
+							<!-- generate nonce -->
+							<?php settings_fields("quick_views_settings"); ?>
+
+							<div id="addonify-settings-container" class="addonify-content active">
+								<!-- display form fields -->
+								<?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
+							</div><!--addonify-settings-container-->
+
+							<?php submit_button(); ?>
+
+						</form>
+					
+					<?php elseif( $current_tab == 'styles'):?>
+
+						<form method="POST" action="options.php">
+						
+							<!-- generate nonce -->
+							<?php settings_fields("quick_views_styles"); ?>
+
+							<div id="addonify-styles-container" class="addonify-content active">
+								<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
+							</div><!--addonify-styles-container-->
+
+							<?php submit_button(); ?>
+
+						</form>
+
+					<?php endif;?>
 			
-					<?php submit_button(); ?>
-
-				</form>
+					
 
 			</div><!--addonify-settings-wrapper-->
 		</div> <!--wrap-->
@@ -217,7 +239,7 @@ class Addonify_Quick_View_Admin {
 		// ---------------------------------------------
 
 		$settings_args = array(
-			'settings_group_name'	=> 'quick_views',
+			'settings_group_name'	=> 'quick_views_settings',
 			'section_id' 			=> 'general_options',
 			'section_label'			=> __('GENERAL OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
@@ -273,7 +295,7 @@ class Addonify_Quick_View_Admin {
 		// ---------------------------------------------
 
 		$settings_args = array(
-			'settings_group_name'	=> 'quick_views',
+			'settings_group_name'	=> 'quick_views_settings',
 			'section_id' 			=> 'contents_to_show',
 			'section_label'			=> __('CONTENTS OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
@@ -375,7 +397,7 @@ class Addonify_Quick_View_Admin {
 		// ---------------------------------------------
 
 		$settings_args = array(
-			'settings_group_name'	=> 'quick_views',
+			'settings_group_name'	=> 'quick_views_styles',
 			'section_id' 			=> 'style_options',
 			'section_label'			=> __('STYLE OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
@@ -405,7 +427,7 @@ class Addonify_Quick_View_Admin {
 		// ---------------------------------------------
 
 		$settings_args = array(
-			'settings_group_name'	=> 'quick_views',
+			'settings_group_name'	=> 'quick_views_styles',
 			'section_id' 			=> 'content_colors',
 			'section_label'			=> __('CONTENT COLORS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
