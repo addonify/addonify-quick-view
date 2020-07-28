@@ -100,4 +100,50 @@ class Addonify_Quick_View_Public {
 
 	}
 
+	
+
+	// add custom "Quick View" button in woocommerce loop
+	function show_custom_button_in_wc_loop($product_id, $product, $args) {
+
+		printf(
+			'<a href="%s" data-quantity="%s" class="%s" %s >%s</a>',
+			esc_url( $product->add_to_cart_url() ),
+			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
+			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
+			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+			esc_html( $product->add_to_cart_text() ),
+		);
+
+		printf(
+			'<a href="%s" class="%s" >%s</a>',
+			'#',
+			'addonify-qvm-button button',
+			__('Quick View')
+		);
+
+	}
+
+
+
+	function add_markup_into_footer(){
+?>
+		<div id="addonify-quick-view-modal">
+			<div class="adfy-quick-view-model-inner">
+				<div class="adfy-qvm-head">
+					<button id="addonify-qvm-close-button" class="adfy-qv-button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+				</div><!-- // adfy-qvm-head -->
+				<div class="adfy-quick-view-modal-content">
+					<!-- // your query goes here -->
+				</div><!-- // adfy-quick-view-modal-content -->
+			</div><!-- // adfy-quick-view-model-inner -->
+		</div><!-- // addonify-quick-view-modal -->
+		<div class="adfy-quick-view-overlay"></div>
+<?php
+	}
+
 }
