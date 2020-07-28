@@ -8,7 +8,9 @@
 
             // add class to body when quick view button is clicked
 
-            $('body').on('click', '.addonify-qvm-button', function() {
+            $('body').on('click', '.addonify-qvm-button', function(e) {
+
+                e.preventDefault(); // prevent empty links clicks
 
                 $('body').addClass('addonify-qvm-is-active');
             });
@@ -21,7 +23,19 @@
             });
         }
 
+        // perfect scroll bar 
+
+        function AddonifyQuickViewModelScrollbar() {
+
+            var ps = new
+            PerfectScrollbar('#addonify-quick-view-modal', {
+
+                minScrollbarLength: 20
+            });
+        }
+
         AddonifyQuickViewModel();
+        AddonifyQuickViewModelScrollbar();
 
     });
 
