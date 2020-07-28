@@ -1,2 +1,33 @@
+body.addonify-qvm-is-active{
+    overflow: hidden;
+}
 
-/*# sourceMappingURL=addonify-quick-view-public.css.map */
+#addonify-quick-view-modal{
+    position: fixed;
+    top: 0;
+    background: #000000ba;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+body.addonify-qvm-is-active #addonify-quick-view-modal{
+    display: block;
+}
+
+
+#addonify-quick-view-modal .adfy-quick-view-model-inner{
+    width: 800px;
+    max-width: 100%;
+    min-height: 100px;
+    position: relative;
+    margin: 100px auto 0;
+    background: #fff;
+}
+
+#addonify-qvm-close-button{
+    background: none;
+    border: 0;
+    float: right;
+}
