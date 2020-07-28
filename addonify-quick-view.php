@@ -23,6 +23,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       addonify-quick-view
  * Domain Path:       /languages
+ * WC requires at least: 3.0.0
+ * WC tested up to: 	4.1.0
  */
 
 // If this file is called directly, abort.
@@ -84,22 +86,3 @@ function run_addonify_quick_view() {
 }
 
 run_addonify_quick_view();
-
-// if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-// 	// woocommerce is active
-// }
-// else{
-
-// 	// woocommerce is not active
-// 	function woocommerce_not_active_notice() {
-// 		echo '<div class="notice notice-error is-dismissible"><p>';
-// 		_e( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view' );
-// 		echo '</p></div>';
-// 	}
-	
-// 	add_action( 'admin_notices', 'woocommerce_not_active_notice' );
-
-// }
-
-
-// add_action( 'admin_init', 'run_addonify_quick_view' );
