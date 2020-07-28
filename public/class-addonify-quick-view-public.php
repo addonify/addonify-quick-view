@@ -124,7 +124,7 @@ class Addonify_Quick_View_Public {
 	}
 
 
-
+	// add custom markup into footer
 	function add_markup_into_footer(){
 ?>
 		<div id="addonify-quick-view-modal">
