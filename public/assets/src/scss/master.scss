@@ -1,0 +1,23 @@
+/*
+===========================================================
+
+# Pugin: Addonify Quick View
+
+# Author: https://addonify.com
+
+# Since: 28 July, 2020
+
+# Current version: 1.0.0
+
+=====================================
+*/
+
+// import abstracts 
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+// import partials 
+
+@import 'partials/components/button';
+@import 'partials/layout/modal';
