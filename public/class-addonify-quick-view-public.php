@@ -86,8 +86,10 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
+		
+
 		// for ajax
-		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', array( 'jquery', 'wc-single-product', 'zoom', 'flexslider', 'photoswipe-ui-default' ), '', false );
+		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', array( 'jquery', 'zoom', 'flexslider', 'photoswipe-ui-default', 'wc-single-product' ), '', true );
 
 
 		// localize ajax script
@@ -107,16 +109,19 @@ class Addonify_Quick_View_Public {
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
 ?>
 		<?php 
-			$product_id = $_GET['id'];
-			$query = new WP_Query( array( 'p' => $product_id, 'post_type' => 'product' ) );
 
-			if( $query->have_posts() ) {
-				while( $query->have_posts() ){
-					$query->the_post();
-					require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
-				}
-				wp_reset_postdata();
-			}
+			// echo do_shortcode('[product_page id="18"]');
+
+			// $product_id = $_GET['id'];
+			// $query = new WP_Query( array( 'p' => $product_id, 'post_type' => 'product' ) );
+
+			// if( $query->have_posts() ) {
+			// 	while( $query->have_posts() ){
+			// 		$query->the_post();
+			// 		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
+			// 	}
+			// 	wp_reset_postdata();
+			// }
 
 		?>
 
@@ -151,6 +156,10 @@ class Addonify_Quick_View_Public {
 
 	// add custom markup into footer
 	function add_markup_into_footer(){
+
+		echo do_shortcode('[product_page id="18"]');
+
+		
 ?>
 		<div id="addonify-quick-view-modal">
 			<div class="adfy-quick-view-model-inner">
