@@ -84,20 +84,49 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Addonify_Quick_View_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Addonify_Quick_View_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
+		
+
+		// for ajax
+		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', array( 'jquery', 'zoom', 'flexslider', 'photoswipe-ui-default', 'wc-single-product' ), '', true );
+
+
+		// localize ajax script
+		wp_localize_script( 
+			'custom-scripts', 
+			'ajax_object', 
+			array( 
+				'ajax_url' 	=> admin_url( 'admin-ajax.php' ), 
+				'id' 		=> 18,
+				'action' 	=> 'get_quick_view_contents'
+			) 
+		);
+
+	}
+
+	public function get_quick_view_contents(){
+		if( !isset($_GET['id']) ) die( 'product id is missing' );
+?>
+		<?php 
+
+			// echo do_shortcode('[product_page id="18"]');
+
+			// $product_id = $_GET['id'];
+			// $query = new WP_Query( array( 'p' => $product_id, 'post_type' => 'product' ) );
+
+			// if( $query->have_posts() ) {
+			// 	while( $query->have_posts() ){
+			// 		$query->the_post();
+			// 		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
+			// 	}
+			// 	wp_reset_postdata();
+			// }
+
+		?>
+
+<?php
+		die;
 	}
 
 	
@@ -127,27 +156,29 @@ class Addonify_Quick_View_Public {
 
 	// add custom markup into footer
 	function add_markup_into_footer(){
+
+		echo do_shortcode('[product_page id="18"]');
+
+		
 ?>
 		<div id="addonify-quick-view-modal">
 			<div class="adfy-quick-view-model-inner">
 				<div class="adfy-qvm-head">
 					<button id="addonify-qvm-close-button" class="adfy-qv-button">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 							<line x1="18" y1="6" x2="6" y2="18"></line>
 							<line x1="6" y1="6" x2="18" y2="18"></line>
 						</svg>
 					</button>
 				</div><!-- // adfy-qvm-head -->
-				<div id="adfy-qvm-spinner">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-				</div><!-- // adfy-qvm-spinner -->
 				<div class="adfy-quick-view-modal-content">
-					<!-- loop here -->
+										
 				</div><!-- // adfy-quick-view-modal-content -->
 			</div><!-- // adfy-quick-view-model-inner -->
 		</div><!-- // addonify-quick-view-modal -->
 		<div class="adfy-quick-view-overlay"></div>
 <?php
 	}
+	
 
 }

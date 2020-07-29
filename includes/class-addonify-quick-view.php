@@ -197,6 +197,10 @@ class Addonify_Quick_View {
 		// add custom markup into footer
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer' );
 
+		// ajax
+		$this->loader->add_action( 'wp_ajax_get_quick_view_contents', $plugin_public, 'get_quick_view_contents' );
+		$this->loader->add_action( 'wp_ajax_nopriv_get_quick_view_contents', $plugin_public, 'get_quick_view_contents' );
+
 	}
 
 	/**
