@@ -192,10 +192,16 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 		// add "Quick View" button in loop
-		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_custom_button_in_wc_loop', 10, 3 );
+		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_quick_view_btn_aside_add_to_cart_btn', 10, 3 );
+		
+		// show button in image
+		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_in_image', 10 );
 
 		// add custom markup into footer
 		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer' );
+
+		// add custom styles into header
+		$this->loader->add_action( 'wp_head', $plugin_public, 'generate_custom_styles' );
 
 		// ajax
 		$this->loader->add_action( 'wp_ajax_get_quick_view_contents', $plugin_public, 'get_quick_view_contents' );

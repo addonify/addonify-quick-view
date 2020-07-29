@@ -38,6 +38,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Rename this for your plugin and update it as you release new versions.
  */
 define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.0.0' );
+define( 'ADDONIFY_DB_INITIALS', 'addonify_qv_' );
 
 
 /**

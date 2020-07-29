@@ -40,13 +40,20 @@ class Addonify_Quick_View_Public {
 	 */
 	private $version;
 
+
 	/**
-	 * Initialize the class and set its properties.
+	 * Contains all the db fields used by this plugin
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
 	 */
+	private $all_db_fields;
+
+
+
+
+	// constructor function	
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
@@ -61,36 +68,17 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Addonify_Quick_View_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Addonify_Quick_View_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', array(), $this->version, 'all' );
 
 	}
 
-	/**
-	 * Register the JavaScript for the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
+	// enqueue scripts
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
-		
-
 		// for ajax
 		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', array( 'jquery', 'zoom', 'flexslider', 'photoswipe-ui-default', 'wc-single-product' ), '', true );
-
 
 		// localize ajax script
 		wp_localize_script( 
@@ -98,7 +86,6 @@ class Addonify_Quick_View_Public {
 			'ajax_object', 
 			array( 
 				'ajax_url' 	=> admin_url( 'admin-ajax.php' ), 
-				'id' 		=> 18,
 				'action' 	=> 'get_quick_view_contents'
 			) 
 		);
@@ -106,33 +93,30 @@ class Addonify_Quick_View_Public {
 	}
 
 	public function get_quick_view_contents(){
+		// product id is reqiored
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
-?>
-		<?php 
 
-			// echo do_shortcode('[product_page id="18"]');
+		$product_id = $_GET['id'];
+		echo do_shortcode('[product_page id="'. $product_id .'"]');
 
-			// $product_id = $_GET['id'];
-			// $query = new WP_Query( array( 'p' => $product_id, 'post_type' => 'product' ) );
-
-			// if( $query->have_posts() ) {
-			// 	while( $query->have_posts() ){
-			// 		$query->the_post();
-			// 		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
-			// 	}
-			// 	wp_reset_postdata();
-			// }
-
-		?>
-
-<?php
+		// require content templates
+		// require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
+		
+		// end with die()
 		die;
 	}
 
 	
 
 	// add custom "Quick View" button in woocommerce loop
-	function show_custom_button_in_wc_loop($button, $product, $args) {
+	function show_quick_view_btn_aside_add_to_cart_btn($button, $product, $args) {
+
+		$show_quick_btn = $this->get_db_values('quick_view_btn_label', 1);
+		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
+
+		if( $quick_view_btn_position == 'before_add_to_cart' ) {
+			$this->show_quick_view_btn($show_quick_btn, $product->get_id() );
+		}
 
 		printf(
 			'<a href="%s" data-quantity="%s" class="%s" %s >%s</a>',
@@ -143,23 +127,46 @@ class Addonify_Quick_View_Public {
 			esc_html( $product->add_to_cart_text() ),
 		);
 
-		printf(
-			'<a href="%s" class="%s" data-product_id="%s" rel="nofollow" >%s</a>',
-			'#',
-			'addonify-qvm-button button',
-			esc_attr( $product->get_id() ),
-			__('Quick View', 'addonify-quick-view')
-		);
+		if( $quick_view_btn_position == 'after_add_to_cart' ) {
+			$this->show_quick_view_btn($show_quick_btn, $product->get_id() );
+		}
 
+	}
+
+
+	public function show_quick_view_btn_in_image(){
+		global $product;
+
+		$show_quick_btn = $this->get_db_values('quick_view_btn_label', 1);
+		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
+
+		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
+			printf(
+				'<div class="addonify-qv-label addonify-qvm-button" data-product_id="%s" ><span class="button ">%s</span></div>',
+				$product->get_id(),
+				$this->get_db_values('quick_view_btn_label', __( 'Quick View', 'addonify-quick-view' ) )
+			);
+		}
+
+	}
+
+
+
+	private function show_quick_view_btn( $show_quick_btn, $product_id ){
+		if( $show_quick_btn  ) {
+			printf(
+				'<a href="%s" class="%s" data-product_id="%s" rel="nofollow" >%s</a>',
+				'#',
+				'addonify-qvm-button button',
+				esc_attr( $product_id ),
+				$this->get_db_values('quick_view_btn_label', __( 'Quick View', 'addonify-quick-view' )  )
+			);
+		}
 	}
 
 
 	// add custom markup into footer
 	function add_markup_into_footer(){
-
-		echo do_shortcode('[product_page id="18"]');
-
-		
 ?>
 		<div id="addonify-quick-view-modal">
 			<div class="adfy-quick-view-model-inner">
@@ -172,7 +179,6 @@ class Addonify_Quick_View_Public {
 					</button>
 				</div><!-- // adfy-qvm-head -->
 				<div class="adfy-quick-view-modal-content">
-										
 				</div><!-- // adfy-quick-view-modal-content -->
 			</div><!-- // adfy-quick-view-model-inner -->
 		</div><!-- // addonify-quick-view-modal -->
@@ -180,5 +186,144 @@ class Addonify_Quick_View_Public {
 <?php
 	}
 	
+
+	// private function get_all_db_fields(){
+		
+	// 	$this->all_db_fields = array(
+	// 		// general
+	// 		'enable_quick_view' 		=> $this->get_db_values( 'enable_quick_view' ), 
+	// 		'quick_view_btn_position'	=> $this->get_db_values( 'quick_view_btn_position' ),
+	// 		'quick_view_btn_label'		=> $this->get_db_values( 'quick_view_btn_label' ),
+
+	// 		// content options
+	// 		'show_product_image'		=> $this->get_db_values( 'show_product_image' ),
+	// 		'show_product_title'		=> $this->get_db_values( 'show_product_title' ),
+	// 		'show_product_rating'		=> $this->get_db_values( 'show_product_rating' ),
+	// 		'show_product_price'		=> $this->get_db_values( 'show_product_price' ),
+	// 		'show_product_excerpt'		=> $this->get_db_values( 'show_product_excerpt' ),
+	// 		'show_add_to_cart_btn'		=> $this->get_db_values( 'show_add_to_cart_btn' ),
+	// 		'show_product_meta'			=> $this->get_db_values( 'show_product_meta' ),
+	// 		'product_image_display_type'=> $this->get_db_values( 'product_image_display_type' ),
+	// 		'enable_lightbox'			=> $this->get_db_values( 'enable_lightbox' ),
+	// 		'show_view_details_btn'		=> $this->get_db_values( 'show_view_detail_btn' ),
+	// 		'view_details_btn_label'	=> $this->get_db_values( 'view_detail_btn_label' ),
+
+	// 		// style options
+	// 		'load_styles_from_plugin'	=> $this->get_db_values( 'load_styles_from_plugin' ),
+
+	// 		// content colors
+	// 		'modal_overlay_bck_color'	=> $this->get_db_values( 'modal_overlay_bck_color', '#000000' ),
+	// 		'modal_bck_color'			=> $this->get_db_values( 'modal_bck_color', '#ffffff' ),
+	// 		'title_color'				=> $this->get_db_values( 'product_title_color', '#000000' ),
+	// 		'rating_empty_color'		=> $this->get_db_values( 'product_rating_empty_color', '#cccccc' ),
+	// 		'rating_full_color'			=> $this->get_db_values( 'product_rating_full_color', '#000000' ),
+	// 		'price_color_regular'		=> $this->get_db_values( 'product_regular_price_color', '#000000' ),
+	// 		'price_color_sale'			=> $this->get_db_values( 'product_sale_price_color', '#000000' ),
+	// 		'excerpt_color'				=> $this->get_db_values( 'excerpt_color', '#000000' ),
+	// 		'meta_color'				=> $this->get_db_values( 'meta_color', '#000000' ),
+	// 		'meta_color_hover'			=> $this->get_db_values( 'meta_color_hover', '#000000' ),
+	// 		'close_btn_text_color'		=> $this->get_db_values( 'close_btn_text_color', '#000000' ),
+	// 		'close_btn_bck_color'		=> $this->get_db_values( 'close_btn_bck_color', '#000000' ),
+	// 		'close_btn_text_color_hover'=> $this->get_db_values( 'close_btn_text_color_hover', '#000000' ),
+	// 		'close_btn_bck_color_hover'	=> $this->get_db_values( 'close_btn_bck_color_hover', '#000000' ),
+	// 		'other_btn_text_color'		=> $this->get_db_values( 'other_btn_text_color', '#000000' ),
+	// 		'other_btn_bck_color'		=> $this->get_db_values( 'other_btn_bck_color', '#000000' ),
+	// 		'other_btn_text_color_hover'=> $this->get_db_values( 'other_btn_text_color_hover', '#000000' ),
+	// 		'other_btn_bck_color_hover'	=> $this->get_db_values( 'other_btn_bck_color_hover', '#000000' ),
+	// 		'custom_css'				=> $this->get_db_values( 'custom_css', '#000000' ),
+
+	// 	);
+
+	// }
+
+
+	public function generate_custom_styles(){
+
+		$load_styles_from_plugin = $this->get_db_values( 'load_styles_from_plugin', 1 );
+
+		// do not continue if plugin styles are disabled by user
+		if( ! $load_styles_from_plugin ) return;
+
+		$custom_styles_output = '';
+
+		$style_fields = array(
+			'.adfy-quick-view-overlay' => array(
+				'background' 	=> 'modal_overlay_bck_color'
+			),
+			'.adfy-quick-view-modal-content' => array(
+				'background' 	=> 'modal_bck_color',
+			),
+			'.adfy-quick-view-modal-content .entry-title' => array(
+				'color'		 	=> 'title_color',
+			),
+			'.adfy-quick-view-modal-content .price' => array(
+				'color' 		=> 'price_color_regular',
+			),
+			'.adfy-quick-view-modal-content .price.del' => array(
+				'background' 	=> 'price_color_sale',
+			),
+			'.adfy-quick-view-modal-content .woocommerce-product-details__short-description' => array(
+				'color' 		=> 'excerpt_color',
+			),
+			'.adfy-quick-view-modal-content .product_meta' => array(
+				'color' 		=> 'meta_color',
+			),
+			'.adfy-quick-view-modal-content .product_meta a:hover' => array(
+				'color' 		=> 'meta_color_hover',
+			),
+			'#addonify-qvm-close-button svg' => array(
+				'color' 		=> 'close_btn_text_color',
+			),
+			'#addonify-qvm-close-button' => array(
+				'background'	=> 'close_btn_bck_color',
+			),
+			'#addonify-qvm-close-button:hover svg' => array(
+				'color'		 	=> 'close_btn_text_color_hover',
+			),
+			'#addonify-qvm-close-button:hover' => array(
+				'background' 	=> 'close_btn_bck_color_hover',
+			),
+			'.adfy-quick-view-modal-content button' => array(
+				'background' 	=> 'other_btn_bck_color',
+				'color' 		=> 'other_btn_text_color',
+			),
+			'.adfy-quick-view-modal-content button:hover' => array(
+				'background' 	=> 'other_btn_bck_color_hover',
+				'color'		 	=> 'other_btn_text_color_hover',
+			),
+			
+		);
+
+
+		foreach($style_fields as $css_sel => $property_value){
+
+			$properties = '';
+
+			foreach( $property_value as $property => $db_field){
+				$db_value = $this->get_db_values( $db_field );
+
+				if( $db_value ){
+					$properties .=  $property . ': ' . $db_value .'; ';
+				}
+			}
+			
+			if( $properties ){
+				$custom_styles_output .= $css_sel . '{' . $properties .'}';
+			}
+
+		}
+
+
+		if( $custom_styles_output ){
+			echo "<style> \n" . $custom_styles_output . "\n </style>";
+		}
+
+	}
+
+
+	// get db values for selected fields
+	private function get_db_values($field_name, $default = NULL ){
+		return get_option( ADDONIFY_DB_INITIALS . $field_name, $default );
+	}
 
 }
