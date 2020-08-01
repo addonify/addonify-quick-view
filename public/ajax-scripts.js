@@ -21,6 +21,8 @@
                 $( '.woocommerce-product-gallery' ).each( function() {
                     $( this ).wc_product_gallery();
                 } );
+
+                $('#adfy-qvm-spinner').addClass('hide');
             })
 
         })

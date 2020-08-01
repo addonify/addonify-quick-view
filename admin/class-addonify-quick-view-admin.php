@@ -430,11 +430,11 @@ class Addonify_Quick_View_Admin {
 					'field_callback_args'	=> array( 
 						array(
 							'label'			=> __('Empty Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'rating_empty_color',
+							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_empty',
 						),
 						array(
 							'label'			=> __('Full Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'rating_full_color',
+							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_full',
 						),
 						
 					),

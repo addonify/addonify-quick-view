@@ -57,6 +57,9 @@ class Addonify_Quick_View_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		$this->addonify_qv_action_template();
+
+
 	}
 
 	/**
@@ -112,13 +115,23 @@ class Addonify_Quick_View_Public {
 	}
 
 
+	// show quick view contents through ajax
 	public function get_quick_view_contents(){
-		// product id is reqiored
+		
+		// product id is required
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
 
-		// require content templates
+		$product_id = intval( $_GET['id'] );
+
+		// Set the main wp query for the product.
+		wp( 'p=' . $product_id . '&post_type=product' );
+
+		ob_start();
 		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
-		die;
+		echo ob_get_clean();
+
+		die();
+
 	}
 	
 
@@ -220,6 +233,12 @@ class Addonify_Quick_View_Public {
 			'.adfy-quick-view-modal-content .entry-title' => array(
 				'color'		 	=> 'title_color',
 			),
+			'.star-rating::before' => array(
+				'color'		 	=> 'rating_color_empty',
+			),
+			'.star-rating span::before' => array(
+				'color'		 	=> 'rating_color_full',
+			),
 			'.adfy-quick-view-modal-content .price' => array(
 				'color' 		=> 'price_color_regular',
 			),
@@ -288,6 +307,53 @@ class Addonify_Quick_View_Public {
 	// get db values for selected fields
 	private function get_db_values($field_name, $default = NULL ){
 		return get_option( ADDONIFY_DB_INITIALS . $field_name, $default );
+	}
+
+
+	private function addonify_qv_action_template() {
+
+		// define the woocommerce_single_product_image_gallery_classes callback 
+		// function filter_woocommerce_single_product_image_gallery_classes( $array ) { 
+		// 	// make filter magic happen here... 
+		// 	var_dump($array);
+		// 	return $array; 
+
+		// }; 
+				
+		// // add the filter 
+		// add_filter( 'woocommerce_single_product_image_gallery_classes', 'filter_woocommerce_single_product_image_gallery_classes', 10, 1 ); 
+
+		// Show Hide Image according to user choices 
+		if( (int) $this->get_db_values( 'show_product_image' ) ) {
+			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_sale_flash', 10 );
+			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_images', 20 );
+		}
+
+
+		if( (int) $this->get_db_values( 'show_product_title' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
+		}
+
+		if( (int) $this->get_db_values( 'show_product_rating' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_rating', 10 );
+		}
+
+		if( (int) $this->get_db_values( 'show_product_price' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_price', 15 );
+		}
+
+		if( (int) $this->get_db_values( 'show_product_excerpt' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_excerpt', 20 );
+		}
+
+		if( (int) $this->get_db_values( 'show_add_to_cart_btn' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
+		}
+
+		if( (int) $this->get_db_values( 'show_product_meta' ) ) {
+			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_meta', 30 );
+		}
+
 	}
 
 }
