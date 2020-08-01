@@ -32,11 +32,16 @@
 	z-index: 9999;
 }
 
-body.addonify-qvm-is-active .adfy-quick-view-overlay,
-body.addonify-qvm-is-active #addonify-quick-view-modal {
+.addonify-qvm-is-active .adfy-quick-view-overlay,
+.addonify-qvm-is-active #addonify-quick-view-modal {
 
 	visibility: visible;
     opacity: 1;
+}
+
+.addonify-qvm-is-active .pswp {
+
+	z-index: 10001;
 }
 
 .adfy-quick-view-model-inner {
