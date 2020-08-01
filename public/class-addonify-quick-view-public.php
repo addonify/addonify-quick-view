@@ -57,9 +57,6 @@ class Addonify_Quick_View_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-		$this->addonify_qv_action_template();
-
-
 	}
 
 	/**
@@ -117,6 +114,8 @@ class Addonify_Quick_View_Public {
 
 	// show quick view contents through ajax
 	public function get_quick_view_contents(){
+
+		$this->addonify_qv_action_template();
 		
 		// product id is required
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
@@ -131,6 +130,15 @@ class Addonify_Quick_View_Public {
 		echo ob_get_clean();
 
 		die();
+
+	}
+
+	private function disable_gallery_thumbnails(){
+		// hide thumbnails from gallery in modal
+		add_action( 'woocommerce_product_thumbnails', 'remove_hooks' );
+		function remove_hooks(){
+			remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+		}
 
 	}
 	
@@ -159,7 +167,8 @@ class Addonify_Quick_View_Public {
 		}
 
 	}
-  
+	
+	// show quick view button aside image
 	public function show_quick_view_btn_in_image(){
 		global $product;
 
@@ -168,7 +177,7 @@ class Addonify_Quick_View_Public {
 
 		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
 			printf(
-				'<div class="addonify-qv-label addonify-qvm-button" data-product_id="%s" ><span class="button ">%s</span></div>',
+				'<button type="button" class="addonify-qv-label addonify-qvm-button button" data-product_id="%s" >%s</button>',
 				$product->get_id(),
 				$this->get_db_values('quick_view_btn_label', __( 'Quick View', 'addonify-quick-view' ) )
 			);
@@ -312,23 +321,20 @@ class Addonify_Quick_View_Public {
 
 	private function addonify_qv_action_template() {
 
-		// define the woocommerce_single_product_image_gallery_classes callback 
-		// function filter_woocommerce_single_product_image_gallery_classes( $array ) { 
-		// 	// make filter magic happen here... 
-		// 	var_dump($array);
-		// 	return $array; 
-
-		// }; 
-				
-		// // add the filter 
-		// add_filter( 'woocommerce_single_product_image_gallery_classes', 'filter_woocommerce_single_product_image_gallery_classes', 10, 1 ); 
-
+		
 		// Show Hide Image according to user choices 
 		if( (int) $this->get_db_values( 'show_product_image' ) ) {
+
+			// show or hide thumbnails according to user choice
+			if( $this->get_db_values( 'product_image_display_type' ) == 'image_only' ) {
+				$this->disable_gallery_thumbnails();
+			}
+			
+			// show images
 			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_sale_flash', 10 );
 			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_images', 20 );
+			
 		}
-
 
 		if( (int) $this->get_db_values( 'show_product_title' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
