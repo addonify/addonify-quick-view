@@ -51,8 +51,6 @@ class Addonify_Quick_View_Public {
 	private $all_db_fields;
 
 
-
-
 	// constructor function	
 	public function __construct( $plugin_name, $version ) {
 
@@ -96,13 +94,8 @@ class Addonify_Quick_View_Public {
 		// product id is reqiored
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
 
-		$product_id = $_GET['id'];
-		echo do_shortcode('[product_page id="'. $product_id .'"]');
-
 		// require content templates
-		// require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
-		
-		// end with die()
+		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
 		die;
 	}
 
@@ -186,56 +179,6 @@ class Addonify_Quick_View_Public {
 <?php
 	}
 	
-
-	// private function get_all_db_fields(){
-		
-	// 	$this->all_db_fields = array(
-	// 		// general
-	// 		'enable_quick_view' 		=> $this->get_db_values( 'enable_quick_view' ), 
-	// 		'quick_view_btn_position'	=> $this->get_db_values( 'quick_view_btn_position' ),
-	// 		'quick_view_btn_label'		=> $this->get_db_values( 'quick_view_btn_label' ),
-
-	// 		// content options
-	// 		'show_product_image'		=> $this->get_db_values( 'show_product_image' ),
-	// 		'show_product_title'		=> $this->get_db_values( 'show_product_title' ),
-	// 		'show_product_rating'		=> $this->get_db_values( 'show_product_rating' ),
-	// 		'show_product_price'		=> $this->get_db_values( 'show_product_price' ),
-	// 		'show_product_excerpt'		=> $this->get_db_values( 'show_product_excerpt' ),
-	// 		'show_add_to_cart_btn'		=> $this->get_db_values( 'show_add_to_cart_btn' ),
-	// 		'show_product_meta'			=> $this->get_db_values( 'show_product_meta' ),
-	// 		'product_image_display_type'=> $this->get_db_values( 'product_image_display_type' ),
-	// 		'enable_lightbox'			=> $this->get_db_values( 'enable_lightbox' ),
-	// 		'show_view_details_btn'		=> $this->get_db_values( 'show_view_detail_btn' ),
-	// 		'view_details_btn_label'	=> $this->get_db_values( 'view_detail_btn_label' ),
-
-	// 		// style options
-	// 		'load_styles_from_plugin'	=> $this->get_db_values( 'load_styles_from_plugin' ),
-
-	// 		// content colors
-	// 		'modal_overlay_bck_color'	=> $this->get_db_values( 'modal_overlay_bck_color', '#000000' ),
-	// 		'modal_bck_color'			=> $this->get_db_values( 'modal_bck_color', '#ffffff' ),
-	// 		'title_color'				=> $this->get_db_values( 'product_title_color', '#000000' ),
-	// 		'rating_empty_color'		=> $this->get_db_values( 'product_rating_empty_color', '#cccccc' ),
-	// 		'rating_full_color'			=> $this->get_db_values( 'product_rating_full_color', '#000000' ),
-	// 		'price_color_regular'		=> $this->get_db_values( 'product_regular_price_color', '#000000' ),
-	// 		'price_color_sale'			=> $this->get_db_values( 'product_sale_price_color', '#000000' ),
-	// 		'excerpt_color'				=> $this->get_db_values( 'excerpt_color', '#000000' ),
-	// 		'meta_color'				=> $this->get_db_values( 'meta_color', '#000000' ),
-	// 		'meta_color_hover'			=> $this->get_db_values( 'meta_color_hover', '#000000' ),
-	// 		'close_btn_text_color'		=> $this->get_db_values( 'close_btn_text_color', '#000000' ),
-	// 		'close_btn_bck_color'		=> $this->get_db_values( 'close_btn_bck_color', '#000000' ),
-	// 		'close_btn_text_color_hover'=> $this->get_db_values( 'close_btn_text_color_hover', '#000000' ),
-	// 		'close_btn_bck_color_hover'	=> $this->get_db_values( 'close_btn_bck_color_hover', '#000000' ),
-	// 		'other_btn_text_color'		=> $this->get_db_values( 'other_btn_text_color', '#000000' ),
-	// 		'other_btn_bck_color'		=> $this->get_db_values( 'other_btn_bck_color', '#000000' ),
-	// 		'other_btn_text_color_hover'=> $this->get_db_values( 'other_btn_text_color_hover', '#000000' ),
-	// 		'other_btn_bck_color_hover'	=> $this->get_db_values( 'other_btn_bck_color_hover', '#000000' ),
-	// 		'custom_css'				=> $this->get_db_values( 'custom_css', '#000000' ),
-
-	// 	);
-
-	// }
-
 
 	public function generate_custom_styles(){
 
