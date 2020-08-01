@@ -66,7 +66,22 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', array('photoswipe-default-skin'), $this->version, 'all' );
+		$style_dependency = array();
+
+		if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
+			
+			// these features are supported from woocommerce 3.0.0
+
+			if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
+
+				if( (int) $this->get_db_values( 'enable_lightbox', 1 ) ) {
+					$style_dependency[] = 'photoswipe-default-skin';
+				}
+			}
+
+		}
+
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', $style_dependency, $this->version, 'all' );
 
 	}
 
@@ -75,8 +90,10 @@ class Addonify_Quick_View_Public {
 	public function enqueue_scripts() {
 
 		$script_dependency = array('jquery', 'wc-add-to-cart-variation', 'flexslider');
-
+		
 		if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
+			
+			// these features are supported from woocommerce 3.0.0
 
 			if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
 				$script_dependency[] = 'zoom';
@@ -84,9 +101,10 @@ class Addonify_Quick_View_Public {
 
 			if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
 
-				$script_dependency[] = 'photoswipe-ui-default';
-
-				if ( has_action( 'wp_footer', 'woocommerce_photoswipe' ) === false ) {
+				if( (int) $this->get_db_values( 'enable_lightbox', 1 ) ) {
+					$script_dependency[] = 'photoswipe-ui-default';
+					
+					// this action is required for photoswipe to work
 					add_action( 'wp_footer', 'woocommerce_photoswipe', 15 );
 				}
 			}
@@ -94,14 +112,17 @@ class Addonify_Quick_View_Public {
 			$script_dependency[] = 'wc-single-product';
 		}
 
+		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
+
+
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
 		// for ajax
-		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', $script_dependency, '', true );
+		wp_enqueue_script( 'addonify_qv_ajax_scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', $script_dependency, '', true );
 
 		// localize ajax script
 		wp_localize_script( 
-			'custom-scripts', 
+			'addonify_qv_ajax_scripts', 
 			'ajax_object', 
 			array( 
 				'ajax_url' 	=> admin_url( 'admin-ajax.php' ), 
@@ -111,16 +132,17 @@ class Addonify_Quick_View_Public {
 
 	}
 
+	// callback function
+	// get contents for quick view
+	public function quick_view_contents_callback(){
 
-	// show quick view contents through ajax
-	public function get_quick_view_contents(){
-
-		$this->addonify_qv_action_template();
-		
 		// product id is required
-		if( !isset($_GET['id']) ) die( 'product id is missing' );
+		if( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) die( 'product id is missing' );
 
 		$product_id = intval( $_GET['id'] );
+
+		// generate contents dynamically
+		$this->generate_contents();
 
 		// Set the main wp query for the product.
 		wp( 'p=' . $product_id . '&post_type=product' );
@@ -133,107 +155,82 @@ class Addonify_Quick_View_Public {
 
 	}
 
-	private function disable_gallery_thumbnails(){
-		// hide thumbnails from gallery in modal
-		add_action( 'woocommerce_product_thumbnails', 'remove_hooks' );
-		function remove_hooks(){
-			remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
-		}
-
-	}
 	
 
+	// callback function
 	// add custom "Quick View" button in woocommerce loop
-	function show_quick_view_btn_aside_add_to_cart_btn($button, $product, $args) {
+	function show_quick_view_btn_aside_add_to_cart_btn_callback($button, $product, $args) {
 
-		$show_quick_btn = $this->get_db_values('quick_view_btn_label', 1);
+		$show_quick_btn = (int) $this->get_db_values('enable_quick_view', 1);
 		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
 
+		// show quick view btn before add to cart button
 		if( $quick_view_btn_position == 'before_add_to_cart' ) {
 			$this->show_quick_view_btn_markups($show_quick_btn, $product->get_id() );
 		}
 
-		printf(
-			'<a href="%s" data-quantity="%s" class="%s" %s >%s</a>',
-			esc_url( $product->add_to_cart_url() ),
-			esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
-			esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
-			isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
-			esc_html( $product->add_to_cart_text() ),
-		);
+		// print default add to cart button by woocommerce
+		echo $button;
 
+		// show quick view btn after add to cart button
 		if( $quick_view_btn_position == 'after_add_to_cart' ) {
 			$this->show_quick_view_btn_markups($show_quick_btn, $product->get_id() );
 		}
 
 	}
-	
-	// show quick view button aside image
-	public function show_quick_view_btn_in_image(){
-		global $product;
 
-		$show_quick_btn = $this->get_db_values('quick_view_btn_label', 1);
-		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
+	
+	// callback function
+	// show quick view button aside image
+	public function show_quick_view_btn_aside_image_callback(){
+
+		global $product;
+		$product_id = $product->get_id();
+
+		$show_quick_btn = (int) $this->get_db_values( 'enable_quick_view', 1 );
+		$quick_view_btn_position = $this->get_db_values( 'quick_view_btn_position', 'after_add_to_cart' );
 
 		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
-			printf(
-				'<button type="button" class="addonify-qv-label addonify-qvm-button button" data-product_id="%s" >%s</button>',
-				$product->get_id(),
-				$this->get_db_values('quick_view_btn_label', __( 'Quick View', 'addonify-quick-view' ) )
-			);
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/quick-view-btn.php';
+			echo ob_get_clean();
 		}
 
 	}
+
 
 	// markups for show_quick_btn
 	private function show_quick_view_btn_markups( $show_quick_btn, $product_id ){
-		if( $show_quick_btn  ) {
-			printf(
-				'<a href="%s" class="%s" data-product_id="%s" rel="nofollow" >%s</a>',
-				'#',
-				'addonify-qvm-button button',
-				esc_attr( $product_id ),
-				$this->get_db_values('quick_view_btn_label', __( 'Quick View', 'addonify-quick-view' )  )
-			);
+		if( $show_quick_btn ) {
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/quick-view-btn.php';
+			echo ob_get_clean();
 		}
 	}
 
+	
+	// callback function
 	// add custom markup into footer
-	function add_markup_into_footer(){
-?>
-		<div id="addonify-quick-view-modal">
-			<div class="adfy-quick-view-model-inner">
-				<div class="adfy-qvm-head">
-					<button id="addonify-qvm-close-button" class="adfy-qv-button">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-							<line x1="18" y1="6" x2="6" y2="18"></line>
-							<line x1="6" y1="6" x2="18" y2="18"></line>
-						</svg>
-					</button>
-				</div><!-- // adfy-qvm-head -->
-				<div id="adfy-qvm-spinner">
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-				</div><!-- // adfy-qvm-spinner -->
-				<div class="adfy-quick-view-modal-content">
-					<?php echo do_shortcode('[product_page id="18"]'); ?>		
-				</div><!-- // adfy-quick-view-modal-content -->
-			</div><!-- // adfy-quick-view-model-inner -->
-		</div><!-- // addonify-quick-view-modal -->
-		<div class="adfy-quick-view-overlay"></div>
-<?php
+	public function add_markup_into_footer_callback(){
+		ob_start();
+		require_once dirname( __FILE__ ) .'/partials/quick-view-modal-markups.php';
+		echo ob_get_clean();
 	}
 	
-
-	public function generate_custom_styles(){
+	
+	// callback function
+	// generate style tag according to options selected by user
+	public function generate_custom_styles_callback(){
 
 		$load_styles_from_plugin = $this->get_db_values( 'load_styles_from_plugin', 1 );
 
 		// do not continue if plugin styles are disabled by user
 		if( ! $load_styles_from_plugin ) return;
 
+		$custom_css = $this->get_db_values('custom_css');
 		$custom_styles_output = '';
 
-		$style_fields = array(
+		$style_args = array(
 			'.adfy-quick-view-overlay' => array(
 				'background' 	=> 'modal_overlay_bck_color'
 			),
@@ -284,11 +281,9 @@ class Addonify_Quick_View_Public {
 				'background' 	=> 'other_btn_bck_color_hover',
 				'color'		 	=> 'other_btn_text_color_hover',
 			),
-			
 		);
 
-
-		foreach($style_fields as $css_sel => $property_value){
+		foreach($style_args as $css_sel => $property_value){
 
 			$properties = '';
 
@@ -306,22 +301,24 @@ class Addonify_Quick_View_Public {
 
 		}
 
-
-		if( $custom_styles_output ){
-			echo "<style> \n" . $custom_styles_output . "\n </style>";
+		// avoid empty style tags
+		if( $custom_styles_output || $custom_css ){
+			echo "<style> \n" . $custom_styles_output . "\n" . $custom_css . "\n </style>";
 		}
 
 	}
 
 
+	// helper function
 	// get db values for selected fields
 	private function get_db_values($field_name, $default = NULL ){
 		return get_option( ADDONIFY_DB_INITIALS . $field_name, $default );
 	}
 
 
-	// add contents dynamically to modal templates with action
-	private function addonify_qv_action_template() {
+	// generate contents dynamically to modal templates with hooks
+	// called by get_quick_view_contents()
+	private function generate_contents() {
 		
 		// Show Hide Image according to user choices 
 		if( (int) $this->get_db_values( 'show_product_image' ) ) {
@@ -337,45 +334,58 @@ class Addonify_Quick_View_Public {
 			
 		}
 
+		// show or hide title
 		if( (int) $this->get_db_values( 'show_product_title' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
 		}
 
+		// show or hide product ratings
 		if( (int) $this->get_db_values( 'show_product_rating' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_rating', 10 );
 		}
 
+		// show or hide price
 		if( (int) $this->get_db_values( 'show_product_price' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_price', 15 );
 		}
 
+		// show or hide excerpt
 		if( (int) $this->get_db_values( 'show_product_excerpt' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_excerpt', 20 );
 		}
 
+		// show or hide add to cart button
 		if( (int) $this->get_db_values( 'show_add_to_cart_btn' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
 		}
 
+		// show or hide product meta
 		if( (int) $this->get_db_values( 'show_product_meta' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
 
-		// show hide view details button
+		// show  orhide view details button
 		if( (int) $this->get_db_values( 'show_view_detail_btn' ) ) {
-			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_markup') );
+			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_callback') );
 		}
 
 	}
 
-	public function view_details_btn_markup( $post_id ){
+	// callback function
+	// view details button markups
+	public function view_details_btn_callback( $post_id ){
+		ob_start();
+		require_once dirname( __FILE__ ) .'/partials/view-details-btn.php';
+		echo ob_get_clean();
+	}
 
-		printf(
-			'<a href="%s">%s</a>',
-			// get_the_permalink($post_id),
-			'#',
-			'View Details'
-		);
+	// this will disable thumbnails in woocommerce gallery
+	private function disable_gallery_thumbnails(){
+		// hide thumbnails from gallery in modal
+		add_action( 'woocommerce_product_thumbnails', 'remove_hooks' );
+		function remove_hooks(){
+			remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+		}
 
 	}
 

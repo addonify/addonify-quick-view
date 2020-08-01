@@ -75,8 +75,13 @@ class Addonify_Quick_View_Admin {
 			// toggle switch
 			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
 
-			// built in wp color picker
-			wp_enqueue_style( 'wp-color-picker' );
+			
+			if( version_compare( get_bloginfo('version'),'3.5', '>=' ) ){
+				// feature available from wordpress 3.5
+
+				// built in wp color picker
+				wp_enqueue_style( 'wp-color-picker' );
+			}
 
 			// admin css
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin.css', array(), $this->version, 'all' );
@@ -90,12 +95,39 @@ class Addonify_Quick_View_Admin {
 	public function enqueue_scripts() {
 
 		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
+
+			$code_editor_is_available = 0;
+			$color_picker_is_available = 0;
+
+
+			if( version_compare( get_bloginfo('version'),'3.5', '>=' ) ){
+				$color_picker_is_available = 1;
+			}
+
+
+			if( version_compare( get_bloginfo('version'),'4.9', '>=' ) ){
+				$code_editor_is_available = 1;
+				
+				// featured available from wordpress 4.9.0
+				wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+
+			}
 			
 			// toggle switch
 			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
 
 			// use built in wp color picker as dependency
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array('jquery', 'wp-color-picker'), $this->version, false );
+
+
+			wp_localize_script( 
+				$this->plugin_name, 
+				'addonify_objects', 
+				array( 
+					'code_editor_is_available' 		=> $code_editor_is_available,
+					'color_picker_is_available' 	=> $color_picker_is_available
+				)
+			);
 
 		}
 
@@ -103,99 +135,53 @@ class Addonify_Quick_View_Admin {
 
 	
 	// check if woocommerce is active
-	function is_woocommerce_active() {
-
+	private function is_woocommerce_active() {
 		if ( class_exists( 'woocommerce' ) )  return true; 
 		return false;
-
 	}
 
-
-
+	
+	// callback function
 	// admin menu
-	public function add_menu(){
+	public function add_menu_callback(){
 
 		// do not show menu if woocommerce is not active
 		if ( ! $this->is_woocommerce_active() )  return; 
 
-		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui'), 'dashicons-slides', 76 );
+		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 'dashicons-slides', 76 );
 		
 		// sub menu
 		// redirects to main plugin link
-		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'quick_view_settings_page_ui') );
+		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents') );
 
 	}
 
 
 	// add custom "settings" link in the plugins.php page
-	public function custom_plugin_link( $links, $file ){
+	private function custom_plugin_link( $links, $file ){
 		
 		if ( $file == plugin_basename(dirname(__FILE__, 2) . '/addonify-quick-view.php') ) {
-			
 			// add "Settings" link
 			$links[] = '<a href="admin.php?page='. $this->settings_page_slug .'">' . __('Settings','addonify-quick-view') . '</a>';
-			
-    	}
+		}
+		
 		return $links;
 	}
 
-	
-	public function quick_view_settings_page_ui(){
+
+	// callback function
+	// get contents for settings page screen
+	public function get_settings_screen_contents(){
 		$current_tab = ( isset($_GET['tabs']) ) ? $_GET['tabs'] : 'settings';
 		$tab_url = "admin.php?page=$this->settings_page_slug&tabs=";
-?>
-		<div class="wrap">
-            <h1>Quick View Options</h1>
 
-			<div id="addonify-settings-wrapper">
-					
-				<ul id="addonify-settings-tabs">
-					<li><a href="<?php echo $tab_url;?>settings" class="<?php if( $current_tab == 'settings') echo 'active';?> " >Settings</a></li>
-					<li><a href="<?php echo $tab_url;?>styles" class="<?php if( $current_tab == 'styles') echo 'active';?> " >Styles</a></li>
-				</ul>
+		ob_start();
+		require_once dirname( __FILE__ ) .'/partials/settings-screen.php';
+		echo ob_get_clean();
 
-				<?php if( $current_tab == 'settings'):?>
-
-					<!-- settings tabs -->
-					<form method="POST" action="options.php">
-					
-						<!-- generate nonce -->
-						<?php settings_fields("quick_views_settings"); ?>
-
-						<div id="addonify-settings-container" class="addonify-content active">
-							<!-- display form fields -->
-							<?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
-						</div><!--addonify-settings-container-->
-
-						<?php submit_button(); ?>
-
-					</form>
-				
-				<?php elseif( $current_tab == 'styles'):?>
-
-					<!-- styles tabs -->
-					<form method="POST" action="options.php">
-					
-						<!-- generate nonce -->
-						<?php settings_fields("quick_views_styles"); ?>
-
-						<div id="addonify-styles-container" class="addonify-content active">
-							<?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
-						</div><!--addonify-styles-container-->
-
-						<?php submit_button(); ?>
-
-					</form>
-
-				<?php endif;?>
-			
-			</div><!--addonify-settings-wrapper-->
-		</div> <!--wrap-->
-
-<?php
 	}
 
-
+	// callback function
 	// generate settings page form elements
 	public function settings_page_ui() {
 
@@ -553,7 +539,7 @@ class Addonify_Quick_View_Admin {
 
 	
 	// this function will create settings section, fields and register that settings in a database
-	public function create_settings($args){
+	private function create_settings($args){
 		
 		// define section ---------------------------
 		add_settings_section($args['section_id'], $args['section_label'], $args['section_callback'], $args['screen'] );
@@ -580,8 +566,10 @@ class Addonify_Quick_View_Admin {
 		foreach($arguments as $args){
 			$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
 			$db_value = get_option($args['name'], $placeholder);
-			
-			echo '<input type="text" class="regular-text" name="'. $args['name'] .'" id="'. $args['name'] .'" value="'.$db_value . '" placeholder="'. $placeholder . '"   />';
+
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/input_textbox.php';
+			echo ob_get_clean();
 		}
 	}
 
@@ -590,7 +578,10 @@ class Addonify_Quick_View_Admin {
 			$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
 			$db_value = get_option($args['name'], $placeholder);
 			$attr = isset( $args['attr'] ) ? $args['attr'] : '';
-			echo '<textarea type="text" name="'. $args['name'] .'" id="'. $args['name'] .'" '. $attr .' >'. $db_value .'</textarea>';
+
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/input_textarea.php';
+			echo ob_get_clean();
 		}
 	}
 
@@ -602,27 +593,21 @@ class Addonify_Quick_View_Admin {
 	}
 
 	public function color_picker_group($args){
-			
 		foreach($args as $arg){
 			$default =  isset( $arg['default'] )  ? $arg['default'] : '#000000';
 			$db_value = get_option($arg['name'], $default);
 
-			echo '<div class="colorpicker-group">';
-			if( isset($arg['label']) ) {
-				echo '<p>'. $arg['label'].'</p>';
-			}
-			echo '<input type="text" value="'. $db_value .'" name="'. $arg['name'] .'" id="'. $arg['name'] .'" class="color-picker" />';
-			echo '</div>';
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/input_colorpicker.php';
+			echo ob_get_clean();
 		}
 	}
 
 	public function checkbox_with_label($args){
-			
 		foreach($args as $arg){
-			echo '<div class="checkbox-group">';
-			$this->checkbox($arg);
-			echo '<label>'.  $arg['label'] .'</label>';
-			echo '</div>';
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/checkbox_group.php';
+			echo ob_get_clean();
 		}
 	}
 
@@ -632,7 +617,9 @@ class Addonify_Quick_View_Admin {
 		$is_checked = ( $db_value ) ? 'checked' : '';
 		$attr = ( array_key_exists('attr', $args) ) ? $args['attr'] : '';
 
-		echo '<input type="checkbox" value="1" id="'. $args['name'] .'" name="'. $args['name'] .'" '. $is_checked . ' ' . $attr .' />';
+		ob_start();
+		require dirname( __FILE__ ) .'/partials/input_checkbox.php';
+		echo ob_get_clean();
 	}
 
 	public function select($arguments){
@@ -640,27 +627,24 @@ class Addonify_Quick_View_Admin {
 
 			$db_value = get_option($args['name']);
 			$options = ( array_key_exists('options', $args) ) ? $args['options'] : array();
-			echo '<select  name="'. $args['name'] .'" id="'. $args['name'] .'" >';
-			foreach($options as $value => $label){
-				echo '<option value="'. $value .'" ';
-				if( $db_value == $value ) {
-					echo 'selected';
-				} 
-				echo ' >' . $label . '</option>';
-			}
-			echo '</select>';
+			
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/input_select.php';
+			echo ob_get_clean();
 		}
 	}
 
-
+	
+	// callback function
 	// show notification after form submission
-	public function form_submission_notification(){
+	public function form_submission_notification_callback(){
 		settings_errors();
 	}
 
-
+	
+	// callback
 	// show error message in dashboard if woocommerce is not active
-	function show_woocommerce_not_active_notice(){
+	public function show_woocommerce_not_active_notice_callback(){
 
 		if( ! $this->is_woocommerce_active() ){
 			add_action('admin_notices', 'woocommerce_not_active_notice' );
@@ -669,9 +653,9 @@ class Addonify_Quick_View_Admin {
 
 		function woocommerce_not_active_notice() {
 			
-			echo '<div class="notice notice-error is-dismissible"><p>';
-			_e( 'Addonify Quick View is enabled but not active. It requires WooCommerce in order to work.', 'addonify-quick-view' );
-			echo '</p></div>';
+			ob_start();
+			require dirname( __FILE__ ) .'/partials/woocommerce_not_active_notice.php';
+			echo ob_get_clean();
 
 		}
 

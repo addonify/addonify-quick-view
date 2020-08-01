@@ -1,9 +1,14 @@
 (function( $ ) {
 	'use strict';
 
-	$(document).ready(function(){
+	$( document ).ready(function(){
 
         $('body').on('click', '.addonify-qvm-button', function(){
+
+            let $spinenr = $('#adfy-qvm-spinner').addClass('hide');
+
+            // show spinner
+            $spinenr.removeClass('hide');
 
             // clear old contents
             $('#addonify-quick-view-modal .adfy-quick-view-modal-content').html('');
@@ -16,13 +21,18 @@
             };
     
             jQuery.get(ajax_object.ajax_url, data, function(response) {
+                // dump response into modal container
                 $('.adfy-quick-view-modal-content').html(response);
-            }).done(function() {
-                $( '.woocommerce-product-gallery' ).each( function() {
-                    $( this ).wc_product_gallery();
-                } );
 
-                $('#adfy-qvm-spinner').addClass('hide');
+            }).done(function() {
+
+                // re initiate wp_product_gallery() for gallery inside modal to work
+                $( '#addonify-quick-view-modal .woocommerce-product-gallery' ).each(function() {
+                    $( this ).wc_product_gallery();
+                });
+
+                // hide spinner
+                $spinenr.addClass('hide');
             })
 
         })
