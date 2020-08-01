@@ -48,13 +48,13 @@
     display: block;
 }
 
-.addonify-content > h2{
+.addonify-section > h2{
     color: #3f51b5;
 }
 
-.addonify-content > h2:not(:first-child){
+#addonify-content-colors-container{
     border-top: dotted 2px #ececec;
-    padding-top: 40px;
+    padding-top: 25px;
     margin-top: 35px;
 }
 
@@ -93,4 +93,9 @@
 
 .addonify-content .wp-picker-container .wp-color-result.button{
     border-color: #0000001c;
+}
+
+.CodeMirror {
+    border: solid 1px #e8e8e8;
+    border-radius: 4px;
 }

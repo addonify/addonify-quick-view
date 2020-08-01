@@ -28,6 +28,32 @@
 				var editor = wp.codeEditor.initialize( $('#addonify_qv_custom_css'), editorSettings );
 			}
 		}
+
+
+
+		// show hide content colors ------------------------------
+
+		let $style_options_sel = $('#addonify_qv_load_styles_from_plugin');
+		let $content_colors_sel = $('#addonify-content-colors-container');
+
+		// self activate
+		show_hide_content_colors( $style_options_sel.is(":checked") );
+
+		// detect state change
+		$('body').delegate('#addonify_qv_load_styles_from_plugin', 'lcs-statuschange', function() {
+			show_hide_content_colors( $(this).is(':checked') );
+		});
+
+		
+		function show_hide_content_colors( state ){
+			if( state ){
+				$content_colors_sel.slideDown();
+			}
+			else{
+				$content_colors_sel.slideUp();
+			}
+		}
+
 	
 	})
 

@@ -42,7 +42,14 @@
                 <?php settings_fields("quick_views_styles"); ?>
 
                 <div id="addonify-styles-container" class="addonify-content active">
-                    <?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
+
+                    <div id="addonify-style-options-container" class="addonify-section ">
+                        <?php do_settings_sections($this->settings_page_slug.'-styles'); ?>
+                    </div>
+
+                    <div id="addonify-content-colors-container" class="addonify-section">
+                        <?php do_settings_sections($this->settings_page_slug.'-content-colors'); ?>
+                    </div>
                 </div><!--addonify-styles-container-->
 
                 <?php submit_button(); ?>

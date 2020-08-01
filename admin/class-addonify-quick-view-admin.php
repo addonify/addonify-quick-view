@@ -380,7 +380,7 @@ class Addonify_Quick_View_Admin {
 			'section_id' 			=> 'content_colors',
 			'section_label'			=> __('CONTENT COLORS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
-			'screen'				=> $this->settings_page_slug.'-styles',
+			'screen'				=> $this->settings_page_slug.'-content-colors',
 			'fields'				=> array(
 				array(
 					'field_id'				=> ADDONIFY_DB_INITIALS . 'modal_box_color',
@@ -390,10 +390,12 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Overlay Background Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'modal_overlay_bck_color',
+							'default'		=> '#000000'
 						),
 						array(
 							'label'			=> __('Background Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'modal_bck_color',
+							'default'		=> '#ffffff'
 						),
 						
 					),
@@ -405,6 +407,7 @@ class Addonify_Quick_View_Admin {
 					'field_callback_args'	=> array( 
 						array(
 							'name'			=> ADDONIFY_DB_INITIALS . 'title_color',
+							'default'		=> '#000000'
 						),
 						
 					),
@@ -417,10 +420,12 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Empty Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_empty',
+							'default'		=> '#d3ced2'
 						),
 						array(
 							'label'			=> __('Full Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_full',
+							'default'		=> '#f5c40e'
 						),
 						
 					),
@@ -433,10 +438,12 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Regular Price Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'price_color_regular',
+							'default'		=> '#111111'
 						),
 						array(
 							'label'			=> __('Sale Price Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'price_color_sale',
+							'default'		=> '#000000'
 						),
 						
 					),
@@ -448,6 +455,7 @@ class Addonify_Quick_View_Admin {
 					'field_callback_args'	=> array( 
 						array(
 							'name'			=> ADDONIFY_DB_INITIALS . 'excerpt_color',
+							'default'		=> '#000000'
 						),
 						
 					),
@@ -460,10 +468,12 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'meta_color',
+							'default'		=> '#000000'
 						),
 						array(
 							'label'			=> __('Color - On Hover', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'meta_color_hover',
+							'default'		=> '#0286e7'
 						),
 						
 					),
@@ -476,18 +486,22 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Text Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_text_color',
+							'default'		=> '#ffffff'
 						),
 						array(
 							'label'			=> __('Background Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color',
+							'default'		=> '#000000'
 						),
 						array(
 							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_text_color_hover',
+							'default'		=> '#ffffff'
 						),
 						array(
 							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color_hover',
+							'default'		=> '#0286e7'
 						),
 						
 					),
@@ -500,18 +514,22 @@ class Addonify_Quick_View_Admin {
 						array(
 							'label'			=> __('Text Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_text_color',
+							'default'		=> '#ffffff'
 						),
 						array(
 							'label'			=> __('Background Color', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color',
+							'default'		=> '#000000'
 						),
 						array(
 							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_text_color_hover',
+							'default'		=> '#ffffff'
 						),
 						array(
 							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
 							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color_hover',
+							'default'		=> '#0286e7'
 						),
 						
 					),
@@ -594,8 +612,8 @@ class Addonify_Quick_View_Admin {
 
 	public function color_picker_group($args){
 		foreach($args as $arg){
-			$default =  isset( $arg['default'] )  ? $arg['default'] : '#000000';
-			$db_value = get_option($arg['name'], $default);
+			$default =  isset( $arg['default'] )  ? $arg['default'] : '';
+			$db_value = ( get_option( $arg['name'] )) ? get_option( $arg['name'] ) : $default;
 
 			ob_start();
 			require dirname( __FILE__ ) .'/partials/input_colorpicker.php';
