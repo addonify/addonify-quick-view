@@ -1,22 +1,25 @@
 <?php
 
-defined( 'ABSPATH' ) || exit;
+	defined( 'ABSPATH' ) || exit;
+	global $post, $product;
 
-global $product;
+	$pid = $_GET['id'];
+	$raw_post = get_post( $pid );
 
-do_action( 'woocommerce_before_single_product' );
+	$factory = new WC_Product_Factory();
+	$product = $factory->get_product( $pid );
+	$post    = $raw_post;
+	$product = $product;
 
-if ( post_password_required() ) {
-	echo get_the_password_form(); // WPCS: XSS ok.
-	return;
-}
 ?>
-<div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 
-	<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
+	<div class="woocommerce single-product quick-view-product">
+		<div class="product">
+		<?php woocommerce_show_product_images();?>
+			<?php // do_action( 'woocommerce_before_single_product_summary' ); ?>
 
-	<div class="summary entry-summary">
-		<?php do_action( 'woocommerce_single_product_summary' ); ?>
+			<div class="summary entry-summary">
+				<?php do_action( 'woocommerce_single_product_summary' ); ?>
+			</div><!-- .summary -->
+		</div>
 	</div>
-
-</div>
