@@ -160,7 +160,7 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		// admin menu
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
 		// custom link in all plugin page
 		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link', 10, 2 );
@@ -169,10 +169,10 @@ class Addonify_Quick_View {
 		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
 		
 		//show notice if woocommerce is not active
-		$this->loader->add_action('admin_init', $plugin_admin, 'show_woocommerce_not_active_notice' );
+		$this->loader->add_action('admin_init', $plugin_admin, 'show_woocommerce_not_active_notice_callback' );
 
 		// show admin notices after form submission
-		$this->loader->add_action('admin_notices', $plugin_admin, 'form_submission_notification' );
+		$this->loader->add_action('admin_notices', $plugin_admin, 'form_submission_notification_callback' );
 
 	}
 
@@ -191,21 +191,26 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		// add "Quick View" button in loop
-		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_quick_view_btn_aside_add_to_cart_btn', 10, 3 );
+
+		// add "Quick View" button aside cart to cart button
+		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_quick_view_btn_aside_add_to_cart_btn_callback', 10, 3 );
 		
-		// show button in image
-		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_in_image', 10 );
+
+		// add "Quick View" button aside image
+		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_aside_image_callback', 10 );
+
 
 		// add custom markup into footer
-		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer' );
+		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer_callback' );
+
 
 		// add custom styles into header
-		$this->loader->add_action( 'wp_head', $plugin_public, 'generate_custom_styles' );
+		$this->loader->add_action( 'wp_head', $plugin_public, 'generate_custom_styles_callback' );
 
-		// ajax
-		$this->loader->add_action( 'wp_ajax_get_quick_view_contents', $plugin_public, 'get_quick_view_contents' );
-		$this->loader->add_action( 'wp_ajax_nopriv_get_quick_view_contents', $plugin_public, 'get_quick_view_contents' );
+
+		// ajax callback
+		$this->loader->add_action( 'wp_ajax_get_quick_view_contents', $plugin_public, 'quick_view_contents_callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_get_quick_view_contents', $plugin_public, 'quick_view_contents_callback' );
 
 	}
 

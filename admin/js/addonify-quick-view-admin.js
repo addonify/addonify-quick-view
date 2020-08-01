@@ -6,24 +6,28 @@
 		// ios style switch
 		$('input.lc_switch').lc_switch();
 
-		// initiate wp color picker
-		$('.color-picker').wpColorPicker();
+		
+		if( addonify_objects.color_picker_is_available ){
+			// initiate wp color picker
+			$('.color-picker').wpColorPicker();
+		}
 
-		// settings page tabs
-		// $('#addonify-settings-tabs a').click(function(e){
-		// 	e.preventDefault();
-			
-		// 	// rest
-		// 	$('#addonify-settings-tabs a').removeClass('active');
-		// 	$('.addonify-content').removeClass('active');
 
-		// 	// select correct tab item
-		// 	$(this).addClass('active');
-			
-		// 	// show proper content
-		// 	let target_elem = $(this).attr('href');
-		// 	$(target_elem).addClass('active');
-		// })
+		if( addonify_objects.code_editor_is_available ){
+			// code editor
+			if( $('#addonify_qv_custom_css').length ) {
+				var editorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {};
+				editorSettings.codemirror = _.extend(
+					{},
+					editorSettings.codemirror,
+					{
+						indentUnit: 2,
+						tabSize: 2
+					}
+				);
+				var editor = wp.codeEditor.initialize( $('#addonify_qv_custom_css'), editorSettings );
+			}
+		}
 	
 	})
 
