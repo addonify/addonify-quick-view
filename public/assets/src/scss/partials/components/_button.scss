@@ -1,0 +1,36 @@
+
+// button 
+
+.adfy-qv-button {
+	
+	display:inline-block;
+	padding:0;
+	margin:0;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	border:none;
+	background-color:transparent;
+}
+
+.adfy-qv-button:focus {
+	
+	border:none;
+	outline:none;
+	background-color:transparent;
+}
+
+.adfy-qv-button:hover {
+
+	border:none;
+	background-color:transparent;
+}
+
+// close button 
+
+#addonify-qvm-close-button {
+
+	font-size: 22px;
+	font-weight:normal;
+	line-height: 1;
+}
