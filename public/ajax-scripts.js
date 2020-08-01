@@ -5,6 +5,9 @@
 
         $('body').on('click', '.addonify-qvm-button', function(){
 
+            // clear old contents
+            $('#addonify-quick-view-modal .adfy-quick-view-modal-content').html('');
+
             let product_id = $(this).data('product_id');
             
             let data = {
@@ -18,7 +21,6 @@
                 $( '.woocommerce-product-gallery' ).each( function() {
                     $( this ).wc_product_gallery();
                 } );
-
             })
 
         })

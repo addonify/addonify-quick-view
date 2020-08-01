@@ -15,7 +15,8 @@
 
 	<div class="woocommerce single-product quick-view-product">
 		<div class="product">
-			<?php do_action( 'woocommerce_before_single_product_summary' ); ?>
+		<?php woocommerce_show_product_images();?>
+			<?php // do_action( 'woocommerce_before_single_product_summary' ); ?>
 
 			<div class="summary entry-summary">
 				<?php do_action( 'woocommerce_single_product_summary' ); ?>

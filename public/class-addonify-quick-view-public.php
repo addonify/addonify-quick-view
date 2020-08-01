@@ -66,17 +66,38 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', array('photoswipe-default-skin'), $this->version, 'all' );
 
 	}
 
+	
 	// enqueue scripts
 	public function enqueue_scripts() {
+
+		$script_dependency = array('jquery', 'wc-add-to-cart-variation', 'flexslider');
+
+		if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
+
+			if ( current_theme_supports( 'wc-product-gallery-zoom' ) ) {
+				$script_dependency[] = 'zoom';
+			}
+
+			if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
+
+				$script_dependency[] = 'photoswipe-ui-default';
+
+				if ( has_action( 'wp_footer', 'woocommerce_photoswipe' ) === false ) {
+					add_action( 'wp_footer', 'woocommerce_photoswipe', 15 );
+				}
+			}
+
+			$script_dependency[] = 'wc-single-product';
+		}
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
 		// for ajax
-		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', array( 'jquery', 'zoom', 'flexslider', 'photoswipe-ui-default', 'wc-single-product' ), '', true );
+		wp_enqueue_script( 'custom-scripts', plugin_dir_url( __FILE__ ) . 'ajax-scripts.js', $script_dependency, '', true );
 
 		// localize ajax script
 		wp_localize_script( 
@@ -90,6 +111,7 @@ class Addonify_Quick_View_Public {
 
 	}
 
+
 	public function get_quick_view_contents(){
 		// product id is reqiored
 		if( !isset($_GET['id']) ) die( 'product id is missing' );
@@ -98,7 +120,6 @@ class Addonify_Quick_View_Public {
 		require_once dirname( __FILE__ ) .'/partials/content-single-product.php';
 		die;
 	}
-
 	
 
 	// add custom "Quick View" button in woocommerce loop
