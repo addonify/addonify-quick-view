@@ -273,11 +273,11 @@ class Addonify_Quick_View_Public {
 			'#addonify-qvm-close-button:hover' => array(
 				'background' 	=> 'close_btn_bck_color_hover',
 			),
-			'.adfy-quick-view-modal-content button' => array(
+			'.adfy-quick-view-modal-content button, .adfy-quick-view-modal-content .button' => array(
 				'background' 	=> 'other_btn_bck_color',
 				'color' 		=> 'other_btn_text_color',
 			),
-			'.adfy-quick-view-modal-content button:hover' => array(
+			'.adfy-quick-view-modal-content button:hover, .adfy-quick-view-modal-content .button:hover' => array(
 				'background' 	=> 'other_btn_bck_color_hover',
 				'color'		 	=> 'other_btn_text_color_hover',
 			),
@@ -291,7 +291,7 @@ class Addonify_Quick_View_Public {
 				$db_value = $this->get_db_values( $db_field );
 
 				if( $db_value ){
-					$properties .=  $property . ': ' . $db_value .'; ';
+					$properties .=  $property . ': ' . $db_value .' !important; ';
 				}
 			}
 			
@@ -303,7 +303,7 @@ class Addonify_Quick_View_Public {
 
 		// avoid empty style tags
 		if( $custom_styles_output || $custom_css ){
-			echo "<style> \n" . $custom_styles_output . "\n" . $custom_css . "\n </style>";
+			echo "<style id=\"addonify-quick-view-styles\"> \n" . $custom_styles_output .  $custom_css . "\n </style>";
 		}
 
 	}
