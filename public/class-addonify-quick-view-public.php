@@ -150,7 +150,7 @@ class Addonify_Quick_View_Public {
 		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
 
 		if( $quick_view_btn_position == 'before_add_to_cart' ) {
-			$this->show_quick_view_btn($show_quick_btn, $product->get_id() );
+			$this->show_quick_view_btn_markups($show_quick_btn, $product->get_id() );
 		}
 
 		printf(
@@ -163,7 +163,7 @@ class Addonify_Quick_View_Public {
 		);
 
 		if( $quick_view_btn_position == 'after_add_to_cart' ) {
-			$this->show_quick_view_btn($show_quick_btn, $product->get_id() );
+			$this->show_quick_view_btn_markups($show_quick_btn, $product->get_id() );
 		}
 
 	}
@@ -185,7 +185,8 @@ class Addonify_Quick_View_Public {
 
 	}
 
-	private function show_quick_view_btn( $show_quick_btn, $product_id ){
+	// markups for show_quick_btn
+	private function show_quick_view_btn_markups( $show_quick_btn, $product_id ){
 		if( $show_quick_btn  ) {
 			printf(
 				'<a href="%s" class="%s" data-product_id="%s" rel="nofollow" >%s</a>',
@@ -319,8 +320,8 @@ class Addonify_Quick_View_Public {
 	}
 
 
+	// add contents dynamically to modal templates with action
 	private function addonify_qv_action_template() {
-
 		
 		// Show Hide Image according to user choices 
 		if( (int) $this->get_db_values( 'show_product_image' ) ) {
@@ -359,6 +360,22 @@ class Addonify_Quick_View_Public {
 		if( (int) $this->get_db_values( 'show_product_meta' ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
+
+		// show hide view details button
+		if( (int) $this->get_db_values( 'show_view_detail_btn' ) ) {
+			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_markup') );
+		}
+
+	}
+
+	public function view_details_btn_markup( $post_id ){
+
+		printf(
+			'<a href="%s">%s</a>',
+			// get_the_permalink($post_id),
+			'#',
+			'View Details'
+		);
 
 	}
 
