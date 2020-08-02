@@ -156,9 +156,9 @@ class Addonify_Quick_View_Admin {
 
 	}
 
-
+	// callback function
 	// add custom "settings" link in the plugins.php page
-	private function custom_plugin_link( $links, $file ){
+	public function custom_plugin_link_callback( $links, $file ){
 		
 		if ( $file == plugin_basename(dirname(__FILE__, 2) . '/addonify-quick-view.php') ) {
 			// add "Settings" link

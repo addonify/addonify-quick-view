@@ -163,7 +163,7 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
 		// custom link in all plugin page
-		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link', 10, 2 );
+		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
 
 		// show settings page ui 
 		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
