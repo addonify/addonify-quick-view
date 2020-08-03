@@ -24,7 +24,7 @@
                 <!-- generate nonce -->
                 <?php settings_fields("quick_views_settings"); ?>
 
-                <div id="addonify-settings-container" class="addonify-content active">
+                <div id="addonify-settings-container" class="addonify-content">
                     <!-- display form fields -->
                     <?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
                 </div><!--addonify-settings-container-->
@@ -41,7 +41,7 @@
                 <!-- generate nonce -->
                 <?php settings_fields("quick_views_styles"); ?>
 
-                <div id="addonify-styles-container" class="addonify-content active">
+                <div id="addonify-styles-container" class="addonify-content">
 
                     <div id="addonify-style-options-container" class="addonify-section ">
                         <?php do_settings_sections($this->settings_page_slug.'-styles'); ?>

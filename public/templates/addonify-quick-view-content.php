@@ -1,10 +1,6 @@
 <?php
 	defined( 'ABSPATH' ) || exit;
-
-	while ( have_posts() ) :
-		the_post();
 ?>
-
 	<div class="woocommerce single-product">
 		<div id="product-<?php the_ID(); ?>" <?php post_class( 'product' ); ?>>
 			<?php do_action( 'addonify_qv_product_image' ); ?>
@@ -16,5 +12,3 @@
 			</div>
 		</div>
 	</div>
-	
-<?php endwhile; ?>
