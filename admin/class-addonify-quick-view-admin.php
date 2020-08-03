@@ -207,8 +207,10 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "toggle_switch"),
 					'field_callback_args'	=> array( 
 						array(
-							'name' 			=> ADDONIFY_DB_INITIALS . 'enable_quick_view', 
-							'checked' 		=> 1
+							'name' 				=> ADDONIFY_DB_INITIALS . 'enable_quick_view', 
+							'checked' 			=> 1,
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						)
 					) 
 				),
@@ -224,6 +226,7 @@ class Addonify_Quick_View_Admin {
 								'before_add_to_cart' 	=> __('Before Add To Cart Button', 'addonify-quick-view' ),
 								'overlay_on_image'		=> __('Overlay On The Product Image', 'addonify-quick-view' )
 							) ,
+							'sanitize_callback'			=> 'sanitize_text_field'
 						),
 					) 
 				),
@@ -233,8 +236,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "text_box"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			 => ADDONIFY_DB_INITIALS . 'quick_view_btn_label', 
-							'default'		 => __('Quick View', 'addonify-quick-view') 
+							'name'			 	=> ADDONIFY_DB_INITIALS . 'quick_view_btn_label', 
+							'default'		 	=> __('Quick View', 'addonify-quick-view'),
+							'sanitize_callback'	=> 'sanitize_text_field'
 						)
 					), 
 				),
@@ -263,32 +267,46 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "checkbox_with_label"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Product Image', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_image'
+							'label'				=> __('Product Image', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_image',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Product Title', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_title'
+							'label'				=> __('Product Title', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_title',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Product Rating', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_rating'
+							'label'				=> __('Product Rating', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_rating',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Product Price', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_price'
+							'label'				=> __('Product Price', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_price',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Product Excerpt', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_excerpt'
+							'label'				=> __('Product Excerpt', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_excerpt',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Add To Cart Button', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_add_to_cart_btn'
+							'label'				=> __('Add To Cart Button', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_add_to_cart_btn',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Product Meta', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'show_product_meta'
+							'label'				=> __('Product Meta', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'show_product_meta',
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 					),
 				),
@@ -302,7 +320,8 @@ class Addonify_Quick_View_Admin {
 							'options' 			=> array(
 								'image_only' 			=> __('Product Image Only', 'addonify-quick-view' ),
 								'image_or_gallery'		=> __('Product Image or Product Gallery', 'addonify-quick-view' ),
-							) ,
+							),
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 					) 
 				),
@@ -312,8 +331,10 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "toggle_switch"),
 					'field_callback_args'	=> array( 
 						array(
-							'name' 			=> ADDONIFY_DB_INITIALS . 'enable_lightbox', 
-							'checked' 		=> 1
+							'name' 				=> ADDONIFY_DB_INITIALS . 'enable_lightbox', 
+							'checked' 			=> 1,
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						)
 					) 
 				),
@@ -323,8 +344,10 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "toggle_switch"),
 					'field_callback_args'	=> array( 
 						array(
-							'name' 			=> ADDONIFY_DB_INITIALS . 'show_view_detail_btn', 
-							'checked' 		=> 1
+							'name' 				=> ADDONIFY_DB_INITIALS . 'show_view_detail_btn', 
+							'checked' 			=> 1,
+							'type'				=> 'number',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						)
 					) 
 				),
@@ -334,8 +357,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "text_box"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			 => ADDONIFY_DB_INITIALS . 'view_detail_btn_label', 
-							'placeholder'	 => __('View Detail', 'addonify-quick-view') 
+							'name'				=> ADDONIFY_DB_INITIALS . 'view_detail_btn_label', 
+							'placeholder'		=> __('View Detail', 'addonify-quick-view'),
+							'sanitize_callback'	=> 'sanitize_text_field'
 						)
 					), 
 				),
@@ -364,8 +388,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "toggle_switch"),
 					'field_callback_args'	=> array( 
 						array(
-							'name' 			=> ADDONIFY_DB_INITIALS . 'load_styles_from_plugin', 
-							'checked' 		=> 1
+							'name' 				=> ADDONIFY_DB_INITIALS . 'load_styles_from_plugin', 
+							'checked' 			=> 1,
+							'sanitize_callback'	=> 'sanitize_textarea_field'
 						)
 					) 
 				),
@@ -393,14 +418,16 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Overlay Background Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'modal_overlay_bck_color',
-							'default'		=> '#000000'
+							'label'				=> __('Overlay Background Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'modal_overlay_bck_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Background Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'modal_bck_color',
-							'default'		=> '#ffffff'
+							'label'				=> __('Background Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'modal_bck_color',
+							'default'			=> '#ffffff',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -411,8 +438,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			=> ADDONIFY_DB_INITIALS . 'title_color',
-							'default'		=> '#000000'
+							'name'				=> ADDONIFY_DB_INITIALS . 'title_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -423,14 +451,16 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Empty Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_empty',
-							'default'		=> '#d3ced2'
+							'label'				=> __('Empty Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'rating_color_empty',
+							'default'			=> '#d3ced2',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Full Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'rating_color_full',
-							'default'		=> '#f5c40e'
+							'label'				=> __('Full Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'rating_color_full',
+							'default'			=> '#f5c40e',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -441,14 +471,16 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Regular Price Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'price_color_regular',
-							'default'		=> '#111111'
+							'label'				=> __('Regular Price Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'price_color_regular',
+							'default'			=> '#111111',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Sale Price Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'price_color_sale',
-							'default'		=> '#000000'
+							'label'				=> __('Sale Price Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'price_color_sale',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -459,8 +491,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			=> ADDONIFY_DB_INITIALS . 'excerpt_color',
-							'default'		=> '#000000'
+							'name'				=> ADDONIFY_DB_INITIALS . 'excerpt_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -471,14 +504,16 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'meta_color',
-							'default'		=> '#000000'
+							'label'				=> __('Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'meta_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Color - On Hover', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'meta_color_hover',
-							'default'		=> '#0286e7'
+							'label'				=> __('Color - On Hover', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'meta_color_hover',
+							'default'			=> '#0286e7',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -489,24 +524,28 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Text Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_text_color',
-							'default'		=> '#ffffff'
+							'label'				=> __('Text Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'close_btn_text_color',
+							'default'			=> '#ffffff',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Background Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color',
-							'default'		=> '#000000'
+							'label'				=> __('Background Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_text_color_hover',
-							'default'		=> '#ffffff'
+							'label'				=> __('Text Color - On Hover', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'close_btn_text_color_hover',
+							'default'			=> '#ffffff',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color_hover',
-							'default'		=> '#0286e7'
+							'label'				=> __('Background Color - On Hover', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'close_btn_bck_color_hover',
+							'default'			=> '#0286e7',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -517,24 +556,28 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "color_picker_group"),
 					'field_callback_args'	=> array( 
 						array(
-							'label'			=> __('Text Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_text_color',
-							'default'		=> '#ffffff'
+							'label'				=> __('Text Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'other_btn_text_color',
+							'default'			=> '#ffffff',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Background Color', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color',
-							'default'		=> '#000000'
+							'label'				=> __('Background Color', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color',
+							'default'			=> '#000000',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Text Color - On Hover', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_text_color_hover',
-							'default'		=> '#ffffff'
+							'label'				=> __('Text Color - On Hover', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'other_btn_text_color_hover',
+							'default'			=> '#ffffff',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						array(
-							'label'			=> __('Background Color - On Hover', 'addonify-quick-view'),
-							'name'			=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color_hover',
-							'default'		=> '#0286e7'
+							'label'				=> __('Background Color - On Hover', 'addonify-quick-view'),
+							'name'				=> ADDONIFY_DB_INITIALS . 'other_btn_bck_color_hover',
+							'default'			=> '#0286e7',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -545,8 +588,9 @@ class Addonify_Quick_View_Admin {
 					'field_callback'		=> array($this, "text_area"),
 					'field_callback_args'	=> array( 
 						array(
-							'name'			=> ADDONIFY_DB_INITIALS . 'custom_css',
-							'attr'			=> 'rows="5" class="large-text code"'
+							'name'				=> ADDONIFY_DB_INITIALS . 'custom_css',
+							'attr'				=> 'rows="5" class="large-text code"',
+							'sanitize_callback'	=> 'sanitize_text_field'
 						),
 						
 					),
@@ -573,7 +617,9 @@ class Addonify_Quick_View_Admin {
 			add_settings_field( $field['field_id'], $field['field_label'], $field['field_callback'], $args['screen'], $args['section_id'], $field['field_callback_args'] );
 			
 			foreach( $field['field_callback_args'] as $sub_field){
-				register_setting( $args['settings_group_name'],  $sub_field['name'] );
+				register_setting( $args['settings_group_name'],  $sub_field['name'], array(
+        			'sanitize_callback' => $sub_field['sanitize_callback']
+				) );
 			}
 
 		}
