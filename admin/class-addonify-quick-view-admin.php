@@ -70,6 +70,7 @@ class Addonify_Quick_View_Admin {
 	// enqueue styles
 	public function enqueue_styles() {
 
+		// load styles in plugin page only
 		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
 
 			// toggle switch
@@ -77,7 +78,7 @@ class Addonify_Quick_View_Admin {
 
 			
 			if( version_compare( get_bloginfo('version'),'3.5', '>=' ) ){
-				// feature available from wordpress 3.5
+				// features available from wordpress 3.5
 
 				// built in wp color picker
 				wp_enqueue_style( 'wp-color-picker' );
@@ -94,6 +95,7 @@ class Addonify_Quick_View_Admin {
 	// enqueue scripts
 	public function enqueue_scripts() {
 
+		// load scripts in plugin plage only
 		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
 
 			$code_editor_is_available = 0;
@@ -108,7 +110,7 @@ class Addonify_Quick_View_Admin {
 			if( version_compare( get_bloginfo('version'),'4.9', '>=' ) ){
 				$code_editor_is_available = 1;
 				
-				// featured available from wordpress 4.9.0
+				// features available from wordpress 4.9.0
 				wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
 
 			}
@@ -116,8 +118,11 @@ class Addonify_Quick_View_Admin {
 			// toggle switch
 			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
 
-			// use built in wp color picker as dependency
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array('jquery', 'wp-color-picker'), $this->version, false );
+			wp_enqueue_script( 'wp-color-picker-alpha', plugin_dir_url( __FILE__ ) . 'js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ) );
+
+
+			// use wp-color-picker-alpha as dependency
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
 
 
 			wp_localize_script( 
@@ -176,7 +181,7 @@ class Addonify_Quick_View_Admin {
 		$tab_url = "admin.php?page=$this->settings_page_slug&tabs=";
 
 		ob_start();
-		require_once dirname( __FILE__ ) .'/partials/settings-screen.php';
+		require_once dirname( __FILE__ ) .'/templates/settings-screen.php';
 		echo ob_get_clean();
 
 	}
@@ -229,7 +234,7 @@ class Addonify_Quick_View_Admin {
 					'field_callback_args'	=> array( 
 						array(
 							'name'			 => ADDONIFY_DB_INITIALS . 'quick_view_btn_label', 
-							'placeholder'	 => __('Quick View', 'addonify-quick-view') 
+							'default'		 => __('Quick View', 'addonify-quick-view') 
 						)
 					), 
 				),
@@ -582,11 +587,11 @@ class Addonify_Quick_View_Admin {
 
 	public function text_box($arguments){
 		foreach($arguments as $args){
-			$placeholder = isset( $args['placeholder'] ) ? $args['placeholder'] : '';
-			$db_value = get_option($args['name'], $placeholder);
+			$default = isset( $args['default'] ) ? $args['default'] : '';
+			$db_value = get_option($args['name'], $default);
 
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/input_textbox.php';
+			require dirname( __FILE__ ) .'/templates/input_textbox.php';
 			echo ob_get_clean();
 		}
 	}
@@ -598,7 +603,7 @@ class Addonify_Quick_View_Admin {
 			$attr = isset( $args['attr'] ) ? $args['attr'] : '';
 
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/input_textarea.php';
+			require dirname( __FILE__ ) .'/templates/input_textarea.php';
 			echo ob_get_clean();
 		}
 	}
@@ -616,7 +621,7 @@ class Addonify_Quick_View_Admin {
 			$db_value = ( get_option( $arg['name'] )) ? get_option( $arg['name'] ) : $default;
 
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/input_colorpicker.php';
+			require dirname( __FILE__ ) .'/templates/input_colorpicker.php';
 			echo ob_get_clean();
 		}
 	}
@@ -624,7 +629,7 @@ class Addonify_Quick_View_Admin {
 	public function checkbox_with_label($args){
 		foreach($args as $arg){
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/checkbox_group.php';
+			require dirname( __FILE__ ) .'/templates/checkbox_group.php';
 			echo ob_get_clean();
 		}
 	}
@@ -636,7 +641,7 @@ class Addonify_Quick_View_Admin {
 		$attr = ( array_key_exists('attr', $args) ) ? $args['attr'] : '';
 
 		ob_start();
-		require dirname( __FILE__ ) .'/partials/input_checkbox.php';
+		require dirname( __FILE__ ) .'/templates/input_checkbox.php';
 		echo ob_get_clean();
 	}
 
@@ -647,7 +652,7 @@ class Addonify_Quick_View_Admin {
 			$options = ( array_key_exists('options', $args) ) ? $args['options'] : array();
 			
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/input_select.php';
+			require dirname( __FILE__ ) .'/templates/input_select.php';
 			echo ob_get_clean();
 		}
 	}
@@ -670,11 +675,9 @@ class Addonify_Quick_View_Admin {
 
 
 		function woocommerce_not_active_notice() {
-			
 			ob_start();
-			require dirname( __FILE__ ) .'/partials/woocommerce_not_active_notice.php';
+			require dirname( __FILE__ ) .'/templates/woocommerce_not_active_notice.php';
 			echo ob_get_clean();
-
 		}
 
 	}

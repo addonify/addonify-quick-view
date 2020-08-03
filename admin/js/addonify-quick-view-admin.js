@@ -54,6 +54,33 @@
 			}
 		}
 
+
+		// show hide view details button ------------------------------
+
+		let $view_edtails_btn = $('#addonify_qv_show_view_detail_btn');
+		let $view_details_tr = $('#addonify_qv_view_detail_btn_label').parents('tr');
+
+		// self activate
+		show_hide_view_details_label();
+
+		// detect state change
+		$('body').delegate('#addonify_qv_show_view_detail_btn', 'lcs-statuschange', function() {
+			show_hide_view_details_label();
+		});
+
+		
+		function show_hide_view_details_label(){
+
+			let state = $view_edtails_btn.is(":checked");
+
+			if( state ){
+				$view_details_tr.fadeIn();
+			}
+			else{
+				$view_details_tr.fadeOut();
+			}
+		}
+
 	
 	})
 
