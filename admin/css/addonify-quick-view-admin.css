@@ -47,7 +47,7 @@
     color: #3f51b5;
 }
 
-#addonify-content-colors-container{
+.addonify-section:not(:first-child) {
     border-top: dotted 2px #ececec;
     padding-top: 25px;
     margin-top: 35px;

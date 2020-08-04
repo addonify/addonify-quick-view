@@ -26,7 +26,13 @@
 
                 <div id="addonify-settings-container" class="addonify-content">
                     <!-- display form fields -->
-                    <?php do_settings_sections($this->settings_page_slug.'-settings'); ?>         
+                     <div id="addonify-settings-container" class="addonify-section ">
+                        <?php do_settings_sections($this->settings_page_slug.'-settings'); ?>
+                    </div>
+
+                    <div id="addonify-content-options-container" class="addonify-section">
+                        <?php do_settings_sections($this->settings_page_slug.'-settings-contents-options'); ?>
+                    </div>   
                 </div><!--addonify-settings-container-->
 
                 <?php submit_button(); ?>

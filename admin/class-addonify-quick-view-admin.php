@@ -63,7 +63,7 @@ class Addonify_Quick_View_Admin {
 		$this->version = $version;
 
 		// store empty variables
-		$this->all_db_fields = array();
+		// $this->all_db_fields = array();
 	}
 
 	
@@ -90,7 +90,7 @@ class Addonify_Quick_View_Admin {
 		}
 
 		// this css will be loaded everywhere in admin panel
-		wp_enqueue_style( 'adonify-icon-css', plugin_dir_url( __FILE__ ) . 'css/addonify-icon.css', array(), $this->version, 'all' );
+		// wp_enqueue_style( 'adonify-icon-css', plugin_dir_url( __FILE__ ) . 'css/addonify-icon.css', array(), $this->version, 'all' );
 
 	}
 
@@ -156,12 +156,11 @@ class Addonify_Quick_View_Admin {
 		// do not show menu if woocommerce is not active
 		if ( ! $this->is_woocommerce_active() )  return; 
 
-		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 'none', 76 );
-
+		add_menu_page( 'Addonify Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), plugin_dir_url( __FILE__ ) .'/templates/addonify-logo.svg', 76 );
 		
 		// sub menu
 		// redirects to main plugin link
-		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents') );
+		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 0 );
 
 	}
 
@@ -263,7 +262,7 @@ class Addonify_Quick_View_Admin {
 			'section_id' 			=> 'contents_to_show',
 			'section_label'			=> __('CONTENTS OPTIONS', 'addonify-quick-view' ),
 			'section_callback'		=> '',
-			'screen'				=> $this->settings_page_slug.'-settings',
+			'screen'				=> $this->settings_page_slug.'-settings-contents-options',
 			'fields'				=> array(
 				array(
 					'field_id'				=> ADDONIFY_DB_INITIALS . 'show_product_image_field',
