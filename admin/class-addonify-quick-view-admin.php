@@ -90,7 +90,7 @@ class Addonify_Quick_View_Admin {
 		}
 
 		// this css will be loaded everywhere in admin panel
-		// wp_enqueue_style( 'adonify-icon-css', plugin_dir_url( __FILE__ ) . 'css/addonify-icon.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'adonify-icon-fix', plugin_dir_url( __FILE__ ) . 'css/addonify-icon-fix.css', array(), $this->version, 'all' );
 
 	}
 
