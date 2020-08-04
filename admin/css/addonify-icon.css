@@ -1,0 +1,6 @@
+#toplevel_page_addonify_quick_view .wp-menu-image{
+    background-image: url(../templates/addonify-logo.svg);
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: 7px;
+}

@@ -89,6 +89,9 @@ class Addonify_Quick_View_Admin {
 
 		}
 
+		// this css will be loaded everywhere in admin panel
+		wp_enqueue_style( 'adonify-icon-css', plugin_dir_url( __FILE__ ) . 'css/addonify-icon.css', array(), $this->version, 'all' );
+
 	}
 
 
@@ -153,7 +156,8 @@ class Addonify_Quick_View_Admin {
 		// do not show menu if woocommerce is not active
 		if ( ! $this->is_woocommerce_active() )  return; 
 
-		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 'dashicons-slides', 76 );
+		add_menu_page( 'Addonify Quick View Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 'none', 76 );
+
 		
 		// sub menu
 		// redirects to main plugin link
@@ -619,7 +623,7 @@ class Addonify_Quick_View_Admin {
 			foreach( $field['field_callback_args'] as $sub_field){
 				register_setting( $args['settings_group_name'],  $sub_field['name'], array(
         			'sanitize_callback' => $sub_field['sanitize_callback']
-				) );
+				));
 			}
 
 		}
