@@ -464,7 +464,14 @@ class Addonify_Quick_View_Public {
 	// works only if quick_view_btn_position == overlay_on_image
 	private function modify_woocommerce_shop_loop(){
 
-		if( $this->get_db_values( 'quick_view_btn_position' ) == 'overlay_on_image' ){
+		// if( ! defined( ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED ) ) return;
+
+		// define( 'ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED', 1 );
+
+
+		if( $this->quick_view_btn_position == 'overlay_on_image' ){
+
+			// define( 'ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED', 1 );
 
 			add_action ( 'woocommerce_before_shop_loop_item' ,  function (){
 				echo '<div class="addonify-qvm-overlay-button">';
@@ -475,6 +482,7 @@ class Addonify_Quick_View_Public {
 			});
 
 		}
+
 	}
 
 
