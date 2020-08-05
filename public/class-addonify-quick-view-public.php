@@ -50,6 +50,34 @@ class Addonify_Quick_View_Public {
 	 */
 	private $all_db_fields;
 
+	/**
+	 * Enable Compare Product Plugin
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $show_quick_view_btn;
+
+	/**
+	 * Compare Button Position
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $quick_view_btn_position;
+
+	 /**
+	 * Compare Button Label
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $quick_view_btn_label;
+
+
 
 	// constructor function	
 	public function __construct( $plugin_name, $version ) {
@@ -57,9 +85,24 @@ class Addonify_Quick_View_Public {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-		// modify woocommerce shop loop
-		// if quick view btn is selected to display in overlay of image
-		$this->modify_woocommerce_shop_loop();
+
+		if( ! is_admin() ){
+
+			$this->show_quick_view_btn = (int) $this->get_db_values('enable_quick_view', 1);
+
+			// if quick view is enabled
+			if( $this->show_quick_view_btn === 1 ){
+
+				$this->quick_view_btn_position =  $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
+				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label' );
+
+				if( $this->quick_view_btn_position == 'overlay_on_image' ){
+					// modify woocommerce shop loop
+					// if quick view btn is selected to display in overlay of image
+					$this->modify_woocommerce_shop_loop();
+				}
+			}
+		}
 
 	}
 
@@ -163,40 +206,47 @@ class Addonify_Quick_View_Public {
 		wp_die();
 
 	}
-
 	
 
 	// callback function
-	// add custom "Quick View" button in woocommerce loop
-	function show_quick_view_btn_aside_add_to_cart_btn_callback($button, $product, $args) {
+	// show compare product btn button before add to cart button
+	public function show_quick_view_btn_before_add_to_cart_btn_callback() {
 
-		$show_quick_btn = (int) $this->get_db_values('enable_quick_view', 1);
-		$quick_view_btn_position = $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
-		$quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label' );
+		global $product;
 		$product_id = $product->get_id();
-
+		
 		// show quick view btn before add to cart button
-		if( $quick_view_btn_position == 'before_add_to_cart' ) {
-			if( $show_quick_btn && $quick_view_btn_label ) {
-				
-				ob_start();
-				$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label) );
-				echo ob_get_clean();
-			}
+		if( 
+			$this->quick_view_btn_position == 'before_add_to_cart' &&
+			$this->show_quick_view_btn && 
+			$this->quick_view_btn_label 
+		) {
+			ob_start();
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $this->quick_view_btn_label) );
+			echo ob_get_clean();
 
 		}
 
-		// print default add to cart button by woocommerce
-		echo $button;
+	}
 
-		// show quick view btn after add to cart button
-		if( $quick_view_btn_position == 'after_add_to_cart' ) {
-			if( $show_quick_btn && $quick_view_btn_label ) {
-				
-				ob_start();
-				$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label ) );
-				echo ob_get_clean();
-			}
+
+	// callback function
+	// show compare product btn after add to cart button
+	public function show_quick_view_btn_after_add_to_cart_btn_callback() {
+
+		global $product;
+		$product_id = $product->get_id();
+		
+		if( 
+			$this->quick_view_btn_position == 'after_add_to_cart' &&
+			$this->show_quick_view_btn && 
+			$this->quick_view_btn_label 
+		) {
+			
+			ob_start();
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $this->quick_view_btn_label) );
+			echo ob_get_clean();
+
 		}
 
 	}
@@ -428,6 +478,7 @@ class Addonify_Quick_View_Public {
 	}
 
 
+	// require proper templates for use in front end
 	private function get_templates( $template_name, $require_once = true, $args=array() ){
 
 		// first look for template in themes/addonify/templates
@@ -447,7 +498,6 @@ class Addonify_Quick_View_Public {
 		else{
 			require $template_path;
 		}
-
 	}
 
 }
