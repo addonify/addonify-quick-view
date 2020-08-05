@@ -192,12 +192,17 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 
-		// add "Quick View" button aside cart to cart button
-		$this->loader->add_filter( 'woocommerce_loop_add_to_cart_link', $plugin_public, 'show_quick_view_btn_aside_add_to_cart_btn_callback', 10, 3 );
+		// add "Quick View" button after add to cart button
+		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_after_add_to_cart_btn_callback', 15 );
+
+
+		// add "Quick View" button before add to cart button
+		$this->loader->add_action( 'woocommerce_after_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_before_add_to_cart_btn_callback', 15 );
+
 		
 
 		// add "Quick View" button aside image
-		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_aside_image_callback', 10 );
+		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_aside_image_callback', 8 );
 
 
 		// add custom markup into footer
