@@ -71,7 +71,7 @@ class Addonify_Quick_View_Admin {
 	public function enqueue_styles() {
 
 		// load styles in plugin page only
-		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
+		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
 
 			// toggle switch
 			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
@@ -99,7 +99,7 @@ class Addonify_Quick_View_Admin {
 	public function enqueue_scripts() {
 
 		// load scripts in plugin plage only
-		if( isset($_GET['page']) && $_GET['page'] == 'addonify_quick_view' ){
+		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
 
 			$code_editor_is_available = 0;
 			$color_picker_is_available = 0;
@@ -710,7 +710,9 @@ class Addonify_Quick_View_Admin {
 	// callback function
 	// show notification after form submission
 	public function form_submission_notification_callback(){
-		settings_errors();
+		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
+			settings_errors();			
+		}
 	}
 
 	
