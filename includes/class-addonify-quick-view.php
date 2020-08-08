@@ -191,6 +191,10 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		// add overlay container in image
+		$this->loader->add_action( 'woocommerce_before_shop_loop_item', $plugin_public, 'addonify_overlay_container_start_callback' );
+		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'addonify_overlay_container_end_callback' );
+
 
 		// add "Quick View" button after add to cart button
 		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_after_add_to_cart_btn_callback', 15 );

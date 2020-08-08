@@ -99,7 +99,7 @@ class Addonify_Quick_View_Public {
 				if( $this->quick_view_btn_position == 'overlay_on_image' ){
 					// modify woocommerce shop loop
 					// if quick view btn is selected to display in overlay of image
-					$this->modify_woocommerce_shop_loop();
+					// $this->modify_woocommerce_shop_loop();
 				}
 			}
 		}
@@ -165,7 +165,7 @@ class Addonify_Quick_View_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
 		// for ajax
-		wp_enqueue_script( 'addonify_qv_ajax_scripts', plugin_dir_url( __FILE__ ) . 'addonify-qv-ajax-scripts.js', $script_dependency, '', true );
+		wp_enqueue_script( 'addonify_qv_ajax_scripts', plugin_dir_url( __FILE__ ) . 'assets/src/js/custom/addonify-qv-ajax-scripts.js', $script_dependency, '', true );
 
 		// localize ajax script
 		wp_localize_script( 
@@ -183,6 +183,9 @@ class Addonify_Quick_View_Public {
 	// get contents for quick view
 	public function quick_view_contents_callback(){
 
+		// deny any non ajax requests
+		if( ! wp_doing_ajax() ) wp_die('Invalid Requests');
+
 		// product id is required
 		if( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) wp_die( 'product id is missing' );
 
@@ -190,7 +193,6 @@ class Addonify_Quick_View_Public {
 		
 		// generate contents dynamically
 		$this->generate_contents();
-
 
 		// Set the main wp query for the product.
 		wp( 'p=' . $product_id . '&post_type=product' );
@@ -459,28 +461,31 @@ class Addonify_Quick_View_Public {
 
 	}
 
-	// modify woocommerce_before_shop_loop_item
-	// wrap loop in custom container
-	// works only if quick_view_btn_position == overlay_on_image
-	private function modify_woocommerce_shop_loop(){
-
-		// if( ! defined( ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED ) ) return;
-
-		// define( 'ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED', 1 );
-
-
+	// callback function
+	// print opening tag of overlay image container
+	public function addonify_overlay_container_start_callback(){
+		
+		global $overlay_opening_tag_is_added;
+		if( $overlay_opening_tag_is_added ) return;
+		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
+			$overlay_opening_tag_is_added = 1;
+			echo '<div class="addonify-qvm-overlay-button">';
+		}
 
-			// define( 'ADDONIFY_OVERLAY_CONTAINER_CLASS_ADDED', 1 );
+	}
 
-			add_action ( 'woocommerce_before_shop_loop_item' ,  function (){
-				echo '<div class="addonify-qvm-overlay-button">';
-			});
-			
-			add_action ( 'woocommerce_after_shop_loop_item' ,  function (){
-				echo '</div>';
-			});
 
+	// callback function
+	// print closing tag of overlay image container
+	public function addonify_overlay_container_end_callback(){
+
+		global $overlay_closing_tag_is_added;
+		if( $overlay_closing_tag_is_added ) return;
+		
+		if( $this->quick_view_btn_position == 'overlay_on_image' ){
+			$overlay_closing_tag_is_added = 1;
+			echo '</div>';
 		}
 
 	}
