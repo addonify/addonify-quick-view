@@ -96,11 +96,6 @@ class Addonify_Quick_View_Public {
 				$this->quick_view_btn_position =  $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
 				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label' );
 
-				if( $this->quick_view_btn_position == 'overlay_on_image' ){
-					// modify woocommerce shop loop
-					// if quick view btn is selected to display in overlay of image
-					// $this->modify_woocommerce_shop_loop();
-				}
 			}
 		}
 
@@ -128,7 +123,14 @@ class Addonify_Quick_View_Public {
 
 		}
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', $style_dependency, $this->version, 'all' );
+		if( is_rtl() ){
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public-rtl.css', $style_dependency, $this->version, 'all' );
+		}
+		else{
+
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', $style_dependency, $this->version, 'all' );
+		}
+
 
 	}
 
@@ -434,7 +436,6 @@ class Addonify_Quick_View_Public {
 		if( (int) $this->get_db_values( 'show_view_detail_btn' ) && $this->get_db_values( 'view_detail_btn_label' ) ) {
 			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_callback') );
 		}
-
 	}
 
 	// callback function
@@ -461,15 +462,15 @@ class Addonify_Quick_View_Public {
 
 	}
 
+
 	// callback function
 	// print opening tag of overlay image container
 	public function addonify_overlay_container_start_callback(){
 		
-		global $overlay_opening_tag_is_added;
-		if( $overlay_opening_tag_is_added ) return;
-		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
 			$overlay_opening_tag_is_added = 1;
+			$overlay_added_by = 'quick_view';
+
 			echo '<div class="addonify-qvm-overlay-button">';
 		}
 
@@ -479,9 +480,6 @@ class Addonify_Quick_View_Public {
 	// callback function
 	// print closing tag of overlay image container
 	public function addonify_overlay_container_end_callback(){
-
-		global $overlay_closing_tag_is_added;
-		if( $overlay_closing_tag_is_added ) return;
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
 			$overlay_closing_tag_is_added = 1;
