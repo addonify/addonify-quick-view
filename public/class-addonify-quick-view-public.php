@@ -468,9 +468,6 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_start_callback(){
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
-			$overlay_opening_tag_is_added = 1;
-			$overlay_added_by = 'quick_view';
-
 			echo '<div class="addonify-qvm-overlay-button">';
 		}
 
@@ -482,7 +479,6 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_end_callback(){
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
-			$overlay_closing_tag_is_added = 1;
 			echo '</div>';
 		}
 
