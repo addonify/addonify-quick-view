@@ -165,7 +165,7 @@ class Addonify_Quick_View_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view-public.min.js', array( 'jquery' ), $this->version, false );
 
 		// for ajax
-		wp_enqueue_script( 'addonify_qv_ajax_scripts', plugin_dir_url( __FILE__ ) . 'assets/src/js/custom/addonify-qv-ajax-scripts.js', $script_dependency, '', true );
+		wp_enqueue_script( 'addonify_qv_ajax_scripts', plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-qv-ajax-scripts.js', $script_dependency, '', true );
 
 		// localize ajax script
 		wp_localize_script( 
