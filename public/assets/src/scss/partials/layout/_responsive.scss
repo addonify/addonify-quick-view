@@ -8,10 +8,23 @@
 	}
 }
 
+@media( max-width:767px) {
+
+	#addonify-quick-view-modal .single-product div.product .summary {
+
+		margin-top: 20px;
+	}
+}
+
 @media(max-width:575px) {
 
 	#addonify-quick-view-modal {
 
 		height: 400px;
+	}
+
+	.adfy-quick-view-modal-content {
+
+		padding:30px 20px;
 	}
 }

@@ -5,7 +5,7 @@
 
         $('body').on('click', '.addonify-qvm-button', function(){
 
-            let $spinenr = $('#adfy-qvm-spinner').addClass('hide');
+            var $spinenr = $('#adfy-qvm-spinner').addClass('hide');
 
             // show spinner
             $spinenr.removeClass('hide');
@@ -13,9 +13,9 @@
             // clear old contents
             $('#addonify-quick-view-modal .adfy-quick-view-modal-content').html('');
 
-            let product_id = $(this).data('product_id');
+            var product_id = $(this).data('product_id');
             
-            let data = {
+            var data = {
                 'action': ajax_object.action,
                 'id': product_id
             };
@@ -33,10 +33,10 @@
 
                 // hide spinner
                 $spinenr.addClass('hide');
-            })
+            });
 
         })
 	
-	})
+	});
 
 })( jQuery );

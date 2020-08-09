@@ -95,8 +95,43 @@
 	padding:40px 30px;
 }
 
-
 #addonify-quick-view-modal #addonify-qvm-close-button {
 
 	color: #000000;
+}
+
+#addonify-quick-view-modal #addonify-qvm-close-button svg {
+
+	line-height: 30px;
+    height: 30px;
+    width: 18px;
+}
+
+.addonify-qvm-overlay-button {
+
+	position:relative; // case when quick view button is in overlay
+}
+
+.addonify-qvm-overlay-button .addonify-qvm-button {
+
+	display:block;
+	position:absolute;
+	@include position_topnleft();
+	z-index:-1;
+	visibility: hidden;
+	opacity:0;
+	@include transation_delay();
+}
+
+.addonify-qvm-overlay-button:hover .addonify-qvm-button {
+
+	visibility: visible;
+	opacity:1;
+	z-index:100;
+}
+
+#addonify-quick-view-modal .single-product div.product .summary,
+#addonify-quick-view-modal .single-product div.product .woocommerce-product-gallery {
+
+	margin-bottom: 0;
 }

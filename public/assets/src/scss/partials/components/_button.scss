@@ -11,6 +11,7 @@
 	line-height: inherit;
 	border:none;
 	background-color:transparent;
+	@include transation_delay();
 }
 
 .adfy-qv-button:focus {
@@ -29,8 +30,12 @@
 // close button 
 
 #addonify-qvm-close-button {
-
+	
+	width:30px;
+	height: 30px;
+	line-height: 30px;
 	font-size: 22px;
 	font-weight:normal;
-	line-height: 1;
+	border-radius:100%;
+	@include transation_delay();
 }
