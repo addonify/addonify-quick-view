@@ -1,21 +1,9 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              https://addonify.com
- * @since             1.0.0
- * @package           Addonify_Quick_View
- *
- * @wordpress-plugin
  * Plugin Name:       Addonify WooCommerce Quick View
- * Plugin URI:        https://addonify.com/addonify-woocommerce-quick-view
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        https://addonify.com/downloads/woocommerce-quick-view/
+ * Description:       Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
  * Version:           1.0.0
  * Author:            Addonify
  * Author URI:        https://addonify.com
@@ -23,8 +11,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       addonify-quick-view
  * Domain Path:       /languages
- * WC requires at least: 3.0.0
- * WC tested up to: 	4.1.0
+ * WC requires at least: 5.0.0
+ * WC tested up to: 	5.4.2
  */
 
 // If this file is called directly, abort.
