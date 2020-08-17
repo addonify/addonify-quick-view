@@ -85,7 +85,7 @@ class Addonify_Quick_View_Admin {
 			}
 
 			// admin css
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin-min.css', array(), $this->version, 'all' );
 
 		}
 
@@ -125,7 +125,7 @@ class Addonify_Quick_View_Admin {
 
 
 			// use wp-color-picker-alpha as dependency
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin-min.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
 
 
 			wp_localize_script( 
