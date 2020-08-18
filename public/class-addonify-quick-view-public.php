@@ -78,7 +78,6 @@ class Addonify_Quick_View_Public {
 	private $quick_view_btn_label;
 
 
-
 	// constructor function	
 	public function __construct( $plugin_name, $version ) {
 
@@ -94,7 +93,6 @@ class Addonify_Quick_View_Public {
 
 				$this->quick_view_btn_position =  $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
 				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label', __('Quick View', 'addonify-quick-views') );
-
 			}
 		}
 
@@ -277,7 +275,7 @@ class Addonify_Quick_View_Public {
 
 		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
 			ob_start();
-			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label) );
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label, 'css_class' => 'addonify-overlay-btn') );
 			echo ob_get_clean();
 		}
 
@@ -304,10 +302,10 @@ class Addonify_Quick_View_Public {
 		// do not continue if "Enable Product Comparision" is not checked
 		if( ! $this->enable_plugin ) return;
 
-		$load_styles_from_plugin = $this->get_db_values( 'load_styles_from_plugin', 1 );
-
 		// do not continue if plugin styles are disabled by user
-		if( ! $load_styles_from_plugin ) return;
+		if( ! $this->get_db_values( 'load_styles_from_plugin' ) ) return;
+
+		// generate style markups
 
 		$custom_css = $this->get_db_values('custom_css');
 		$custom_styles_output = '';
@@ -488,10 +486,22 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_start_callback(){
 
 		// do not continue if "Enable Product Comparision" is not checked
-		if( ! $this->enable_plugin ) return;
-		
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
+
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
-			echo '<div class="addonify-qvm-overlay-button">';
+
+			if( ! defined('ADDONIFY_OVERLAY_IS_ADDED')) {
+				define('ADDONIFY_OVERLAY_IS_ADDED', 1);
+			}
+
+			if( ! defined('ADDONIFY_OVERLAY_ADDED_BY')) {
+				define('ADDONIFY_OVERLAY_ADDED_BY', 'quick_view' );
+			}
+
+
+			echo '<div class="addonify-overlay-buttons">';
 		}
 
 	}
@@ -502,7 +512,9 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_end_callback(){
 
 		// do not continue if "Enable Product Comparision" is not checked
-		if( ! $this->enable_plugin ) return;
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
 			echo '</div>';
