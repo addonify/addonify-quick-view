@@ -64,19 +64,21 @@
                 $overlay_parent_container.each(function(){
                     $('button.' + overlay_btn_class, this).wrapAll('<div class=" '+ overlay_btn_wrapper_class + ' " />');
                 });
+                
+                var img_height = $('img.attachment-woocommerce_thumbnail').height();
+
+                // set height of the button wrapper div
+                $('.' + overlay_btn_wrapper_class).css('height', img_height + 'px');
+
+
+                $('.' + overlay_btn_wrapper_class).hover(function(){
+                    $(this).css('opacity', 1);
+                }, function(){
+                    $(this).css('opacity', 0);
+                })
             }
 
 
-            var img_height = $('img.attachment-woocommerce_thumbnail').height();
-            var padding_top = ( img_height - $('.' + overlay_btn_wrapper_class).height() ) / 2;
-
-            $('.' + overlay_btn_wrapper_class).css('height', img_height + 'px').css('padding-top', padding_top + 'px');
-
-            $('.' + overlay_btn_wrapper_class).hover(function(){
-                $(this).css('opacity', 1);
-            }, function(){
-                $(this).css('opacity', 0);
-            })
         }
 
         AddonifyQuickViewModel();
