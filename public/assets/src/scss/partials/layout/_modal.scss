@@ -1,3 +1,23 @@
+// quick view btn in image overlay mode
+.addonify-overlay-buttons{
+    position: relative;
+
+    .addonify-overlay-btn-wrapper{
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: #1010101a;
+        opacity: 0;
+        transition: 0.4s;
+
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 
 // modal outer
 

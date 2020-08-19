@@ -197,11 +197,11 @@ class Addonify_Quick_View {
 
 
 		// add "Quick View" button after add to cart button
-		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_after_add_to_cart_btn_callback', 15 );
+		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_after_add_to_cart_btn_callback', 20 );
 
 
 		// add "Quick View" button before add to cart button
-		$this->loader->add_action( 'woocommerce_after_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_before_add_to_cart_btn_callback', 15 );
+		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_before_add_to_cart_btn_callback' );
 
 		
 

@@ -78,24 +78,21 @@ class Addonify_Quick_View_Public {
 	private $quick_view_btn_label;
 
 
-
 	// constructor function	
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		$this->enable_plugin = (int) $this->get_db_values('enable_quick_view', 1);
 
 		if( ! is_admin() ){
 
-			$this->show_quick_view_btn = (int) $this->get_db_values('enable_quick_view', 1);
-
-			// if quick view is enabled
-			if( $this->show_quick_view_btn === 1 ){
+			// if plugin is enabled
+			if( $this->enable_plugin === 1 ){
 
 				$this->quick_view_btn_position =  $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
-				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label' );
-
+				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label', __('Quick View', 'addonify-quick-views') );
 			}
 		}
 
@@ -107,6 +104,10 @@ class Addonify_Quick_View_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
+
+		// should we load styles ?
+		if( ! $this->enable_plugin ) return;
+
 
 		$style_dependency = array();
 
@@ -130,13 +131,15 @@ class Addonify_Quick_View_Public {
 
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-public.css', $style_dependency, $this->version, 'all' );
 		}
-
-
 	}
 
 	
 	// enqueue scripts
 	public function enqueue_scripts() {
+
+		// should we load scripts ?
+		if( ! $this->enable_plugin ) return;
+
 
 		$script_dependency = array('jquery', 'wc-add-to-cart-variation', 'flexslider');
 		
@@ -182,8 +185,12 @@ class Addonify_Quick_View_Public {
 	}
 
 	// callback function
+	// ajax request
 	// get contents for quick view
 	public function quick_view_contents_callback(){
+
+		if( ! $this->enable_plugin ) return;
+
 
 		// deny any non ajax requests
 		if( ! wp_doing_ajax() ) wp_die('Invalid Requests');
@@ -213,42 +220,38 @@ class Addonify_Quick_View_Public {
 	
 
 	// callback function
-	// show compare product btn button before add to cart button
-	public function show_quick_view_btn_before_add_to_cart_btn_callback() {
-
-		global $product;
-		$product_id = $product->get_id();
-		
-		// show quick view btn before add to cart button
-		if( 
-			$this->quick_view_btn_position == 'before_add_to_cart' &&
-			$this->show_quick_view_btn && 
-			$this->quick_view_btn_label 
-		) {
-			ob_start();
-			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $this->quick_view_btn_label) );
-			echo ob_get_clean();
-
+	// show compare btn after add to cart button
+	public function show_quick_view_btn_after_add_to_cart_btn_callback(){
+		if( $this->quick_view_btn_position == 'after_add_to_cart'  ) {
+			$this->show_quick_view_btn_aside_add_to_cart_btn_callback();
 		}
-
 	}
 
-
+	
 	// callback function
-	// show compare product btn after add to cart button
-	public function show_quick_view_btn_after_add_to_cart_btn_callback() {
+	// show compare btn before add to cart button
+	public function show_quick_view_btn_before_add_to_cart_btn_callback(){
+
+		if( $this->quick_view_btn_position == 'before_add_to_cart'  ) {
+			$this->show_quick_view_btn_aside_add_to_cart_btn_callback();
+		}
+	}
+
+	
+	// show template for comapre button
+	private function show_quick_view_btn_aside_add_to_cart_btn_callback() {
+
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
 
 		global $product;
 		$product_id = $product->get_id();
-		
-		if( 
-			$this->quick_view_btn_position == 'after_add_to_cart' &&
-			$this->show_quick_view_btn && 
-			$this->quick_view_btn_label 
-		) {
-			
+
+		// show compare btn after add to cart button
+		if( $this->quick_view_btn_label ) {
+
 			ob_start();
-			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $this->quick_view_btn_label) );
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $this->quick_view_btn_label, 'css_class' => '') );
 			echo ob_get_clean();
 
 		}
@@ -260,6 +263,9 @@ class Addonify_Quick_View_Public {
 	// show quick view button aside image
 	public function show_quick_view_btn_aside_image_callback(){
 
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
+
 		global $product;
 		$product_id = $product->get_id();
 
@@ -269,7 +275,7 @@ class Addonify_Quick_View_Public {
 
 		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
 			ob_start();
-			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label) );
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label, 'css_class' => 'addonify-overlay-btn') );
 			echo ob_get_clean();
 		}
 
@@ -279,6 +285,9 @@ class Addonify_Quick_View_Public {
 	// callback function
 	// add custom markup into footer
 	public function add_markup_into_footer_callback(){
+
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
 
 		ob_start();
 		$this->get_templates( 'addonify-quick-view-content-wrapper' );
@@ -290,10 +299,13 @@ class Addonify_Quick_View_Public {
 	// generate style tag according to options selected by user
 	public function generate_custom_styles_callback(){
 
-		$load_styles_from_plugin = $this->get_db_values( 'load_styles_from_plugin', 1 );
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
 
 		// do not continue if plugin styles are disabled by user
-		if( ! $load_styles_from_plugin ) return;
+		if( ! $this->get_db_values( 'load_styles_from_plugin' ) ) return;
+
+		// generate style markups
 
 		$custom_css = $this->get_db_values('custom_css');
 		$custom_styles_output = '';
@@ -387,6 +399,9 @@ class Addonify_Quick_View_Public {
 	// generate contents dynamically to modal templates with hooks
 	// called by get_quick_view_contents()
 	private function generate_contents() {
+
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
 		
 		// Show Hide Image according to user choices 
 		if( (int) $this->get_db_values( 'show_product_image' ) ) {
@@ -442,6 +457,9 @@ class Addonify_Quick_View_Public {
 	// view details button markups
 	public function view_details_btn_callback( $post_id ){
 
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin ) return;
+
 		$btn_label = $this->get_db_values( 'view_detail_btn_label', __( 'View Detail', 'addonify-quick-views' ));
 
 		if( ! $btn_label ) return;
@@ -466,9 +484,24 @@ class Addonify_Quick_View_Public {
 	// callback function
 	// print opening tag of overlay image container
 	public function addonify_overlay_container_start_callback(){
-		
+
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
+
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
-			echo '<div class="addonify-qvm-overlay-button">';
+
+			if( ! defined('ADDONIFY_OVERLAY_IS_ADDED')) {
+				define('ADDONIFY_OVERLAY_IS_ADDED', 1);
+			}
+
+			if( ! defined('ADDONIFY_OVERLAY_ADDED_BY')) {
+				define('ADDONIFY_OVERLAY_ADDED_BY', 'quick_view' );
+			}
+
+
+			echo '<div class="addonify-overlay-buttons">';
 		}
 
 	}
@@ -477,6 +510,11 @@ class Addonify_Quick_View_Public {
 	// callback function
 	// print closing tag of overlay image container
 	public function addonify_overlay_container_end_callback(){
+
+		// do not continue if "Enable Product Comparision" is not checked
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
 			echo '</div>';

@@ -73,6 +73,8 @@ class Addonify_Quick_View_Admin {
 		// load styles in plugin page only
 		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
 
+			global $wp_styles;
+
 			// toggle switch
 			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
 
@@ -85,12 +87,14 @@ class Addonify_Quick_View_Admin {
 			}
 
 			// admin css
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/addonify-quick-view-admin-min.css', array(), $this->version, 'all' );
 
 		}
 
-		// this css will be loaded everywhere in admin panel
-		wp_enqueue_style( 'adonify-icon-fix', plugin_dir_url( __FILE__ ) . 'css/addonify-icon-fix.css', array(), $this->version, 'all' );
+		if( ! isset($wp_styles->registered['addonify-icon-fix']) ){
+			// admin menu icon fix
+			wp_enqueue_style( 'addonify-icon-fix', plugin_dir_url( __FILE__ ) . 'css/addonify-icon-fix.css', array(), $this->version, 'all' );
+		}
 
 	}
 
@@ -125,7 +129,7 @@ class Addonify_Quick_View_Admin {
 
 
 			// use wp-color-picker-alpha as dependency
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin-min.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
 
 
 			wp_localize_script( 
