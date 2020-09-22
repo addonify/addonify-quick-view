@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: addonify
-Donate link: https://addonify.com
+Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
-Tested up to: 5.4.2
-Stable tag: 1.0.0
+Tested up to: 5.5.1
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 
 [Addonify WooCommerce Quick View](https://addonify.com/downloads/woocommerce-quick-view/) plugin adds functionality to have a WooCommerce product quick preview on a modal window.
 
-> *Quick links for demo preview and plugin documentation: [click here for demo preview](https://demo.addonify.com/woo/01/woocommerce-quick-view/) & [click here for documentation](https://docs.addonify.com/woocommerce-quick-view/)*
+> *Quick links for demo preview and plugin documentation: [click here for demo preview](https://demo.addonify.com/woo/01/) & [click here for documentation](https://docs.addonify.com/docs/woocommerce-quick-view/)*
 
 If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
 
@@ -39,7 +39,7 @@ If you are a developer or a theme author, below are the different ways on how Ad
 * Using Hooks and filters
 * Overriding plugin template file 
 
-If you need a getting started guide, do feel free to check [developer documentation guide](https://docs.addonify.com/quick-view/) in our docs site.
+If you need a getting started guide, do feel free to check [developer documentation guide](https://docs.addonify.com/docs/woocommerce-quick-view/) in our docs site.
 
 **SUGGESTION & SUPPORT:**
 
@@ -60,6 +60,11 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 3. Addonify quick view modal window.
 
 == Changelog ==
+
+= 1.0.1 = Released on: 23 September 2020 
+
+* Fix: Basic styling
+* Fix: Readme.txt file links
 
 = 1.0.0 = Released on: 11 August 2020 
 
