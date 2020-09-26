@@ -78,7 +78,6 @@ class Addonify_Quick_View_Public {
 	private $quick_view_btn_label;
 
 
-
 	// constructor function	
 	public function __construct( $plugin_name, $version ) {
 
@@ -94,7 +93,6 @@ class Addonify_Quick_View_Public {
 
 				$this->quick_view_btn_position =  $this->get_db_values('quick_view_btn_position', 'after_add_to_cart' );
 				$this->quick_view_btn_label = $this->get_db_values( 'quick_view_btn_label', __('Quick View', 'addonify-quick-views') );
-
 			}
 		}
 
@@ -277,7 +275,7 @@ class Addonify_Quick_View_Public {
 
 		if( $show_quick_btn && $quick_view_btn_position == 'overlay_on_image' ) {
 			ob_start();
-			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label) );
+			$this->get_templates( 'addonify-quick-view-button', false, array( 'product_id' => $product_id, 'label' => $quick_view_btn_label, 'css_class' => 'addonify-overlay-btn') );
 			echo ob_get_clean();
 		}
 
@@ -304,10 +302,10 @@ class Addonify_Quick_View_Public {
 		// do not continue if "Enable Product Comparision" is not checked
 		if( ! $this->enable_plugin ) return;
 
-		$load_styles_from_plugin = $this->get_db_values( 'load_styles_from_plugin', 1 );
-
 		// do not continue if plugin styles are disabled by user
-		if( ! $load_styles_from_plugin ) return;
+		if( ! $this->get_db_values( 'load_styles_from_plugin' ) ) return;
+
+		// generate style markups
 
 		$custom_css = $this->get_db_values('custom_css');
 		$custom_styles_output = '';
@@ -398,6 +396,7 @@ class Addonify_Quick_View_Public {
 	}
 
 
+
 	// generate contents dynamically to modal templates with hooks
 	// called by get_quick_view_contents()
 	private function generate_contents() {
@@ -406,7 +405,7 @@ class Addonify_Quick_View_Public {
 		if( ! $this->enable_plugin ) return;
 		
 		// Show Hide Image according to user choices 
-		if( (int) $this->get_db_values( 'show_product_image' ) ) {
+		if( (int) $this->get_db_values( 'show_product_image', 1 ) ) {
 
 			// show or hide gallery thumbnails according to user choice
 			if( $this->get_db_values( 'product_image_display_type' ) == 'image_only' ) {
@@ -420,37 +419,37 @@ class Addonify_Quick_View_Public {
 		}
 
 		// show or hide title
-		if( (int) $this->get_db_values( 'show_product_title' ) ) {
+		if( (int) $this->get_db_values( 'show_product_title', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
 		}
 
 		// show or hide product ratings
-		if( (int) $this->get_db_values( 'show_product_rating' ) ) {
+		if( (int) $this->get_db_values( 'show_product_rating', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_rating', 10 );
 		}
 
 		// show or hide price
-		if( (int) $this->get_db_values( 'show_product_price' ) ) {
+		if( (int) $this->get_db_values( 'show_product_price', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_price', 15 );
 		}
 
 		// show or hide excerpt
-		if( (int) $this->get_db_values( 'show_product_excerpt' ) ) {
+		if( (int) $this->get_db_values( 'show_product_excerpt', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_excerpt', 20 );
 		}
 
 		// show or hide add to cart button
-		if( (int) $this->get_db_values( 'show_add_to_cart_btn' ) ) {
+		if( (int) $this->get_db_values( 'show_add_to_cart_btn', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
 		}
 
 		// show or hide product meta
-		if( (int) $this->get_db_values( 'show_product_meta' ) ) {
+		if( (int) $this->get_db_values( 'show_product_meta', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
 
 		// show  or hide view details button
-		if( (int) $this->get_db_values( 'show_view_detail_btn' ) && $this->get_db_values( 'view_detail_btn_label' ) ) {
+		if( (int) $this->get_db_values( 'show_view_detail_btn', 1 ) && $this->get_db_values( 'view_detail_btn_label' ) ) {
 			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_callback') );
 		}
 	}
@@ -488,10 +487,22 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_start_callback(){
 
 		// do not continue if "Enable Product Comparision" is not checked
-		if( ! $this->enable_plugin ) return;
-		
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
+
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
-			echo '<div class="addonify-qvm-overlay-button">';
+
+			if( ! defined('ADDONIFY_OVERLAY_IS_ADDED')) {
+				define('ADDONIFY_OVERLAY_IS_ADDED', 1);
+			}
+
+			if( ! defined('ADDONIFY_OVERLAY_ADDED_BY')) {
+				define('ADDONIFY_OVERLAY_ADDED_BY', 'quick_view' );
+			}
+
+
+			echo '<div class="addonify-overlay-buttons">';
 		}
 
 	}
@@ -502,7 +513,9 @@ class Addonify_Quick_View_Public {
 	public function addonify_overlay_container_end_callback(){
 
 		// do not continue if "Enable Product Comparision" is not checked
-		if( ! $this->enable_plugin ) return;
+		if( ! $this->enable_plugin  ) return;
+
+		if( defined('ADDONIFY_OVERLAY_IS_ADDED') && ADDONIFY_OVERLAY_ADDED_BY != 'quick_view' ) return;
 		
 		if( $this->quick_view_btn_position == 'overlay_on_image' ){
 			echo '</div>';
