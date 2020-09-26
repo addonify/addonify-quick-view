@@ -4,7 +4,7 @@
  * Plugin Name:       Addonify WooCommerce Quick View
  * Plugin URI:        https://addonify.com/downloads/woocommerce-quick-view/
  * Description:       Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Addonify
  * Author URI:        https://addonify.com
  * License:           GPL-2.0+
@@ -12,7 +12,7 @@
  * Text Domain:       addonify-quick-view
  * Domain Path:       /languages
  * WC requires at least: 5.0.0
- * WC tested up to: 	5.4.2
+ * WC tested up to: 	5.5.1
  */
 
 // If this file is called directly, abort.
@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.0.0' );
+define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.0.1' );
 define( 'ADDONIFY_DB_INITIALS', 'addonify_qv_' );
 
 
