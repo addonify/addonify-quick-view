@@ -396,6 +396,7 @@ class Addonify_Quick_View_Public {
 	}
 
 
+
 	// generate contents dynamically to modal templates with hooks
 	// called by get_quick_view_contents()
 	private function generate_contents() {
@@ -404,7 +405,7 @@ class Addonify_Quick_View_Public {
 		if( ! $this->enable_plugin ) return;
 		
 		// Show Hide Image according to user choices 
-		if( (int) $this->get_db_values( 'show_product_image' ) ) {
+		if( (int) $this->get_db_values( 'show_product_image', 1 ) ) {
 
 			// show or hide gallery thumbnails according to user choice
 			if( $this->get_db_values( 'product_image_display_type' ) == 'image_only' ) {
@@ -418,37 +419,37 @@ class Addonify_Quick_View_Public {
 		}
 
 		// show or hide title
-		if( (int) $this->get_db_values( 'show_product_title' ) ) {
+		if( (int) $this->get_db_values( 'show_product_title', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
 		}
 
 		// show or hide product ratings
-		if( (int) $this->get_db_values( 'show_product_rating' ) ) {
+		if( (int) $this->get_db_values( 'show_product_rating', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_rating', 10 );
 		}
 
 		// show or hide price
-		if( (int) $this->get_db_values( 'show_product_price' ) ) {
+		if( (int) $this->get_db_values( 'show_product_price', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_price', 15 );
 		}
 
 		// show or hide excerpt
-		if( (int) $this->get_db_values( 'show_product_excerpt' ) ) {
+		if( (int) $this->get_db_values( 'show_product_excerpt', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_excerpt', 20 );
 		}
 
 		// show or hide add to cart button
-		if( (int) $this->get_db_values( 'show_add_to_cart_btn' ) ) {
+		if( (int) $this->get_db_values( 'show_add_to_cart_btn', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
 		}
 
 		// show or hide product meta
-		if( (int) $this->get_db_values( 'show_product_meta' ) ) {
+		if( (int) $this->get_db_values( 'show_product_meta', 1 ) ) {
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
 
 		// show  or hide view details button
-		if( (int) $this->get_db_values( 'show_view_detail_btn' ) && $this->get_db_values( 'view_detail_btn_label' ) ) {
+		if( (int) $this->get_db_values( 'show_view_detail_btn', 1 ) && $this->get_db_values( 'view_detail_btn_label' ) ) {
 			add_action( 'addonify_qv_after_product_summary_content', array($this, 'view_details_btn_callback') );
 		}
 	}
