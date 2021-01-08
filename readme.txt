@@ -3,8 +3,8 @@ Contributors: addonify
 Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
-Tested up to: 5.5.1
-Stable tag: 1.0.2
+Tested up to: 5.6
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,14 +61,21 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 
 == Changelog ==
 
+= 1.0.3 = Released on: 08 January 2021
+
+* Added: Tested up to WordPress version 5.6 
+
+
 = 1.0.2 = Released on: 26 September 2020 
 
 * Fix: Quick view modal content not being populated while in initial installation
+
 
 = 1.0.1 = Released on: 23 September 2020 
 
 * Fix: Basic styling
 * Fix: Readme.txt file links
+
 
 = 1.0.0 = Released on: 11 August 2020 
 
