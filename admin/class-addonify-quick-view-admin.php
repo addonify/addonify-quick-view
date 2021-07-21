@@ -74,10 +74,6 @@ class Addonify_Quick_View_Admin {
 		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
 
 			global $wp_styles;
-
-			// toggle switch
-			wp_enqueue_style( 'lc_switch', plugin_dir_url( __FILE__ ) . 'css/lc_switch.css' );
-
 			
 			if( version_compare( get_bloginfo('version'),'3.5', '>=' ) ){
 				// features available from wordpress 3.5
@@ -123,13 +119,13 @@ class Addonify_Quick_View_Admin {
 			}
 			
 			// toggle switch
-			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '', false );
+			wp_enqueue_script( 'lc_switch', plugin_dir_url( __FILE__ ) . 'js/lc_switch.min.js', array( 'jquery' ), '2.0.3', true );
 
-			wp_enqueue_script( 'wp-color-picker-alpha', plugin_dir_url( __FILE__ ) . 'js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ) );
+			wp_enqueue_script( 'wp-color-picker-alpha', plugin_dir_url( __FILE__ ) . 'js/wp-color-picker-alpha.min.js', array( 'wp-color-picker' ), '3.0.0', true );
 
 
 			// use wp-color-picker-alpha as dependency
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin-min.js', array('jquery', 'wp-color-picker-alpha'), $this->version, false );
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/addonify-quick-view-admin-min.js', array('jquery', 'wp-color-picker-alpha'), $this->version, true );
 
 
 			wp_localize_script( 
