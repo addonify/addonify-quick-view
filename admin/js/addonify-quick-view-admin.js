@@ -4,7 +4,7 @@
 	$(document).ready(function(){
 
 		// ios style switch
-		$('input.lc_switch').lc_switch();
+		lc_switch('input.lc_switch');
 
 		
 		if( addonify_objects.color_picker_is_available ){
