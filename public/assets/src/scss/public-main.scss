@@ -7,24 +7,14 @@
 
 # Since: 28 July, 2020
 
-# Last updated: 26 Sept, 2020
+# Last updated: 10 March 2022
 
-# Current version: 1.0.2
+# Current version: 1.0.5
 
 =====================================
 */
 
-// import abstracts 
-
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
-
-
-// import libraries 
-
-@import 'libraries/perfect-scrollbar';
-
-// import partials 
+@use 'abstracts/mixins' as *;
 
 @import 'partials/components/button';
 @import 'partials/layout/modal';
