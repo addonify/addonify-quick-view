@@ -4,8 +4,8 @@ Contributors: addonify
 Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
-Tested up to: 5.8
-Stable tag: 1.0.4
+Tested up to: 5.9.2
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,25 +62,33 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 
 == Changelog ==
 
-= 1.0.4 - 21 July, 2021 =
-* Fix: wp-color-picker-alpha js issue
-* Updated: wp-color-picker-alpha.min.js to version 3.0.0
-* Updated: lc_switch to version 2.0.3
-* Removed: lc_switch.css
+= 1.0.5 - 10 March, 2021 =
 
+- Tweak: Changed perfectscroll library to conditional.
+- Tweak: Quick view modal design.
+- Tested: with WordPress version 5.9.2.
+- Updated: Dev tools (NPM & GULP).
+
+= 1.0.4 - 21 July, 2021 =
+
+- Fix: wp-color-picker-alpha js issue.
+- Updated: wp-color-picker-alpha.min.js to version 3.0.0.
+- Updated: lc_switch to version 2.0.3.
+- Removed: lc_switch.css.
 
 = 1.0.3 - 8 January, 2021 =
-* Added: Tested up to WordPress version 5.6 
 
+- Added: Tested up to WordPress version 5.6. 
 
 = 1.0.2 - 26 September, 2021 = 
-* Fix: Quick view modal content not being populated while in initial installation
 
+- Fix: Quick view modal content not being populated while in initial installation.
 
 = 1.0.1 - 23 September, 2020 = 
-* Fix: Basic styling
-* Fix: Readme.txt file links
 
+- Fix: Basic styling.
+- Fix: Readme.txt file links.
 
 = 1.0.0 - 11 August, 2020 = 
-* Initial release
+
+- Initial release.
