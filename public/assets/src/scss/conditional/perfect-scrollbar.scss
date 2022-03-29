@@ -30,7 +30,7 @@
     opacity: 0;
     transition: background-color .2s linear, opacity .2s linear;
     -webkit-transition: background-color .2s linear, opacity .2s linear;
-    width: 15px;
+    width: 6px;
     /* there must be 'right' or 'left' for ps__rail-y */
     right: 0;
     /* please don't change 'position' */
@@ -107,7 +107,7 @@
 .ps__rail-y.ps--clicking .ps__thumb-y {
 
     background-color: #999;
-    width: 11px;
+    width: 6px;
 }
 
 /* MS supports */

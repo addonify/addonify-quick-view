@@ -1,16 +1,20 @@
-// quick view btn in image overlay mode
-.addonify-overlay-buttons{
+/* -------------------------------------------------------------------------- 
+	Quick view modal
+  -------------------------------------------------------------------------- */
+
+.addonify-overlay-buttons {
+
     position: relative;
 
-    .addonify-overlay-btn-wrapper{
+    .addonify-overlay-btn-wrapper {
+
         position: absolute;
         width: 100%;
         top: 0;
         left: 0;
-        background: #1010101a;
+        background: #111111;
         opacity: 0;
-        transition: 0.4s;
-
+        transition: 0.5s;
         flex-direction: column;
         display: flex;
         align-items: center;
@@ -18,22 +22,22 @@
     }
 }
 
-
 // modal outer
 
 #addonify-quick-view-modal {
 	
-	display:block;
+	display: block;
 	position: fixed;
     visibility: hidden;
     opacity: 0;
     @include position_topnleft();
-    z-index: 10000;
+    z-index: 100000000;
     width: 1000px;
-    height: 500px;
-    overflow-x:hidden;
-    overflow-y:auto;
-    background-color: #ffffff;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+	border-radius: 10px;
+    background-color: white;
     @include mild_box_shadow();
     @include transation_delay();
 }
@@ -42,14 +46,14 @@
 
 .adfy-quick-view-overlay {
 	
-	display:block;
+	display: block;
 	position: fixed;
-	@include overlay();
 	width: 100%;
 	height: 100%;
 	opacity: 0;
     visibility: hidden;
-	z-index: 9999;
+	z-index: 10000000;
+	@include overlay();
 }
 
 .addonify-qvm-is-active {
@@ -89,12 +93,12 @@
 
 #addonify-quick-view-modal #adfy-qvm-spinner {
 	
-	display:block;
-	position:absolute;
+	display: block;
+	position: absolute;
 	@include position_topnleft();
-	z-index:11;
-	opacity:1;
-	visibility:visible;
+	z-index: 11;
+	opacity: 1;
+	visibility: visible;
 }
 
 #addonify-quick-view-modal #adfy-qvm-spinner .icon {
@@ -107,17 +111,17 @@
 
 #addonify-quick-view-modal #adfy-qvm-spinner.hide {
 	
-	display:none;
-	opacity:0;
-	visibility:hidden;
+	display: none;
+	opacity: 0;
+	visibility: hidden;
 }
 
 // modal content 
 
 .adfy-quick-view-modal-content {
 
-	position:relative;
-	padding:40px 30px;
+	position: relative;
+	padding: 40px 30px;
 }
 
 #addonify-quick-view-modal #addonify-qvm-close-button {
@@ -139,20 +143,20 @@
 
 .addonify-qvm-overlay-button .addonify-qvm-button {
 
-	display:block;
-	position:absolute;
+	display: block;
+	position: absolute;
 	@include position_topnleft();
-	z-index:-1;
+	z-index: -1;
 	visibility: hidden;
-	opacity:0;
+	opacity: 0;
 	@include transation_delay();
 }
 
 .addonify-qvm-overlay-button:hover .addonify-qvm-button {
 
 	visibility: visible;
-	opacity:1;
-	z-index:100;
+	opacity: 1;
+	z-index: 100;
 }
 
 #addonify-quick-view-modal .single-product div.product .summary,
