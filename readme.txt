@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 5.9.2
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,7 +62,11 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 
 == Changelog ==
 
-= 1.0.5 - 10 March, 2021 =
+= 1.0.6 - 29 March, 2022 =
+
+- Tweak: Quick view modal z-index.
+
+= 1.0.5 - 10 March, 2022 =
 
 - Tweak: Changed perfectscroll library to conditional.
 - Tweak: Quick view modal design.
