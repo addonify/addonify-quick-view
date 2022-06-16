@@ -2,7 +2,15 @@
 	Responsive
   -------------------------------------------------------------------------- */
 
-@media( max-width: 1100px ) {
+@media ( min-width: 1400px ) {
+
+	#addonify-quick-view-modal {
+
+		width: 1200px;
+	}
+}
+
+@media( max-width: 1200px ) {
 
 	#addonify-quick-view-modal {
 
@@ -12,9 +20,18 @@
 
 @media( max-width: 768px) {
 
-	#addonify-quick-view-modal .single-product div.product .summary {
+	#addonify-quick-view-modal .woocommerce .product {
 
-		margin-top: 20px;
+		grid-template-columns: repeat(1, 1fr);
+		row-gap: 30px;
+		column-gap: 0;
+	}
+
+	#addonify-quick-view-modal .woocommerce .product .images,
+	#addonify-quick-view-modal .woocommerce .product .summary {
+
+		margin: 0;
+		padding: 0;
 	}
 }
 
@@ -22,12 +39,13 @@
 
 	#addonify-quick-view-modal {
 
-		height: 450px;
-		max-height: 95vh;
+		width: 90vw;
+		height: 90vh;
+		max-height: 90vh;
 	}
 
 	.adfy-quick-view-modal-content {
 
-		padding:30px 20px;
+		padding: 30px 20px;
 	}
 }

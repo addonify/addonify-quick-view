@@ -12,8 +12,9 @@
     z-index: 100000000;
     width: 100%;
 	max-width: 1000px;
-	height: 600px;
-    max-height: 80vh;
+	height: auto;
+	min-height: 400px;
+	max-height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
 	border-radius: 10px;
@@ -82,9 +83,9 @@
 #addonify-quick-view-modal #adfy-qvm-spinner {
 	
 	display: block;
-	position: absolute;
+	position: fixed;
 	@include position_topnleft();
-	z-index: 11;
+	z-index: 100000000;
 	opacity: 1;
 	visibility: visible;
 }
@@ -110,17 +111,21 @@
 
 #addonify-qvm-close-button {
 
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	fill: var(--addonify_qv_close_button_text);
 	color: var(--addonify_qv_close_button_text);
+	height: 30px;
+	width: 30px;
 	background-color: var(--addonify_qv_close_button_background);
 	border-radius: 100%;
 	cursor: pointer;
 
 	svg {
 
-		line-height: 30px;
-    	height: 30px;
-    	width: 18px;
+    	height: 14px;
+    	width: 14px;
 	}
 
 	&:hover {
@@ -214,8 +219,28 @@
 	}
 }
 
-#addonify-quick-view-modal .single-product div.product .summary,
-#addonify-quick-view-modal .single-product div.product .woocommerce-product-gallery {
+#addonify-quick-view-modal .woocommerce .product .summary,
+#addonify-quick-view-modal .woocommerce .product .woocommerce-product-gallery {
 
 	margin-bottom: 0;
+}
+
+#addonify-quick-view-modal .woocommerce .product {
+
+	display: grid;
+	align-items: stretch;
+	justify-content: stretch;
+	grid-template-columns: repeat(2, 1fr);
+	column-gap: 40px;
+}
+
+#addonify-quick-view-modal .woocommerce .product .images,
+#addonify-quick-view-modal .woocommerce .product .summary,
+.woocommerce-page #addonify-quick-view-modal .product .images,
+.woocommerce-page #addonify-quick-view-modal .product .summary {
+
+	float: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }
