@@ -153,6 +153,16 @@
 
 		.product {
 
+			.onsale {
+
+				position: absolute;
+				right: auto;
+				left: 20px;
+				top: 20px;
+				z-index: 10;
+				margin: 0;
+			}
+
 			.product_title {
 
 				color: var(--addonify_qv_product_title);
@@ -217,6 +227,13 @@
 			}
 		}
 	}
+}
+
+#addonify-quick-view-modal .woocommerce .product::before,
+#addonify-quick-view-modal .woocommerce .product::after {
+
+	content: "";
+	display: none;
 }
 
 #addonify-quick-view-modal .woocommerce .product .summary,
