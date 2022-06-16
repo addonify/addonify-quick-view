@@ -2,28 +2,6 @@
 	Quick view modal
   -------------------------------------------------------------------------- */
 
-.addonify-overlay-buttons {
-
-    position: relative;
-
-    .addonify-overlay-btn-wrapper {
-
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background: #111111;
-        opacity: 0;
-        transition: 0.5s;
-        flex-direction: column;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
-// modal outer
-
 #addonify-quick-view-modal {
 	
 	display: block;
@@ -32,19 +10,19 @@
     opacity: 0;
     @include position_topnleft();
     z-index: 100000000;
-    width: 1000px;
-    height: 80vh;
+    width: 100%;
+	max-width: 1000px;
+	height: auto;
+    max-height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
 	border-radius: 10px;
-    background-color: white;
-    @include mild_box_shadow();
+    background-color: var(--addonify_qv_modal_background);
+    box-shadow: 0 0 65px rgba(0, 0, 0, 0.10);
     @include transation_delay();
 }
 
-// modal overlay mask 
-
-.adfy-quick-view-overlay {
+#addonify-quick-view-overlay {
 	
 	display: block;
 	position: fixed;
@@ -54,6 +32,7 @@
     visibility: hidden;
 	z-index: 10000000;
 	@include overlay();
+	background-color: var(--addonify_qv_modal_overlay_background);
 }
 
 .addonify-qvm-is-active {
@@ -61,16 +40,11 @@
 	overflow: hidden;
 }
 
-.addonify-qvm-is-active .adfy-quick-view-overlay,
-.addonify-qvm-is-active #addonify-quick-view-modal {
+.addonify-qvm-is-active #addonify-quick-view-modal,
+.addonify-qvm-is-active #addonify-quick-view-overlay {
 
 	visibility: visible;
     opacity: 1;
-}
-
-.addonify-qvm-is-active .pswp {
-
-	z-index: 10001;
 }
 
 .adfy-quick-view-model-inner {
@@ -83,13 +57,27 @@
 
 .adfy-qvm-head {
 
-	position:absolute;
-	top:10px;
-	right:10px;
-	z-index:10;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
 }
 
-// spinner 
+// Increase the z-index of WooCommerce lightbox when modal is active.
+
+.addonify-qvm-is-active .pswp {
+
+	z-index: 1000000001;
+}
+
+.addonify-qvm-is-active .woocommerce img.pswp__img, .woocommerce-page img.pswp__img {
+
+	background-color: white;
+}
+
+/* -------------------------------------------------------------------------- 
+	Spinner
+  -------------------------------------------------------------------------- */
 
 #addonify-quick-view-modal #adfy-qvm-spinner {
 	
@@ -116,47 +104,113 @@
 	visibility: hidden;
 }
 
-// modal content 
+/* -------------------------------------------------------------------------- 
+	Modal box close button
+  -------------------------------------------------------------------------- */
 
-.adfy-quick-view-modal-content {
+#addonify-qvm-close-button {
+
+	fill: var(--addonify_qv_close_button_text);
+	color: var(--addonify_qv_close_button_text);
+	background-color: var(--addonify_qv_close_button_background);
+	border-radius: 100%;
+
+	svg {
+
+		line-height: 30px;
+    	height: 30px;
+    	width: 18px;
+	}
+
+	&:hover {
+
+		fill: var(--addonify_qv_close_button_text_hover);
+		color: var(--addonify_qv_close_button_text_hover);
+		background-color: var(--addonify_qv_close_button_background_hover);
+	}
+}
+
+
+/* -------------------------------------------------------------------------- 
+	Modal box inner
+  -------------------------------------------------------------------------- */
+
+#addonify-quick-view-modal .adfy-quick-view-modal-content {
 
 	position: relative;
 	padding: 40px 30px;
 }
 
-#addonify-quick-view-modal #addonify-qvm-close-button {
+#addonify-quick-view-modal {
 
-	color: #000000;
-}
+	.woocommerce {
 
-#addonify-quick-view-modal #addonify-qvm-close-button svg {
+		.product {
 
-	line-height: 30px;
-    height: 30px;
-    width: 18px;
-}
+			.product_title {
 
-.addonify-qvm-overlay-button {
+				color: var(--addonify_qv_product_title);
+			}
 
-	position:relative; // case when quick view button is in overlay
-}
+			.price {
 
-.addonify-qvm-overlay-button .addonify-qvm-button {
+				color: var(--addonify_qv_product_price);
 
-	display: block;
-	position: absolute;
-	@include position_topnleft();
-	z-index: -1;
-	visibility: hidden;
-	opacity: 0;
-	@include transation_delay();
-}
+				del {
 
-.addonify-qvm-overlay-button:hover .addonify-qvm-button {
+					color: var(--addonify_qv_product_price);
+				}
 
-	visibility: visible;
-	opacity: 1;
-	z-index: 100;
+				ins {
+
+					color: var(--addonify_qv_product_price_sale);
+				}
+			}
+
+			.woocommerce-product-details__short-description {
+
+				color: var(--addonify_qv_product_excerpt);
+			}
+
+			.star-rating {
+
+				color: var(--addonify_qv_product_rating_filled);
+
+				&::before {
+
+					color: var(--addonify_qv_product_rating_empty);
+				}
+			}
+
+			.product_meta {
+
+				a {
+
+					color: var(--addonify_qv_product_meta);
+
+					&:hover {
+
+						color: var(--addonify_qv_product_meta_hover);
+					}
+				}
+			}
+
+			button,
+			.button {
+
+				fill: var(--addonify_qv_misc_button_text);
+				color: var(--addonify_qv_misc_button_text);
+				background-color: var(--addonify_qv_misc_button_background);
+
+				&:hover {
+
+					fill: var(--addonify_qv_misc_button_text_hover);
+					color: var(--addonify_qv_misc_button_text_hover);
+					background-color: var(--addonify_qv_misc_button_background_hover);
+				}
+			}
+		}
+	}
 }
 
 #addonify-quick-view-modal .single-product div.product .summary,

@@ -1,0 +1,99 @@
+/*================================================================
+[Define variables]
+==================================================================*/
+//
+// Since: 1.0.0
+// usage = color:var(--cc_primary_color);
+/*==================================================================*/
+
+:root {
+  
+  /* -------------------------------------------------------------------------- 
+	  Colors variables
+  -------------------------------------------------------------------------- */
+
+  // Base colors
+  --cc_primary_color: #0286e7;
+  --cc_seconary_color: #28a745;
+  --cc_base_text_color: #585858;
+  --cc_base_heading_color: #4A4A4A;
+  --cc_base_link_color: #0366E0; // default link color
+  --cc_base_link_hover_color: var(--cc_seconary_color);
+  --cc_body_background_color: white;
+  --cc_border_color: #d5d5d5;
+  --cc_inputs_border_color: #d5d5d5; // for inputs, selects & textarea
+
+  // Buttons
+  --cc_button_text_color: white;
+  --cc_button_background_color: #0286e7;
+  --cc_button_hover_text_color: white;
+  --cc_button_hover_background_color: #28a745;
+  --cc_button_border_color: transparent;
+  --cc_button_hover_border_color: transparent;
+  --cc_button_border_width: 0;
+  --cc_button_border_style: solid;
+
+  --cc_text_button_color: var(--cc_primary_color);
+  --cc_text_button_hover_color: var(--cc_seconary_color);
+  --cc_text_button_underline_color: var(--cc_primary_color);
+  --cc_text_button_hover_underline_color: var(--cc_seconary_color);
+  --cc_text_button_underline_height: 3px;
+
+  --cc_button_is_link_style_text_color: #ef2c2c;
+  --cc_button_is_link_style_hover_text_color: #1e73be;
+  --cc_button_is_link_style_underline_color: #ef2c2c;
+  --cc_button_is_link_style_hover_underline_color: #1e73be;
+
+  /* -------------------------------------------------------------------------- 
+	  Typography variables
+  -------------------------------------------------------------------------- */
+
+  // typography
+  --cc_system_font_family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, Roboto, Segoe ui, System ui, sans-serif; // websafe
+  --cc_text_emphasis_font_family: 'DM Mono', monospace;
+  --cc_monospace_font_family: 'DM Mono', monospace;
+
+  --cc_base_font_size: 1.125rem; // 15px: 0.9375rem [16px: 1rem]
+  --cc_base_font_weight: normal;
+  --cc_base_letter_spacing: 0.50px; // -0.0311em is best for inter
+  --cc_base_font_line_height: 1.6;
+  --cc_base_font_family: 'Inter', sans-serif;
+
+  --cc_heading_h1_font_size: 2.25rem; 
+  --cc_heading_h2_font_size: 1.75rem; 
+  --cc_heading_h3_font_size: 1.5rem; 
+  --cc_heading_h4_font_size: 1.25rem;
+  --cc_heading_h5_font_size: 1.125rem;
+  --cc_heading_h6_font_size: 1rem; 
+
+  --cc_heading_font_weight: 500;
+  --cc_heading_letter_spacing: 0; // -0.0415625em is best for inter
+  --cc_heading_line_height: 1.2;
+  --cc_heading_font_family: 'Inter', sans-serif;
+  
+
+  --cc_button_font_size: 15px; // 14px: 15px: 0.9375rem [16px: 1rem]
+  --cc_button_font_weight: normal;
+  --cc_button_line_height: 1;
+
+  --cc_entry_single_title_font_size: 2.25rem; 
+
+  /* -------------------------------------------------------------------------- 
+	  Border radius
+  -------------------------------------------------------------------------- */
+  --cc_buttons_border_radius: 4px;
+  --cc_inputs_border_radius: 4px;
+
+  /* -------------------------------------------------------------------------- 
+	  Grid
+  -------------------------------------------------------------------------- */
+  --cc_grid_gutter_width: 30px;
+  --cc_grid_gutter_width_none: 0;
+
+  /* -------------------------------------------------------------------------- 
+	  Containers
+  -------------------------------------------------------------------------- */
+  --cc_container_width: 1000px;
+  --cc_container_width_narrow: 800px;
+  --cc_container_width_wide: 100%;
+}
