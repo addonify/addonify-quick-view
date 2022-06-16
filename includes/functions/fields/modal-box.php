@@ -39,6 +39,10 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'description' => __( 'Enable display view detail button in modal.', 'addonify-quick-view' ),
                 'type'  => 'checkbox'
             ),
+             'read_more_button_label' => array(
+                'label' => __( 'View detail button label', 'addonify-quick-view' ), 
+                'type'  => 'text'
+            ),
         );
     }
 }

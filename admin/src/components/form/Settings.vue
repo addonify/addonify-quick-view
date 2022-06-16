@@ -60,7 +60,12 @@
 					<div class="adfy-col left">
 						<div class="label">
 							<p class="option-label">
-								{{ __("Button label", "addonify-quick-view") }}
+								{{
+									__(
+										"Quick view button label",
+										"addonify-quick-view"
+									)
+								}}
 							</p>
 						</div>
 					</div>
@@ -267,6 +272,35 @@
 								inline-prompt
 								:active-icon="Check"
 								:inactive-icon="Close"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- // adfy-options -->
+			<div
+				v-if="store.options.display_read_more_button"
+				class="adfy-options"
+			>
+				<div class="adfy-option-columns option-box">
+					<div class="adfy-col left">
+						<div class="label">
+							<p class="option-label">
+								{{
+									__(
+										"View detail button label",
+										"addonify-quick-view"
+									)
+								}}
+							</p>
+						</div>
+					</div>
+					<div class="adfy-col right">
+						<div class="input">
+							<el-input
+								v-model="store.options.read_more_button_label"
+								size="large"
+								placeholder="View Details"
 							/>
 						</div>
 					</div>
