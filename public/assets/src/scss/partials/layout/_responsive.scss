@@ -10,7 +10,7 @@
 	}
 }
 
-@media( max-width: 767px) {
+@media( max-width: 768px) {
 
 	#addonify-quick-view-modal .single-product div.product .summary {
 
@@ -23,6 +23,7 @@
 	#addonify-quick-view-modal {
 
 		height: 450px;
+		max-height: 95vh;
 	}
 
 	.adfy-quick-view-modal-content {

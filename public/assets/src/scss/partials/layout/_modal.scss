@@ -12,7 +12,7 @@
     z-index: 100000000;
     width: 100%;
 	max-width: 1000px;
-	height: auto;
+	height: 600px;
     max-height: 80vh;
     overflow-x: hidden;
     overflow-y: auto;
@@ -114,6 +114,7 @@
 	color: var(--addonify_qv_close_button_text);
 	background-color: var(--addonify_qv_close_button_background);
 	border-radius: 100%;
+	cursor: pointer;
 
 	svg {
 
