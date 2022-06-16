@@ -62,6 +62,10 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 
 == Changelog ==
 
+= 1.0.9 - 17 June, 2022 =
+
+- Fix: Issue with the display grid layout.
+
 = 1.0.8 - 16 June, 2022 =
 
 - Tweak: Adaptive height for quick view modal box according to the content.
