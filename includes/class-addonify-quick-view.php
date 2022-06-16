@@ -67,18 +67,20 @@ class Addonify_Quick_View {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
+
 		if ( defined( 'ADDONIFY_QUICK_VIEW_VERSION' ) ) {
 			$this->version = ADDONIFY_QUICK_VIEW_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
+		
 		$this->plugin_name = 'addonify-quick-view';
 
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
+		$this->rest_api();
 	}
 
 	/**
@@ -122,6 +124,14 @@ class Addonify_Quick_View {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-addonify-quick-view-public.php';
 
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-rest-api.php';
+
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/helpers.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/settings.php';
+
 		$this->loader = new Addonify_Quick_View_Loader();
 
 	}
@@ -150,7 +160,6 @@ class Addonify_Quick_View {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Addonify_Quick_View_Admin( $this->get_plugin_name(), $this->get_version() );
@@ -164,16 +173,21 @@ class Addonify_Quick_View {
 
 		// custom link in all plugin page
 		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
-
-		// show settings page ui 
-		$this->loader->add_action("admin_init", $plugin_admin, 'settings_page_ui' );
 		
 		//show notice if woocommerce is not active
 		$this->loader->add_action('admin_init', $plugin_admin, 'show_woocommerce_not_active_notice_callback' );
+	}
 
-		// show admin notices after form submission
-		$this->loader->add_action('admin_notices', $plugin_admin, 'form_submission_notification_callback' );
 
+	/**
+	 * Register rest api endpoints for admin settings page.
+	 *
+	 * @since    1.0.7
+	 * @access   private
+	 */
+	private function rest_api() {
+
+		$plugin_rest = new Addonify_Quick_View_Rest_API();
 	}
 
 
@@ -188,38 +202,7 @@ class Addonify_Quick_View {
 
 		$plugin_public = new Addonify_Quick_View_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
-		// add overlay container in image
-		$this->loader->add_action( 'woocommerce_before_shop_loop_item', $plugin_public, 'addonify_overlay_container_start_callback' );
-		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'addonify_overlay_container_end_callback' );
-
-
-		// add "Quick View" button after add to cart button
-		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_after_add_to_cart_btn_callback', 20 );
-
-
-		// add "Quick View" button before add to cart button
-		$this->loader->add_action( 'woocommerce_after_shop_loop_item', $plugin_public, 'show_quick_view_btn_before_add_to_cart_btn_callback' );
-
-		
-
-		// add "Quick View" button aside image
-		$this->loader->add_action( 'woocommerce_shop_loop_item_title', $plugin_public, 'show_quick_view_btn_aside_image_callback', 8 );
-
-
-		// add custom markup into footer
-		$this->loader->add_action( 'wp_footer', $plugin_public, 'add_markup_into_footer_callback' );
-
-
-		// add custom styles into header
-		$this->loader->add_action( 'wp_head', $plugin_public, 'generate_custom_styles_callback' );
-
-
-		// ajax callback
-		$this->loader->add_action( 'wp_ajax_get_quick_view_contents', $plugin_public, 'quick_view_contents_callback' );
-		$this->loader->add_action( 'wp_ajax_nopriv_get_quick_view_contents', $plugin_public, 'quick_view_contents_callback' );
+		$this->loader->add_action( 'plugins_loaded', $plugin_public, 'actions_init', 20 );
 
 	}
 

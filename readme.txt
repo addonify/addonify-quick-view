@@ -4,8 +4,8 @@ Contributors: addonify
 Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
-Tested up to: 5.9.2
-Stable tag: 1.0.6
+Tested up to: 6.0.0
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,22 +23,23 @@ Below are the features of Addonify WooCommerce Quick View.
 
 **MAIN FEATURES:**
 
-* Easy to use.
-* Light-weight & optimized. 
-* Add a quick view button in product loop to open a modal window with the product summary using ajax.
-* Product image or product gallery, title, price, quantity, read more button and add to cart button will be shown on quick view modal popup.
-* Color option for quick view modal popup.
-* Color option for elements inside quick view modal popup box.
-* Change a label for the “Quick view” & "Read more" buttons.
-* Developer friendly & easy to implement according to your need
-* Friendly support
+✅ Easy to use.
+✅ Super light-weight & optimized for performance. 
+✅ Add a quick view button in product loop to open a modal window with the product summary using ajax.
+✅ Display product image or gallery on quick view modal.
+✅ Display product title, price, add to cart button, excerpt and view detail button on quick view modal.
+✅ Color option for quick view modal popup & overlay.
+✅ Color option for elements inside quick view modal popup box.
+✅ Change a label for the “Quick view” button.
+✅ Developer friendly & easy to implement according to your need.
+✅ Friendly support.
 
 **DEVELOPER DOCUMENTATION:**
 
 If you are a developer or a theme author, below are the different ways on how Addonify WooCommerce Quick View can be implemented in your project. 
 
-* Using Hooks and filters
-* Overriding plugin template file 
+🔗 Using hooks and filters.
+📔 Overriding plugin template file. 
 
 If you need a getting started guide, do feel free to check [developer documentation guide](https://docs.addonify.com/docs/woocommerce-quick-view/) in our docs site.
 
@@ -56,11 +57,15 @@ If you have suggestions about how to improve Addonify WooCommerce Quick View ple
 
 == Screenshots ==
 
-1. Addonify menu in dashboard.
-2. Addonify quick view button in the product section.
-3. Addonify quick view modal window.
+1. Addonify Quick View setting page at dashboard.
+2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.0.7 - 16 June, 2022 =
+
+- Updated: New admin dashboard setting page (Build with Vue Js 3).
+- Added: Rest API endpoint for setting page.
 
 = 1.0.6 - 29 March, 2022 =
 
