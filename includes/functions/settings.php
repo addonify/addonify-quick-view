@@ -25,10 +25,10 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
             'addonify_quick_view/settings_fields_defaults',
             array(
                 // Options
-                'enable_quick_view' => false,
+                'enable_quick_view' => true,
                 'quick_view_btn_position' => 'after_add_to_cart_button',
                 'quick_view_btn_label' => __( 'Quick view', 'addonify-quick-view' ),
-                'modal_box_content' => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating' ) ),
+                'modal_box_content' => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating', 'excerpt' ) ),
                 'product_thumbnail' => 'product_image_only',
                 'enable_lightbox' => false,
                 'display_read_more_button' => false,
