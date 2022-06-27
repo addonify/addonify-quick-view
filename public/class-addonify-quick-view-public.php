@@ -48,8 +48,13 @@ class Addonify_Quick_View_Public {
 		$this->version = $version;
 	}
 
-
+	/**
+	 * Fires necessary actions when the plugin is loaded. 
+	 */
 	public function actions_init() {
+		
+		// Adds custom classes to the body element.
+		add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
 
 		if ( 
 			! class_exists( 'WooCommerce' ) ||
@@ -75,23 +80,21 @@ class Addonify_Quick_View_Public {
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'quick_view_button_render_callback' ), 15 );
 		}
 
-
 		// add custom markup into footer
 		add_action( 'wp_footer', array( $this, 'add_markup_into_footer_callback' ) );
-
 
 		// ajax callback
 		add_action( 'wp_ajax_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 		add_action( 'wp_ajax_nopriv_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 
-
-
 		// show  or hide view details button
 		if ( (int) addonify_quick_view_get_settings_fields_values( 'display_read_more_button' ) === 1 ) {
-
 			add_action( 'addonify_qv_after_product_summary_content', array( $this, 'render_read_more_button' ) );
 		}
+
+		
 	}
+
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
@@ -114,7 +117,6 @@ class Addonify_Quick_View_Public {
 					$style_dependency[] = 'photoswipe-default-skin';
 				}
 			}
-
 		}
 
 		if ( is_rtl() ){
@@ -142,7 +144,10 @@ class Addonify_Quick_View_Public {
 	}
 
 
-	// enqueue scripts
+	
+	/**
+	 * Enqueue front end javascript scripts.
+	 */
 	public function enqueue_scripts() {
 
 		wp_enqueue_script( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'assets/build/js/conditional/perfect-scrollbar.min.js', null, $this->version, true );
@@ -189,9 +194,9 @@ class Addonify_Quick_View_Public {
 		);
 	}
 
-	// callback function
-	// ajax request
-	// get contents for quick view
+	/**
+	 * Ajax callback function for displaying content in modal when quick view button is clicked. 
+	 */
 	public function quick_view_contents_callback() {
 
 		// deny any non ajax requests
@@ -224,7 +229,9 @@ class Addonify_Quick_View_Public {
 
 	}
 
-
+	/**
+	 * Callback function to render quick view button.
+	 */
 	public function quick_view_button_render_callback() {
 
 		global $product;
@@ -249,8 +256,9 @@ class Addonify_Quick_View_Public {
 	}
 
 
-	// callback function
-	// add custom markup into footer
+	/**
+	 * Add HTML markup for displaying quickview modal.
+	 */
 	public function add_markup_into_footer_callback(){
 
 		ob_start();
@@ -259,8 +267,9 @@ class Addonify_Quick_View_Public {
 	}
 
 
-	// generate contents dynamically to modal templates with hooks
-	// called by get_quick_view_contents()
+	/**
+	 * Generate and render contents for quick view modal.
+	 */
 	public function generate_contents() {
 
 		$modal_box_content = unserialize( addonify_quick_view_get_settings_fields_values( 'modal_box_content' ) );
@@ -285,11 +294,11 @@ class Addonify_Quick_View_Public {
 			// show images
 			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_sale_flash', 10 );
 			add_action( 'addonify_qv_product_image', 'woocommerce_show_product_images', 20 );
-
 		}
 
 		// show or hide title
 		if ( in_array( 'title', $modal_box_content ) ) {
+
 			add_action( 'addonify_qv_product_summary', 'woocommerce_template_single_title', 5 );
 		}
 
@@ -326,8 +335,9 @@ class Addonify_Quick_View_Public {
 		
 	}
 
-	// callback function
-	// view details button markups
+	/**
+	 * Callback function to render button link for product detail page in quick view modal.
+	 */
 	public function render_read_more_button( $product_id ) {
 
 		$btn_label = addonify_quick_view_get_settings_fields_values( 'read_more_button_label' );
@@ -340,13 +350,18 @@ class Addonify_Quick_View_Public {
 	}
 
 
-	// this will hide thumbnails in woocommerce gallery
+	/**
+	 * Callback function to disable gallery thumbnails in the quick view modal.
+	 */
 	public function disable_gallery_thumbnails() {
 
 		// hide thumbnails from gallery in modal		
 		remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
 	}
 
+	/**
+	 * Print dynamic CSS generated from settings page.
+	 */
 	public function dynamic_css() {
 
 		$css_values = array(
@@ -384,6 +399,12 @@ class Addonify_Quick_View_Public {
 	}
 
 
+	/**
+	 * Minify the dynamic css.
+	 * 
+	 * @param string $css css to minify.
+	 * @return string minified css.
+	 */
 	public function minify_css( $css ) {
 
 		$css = preg_replace( '/\s+/', ' ', $css );
@@ -397,7 +418,26 @@ class Addonify_Quick_View_Public {
 	}
 
 
-	// require proper templates for use in front end
+	/**
+	 * Adds custom classes to the array of body classes.
+	 *
+	 * @since 1.1.1
+	 * @param array $classes Classes for the body element.
+	 * @return array
+	 */
+	public function body_classes_callback( $classes ) {
+
+		if ( (int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) == 1 ) {
+			$classes[] = 'addonify-quick-view-disabled';
+		}
+
+		return $classes;
+	}
+
+
+	/**
+	 * Function to get the templates.
+	 */
 	public function get_templates( $template_name, $require_once = true, $args=array() ){
 
 		// first look for template in themes/addonify/templates
@@ -418,5 +458,4 @@ class Addonify_Quick_View_Public {
 			require $template_path;
 		}
 	}
-
 }
