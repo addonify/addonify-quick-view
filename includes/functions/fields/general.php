@@ -9,6 +9,11 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
                 'description'     => 'Once enabled, it will be visible in product catalog.',
                 'type'            => 'checkbox',
             ),
+            'disable_quick_view_on_mobile_device' => array(
+                'label'			=> __( 'Disable on mobile device', 'addonify-quick-view' ),
+                'description'     => 'If this option is enabled, quick view will not work on mobile devices.',
+                'type'            => 'checkbox',
+            ),
         );
     }
 }

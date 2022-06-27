@@ -48,6 +48,49 @@
 			</div>
 		</div>
 		<!-- // adfy-options -->
+		<div class="adfy-options">
+			<div class="adfy-option-columns option-box">
+				<div class="adfy-col left">
+					<div class="label">
+						<p class="option-label">
+							{{
+								__(
+									"Disable on mobile device",
+									"addonify-quick-view"
+								)
+							}}
+							<el-tag type="success">
+								{{ __("Optional", "addonify-quick-view") }}
+							</el-tag>
+						</p>
+						<p class="option-description">
+							{{
+								__(
+									"If this option is enabled, quick view will not work on mobile devices.",
+									"addonify-quick-view"
+								)
+							}}
+						</p>
+					</div>
+				</div>
+				<div class="adfy-col right">
+					<div class="input">
+						<el-switch
+							v-model="
+								store.options
+									.disable_quick_view_on_mobile_device
+							"
+							class="enable-addonify-quick-view"
+							size="large"
+							inline-prompt
+							:active-icon="Check"
+							:inactive-icon="Close"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- // adfy-options -->
 		<div
 			class="adfy-setting-options"
 			v-if="store.options.enable_quick_view"

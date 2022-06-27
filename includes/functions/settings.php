@@ -26,6 +26,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
             array(
                 // Options
                 'enable_quick_view' => true,
+                'disable_quick_view_on_mobile_device' => false,
                 'quick_view_btn_position' => 'after_add_to_cart_button',
                 'quick_view_btn_label' => __( 'Quick view', 'addonify-quick-view' ),
                 'modal_box_content' => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating', 'excerpt' ) ),
