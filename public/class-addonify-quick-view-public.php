@@ -52,18 +52,21 @@ class Addonify_Quick_View_Public {
 	 * Fires necessary actions when the plugin is loaded. 
 	 */
 	public function actions_init() {
-		
-		// Adds custom classes to the body element.
-		add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
 
 		if ( 
 			! class_exists( 'WooCommerce' ) ||
-			(int) addonify_quick_view_get_settings_fields_values( 'enable_quick_view' ) !== 1 ||
-			(
-				addonify_quick_view_is_mobile() &&
-				(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) == 1
-			)
+			(int) addonify_quick_view_get_settings_fields_values( 'enable_quick_view' ) !== 1
 		) {
+			return;
+		}
+
+		if  ( 
+			addonify_quick_view_is_mobile() &&
+			(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) == 1
+		) {
+			// Adds custom classes to the body element.
+			add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
+
 			return;
 		}
 
@@ -90,9 +93,7 @@ class Addonify_Quick_View_Public {
 		// show  or hide view details button
 		if ( (int) addonify_quick_view_get_settings_fields_values( 'display_read_more_button' ) === 1 ) {
 			add_action( 'addonify_qv_after_product_summary_content', array( $this, 'render_read_more_button' ) );
-		}
-
-		
+		}		
 	}
 
 
