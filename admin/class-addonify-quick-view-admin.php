@@ -82,7 +82,7 @@ class Addonify_Quick_View_Admin {
 				'ajax_url'   						=> admin_url( 'admin-ajax.php' ),
 				'rest_namespace' 					=> 'addonify_quick_view_options_api',
 				'version_number' 					=> $this->version,
-			 ) );
+			));
 		}
 	}
 
