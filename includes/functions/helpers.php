@@ -33,3 +33,44 @@ if ( ! function_exists( 'addonify_quick_view_sanitize_multi_choices' ) ) {
         return array();
     }
 }
+
+
+
+/**
+ * Check if the device is mobile.
+ * 
+ * @since 1.1.1
+ * @return boolean
+ */
+if ( ! function_exists( 'addonify_quick_view_is_mobile' ) ) {
+
+    function addonify_quick_view_is_mobile() {
+
+        if ( class_exists( 'Mobile_Detect' ) ) {
+
+            $mobile_detect = new Mobile_Detect;
+
+            return $mobile_detect->isMobile();
+        }
+    }
+}
+
+
+/**
+ * Check if the device is tablet.
+ * 
+ * @since 1.1.1
+ * @return boolean
+ */
+if ( ! function_exists( 'addonify_quick_view_is_tablet' ) ) {
+
+    function addonify_quick_view_is_tablet() {
+
+        if ( class_exists( 'Mobile_Detect' ) ) {
+
+            $mobile_detect = new Mobile_Detect;
+
+            return $mobile_detect->isTablet();
+        }
+    }
+}
