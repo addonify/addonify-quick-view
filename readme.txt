@@ -1,4 +1,4 @@
-=== Addonify Quick View ===
+=== Addonify WooCommerce Quick View ===
 
 Contributors: addonify
 Donate link: https://addonify.com/contact/
@@ -15,9 +15,9 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 
 Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
 
-👉 [Demo One](https://demo.addonify.com/woo/01/) *(Custom quick view button)*
-👉 [Demo Two](https://demo.addonify.com/woo/01/quick-view-ii/) *(Default Store Front theme)*
-👉 [Documentation Guide](https://docs.addonify.com/kb/woocommerce-quick-view/) 
+👉 [Demo one](https://demo.addonify.com/woo/01/) *(Custom quick view button)*
+👉 [Demo two](https://demo.addonify.com/woo/01/quick-view-ii/) *(Default Store Front theme)*
+👉 [Documentation guide](https://docs.addonify.com/kb/woocommerce-quick-view/) 
 
 If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
 
@@ -28,6 +28,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ Add a quick view button in product loop to open a modal window with the product summary using ajax.
 ✅ Display product image or gallery on quick view modal.
 ✅ Display product title, price, add to cart button, excerpt and view detail button on quick view modal.
+✅ Disable quick view on mobile device.
 ✅ Color option for quick view modal popup & overlay.
 ✅ Color option for elements inside quick view modal popup box.
 ✅ Change a label for the “Quick view” button.
@@ -47,8 +48,8 @@ Need a getting started guide? Feel free to check [developer documentation](https
 
 We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas. Please be informed that discussions are not just limited to sharing ideas, feel free to ask questions related to our plugin, submit a bug report and participate in poll.
 
-👉 [Create a new Discussion](https://github.com/addonify/addonify-quick-view/discussions)
-👉 [Report a Bug](https://github.com/addonify/addonify-quick-view/issues)
+👉 [Create a new discussion](https://github.com/addonify/addonify-quick-view/discussions)
+👉 [Report a bug](https://github.com/addonify/addonify-quick-view/issues)
 
 
 == Installation ==
