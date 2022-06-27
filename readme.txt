@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 6.0.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,6 +64,11 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.1.1 - 27 June, 2022 =
+
+- Added: Option to disable quick view on mobile devices.
+- Added: Mobile_Detect library added.
 
 = 1.1.0 - 18 June, 2022 = 
 

@@ -67,23 +67,49 @@ class Addonify_Quick_View_Admin {
 
 	public function enqueue_scripts() {
 
-		if( isset($_GET['page']) && $_GET['page'] == $this->settings_page_slug ){
+		wp_register_script( 
+			"{$this->plugin_name}-manifest", 
+			plugin_dir_url( __FILE__ ) . 'assets/js/manifest.js', 
+			null, 
+			$this->version, 
+			true 
+		);
 
-			wp_enqueue_script( "{$this->plugin_name}-manifest", plugin_dir_url( __FILE__ ) . 'assets/js/manifest.js', null, $this->version, true );
+		wp_register_script( 
+			"{$this->plugin_name}-vendor", 
+			plugin_dir_url( __FILE__ ) . 'assets/js/vendor.js', 
+			array(  "{$this->plugin_name}-manifest" ), 
+			$this->version, 
+			true 
+		);
 
-			wp_enqueue_script( "{$this->plugin_name}-vendor", plugin_dir_url( __FILE__ ) . 'assets/js/vendor.js', array(  "{$this->plugin_name}-manifest" ), $this->version, true );
+		wp_register_script( 
+			"{$this->plugin_name}-main", 
+			plugin_dir_url( __FILE__ ) . 'assets/js/main.js', 
+			array( 'lodash', "{$this->plugin_name}-vendor", 'wp-i18n', 'wp-api-fetch' ), 
+			$this->version, 
+			true 
+		);
 
-			wp_enqueue_script( "{$this->plugin_name}-main", plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array( 'lodash', "{$this->plugin_name}-vendor", 'wp-i18n', 'wp-api-fetch' ), $this->version, true );
+		if( 
+			isset( $_GET['page'] ) && 
+			$_GET['page'] == $this->settings_page_slug 
+		) {
+			wp_enqueue_script( "{$this->plugin_name}-manifest" );
 
-			wp_set_script_translations( "{$this->plugin_name}-main", $this->plugin_name );
+			wp_enqueue_script( "{$this->plugin_name}-vendor" );
+
+			wp_enqueue_script( "{$this->plugin_name}-main" );
 
 			wp_localize_script( "{$this->plugin_name}-main", 'adfy_wp_locolizer', array(
-				'admin_url'  						=> admin_url( '/' ),
-				'ajax_url'   						=> admin_url( 'admin-ajax.php' ),
+				'admin_url'  						=> esc_url( admin_url( '/' ) ),
+				'ajax_url'   						=> esc_url( admin_url( 'admin-ajax.php' ) ),
 				'rest_namespace' 					=> 'addonify_quick_view_options_api',
 				'version_number' 					=> $this->version,
 			));
 		}
+
+		wp_set_script_translations( "{$this->plugin_name}-main", $this->plugin_name );
 	}
 
 	

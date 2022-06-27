@@ -122,7 +122,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
             if ( ! current_user_can( 'manage_options' ) ) {
 
-                return new WP_Error( 'rest_forbidden', esc_html__( 'Ooops, you are allowed to manage options.', 'addonify-quick-view' ), array( 'status' => 401 ) );
+                return new WP_Error( 'rest_forbidden', esc_html__( 'Ooops, you are not allowed to manage options.', 'addonify-quick-view' ), array( 'status' => 401 ) );
             } 
             
             return true;

@@ -53,7 +53,11 @@ class Addonify_Quick_View_Public {
 
 		if ( 
 			! class_exists( 'WooCommerce' ) ||
-			(int) addonify_quick_view_get_settings_fields_values( 'enable_quick_view' ) !== 1
+			(int) addonify_quick_view_get_settings_fields_values( 'enable_quick_view' ) !== 1 ||
+			(
+				addonify_quick_view_is_mobile() &&
+				(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) == 1
+			)
 		) {
 			return;
 		}
