@@ -9,6 +9,8 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
                 'label'			    => __('Custom CSS', 'addonify-quick-view' ),
                 'description'       => __('If required, you may add your own custom CSS code here.', 'addonify-quick-view' ),
                 'type'              => 'textarea',
+                'className'         => 'fullwidth custom-css-box',
+                'placeholder'       => '#app { color: blue; }',
             ),
         );
     }

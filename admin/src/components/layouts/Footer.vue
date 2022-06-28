@@ -33,7 +33,7 @@
 	</footer>
 </template>
 <script setup>
-	let { __, _x, _n, _nx } = wp.i18n;
-	let versionNumber = adfy_wp_locolizer.version_number;
-	let thisYear = new Date().getFullYear();
+	const { __ } = wp.i18n;
+	const versionNumber = adfy_wp_locolizer.version_number;
+	const thisYear = new Date().getFullYear();
 </script>

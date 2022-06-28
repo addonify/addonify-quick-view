@@ -122,18 +122,23 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields_values' ) ) {
                     case 'text':
                         $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
                         break;
+                    case 'switch':
+                        $key_values[$key] = ( addonify_quick_view_get_setting_field_value( $key ) == '1' ) ? true : false;
+                        break;
                     case 'checkbox':
-                        $multi = ( isset( $value[ 'multi' ] )  && $value['multi'] == true ) ? true : false;
+                        $buttons = ( isset( $value[ 'typeStyle' ] ) && $value['typeStyle'] == 'buttons' ) ? true : false;
 
-                        if ( $multi ) {
+                        if ( $buttons ) {
                             $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key ) ? unserialize( addonify_quick_view_get_setting_field_value( $key ) ): [];
                         } else {
                             $key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) == '1' ) ? true : false;
                         }
-                        
                         break;
                     case 'select':
                         $key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) == '' ) ? 'Choose value' : addonify_quick_view_get_setting_field_value( $key );
+                        break;
+                    case 'color':
+                        $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
                         break;
                     default:
                         $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
@@ -251,27 +256,31 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
                         'general' => array(
                             'title' => __( 'General', 'addonify-quick-view' ),
                             'description' => '',
-                            'fields' => addonify_quick_view_modal_box_styles_settings_fields(),
+                            'fields' => addonify_quick_view_general_styles_settings_fields(),
                         ),
                         'modal' => array(
                             'title' => __( 'Modal Box Colors', 'addonify-quick-view' ),
                             'description' => __( 'Change the colors of modal box & overlay
                                     background.', 'addonify-quick-view' ),
+                            'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_styles_settings_fields(),
                         ),
                         'product' => array(
                             'title' => __( 'Product Info Colors', 'addonify-quick-view' ),
                             'description' => __( 'Change the way the product title, meta, excerpt & price looks on modal.', 'addonify-quick-view' ),
+                            'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_content_styles_settings_fields(),
                         ),
                         'close_button' => array(
                             'title' => __( 'Close Button Colors', 'addonify-quick-view' ),
                             'description' => __( 'Change the look & feel of close modal box button.', 'addonify-quick-view' ),
+                            'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
                         ),
                         'misc_buttons' => array(
                             'title' => __( 'Miscellaneous Buttons Colors', 'addonify-quick-view' ),
                             'description' => __( 'Tweak how miscellaneous buttons look on modal box.', 'addonify-quick-view' ),
+                            'type' => 'color-options-group',
                             'fields' => addonify_quick_view_misc_button_styles_settings_fields(),
                         ),
                         'custom_css' => array(

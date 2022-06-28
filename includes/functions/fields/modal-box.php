@@ -9,7 +9,8 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'label' => __( 'Content to display', 'addonify-quick-view' ),
                 'description' => __( 'Which content would you like to display on quick view modal.', 'addonify-quick-view' ),
                 'type'  => 'checkbox',
-                'multi' => true,
+                'typeStyle' => 'buttons',
+                'className' => 'fullwidth',
                 'choices' => array(
                     'image' => __( 'Image', 'addonify-quick-view' ),
                     'title' => __( 'Title', 'addonify-quick-view' ),
@@ -24,6 +25,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'label' => __( 'Product thumbnail', 'addonify-quick-view' ),
                 'description' => __( 'Choose whether you want to display single product image or gallery in quick view modal.', 'addonify-quick-view' ),
                 'type'  => 'select',
+                'placeholder' => __('Choose option', 'addonify-quick-view'),
                 'choices' => array(
                     'product_image_only' => __( 'Product image only', 'addonify-quick-view' ),
                     'product_image_or_gallery' => __( 'Product image or gallery', 'addonify-quick-view' ),
@@ -32,15 +34,16 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             'enable_lightbox' => array(
                 'label' => __( 'Enable lightbox', 'addonify-quick-view' ),
                 'description' => __( 'Enable lightbox for product images in quick view modal.', 'addonify-quick-view' ),
-                'type'  => 'checkbox'
+                'type'  => 'switch'
             ),
             'display_read_more_button' => array(
                 'label' => __( 'Display view detail button', 'addonify-quick-view' ), 
                 'description' => __( 'Enable display view detail button in modal.', 'addonify-quick-view' ),
-                'type'  => 'checkbox'
+                'type'  => 'switch'
             ),
              'read_more_button_label' => array(
-                'label' => __( 'View detail button label', 'addonify-quick-view' ), 
+                'label' => __( 'View detail button label', 'addonify-quick-view' ),
+                'placeholder' => __('View detail', 'addonify-quick-view'), 
                 'type'  => 'text'
             ),
         );
@@ -65,11 +68,15 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_styles_settings_fields' )
         return array(
             'modal_box_overlay_background_color' => array(
                 'label'           => __( 'Modal overlay background', 'addonify-quick-view' ),
-                'type'            => 'text',
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
             ),
             'modal_box_background_color' => array(
                 'label'			  => __( 'Modal box inner background', 'addonify-quick-view' ),
-                'type'            => 'text',
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
             ),
         );
     }
@@ -94,36 +101,52 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_styles_settings_f
             'product_title_color' => array(
                 'label'			  => __( 'Title text', 'addonify-quick-view'),
                 'description'     => '',
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_rating_star_empty_color' => array(
                 'label'			  => __( 'Rating star empty', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_rating_star_filled_color' => array(
                 'label'			  => __( 'Rating star filled', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_price_color' => array(
                 'label'			  => __( 'Regular price', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_on_sale_price_color' => array(
                 'label'			  => __( 'On-sale price', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_excerpt_text_color' => array(
                 'label'			  => __( 'Excerpt text', 'addonify-quick-view'),
                 'description'     => '',
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'product_meta_text_color' => array(
                 'label'			  => __( 'Meta text', 'addonify-quick-view'),
-                'type'            => 'text',
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
             ),
             'product_meta_text_hover_color' => array(
                 'label'			  => __( 'Meta text on hover', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
         );
     }
@@ -148,19 +171,27 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_close_button_styles_setti
         return array(
             'modal_close_button_text_color' => array(
                 'label'			=> __( 'Default text', 'addonify-quick-view'),
-                'type'            => 'text',
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
             ),
             'modal_close_button_text_hover_color' => array(
                 'label'			  => __( 'Text on mouse hover', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'modal_close_button_background_color' => array(
                 'label'			  => __( 'Default background', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
             'modal_close_button_background_hover_color' => array(
                 'label'			  => __( 'Background on mouse hover', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth', 
             ),
         );
     }

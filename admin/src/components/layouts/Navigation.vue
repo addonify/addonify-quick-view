@@ -1,5 +1,5 @@
 <script setup>
-	let { __, _x, _n, _nx } = wp.i18n;
+	const { __ } = wp.i18n;
 </script>
 <template>
 	<nav class="adfy-navigation">
@@ -33,7 +33,7 @@
 							/>
 						</svg>
 					</span>
-					{{ __("Styles", "addonify-quick-view") }}
+					{{ __("Design", "addonify-quick-view") }}
 				</router-link>
 			</li>
 			<li>

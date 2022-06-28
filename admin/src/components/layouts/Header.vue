@@ -1,9 +1,7 @@
 <script setup>
-	import { useOptionsStore } from "../stores/options";
-	let { __, _x, _n, _nx } = wp.i18n;
-	let store = useOptionsStore();
-	let documentationLinkLabel = adfy_wp_locolizer.documentation_link_label;
-	let saveButtonLabel = adfy_wp_locolizer.save_button_label;
+	import { useOptionsStore } from "../../stores/options";
+	const { __ } = wp.i18n;
+	const store = useOptionsStore();
 </script>
 
 <template>

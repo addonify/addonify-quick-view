@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-let { isEqual, cloneDeep } = lodash;
-let { apiFetch } = wp;
+const { isEqual, cloneDeep } = lodash;
+const { apiFetch } = wp;
 import { ElMessage } from 'element-plus'
 
-let BASE_API_URL = adfy_wp_locolizer.rest_namespace;
+const BASE_API_URL = adfy_wp_locolizer.rest_namespace;
 let oldOptions = {};
 
 export const useOptionsStore = defineStore({
@@ -29,26 +29,27 @@ export const useOptionsStore = defineStore({
     },
     actions: {
 
-        // ⚡️ Use Axios to get options from api.
-        async fetchOptions() {
+        // ⚡️ Action to get options from the server.
+        fetchOptions() {
 
             apiFetch({
                 path: BASE_API_URL + '/get_options',
                 method: 'GET',
-            }).then( (res) => {
-                let settingsValues = res.settings_values;
+            }).then((res) => {
+                const settingsValues = res.settings_values;
                 this.data = res.tabs;
                 this.options = settingsValues;
                 oldOptions = cloneDeep(settingsValues);
                 this.isLoading = false;
-            } );
+                //console.log(res.tabs);
+            });
         },
 
         // ⚡️ Handle update options & map the values to the options object.
         handleUpdateOptions() {
 
-            let payload = {};
-            let changedOptions = this.options;
+            const payload = {};
+            const changedOptions = this.options;
 
             Object.keys(changedOptions).map(key => {
 
@@ -61,8 +62,9 @@ export const useOptionsStore = defineStore({
             //console.log(payload);
         },
 
-        // ⚡️ Update options using Axios.
-        async updateOptions(payload) {
+        // ⚡️ Action to update options.
+        // @param payload: object
+        updateOptions(payload) {
 
             this.isSaving = true; // Set saving to true.
 
@@ -72,9 +74,9 @@ export const useOptionsStore = defineStore({
                 data: {
                     settings_values: payload
                 }
-            }).then( (res) => {
+            }).then((res) => {
 
-                this.isSaving = false; // Saving is completed here.
+                this.isSaving = false; // Saving is compconsted here.
                 this.message = res.message; // Set the message to be displayed to the user.
 
                 if (res.success === true) {
@@ -93,7 +95,7 @@ export const useOptionsStore = defineStore({
                 }
 
                 this.fetchOptions(); // Fetch options again.
-            } );
+            });
         },
     },
 });
