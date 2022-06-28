@@ -6,19 +6,23 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
         return array(
             'modal_misc_buttons_text_color' => array(
                 'label'			  => __( 'Default text', 'addonify-quick-view'),
-                'type'            => 'text',
+                'type'            => 'color',
+                'className'       => 'fullwidth',
             ),
             'modal_misc_buttons_text_hover_color' => array(
                 'label'			  => __( 'Text on mouse hover', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'className'       => 'fullwidth', 
             ),
             'modal_misc_buttons_background_color' => array(
                 'label'			  => __( 'Default background', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'className'       => 'fullwidth', 
             ),
             'modal_misc_buttons_background_hover_color' => array(
                 'label'			  => __( 'Background on mouse hover', 'addonify-quick-view'),
-                'type'            => 'text', 
+                'type'            => 'color',
+                'className'       => 'fullwidth', 
             ),
         );
     }

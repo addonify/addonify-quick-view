@@ -1,6 +1,6 @@
 <script setup>
-	import Navigation from "../components/Navigation.vue";
-	let { __, _x, _n, _nx } = wp.i18n;
+	import Navigation from "../components/layouts/Navigation.vue";
+	const { __ } = wp.i18n;
 </script>
 
 <template>

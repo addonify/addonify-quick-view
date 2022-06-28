@@ -28,9 +28,9 @@ mix.disableNotifications();
 * Browser sync
 */
 
-//mix.browserSync({
-//    proxy: 'http://wpvue.local/wp-admin/admin.php?page=addonify_quick_view#/',
-//});
+mix.browserSync({
+    proxy: 'http://xenial.local/wp-admin/admin.php?page=addonify_quick_view#/',
+});
 
 /**
  * Setup public path to generate assets
