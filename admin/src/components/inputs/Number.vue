@@ -1,5 +1,6 @@
 <script setup>
 	import { computed } from "vue";
+	import { ElInput } from "element-plus";
 	const props = defineProps({
 		modelValue: [String, Number], // loose strict checking.
 		min: Number,

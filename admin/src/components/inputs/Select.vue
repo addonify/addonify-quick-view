@@ -1,5 +1,6 @@
 <script setup>
 	import { computed } from "vue";
+	import { ElSelect, ElOption } from "element-plus";
 	const { __ } = wp.i18n;
 
 	const props = defineProps({
