@@ -28,9 +28,9 @@ mix.disableNotifications();
 * Browser sync
 */
 
-mix.browserSync({
-    proxy: 'http://xenial.local/wp-admin/admin.php?page=addonify_quick_view#/',
-});
+//mix.browserSync({
+//    proxy: 'http://xenial.local/wp-admin/admin.php?page=addonify_quick_view#/',
+//});
 
 /**
  * Setup public path to generate assets
@@ -57,3 +57,18 @@ mix.sass('admin/assets/scss/index.scss', 'admin/assets/css/admin.css');
 */
 
 mix.extract();
+
+/**
+*
+* Extend Mix
+*/
+
+mix.webpackConfig(webpack => {
+    return {
+        plugins: [
+            require('unplugin-element-plus/webpack')({
+                // options
+            }),
+        ]
+    };
+});

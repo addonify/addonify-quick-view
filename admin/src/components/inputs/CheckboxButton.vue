@@ -1,5 +1,6 @@
 <script setup>
 	import { computed } from "vue";
+	import { ElCheckboxGroup, ElCheckboxButton } from "element-plus";
 	const props = defineProps({
 		modelValue: [Array],
 		choices: Object,

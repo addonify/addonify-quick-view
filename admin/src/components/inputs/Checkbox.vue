@@ -1,5 +1,6 @@
 <script setup>
 	import { computed } from "vue";
+	import { ElCheckbox } from "element-plus";
 	const props = defineProps({
 		modelValue: [Boolean],
 		label: [String],

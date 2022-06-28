@@ -1,7 +1,7 @@
 <script setup>
 	import { computed } from "vue";
-	const { __, _x, _n, _nx } = wp.i18n;
-
+	import { ElInput } from "element-plus";
+	const { __ } = wp.i18n;
 	const props = defineProps({
 		modelValue: String,
 		placeholder: String,
