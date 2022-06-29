@@ -6,8 +6,8 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
 
         return array(
             'modal_box_content' => array(
-                'label' => __( 'Content to display', 'addonify-quick-view' ),
-                'description' => __( 'Which content would you like to display on quick view modal.', 'addonify-quick-view' ),
+                'label' => __( 'Content to Display', 'addonify-quick-view' ),
+                'description' => __( 'Choose content that you want to display in quick view modal box.', 'addonify-quick-view' ),
                 'type'  => 'checkbox',
                 'typeStyle' => 'buttons',
                 'className' => 'fullwidth',
@@ -22,28 +22,28 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 )
             ),
             'product_thumbnail' => array(
-                'label' => __( 'Product thumbnail', 'addonify-quick-view' ),
-                'description' => __( 'Choose whether you want to display single product image or gallery in quick view modal.', 'addonify-quick-view' ),
+                'label' => __( 'Product Thumbnail', 'addonify-quick-view' ),
+                'description' => __( 'Choose whether you want to display single product image or gallery in quick view modal box.', 'addonify-quick-view' ),
                 'type'  => 'select',
                 'placeholder' => __('Choose option', 'addonify-quick-view'),
                 'choices' => array(
-                    'product_image_only' => __( 'Product image only', 'addonify-quick-view' ),
-                    'product_image_or_gallery' => __( 'Product image or gallery', 'addonify-quick-view' ),
+                    'product_image_only' => __( 'Product Image only', 'addonify-quick-view' ),
+                    'product_image_or_gallery' => __( 'Product Image or Gallery', 'addonify-quick-view' ),
                 )
             ),
             'enable_lightbox' => array(
-                'label' => __( 'Enable lightbox', 'addonify-quick-view' ),
-                'description' => __( 'Enable lightbox for product images in quick view modal.', 'addonify-quick-view' ),
+                'label' => __( 'Enable Lightbox', 'addonify-quick-view' ),
+                'description' => __( 'Enable lightbox for product images in quick view.', 'addonify-quick-view' ),
                 'type'  => 'switch'
             ),
             'display_read_more_button' => array(
-                'label' => __( 'Display view detail button', 'addonify-quick-view' ), 
-                'description' => __( 'Enable display view detail button in modal.', 'addonify-quick-view' ),
+                'label' => __( 'Display View Detail Button', 'addonify-quick-view' ), 
+                'description' => __( 'Enable to display View Detail Button in quick view modal box.', 'addonify-quick-view' ),
                 'type'  => 'switch'
             ),
              'read_more_button_label' => array(
-                'label' => __( 'View detail button label', 'addonify-quick-view' ),
-                'placeholder' => __('View detail', 'addonify-quick-view'), 
+                'label' => __( 'View Detail Button Label', 'addonify-quick-view' ),
+                'placeholder' => __('View Detail', 'addonify-quick-view'), 
                 'type'  => 'text'
             ),
         );

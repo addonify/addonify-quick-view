@@ -119,29 +119,30 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields_values' ) ) {
                 $field_type = $value['type'];
 
                 switch ( $field_type ) {
+
                     case 'text':
                         $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
                         break;
+
                     case 'switch':
                         $key_values[$key] = ( addonify_quick_view_get_setting_field_value( $key ) == '1' ) ? true : false;
                         break;
-                    case 'checkbox':
-                        $buttons = ( isset( $value[ 'typeStyle' ] ) && $value['typeStyle'] == 'buttons' ) ? true : false;
 
-                        if ( $buttons ) {
-                            $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key ) ? unserialize( addonify_quick_view_get_setting_field_value( $key ) ): [];
-                        } else {
-                            $key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) == '1' ) ? true : false;
-                        }
+                    case 'checkbox':
+                        $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key ) ? unserialize( addonify_quick_view_get_setting_field_value( $key ) ): [];
                         break;
+
                     case 'select':
                         $key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) == '' ) ? 'Choose value' : addonify_quick_view_get_setting_field_value( $key );
                         break;
+
                     case 'color':
                         $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
                         break;
+
                     default:
                         $key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
+                        break;
                 }     
             }  
 
@@ -177,38 +178,41 @@ if ( ! function_exists( 'addonify_quick_view_update_settings_fields_values' ) ) 
 
                     $setting_field_type = $settings_fields[ $key ][ 'type' ];
 
-                    switch ( $setting_field_type ) {                     
+                    switch ( $setting_field_type ) {
+
+                        case 'switch':
+                            $sanitized_value = ( $value == true ) ? '1' : '0';                            
+                            break;  
+
                         case 'checkbox':
-                            $is_multi = ( isset( $settings_fields[ $key ][ 'multi' ] ) && $settings_fields[ $key ][ 'multi' ] == true ) ? true : false;
-                            if ( $is_multi ) {
-                                $sanitize_args = array(
-                                    'choices' => $settings_fields[$key]['choices'],
-                                    'values' => $value
-                                );
-                                $value = addonify_quick_view_sanitize_multi_choices( $sanitize_args );
-                                $value = serialize( $value );
-                            } else {
-                                $value = wp_validate_boolean( $value );
-                            }                        
+                            $sanitize_args = array(
+                                'choices' => $settings_fields[$key]['choices'],
+                                'values' => $value
+                            );
+                            $sanitized_value = addonify_quick_view_sanitize_multi_choices( $sanitize_args );
+                            $sanitized_value = serialize( $value );                     
                             break;
+
                         case 'text':
-                            $value = sanitize_text_field( $value );
+                            $sanitized_value = sanitize_text_field( $value );
                             break;
+
                         case 'select':
                             $choices = $settings_fields[ $key ][ 'choices' ];
                             if ( array_key_exists( $value, $choices ) ) {
-                                $value = sanitize_text_field( $value );
+                                $sanitized_value = sanitize_text_field( $value );
                             } else {
-                                $value = $defaults[ $key ];
+                                $sanitized_value = $defaults[ $key ];
                             }
                             break;
+
                         default:
-                            $value = sanitize_text_field( $value );
+                            $sanitized_value = sanitize_text_field( $value );
                             break;
                     }                    
                 }
 
-                if ( ! update_option( ADDONIFY_DB_INITIALS . $key, $value ) ) {
+                if ( ! update_option( ADDONIFY_DB_INITIALS . $key, $sanitized_value ) ) {
                     return false;
                 }
             }
@@ -260,31 +264,30 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
                         ),
                         'modal' => array(
                             'title' => __( 'Modal Box Colors', 'addonify-quick-view' ),
-                            'description' => __( 'Change the colors of modal box & overlay
-                                    background.', 'addonify-quick-view' ),
+                            'description' => __( 'Choose inner and overlay background colors of quick view modal box.', 'addonify-quick-view' ),
                             'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_styles_settings_fields(),
                         ),
                         'product' => array(
-                            'title' => __( 'Product Info Colors', 'addonify-quick-view' ),
-                            'description' => __( 'Change the way the product title, meta, excerpt & price looks on modal.', 'addonify-quick-view' ),
+                            'title' => __( 'Product Content Colors', 'addonify-quick-view' ),
+                            'description' => __( 'Choose colors for each individual content elements of quick view modal box.', 'addonify-quick-view' ),
                             'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_content_styles_settings_fields(),
                         ),
                         'close_button' => array(
                             'title' => __( 'Close Button Colors', 'addonify-quick-view' ),
-                            'description' => __( 'Change the look & feel of close modal box button.', 'addonify-quick-view' ),
+                            'description' => __( 'Choose colors for quick view modal box close button.', 'addonify-quick-view' ),
                             'type' => 'color-options-group',
                             'fields' => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
                         ),
                         'misc_buttons' => array(
                             'title' => __( 'Miscellaneous Buttons Colors', 'addonify-quick-view' ),
-                            'description' => __( 'Tweak how miscellaneous buttons look on modal box.', 'addonify-quick-view' ),
+                            'description' => __( 'Choose colors for buttons inside quick view modal box.', 'addonify-quick-view' ),
                             'type' => 'color-options-group',
                             'fields' => addonify_quick_view_misc_button_styles_settings_fields(),
                         ),
                         'custom_css' => array(
-                            'title' => __( 'Developer', 'addonify-quick-view' ),
+                            'title' => __( 'Custom', 'addonify-quick-view' ),
                             'description' => '',
                             'fields' => addonify_quick_view_custom_css_settings_fields(), 
                         )

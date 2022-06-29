@@ -6,18 +6,18 @@ if ( ! function_exists( 'addonify_quick_view_button_settings_fields' ) ) {
 
         return array(
             'quick_view_btn_position' => array(
-                'label' => __( 'Button position', 'addonify-quick-view' ),
-                'description' => __( 'Choose where you want to show the quick view button.', 'addonify-quick-view' ),
+                'label' => __( 'Button Position', 'addonify-quick-view' ),
+                'description' => __( 'Choose where you want to display the quick view button.', 'addonify-quick-view' ),
                 'type'  => 'select',
-                'placeholder' => __('Select position', 'addonify-quick-view'),
+                'placeholder' => __('Select Position', 'addonify-quick-view'),
                 'choices' => array(
-                    'after_add_to_cart_button' => __( 'After add to cart button', 'addonify-quick-view' ),
-                    'before_add_to_cart_button' => __( 'Before add to cart button', 'addonify-quick-view' )
+                    'after_add_to_cart_button' => __( 'After Add to Cart Button', 'addonify-quick-view' ),
+                    'before_add_to_cart_button' => __( 'Before Add to Cart Button', 'addonify-quick-view' )
                 )
             ),
             'quick_view_btn_label' => array(
-                'label' => __( 'Button label', 'addonify-quick-view' ),
-                'placeholder' => __('Quick view', 'addonify-quick-view'),
+                'label' => __( 'Button Label', 'addonify-quick-view' ),
+                'placeholder' => __('Quick View', 'addonify-quick-view'),
                 'type'  => 'text',
             )
         );
