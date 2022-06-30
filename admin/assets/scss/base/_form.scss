@@ -57,7 +57,6 @@
     flex-direction: row;
     align-items: center;
     font-family: var(--addonify_system_font_family);
-    font-weight: var(--addonify_system_font_family);
     font-size: var(--addonify_button_font_size);
     font-weight: normal;
     fill: var(--addonify_button_text_color);
@@ -91,9 +90,9 @@
 .adfy-button:disabled {
 
     cursor: not-allowed;
-    color: #ababab;
-    fill: #ababab;
-    background-color: #c5c5c5;
+    color: #ABABAB;
+    fill: #ABABAB;
+    background-color: #C5C5C5;
 }
 
 .adfy-button .loading-icon {
@@ -107,7 +106,7 @@
     width: 14px;
     height: 14px;
     color: white;
-    animation: loading-rotate 1s linear infinite;
+    animation: spinner 1s linear infinite;
 }
 
 .adfy-button[loading="true"] {
@@ -174,7 +173,7 @@
     transform-origin: right center;
     transform: scaleX(0);
     will-change: scale;
-    transition: transform .26s cubic-bezier(.25,.8,.25,1);
+    transition: transform 0.26s cubic-bezier(.25,.8,.25,1);
     -webkit-backface-visibility: hidden;
 }
 
