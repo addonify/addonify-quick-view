@@ -11,7 +11,7 @@
 			rel="documentation"
 			class="adfy-button fake-button has-underline forward-to-doc-link"
 		>
-			{{ __("Check docs", "addonify-wishist") }}
+			{{ __("Check docs", "addonify-quick-view") }}
 		</a>
 	</span>
 </template>
