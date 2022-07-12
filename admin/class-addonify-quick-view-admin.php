@@ -131,11 +131,43 @@ class Addonify_Quick_View_Admin {
 		// do not show menu if woocommerce is not active
 		if ( ! $this->is_woocommerce_active() )  return; 
 
-		add_menu_page( 'Addonify Settings', 'Addonify', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 'dashicons-superhero', 70 );
+		global $admin_page_hooks;
 		
-		// redirects to main plugin link
-		add_submenu_page(  $this->settings_page_slug, 'Addonify Quick View Settings', 'Quick View', 'manage_options', $this->settings_page_slug, array($this, 'get_settings_screen_contents'), 0 );
+		$parent_menu_slug = array_search( 'addonify', $admin_page_hooks, true );
 
+		if ( ! $parent_menu_slug ) {
+
+			add_menu_page( 
+				'Addonify Settings', 
+				'Addonify', 
+				'manage_options', 
+				$this->settings_page_slug, 
+				array( $this, 'get_settings_screen_contents' ), 
+				'dashicons-superhero', 
+				70 
+			);
+
+			add_submenu_page(  
+				$this->settings_page_slug, 
+				'Addonify Quick View Settings', 
+				'Quick View', 
+				'manage_options', 
+				$this->settings_page_slug, 
+				array( $this, 'get_settings_screen_contents' ), 
+				0 
+			);
+		} else {
+
+			add_submenu_page(  
+				$parent_menu_slug, 
+				'Addonify Quick View Settings', 
+				'Quick View', 
+				'manage_options', 
+				$this->settings_page_slug, 
+				array( $this, 'get_settings_screen_contents' ), 
+				0 
+			);
+		}
 	}
 
 	// callback function
