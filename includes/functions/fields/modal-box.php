@@ -58,7 +58,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_add_to_settings_f
         return array_merge( $settings_fields, addonify_quick_view_modal_box_content_settings_fields() );
     }
 
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_modal_box_content_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_modal_box_content_add_to_settings_fields' );
 }
 
 if ( ! function_exists( 'addonify_quick_view_modal_box_styles_settings_fields' ) ) {
@@ -89,7 +89,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_styles_add_to_settings_fi
         return array_merge( $settings_fields, addonify_quick_view_modal_box_styles_settings_fields() );
     }
     
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_modal_box_styles_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_modal_box_styles_add_to_settings_fields' );
 }
 
 
@@ -159,7 +159,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_styles_add_to_set
         return array_merge( $settings_fields, addonify_quick_view_modal_box_content_styles_settings_fields() );
     }
     
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_modal_box_content_styles_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_modal_box_content_styles_add_to_settings_fields' );
 }
 
 
@@ -204,5 +204,5 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_close_button_styles_add_t
         return array_merge( $settings_fields, addonify_quick_view_modal_box_close_button_styles_settings_fields() );
     }
     
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_modal_box_close_button_styles_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_modal_box_close_button_styles_add_to_settings_fields' );
 }
