@@ -22,7 +22,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
     function addonify_quick_view_settings_fields_defaults() {
 
         return apply_filters(
-            'addonify_quick_view/settings_fields_defaults',
+            'addonify_quick_view_settings_fields_defaults',
             array(
                 // Options
                 'enable_quick_view' => true,
@@ -72,7 +72,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields' ) ) {
 
     function addonify_quick_view_settings_fields() {
 
-        return apply_filters( 'addonify_quick_view/settings_fields', array() );
+        return apply_filters( 'addonify_quick_view_settings_fields', array() );
     }
 }
 

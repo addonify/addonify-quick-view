@@ -18,12 +18,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo apply_filters(
-    'addonify_quick_view/quick_view_button', 
-    sprintf(
-        '<button type="button" class="addonify-qvm-button button %s" data-product_id="%s" rel="nofollow" >%s</button>',
-        esc_attr($args['css_class']),
-        esc_attr( $args['product_id'] ),
-        $args['label']
-    )
+echo wp_kses_post(
+	apply_filters(
+		'addonify_quick_view_quick_view_button',
+		sprintf(
+			'<button type="button" class="addonify-qvm-button button %s" data-product_id="%s" rel="nofollow" >%s</button>',
+			esc_attr( $args['css_class'] ),
+			esc_attr( $args['product_id'] ),
+			$args['label']
+		)
+	)
 );
