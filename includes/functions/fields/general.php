@@ -17,6 +17,7 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
                 'type'            => 'switch',
                 'badge'           => 'Optional',
                 'badgeType'       => '',
+                'dependent'       => array('enable_quick_view'),
             ),
         );
     }

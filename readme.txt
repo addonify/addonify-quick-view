@@ -68,6 +68,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.1.6 - 14 September, 2022 =
 
+- Added: Admin setting page option visibility conditional logic.
 - Fix: Variation form issue in quick view.
 - Updated: Frontend templates can be overridden from themes. Overridden path changed to 'addonify/quick-view/'.
 - Updated: Hooks and filter name prefix changed from 'addonify_quick_view/' and 'addonify_qv_' to 'addonify_quick_view_'.

@@ -1,14 +1,25 @@
 <script setup>
+	import { useOptionsStore } from "../../stores/options";
 	import OptionBox from "./OptionBox.vue";
 	import ColorGroup from "./design/ColorGroup.vue";
 	import SectionTitle from "./SectionTitle.vue";
 	const props = defineProps({
 		section: Object,
 		reactiveState: Object,
+		currentPage: String,
 	});
+
+	const store = useOptionsStore();
+	//console.log(props.section);
 </script>
 <template>
-	<div class="adfy-ui-option" v-for="(section, sectionKey) in props.section">
+	<div
+		v-for="(section, sectionKey) in props.section"
+		v-show="
+			sectionKey == 'general' ? true : store.options.enable_plugin_styles
+		"
+		class="adfy-ui-option"
+	>
 		<ColorGroup
 			v-if="section.type == 'color-options-group'"
 			:section="section"
@@ -17,9 +28,15 @@
 		<OptionBox
 			v-else
 			:section="section"
+			:sectionKey="sectionKey"
 			:reactiveState="props.reactiveState"
+			:currentPage="props.currentPage"
 		>
-			<SectionTitle :section="section" :sectionKey="sectionKey" />
+			<SectionTitle
+				:section="section"
+				:sectionKey="sectionKey"
+				:currentPage="props.currentPage"
+			/>
 		</OptionBox>
 	</div>
 </template>

@@ -1,15 +1,50 @@
 <script setup>
+	import { useOptionsStore } from "../../stores/options";
 	import InputControl from "./InputControl.vue";
 	import { ElTag } from "element-plus";
 	const props = defineProps({
 		section: Object,
 		sectionKey: [String, Object],
 		reactiveState: Object,
+		currentPage: String,
 	});
+
+	//console.log(props.currentPage);
+	const store = useOptionsStore();
+	const enablePluginKey = "enable_quick_view";
+	const enablePluginStyleKey = "enable_plugin_styles";
+
+	function optionDependencyHandler(args) {
+		//console.log(args);
+		if (Array.isArray(args)) {
+			return args.every((key) => {
+				return store.options[key];
+			});
+		} else {
+			return store.options[args];
+		}
+	}
+
+	function optionVisibilityHandler(key, dependent) {
+		if (props.currentPage == "settings") {
+			return key == enablePluginKey
+				? true
+				: optionDependencyHandler(dependent);
+		}
+		if (props.currentPage == "design") {
+			return key == enablePluginStyleKey
+				? true
+				: optionDependencyHandler(dependent);
+		}
+	}
 </script>
 <template>
 	<slot></slot>
-	<div class="adfy-options" v-for="(field, key) in props.section.fields">
+	<div
+		class="adfy-options"
+		v-for="(field, key) in props.section.fields"
+		v-show="optionVisibilityHandler(key, field.dependent)"
+	>
 		<div class="adfy-option-columns option-box" :class="field.className">
 			<div class="adfy-col left">
 				<div class="label">

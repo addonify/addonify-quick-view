@@ -287,7 +287,7 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
                             'fields' => addonify_quick_view_misc_button_styles_settings_fields(),
                         ),
                         'custom_css' => array(
-                            'title' => __( 'Custom', 'addonify-quick-view' ),
+                            'title' => __( 'Developer', 'addonify-quick-view' ),
                             'description' => '',
                             'fields' => addonify_quick_view_custom_css_settings_fields(), 
                         )
