@@ -86,6 +86,34 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_styles_settings_fields' )
                 'className'       => 'fullwidth',
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
+            'modal_box_general_text_color' => array(
+                'label'			  => __( 'Text color inside modal box', 'addonify-quick-view' ),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
+            'modal_box_inputs_background_color' => array(
+                'label'			  => __( 'Inputs background color inside modal box', 'addonify-quick-view' ),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
+            'modal_box_inputs_text_color' => array(
+                'label'			  => __( 'Inputs text color inside modal box', 'addonify-quick-view' ),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
+            'modal_box_spinner_icon_color' => array(
+                'label'			  => __( 'Modal box spinner icon color', 'addonify-quick-view' ),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'className'       => 'fullwidth',
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
         );
     }
 }

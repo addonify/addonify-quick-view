@@ -91,7 +91,8 @@
 }
 
 #addonify-quick-view-modal #adfy-qvm-spinner .icon {
-
+	
+	color: var(--addonify_qv_modal_spinner_icon_color);
 	animation-name: AddonifyQuickViewSpin;
     animation-duration: 500ms;
     animation-iteration-count: infinite;
@@ -145,6 +146,7 @@
 
 	position: relative;
 	padding: 40px 30px;
+	color: var(--addonify_qv_modal_general_text_color);
 }
 
 #addonify-quick-view-modal {
@@ -195,6 +197,56 @@
 				&::before {
 
 					color: var(--addonify_qv_product_rating_empty);
+				}
+			}
+
+			.woocommerce-product-rating {
+
+				.woocommerce-review-link {
+
+					color: var(--addonify_qv_product_meta);
+
+					&:hover {
+
+						color: var(--addonify_qv_product_meta_hover);
+					}
+				}
+			}
+
+			form {
+
+				label {
+
+					color: var(--addonify_qv_modal_general_text_color);
+				}
+
+				input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+					color: var(--addonify_qv_modal_inputs_text_color);
+					opacity: 1; /* Firefox */
+				}
+
+				input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+					color: var(--addonify_qv_modal_inputs_text_color);
+				}
+
+				input::-ms-input-placeholder { /* Microsoft Edge */
+
+					color: var(--addonify_qv_modal_inputs_text_color);
+				}
+
+				input[type="text"],
+				input[type="number"] {
+
+					color: var(--addonify_qv_modal_inputs_text_color);
+					background-color: var(--addonify_qv_modal_inputs_background_color);
+				}
+
+				select {
+
+					color: var(--addonify_qv_modal_inputs_text_color);
+					background-color: var(--addonify_qv_modal_inputs_background_color);
 				}
 			}
 
