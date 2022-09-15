@@ -304,24 +304,24 @@ class Addonify_Quick_View_Public {
 	public function dynamic_css() {
 
 		$css_values = array(
-			'--addonify_quick_view_modal_overlay_background' => addonify_quick_view_get_settings_fields_values( 'modal_box_overlay_background_color' ),
-			'--addonify_quick_view_modal_background' => addonify_quick_view_get_settings_fields_values( 'modal_box_background_color' ),
-			'--addonify_quick_view_product_title' => addonify_quick_view_get_settings_fields_values( 'product_title_color' ),
-			'--addonify_quick_view_product_excerpt' => addonify_quick_view_get_settings_fields_values( 'product_excerpt_text_color' ),
-			'--addonify_quick_view_product_rating_filled' => addonify_quick_view_get_settings_fields_values( 'product_rating_star_filled_color' ),
-			'--addonify_quick_view_product_rating_empty' => addonify_quick_view_get_settings_fields_values( 'product_rating_star_empty_color' ),
-			'--addonify_quick_view_product_price' => addonify_quick_view_get_settings_fields_values( 'product_price_color' ),
-			'--addonify_quick_view_product_price_sale' => addonify_quick_view_get_settings_fields_values( 'product_on_sale_price_color' ),
-			'--addonify_quick_view_product_meta' => addonify_quick_view_get_settings_fields_values( 'product_meta_text_color' ),
-			'--addonify_quick_view_product_meta_hover' => addonify_quick_view_get_settings_fields_values( 'product_meta_text_hover_color' ),
-			'--addonify_quick_view_close_button_text' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_color' ),
-			'--addonify_quick_view_close_button_text_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_hover_color' ),
-			'--addonify_quick_view_close_button_background' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_color' ),
-			'--addonify_quick_view_close_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_hover_color' ),
-			'--addonify_quick_view_misc_button_text' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_color' ),
-			'--addonify_quick_view_misc_button_text_hover' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_hover_color' ),
-			'--addonify_quick_view_misc_button_background' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_color' ),
-			'--addonify_quick_view_misc_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_hover_color' )
+			'--addonify_qv_modal_overlay_background' => addonify_quick_view_get_settings_fields_values( 'modal_box_overlay_background_color' ),
+			'--addonify_qv_modal_background' => addonify_quick_view_get_settings_fields_values( 'modal_box_background_color' ),
+			'--addonify_qv_product_title' => addonify_quick_view_get_settings_fields_values( 'product_title_color' ),
+			'--addonify_qv_product_excerpt' => addonify_quick_view_get_settings_fields_values( 'product_excerpt_text_color' ),
+			'--addonify_qv_product_rating_filled' => addonify_quick_view_get_settings_fields_values( 'product_rating_star_filled_color' ),
+			'--addonify_qv_product_rating_empty' => addonify_quick_view_get_settings_fields_values( 'product_rating_star_empty_color' ),
+			'--addonify_qv_product_price' => addonify_quick_view_get_settings_fields_values( 'product_price_color' ),
+			'--addonify_qv_product_price_sale' => addonify_quick_view_get_settings_fields_values( 'product_on_sale_price_color' ),
+			'--addonify_qv_product_meta' => addonify_quick_view_get_settings_fields_values( 'product_meta_text_color' ),
+			'--addonify_qv_product_meta_hover' => addonify_quick_view_get_settings_fields_values( 'product_meta_text_hover_color' ),
+			'--addonify_qv_close_button_text' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_color' ),
+			'--addonify_qv_close_button_text_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_hover_color' ),
+			'--addonify_qv_close_button_background' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_color' ),
+			'--addonify_qv_close_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_hover_color' ),
+			'--addonify_qv_misc_button_text' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_color' ),
+			'--addonify_qv_misc_button_text_hover' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_hover_color' ),
+			'--addonify_qv_misc_button_background' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_color' ),
+			'--addonify_qv_misc_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_hover_color' )
 		);
 
 		$css = ':root {';
