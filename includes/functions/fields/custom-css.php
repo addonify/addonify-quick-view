@@ -11,6 +11,7 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
                 'type'              => 'textarea',
                 'className'         => 'fullwidth custom-css-box',
                 'placeholder'       => '#app { color: blue; }',
+                'dependent'         => array( 'enable_plugin_styles' ),
             ),
         );
     }
