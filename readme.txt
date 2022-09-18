@@ -66,7 +66,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.1.6 - 14 September, 2022 =
+= 1.1.6 - 18 September, 2022 =
 
 - New: Modal box general text color. #111
 - New: Modal box inputs background color. #111
