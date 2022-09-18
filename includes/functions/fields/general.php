@@ -17,6 +17,7 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
                 'type'            => 'switch',
                 'badge'           => 'Optional',
                 'badgeType'       => '',
+                'dependent'       => array('enable_quick_view'),
             ),
         );
     }
@@ -29,7 +30,7 @@ if ( ! function_exists( 'addonify_quick_view_general_add_to_settings_fields' ) )
         return array_merge( $settings_fields, addonify_quick_view_general_settings_fields() );
     }
     
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_general_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_general_add_to_settings_fields' );
 }
 
 
@@ -56,5 +57,5 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_add_to_settings_fiel
         return array_merge( $settings_fields, addonify_quick_view_general_styles_settings_fields() );
     }
     
-    add_filter( 'addonify_quick_view/settings_fields', 'addonify_quick_view_general_styles_add_to_settings_fields' );
+    add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_general_styles_add_to_settings_fields' );
 }

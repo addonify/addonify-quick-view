@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 6.0.2
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,17 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.1.6 - 18 September, 2022 =
+
+- New: Modal box general text color. #111
+- New: Modal box inputs background color. #111
+- New: Modal box inputs text color. #111
+- New: Modal box spinner icon color. #111
+- Added: Admin setting page option visibility conditional logic.
+- Fix: Variation form issue in quick view.
+- Updated: Frontend templates can be overridden from themes. Overridden path changed to 'addonify/quick-view/'.
+- Updated: Hooks and filter name prefix changed from 'addonify_quick_view/' and 'addonify_qv_' to 'addonify_quick_view_'.
 
 = 1.1.5 - 31 August, 2022 =
 

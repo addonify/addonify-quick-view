@@ -19,13 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="woocommerce single-product">
-	<div id="product-<?php the_ID(); ?>" <?php post_class( 'product' ); ?>>
-		<?php do_action( 'addonify_qv_product_image' ); ?>
+	<div id="product-<?php echo esc_attr( $product_id ); ?>" <?php post_class( 'product' ); ?>>
+		<?php do_action( 'addonify_quick_view_product_image' ); ?>
 		<div class="summary entry-summary">
 			<div class="summary-content">
-				<?php do_action( 'addonify_qv_product_summary' ); ?>
+				<?php do_action( 'addonify_quick_view_product_summary' ); ?>
 			</div>
-			<?php do_action( 'addonify_qv_after_product_summary_content', get_the_ID() ); ?>
+			<?php do_action( 'addonify_quick_view_after_product_summary_content', $product_id ); ?>
 		</div>
 	</div>
 </div>

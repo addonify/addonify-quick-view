@@ -18,11 +18,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo apply_filters( 
-    'addonify_quick_view/view_detail_button',
+echo apply_filters(
+    'addonify_quick_view_detail_button',
     sprintf(
         '<a href="%s" class="button" >%s</a>',
-        get_the_permalink($args['post_id']),
-        $args['btn_label']
+        get_the_permalink( $args['product_id'] ),
+        esc_html( $args['button_label'] )
     )    
 );

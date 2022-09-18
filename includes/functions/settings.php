@@ -22,7 +22,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
     function addonify_quick_view_settings_fields_defaults() {
 
         return apply_filters(
-            'addonify_quick_view/settings_fields_defaults',
+            'addonify_quick_view_settings_fields_defaults',
             array(
                 // Options
                 'enable_quick_view' => true,
@@ -38,6 +38,10 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
                 'enable_plugin_styles' => false,
                 'modal_box_overlay_background_color' => 'rgba(0, 0, 0, 0.8)',
                 'modal_box_background_color' => 'rgba(255, 255, 255, 1)',
+                'modal_box_general_text_color' => 'rgba(51, 51, 51, 1)',
+                'modal_box_inputs_background_color' => 'rgba(255, 255, 255, 1)',
+                'modal_box_inputs_text_color' => 'rgba(51, 51, 51, 1)',
+                'modal_box_spinner_icon_color' => 'rgba(51, 51, 51, 1)',
                 'product_title_color' => 'rgba(51, 51, 51, 1)',
                 'product_rating_star_empty_color' => 'rgba(147, 147, 147, 1)',
                 'product_rating_star_filled_color' => 'rgba(245, 196, 14, 1)',
@@ -72,7 +76,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields' ) ) {
 
     function addonify_quick_view_settings_fields() {
 
-        return apply_filters( 'addonify_quick_view/settings_fields', array() );
+        return apply_filters( 'addonify_quick_view_settings_fields', array() );
     }
 }
 
@@ -287,7 +291,7 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
                             'fields' => addonify_quick_view_misc_button_styles_settings_fields(),
                         ),
                         'custom_css' => array(
-                            'title' => __( 'Custom', 'addonify-quick-view' ),
+                            'title' => __( 'Developer', 'addonify-quick-view' ),
                             'description' => '',
                             'fields' => addonify_quick_view_custom_css_settings_fields(), 
                         )

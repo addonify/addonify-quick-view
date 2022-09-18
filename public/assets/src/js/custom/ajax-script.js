@@ -26,6 +26,14 @@
 
             }).done(function () {
 
+                var form_variation = $('.adfy-quick-view-modal-content').find('.variations_form');
+                form_variation.each( function() {
+                    $( this ).wc_variation_form();
+                });
+
+                form_variation.trigger( 'check_variations' );
+                form_variation.trigger( 'reset_image' );
+
                 // re initiate wp_product_gallery() for gallery inside modal to work
                 $('#addonify-quick-view-modal .woocommerce-product-gallery').each(function () {
                     $(this).wc_product_gallery();
