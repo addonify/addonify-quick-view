@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 6.1.1
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,7 +68,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.1.9 - 19 December, 2022 =
 
-- Added: User data processing agent.
+- Added: UDP Agent. Ref: https://creamcode.org/user-data-processing/
 
 = 1.1.8 - 18 November, 2022 =
 
