@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 6.1.1
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,11 +66,15 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.1.8 - 18 Novermber, 2022 =
+= 1.1.9 - 19 December, 2022 =
+
+- Added: UDP Agent. Ref: https://creamcode.org/user-data-processing/
+
+= 1.1.8 - 18 November, 2022 =
 
 - Improvement: ColorPicker in settings page.
 
-= 1.1.7 - 2 Novermber, 2022 =
+= 1.1.7 - 2 November, 2022 =
 
 - Tested: WordPress 6.1
 - Tested: WordPress 7.0.1
