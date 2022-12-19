@@ -10,6 +10,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       addonify-quick-view
  * Domain Path:       /languages
+ *
+ * @package Addonify_Quick_View
  */
 
 // If this file is called directly, abort.
@@ -56,22 +58,21 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-addonify-quick-view.php';
 
 /**
  * Load composer dependencies.
- * 
+ *
  * - mobiledetect URL http://mobiledetect.net/
  */
 require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
 if ( ! function_exists( 'run_addonify_quick_view' ) ) {
-	
+	/**
+	 * Begins execution of the plugin.
+	 *
+	 * Since everything within the plugin is registered via hooks,
+	 * then kicking off the plugin from this point in the file does
+	 * not affect the page life cycle.
+	 *
+	 * @since    1.0.0
+	 */
 	function run_addonify_quick_view() {
 
 		$plugin = new Addonify_Quick_View();

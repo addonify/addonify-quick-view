@@ -66,11 +66,15 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.1.8 - 18 Novermber, 2022 =
+= 1.1.9 - 19 December, 2022 =
+
+- Added: User data processing agent.
+
+= 1.1.8 - 18 November, 2022 =
 
 - Improvement: ColorPicker in settings page.
 
-= 1.1.7 - 2 Novermber, 2022 =
+= 1.1.7 - 2 November, 2022 =
 
 - Tested: WordPress 6.1
 - Tested: WordPress 7.0.1

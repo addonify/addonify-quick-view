@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -73,7 +72,6 @@ class Addonify_Quick_View {
 		} else {
 			$this->version = '1.0.0';
 		}
-		
 		$this->plugin_name = 'addonify-quick-view';
 
 		$this->load_dependencies();
@@ -124,13 +122,16 @@ class Addonify_Quick_View {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-addonify-quick-view-public.php';
 
-
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-rest-api.php';
-
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/helpers.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/settings.php';
+
+		/**
+		 * User data processing functions.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/udp/init.php';
 
 		$this->loader = new Addonify_Quick_View_Loader();
 
@@ -163,19 +164,19 @@ class Addonify_Quick_View {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Addonify_Quick_View_Admin( $this->get_plugin_name(), $this->get_version() );
-		
-		// enqueue admin styles and scripts
+
+		// enqueue admin styles and scripts.
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-		// admin menu
+		// admin menu.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
-		// custom link in all plugin page
+		// custom link in all plugin page.
 		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
-		
-		//show notice if woocommerce is not active
-		$this->loader->add_action('admin_init', $plugin_admin, 'show_woocommerce_not_active_notice_callback' );
+
+		// show notice if woocommerce is not active.
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'show_woocommerce_not_active_notice_callback' );
 	}
 
 
@@ -213,7 +214,7 @@ class Addonify_Quick_View {
 	public function run() {
 
 		$this->loader->run();
-		
+
 	}
 
 	/**
