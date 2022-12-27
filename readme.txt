@@ -66,7 +66,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.2.0 - 27 December, 2022 =
+= 1.2.0 - 28 December, 2022 =
 
 - Fix: PHP error, `Undefined variable: product_id` on line 22 and 28 in `addonify-quick-view-content.php` file.
 
