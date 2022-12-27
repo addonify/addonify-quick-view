@@ -19,13 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div class="woocommerce single-product">
-	<div id="product-<?php echo esc_attr( $product_id ); ?>" <?php post_class( 'product' ); ?>>
+	<div id="product-<?php echo esc_attr( $args['product_id'] ); ?>" <?php post_class( 'product' ); ?>>
 		<?php do_action( 'addonify_quick_view_product_image' ); ?>
 		<div class="summary entry-summary">
 			<div class="summary-content">
 				<?php do_action( 'addonify_quick_view_product_summary' ); ?>
 			</div>
-			<?php do_action( 'addonify_quick_view_after_product_summary_content', $product_id ); ?>
+			<?php do_action( 'addonify_quick_view_after_product_summary_content', $args['product_id'] ); ?>
 		</div>
 	</div>
 </div>
