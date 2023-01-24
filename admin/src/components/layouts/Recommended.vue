@@ -21,11 +21,11 @@
 	const isActiviting = ref(false);
 	const isInstalling = ref(false);
 
-	const activateText = __("Activate now", "addonify-wishlist");
-	const activitingText = __("Activating...", "addonify-wishlist");
-	const installText = __("Install now", "addonify-wishlist");
-	const installingText = __("Installing...", "addonify-wishlist");
-	const installedText = __("Installed", "addonify-wishlist");
+	const activateText = __("Activate now", "addonify-quick-view");
+	const activitingText = __("Activating...", "addonify-quick-view");
+	const installText = __("Install now", "addonify-quick-view");
+	const installingText = __("Installing...", "addonify-quick-view");
+	const installedText = __("Installed", "addonify-quick-view");
 
 	const activeAddonHandler = (slug) => {
 		isLoading.value = true;
