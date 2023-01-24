@@ -26,7 +26,7 @@
 		:placeholder="
 			props.placeholder
 				? props.placeholder
-				: __('Select', 'addonify-wishlist')
+				: __('Select', 'addonify-quick-view')
 		"
 		size="large"
 	>
