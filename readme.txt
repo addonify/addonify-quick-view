@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.0.0
 Tested up to: 6.1.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.2.1 - 24 January, 2023 =
+
+- Added: Recommended products in quick view setting page. 
 
 = 1.2.0 - 28 December, 2022 =
 

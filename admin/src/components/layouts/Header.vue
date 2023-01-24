@@ -65,7 +65,7 @@
 						type="submit"
 						@click="store.handleUpdateOptions()"
 						class="adfy-button"
-						:disabled="!store.needSave"
+						:disabled="!store.needSaving"
 						:loading="store.isSaving"
 					>
 						<span class="loading-icon">
