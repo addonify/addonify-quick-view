@@ -66,6 +66,10 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
+= 1.2.2 - ? =
+
+- Updated: UDP updated.
+
 = 1.2.1 - 24 January, 2023 =
 
 - Added: Recommended products in quick view setting page. 
