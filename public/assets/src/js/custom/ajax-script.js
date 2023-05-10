@@ -5,34 +5,40 @@
 
         $('body').on('click', '.addonify-qvm-button', function () {
 
-            var $spinenr = $('#adfy-qvm-spinner').addClass('hide');
+            let spinenr = $('#adfy-qvm-spinner').addClass('hide');
 
             // show spinner
-            $spinenr.removeClass('hide');
+            spinenr.removeClass('hide');
 
             // clear old contents
             $('#addonify-quick-view-modal .adfy-quick-view-modal-content').html('');
 
-            var product_id = $(this).data('product_id');
+            let productID = $(this).data('product_id');
 
-            var data = {
-                'action': ajax_object.action,
-                'id': product_id
-            };
+            jQuery.ajax({
+                type: 'GET',
+                url: addonifyQuickViewPublicScriptObject.ajaxURL,
+                data: {
+                    'action': addonifyQuickViewPublicScriptObject.quickViewAction,
+                    'product_id': productID,
+                    'nonce': addonifyQuickViewPublicScriptObject.nonce,
+                },
+                success: function(response) {
 
-            jQuery.get(ajax_object.ajax_url, data, function (response) {
-                // dump response into modal container
-                $('.adfy-quick-view-modal-content').html(response);
-
-            }).done(function () {
-
-                var form_variation = $('.adfy-quick-view-modal-content').find('.variations_form');
-                form_variation.each( function() {
-                    $( this ).wc_variation_form();
+                    if ( response.success ) {
+                        $('.adfy-quick-view-modal-content').html(response.data);
+                    } else {
+                        console.log(response.message);
+                    }
+                }
+            }).done(function(){
+                let variationsForm = $('.adfy-quick-view-modal-content').find('.variations_form');
+                variationsForm.each(function () {
+                    $(this).wc_variation_form();
                 });
 
-                form_variation.trigger( 'check_variations' );
-                form_variation.trigger( 'reset_image' );
+                variationsForm.trigger('check_variations');
+                variationsForm.trigger('reset_image');
 
                 // re initiate wp_product_gallery() for gallery inside modal to work
                 $('#addonify-quick-view-modal .woocommerce-product-gallery').each(function () {
@@ -40,11 +46,8 @@
                 });
 
                 // hide spinner
-                $spinenr.addClass('hide');
+                spinenr.addClass('hide');
             });
-
-        })
-
+        });
     });
-
 })(jQuery);

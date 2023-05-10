@@ -187,11 +187,11 @@ class Addonify_Quick_View_Public {
 
 		wp_localize_script(
 			'addonify-quick-view-public',
-			'ajax_object',
+			'addonifyQuickViewPublicScriptObject',
 			array(
-				'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'action'   => 'get_quick_view_contents',
-				'nonce'    => wp_create_nonce( 'addonify_quick_view_nonce' ),
+				'ajaxURL'         => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'quickViewAction' => 'get_quick_view_contents',
+				'nonce'           => wp_create_nonce( 'addonify_quick_view_nonce' ),
 			)
 		);
 	}
@@ -201,17 +201,30 @@ class Addonify_Quick_View_Public {
 	 */
 	public function quick_view_contents_callback() {
 
-		// deny any non ajax requests.
-		if ( ! wp_doing_ajax() ) {
-			wp_die( 'Invalid Requests' );
+		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : ''; // phpcs:ignore
+
+		if (
+			empty( $nonce ) ||
+			! wp_verify_nonce( $nonce, 'addonify_quick_view_nonce' )
+		) {
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Invalid security token.', 'addonify-quick-view' ),
+				)
+			);
 		}
 
-		// product id is required.
-		if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) { //phpcs:ignore
-			wp_die( 'product id is missing' );
-		}
+		$product_id = isset( $_GET['product_id'] ) ? (int) wp_unslash( $_GET['product_id'] ) : ''; // phpcs:ignore
 
-		$product_id = absint( wp_unslash( $_GET['id'] ) ); //phpcs:ignore
+		if ( ! $product_id ) {
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Missing product id.', 'addonify-quick-view' ),
+				)
+			);
+		}
 
 		// generate contents dynamically.
 		$this->generate_contents();
@@ -223,16 +236,33 @@ class Addonify_Quick_View_Public {
 			)
 		);
 
-		ob_start();
+		if ( $query_product->have_posts() ) {
 
-		while ( $query_product->have_posts() ) {
+			$call_response = array(
+				'success' => true,
+			);
 
-			$query_product->the_post();
+			ob_start();
 
-			do_action( 'addonify_quick_view_content', $product_id );
+			while ( $query_product->have_posts() ) {
+
+				$query_product->the_post();
+
+				do_action( 'addonify_quick_view_content', $product_id );
+			}
+
+			$call_response['data'] = ob_get_clean(); //phpcs:ignore
+
+			wp_send_json( $call_response );
+		} else {
+
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'There is no product with the id.', 'addonify-quick-view' ),
+				)
+			);
 		}
-
-		echo ob_get_clean(); //phpcs:ignore
 
 		wp_die();
 
