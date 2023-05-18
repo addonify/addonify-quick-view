@@ -69,10 +69,21 @@ class Addonify_Quick_View_Public {
 			addonify_quick_view_is_mobile() &&
 			(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) === 1
 		) {
-			// Adds custom classes to the body element.
-			add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
-
-			return;
+			
+			/**
+			* 
+			* If disable quick view on mobile device is enabled then, 
+			* Check if the incoming request is ajax request or not. Ref: https://github.com/addonify/addonify-quick-view/issues/150
+			* If it is ajax request then, handle it normally.
+			* If it is not ajax request then, add class to body tag to disable quick view.
+			*
+			* @since 1.2.4
+			*/
+			if ( ! wp_doing_ajax() ) {
+				
+				add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
+				return;
+			}
 		}
 
 		/**
