@@ -80,7 +80,6 @@ class Addonify_Quick_View_Public {
 			 * @since 1.2.4
 			 */
 			if ( ! wp_doing_ajax() ) {
-
 				return;
 			}
 		}
