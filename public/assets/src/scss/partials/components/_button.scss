@@ -48,7 +48,10 @@
 * @since: 1.2.4
 */
 
-.addonify-quick-view-disabled-on-mobile .adfy-qv-button {
-	
-	display: none;
+@media ( max-width: 575px ) {
+
+	.addonify-quick-view-disabled-on-mobile .adfy-qv-button {
+		
+		display: none;
+	}
 }
