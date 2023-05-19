@@ -55,7 +55,7 @@ if ( ! function_exists( 'addonify_quick_view_is_mobile' ) ) {
 	 */
 	function addonify_quick_view_is_mobile() {
 
-		if ( class_exists( 'MobileDetect' ) ) {
+		if ( class_exists( '\Detection\MobileDetect' ) ) {
 
 			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
@@ -75,7 +75,7 @@ if ( ! function_exists( 'addonify_quick_view_is_tablet' ) ) {
 	 */
 	function addonify_quick_view_is_tablet() {
 
-		if ( class_exists( 'MobileDetect' ) ) {
+		if ( class_exists( '\Detection\MobileDetect' ) ) {
 
 			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
