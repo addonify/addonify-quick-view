@@ -50,7 +50,9 @@
 
 @media ( max-width: 575px ) {
 
-	.addonify-quick-view-disabled-on-mobile .adfy-qv-button {
+	.addonify-quick-view-disabled-on-mobile .addonify-qvm-button,
+	.addonify-quick-view-disabled-on-mobile.woocommerce ul.products li.product .button.addonify-qvm-button,
+	.addonify-quick-view-disabled-on-mobile.woocommerce-page ul.products li.product .button.addonify-qvm-button {
 		
 		display: none;
 	}
