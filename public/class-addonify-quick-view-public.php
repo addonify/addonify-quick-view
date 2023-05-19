@@ -65,14 +65,13 @@ class Addonify_Quick_View_Public {
 			return;
 		}
 
+		add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
+
 		// Skips loading quick view related hooks when mobile device is detected.
 		if (
 			addonify_quick_view_is_mobile() &&
 			(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) === 1
 		) {
-
-			add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
-
 			/**
 			 * Handles AJAX request for coming from browser's responsive toggle toolbar.
 			 * Solved the GitHub issue: https://github.com/addonify/addonify-quick-view/issues/150
