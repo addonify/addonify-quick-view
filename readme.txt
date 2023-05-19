@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.9
 Requires PHP: 7.4
-Tested up to: 6.2
+Tested up to: 6.2.1
 Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -69,7 +69,10 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.4 - ? May, 2023 =
 
-- Update: AJAX JS and AJAX callback handler for displaying quick view content.
+- Updated: AJAX JS and AJAX callback handler for displaying quick view content.
+- Updated: Mobile_Detect PHP library.
+- Updated: Body classname `addonify-quick-view-disabled` to `addonify-quick-view-disabled-on-mobile`.
+- Tested: On WooCommerce version 7.7.0
 
 = 1.2.3 - 07 March, 2023 =
 
