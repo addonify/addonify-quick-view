@@ -55,11 +55,11 @@ if ( ! function_exists( 'addonify_quick_view_is_mobile' ) ) {
 	 */
 	function addonify_quick_view_is_mobile() {
 
-		if ( class_exists( 'Mobile_Detect' ) ) {
+		if ( class_exists( 'MobileDetect' ) ) {
 
-			$mobile_detect = new Mobile_Detect();
+			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
-			return $mobile_detect->isMobile();
+			return $device_detect->isMobile();
 		}
 	}
 }
@@ -75,11 +75,11 @@ if ( ! function_exists( 'addonify_quick_view_is_tablet' ) ) {
 	 */
 	function addonify_quick_view_is_tablet() {
 
-		if ( class_exists( 'Mobile_Detect' ) ) {
+		if ( class_exists( 'MobileDetect' ) ) {
 
-			$mobile_detect = new Mobile_Detect();
+			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
-			return $mobile_detect->isTablet();
+			return $device_detect->isTablet();
 		}
 	}
 }
