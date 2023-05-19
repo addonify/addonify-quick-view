@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fired during plugin activation
  *
@@ -29,8 +28,5 @@ class Addonify_Quick_View_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
-
-	}
-
+	public static function activate() {}
 }
