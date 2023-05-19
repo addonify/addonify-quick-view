@@ -40,3 +40,15 @@
 	border-radius: 100%;
 	@include transation_delay();
 }
+
+/**
+*
+* Hide quick view button if disabled in mobile view is 'enabled' on the setting page.
+*
+* @since: 1.2.4
+*/
+
+.addonify-quick-view-disabled-on-mobile .adfy-qv-button {
+	
+	display: none;
+}
