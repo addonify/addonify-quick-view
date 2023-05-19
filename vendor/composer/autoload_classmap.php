@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Mobile_Detect' => $vendorDir . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
+    'Detection\\MobileDetect' => $vendorDir . '/mobiledetect/mobiledetectlib/src/MobileDetect.php',
 );

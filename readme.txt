@@ -72,6 +72,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 - Updated: AJAX JS and AJAX callback handler for displaying quick view content.
 - Updated: Mobile_Detect PHP library.
 - Updated: Body classname `addonify-quick-view-disabled` to `addonify-quick-view-disabled-on-mobile`.
+- Dev: Upgraded mobiledetect/mobiledetectlib to version 2.8.41 => 3.74.0.
 - Tested: On WooCommerce version 7.7.0
 
 = 1.2.3 - 07 March, 2023 =
