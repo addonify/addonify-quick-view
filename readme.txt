@@ -67,7 +67,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.2.4 - ? May, 2023 =
+= 1.2.4 - 20 May, 2023 =
 
 - Updated: AJAX JS and AJAX callback handler for displaying quick view content.
 - Updated: Mobile_Detect PHP library.
