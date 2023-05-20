@@ -65,14 +65,22 @@ class Addonify_Quick_View_Public {
 			return;
 		}
 
+		add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
+
+		// Skips loading quick view related hooks when mobile device is detected.
 		if (
 			addonify_quick_view_is_mobile() &&
 			(int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) === 1
 		) {
-			// Adds custom classes to the body element.
-			add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
-
-			return;
+			/**
+			 * Handles AJAX request for coming from browser's responsive toggle toolbar.
+			 * Solved the GitHub issue: https://github.com/addonify/addonify-quick-view/issues/150
+			 *
+			 * @since 1.2.4
+			 */
+			if ( ! wp_doing_ajax() ) {
+				return;
+			}
 		}
 
 		/**
@@ -84,19 +92,20 @@ class Addonify_Quick_View_Public {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		// add "Quick View" button after add to cart button.
-		if ( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_position' ) === 'before_add_to_cart_button' ) {
+		// Add "Quick View" button after add to cart button.
+		$quick_view_btn_position = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_position' );
+		if ( 'before_add_to_cart_button' === $quick_view_btn_position ) {
 			add_action( 'woocommerce_after_shop_loop_item', 'addonify_quick_view_quick_view_button_template', 5 );
 		}
 
-		if ( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_position' ) === 'after_add_to_cart_button' ) {
+		if ( 'after_add_to_cart_button' === $quick_view_btn_position ) {
 			add_action( 'woocommerce_after_shop_loop_item', 'addonify_quick_view_quick_view_button_template', 15 );
 		}
 
-		// add custom markup into footer.
+		// Add custom markup into footer.
 		add_action( 'wp_footer', 'addonify_quick_view_content_wrapper_template' );
 
-		// ajax callback.
+		// AJAX callback.
 		add_action( 'wp_ajax_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 		add_action( 'wp_ajax_nopriv_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 	}
@@ -109,14 +118,19 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'assets/build/css/conditional/perfect-scrollbar.css', array(), $this->version );
+		wp_enqueue_style(
+			'perfect-scrollbar',
+			plugin_dir_url( __FILE__ ) . 'assets/build/css/conditional/perfect-scrollbar.css',
+			array(),
+			$this->version,
+			'all'
+		);
 
 		$style_dependency = array();
 
 		if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
 
-			// these features are supported from woocommerce 3.0.0.
-
+			// These features are supported from woocommerce 3.0.0.
 			if ( current_theme_supports( 'wc-product-gallery-lightbox' ) ) {
 
 				if ( (int) addonify_quick_view_get_settings_fields_values( 'enable_lightbox' ) === 1 ) {
@@ -126,10 +140,22 @@ class Addonify_Quick_View_Public {
 		}
 
 		if ( is_rtl() ) {
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-rtl.css', $style_dependency, $this->version, 'all' );
+			wp_enqueue_style(
+				$this->plugin_name,
+				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-rtl.css',
+				$style_dependency,
+				$this->version,
+				'all'
+			);
 		} else {
 
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view.css', $style_dependency, $this->version, 'all' );
+			wp_enqueue_style(
+				$this->plugin_name,
+				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view.css',
+				$style_dependency,
+				$this->version,
+				'all'
+			);
 		}
 
 		if ( (int) addonify_quick_view_get_settings_fields_values( 'enable_plugin_styles' ) === 1 ) {
@@ -141,6 +167,7 @@ class Addonify_Quick_View_Public {
 			if ( $custom_css ) {
 				$inline_css .= $custom_css;
 			}
+
 			$inline_css = $this->minify_css( $inline_css );
 
 			wp_add_inline_style( $this->plugin_name, $inline_css );
@@ -152,7 +179,13 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'perfect-scrollbar', plugin_dir_url( __FILE__ ) . 'assets/build/js/conditional/perfect-scrollbar.min.js', null, $this->version, true );
+		wp_enqueue_script(
+			'perfect-scrollbar',
+			plugin_dir_url( __FILE__ ) . 'assets/build/js/conditional/perfect-scrollbar.min.js',
+			null,
+			$this->version,
+			true
+		);
 
 		$script_dependency = array( 'jquery', 'wc-add-to-cart-variation', 'flexslider' );
 
@@ -171,7 +204,7 @@ class Addonify_Quick_View_Public {
 
 					$script_dependency[] = 'photoswipe-ui-default';
 
-					// this action is required for photoswipe to work.
+					// This action is required for photoswipe to work.
 					add_action( 'wp_footer', 'woocommerce_photoswipe', 15 );
 				}
 			}
@@ -181,19 +214,41 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 
-		wp_enqueue_script( 'addonify-quick-view-public', plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view.min.js', $script_dependency, $this->version, true );
+		wp_enqueue_script(
+			'addonify-quick-view-public',
+			plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view.min.js',
+			$script_dependency,
+			$this->version,
+			true
+		);
 
-		// localize ajax script.
-
+		// Localize AJAX script.
 		wp_localize_script(
 			'addonify-quick-view-public',
-			'ajax_object',
+			'addonifyQuickViewPublicScriptObject',
 			array(
-				'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'action'   => 'get_quick_view_contents',
-				'nonce'    => wp_create_nonce( 'addonify_quick_view_nonce' ),
+				'ajaxURL'         => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'quickViewAction' => 'get_quick_view_contents',
+				'nonce'           => wp_create_nonce( 'addonify_quick_view_nonce' ),
 			)
 		);
+	}
+
+	/**
+	 * Adds custom classes to the array of body classes.
+	 *
+	 * @since 1.1.1
+	 *
+	 * @param array $classes Classes for the body element.
+	 * @return array
+	 */
+	public function body_classes_callback( $classes ) {
+
+		if ( (int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) === 1 ) {
+			$classes[] = 'addonify-quick-view-disabled-on-mobile';
+		}
+
+		return $classes;
 	}
 
 	/**
@@ -201,17 +256,30 @@ class Addonify_Quick_View_Public {
 	 */
 	public function quick_view_contents_callback() {
 
-		// deny any non ajax requests.
-		if ( ! wp_doing_ajax() ) {
-			wp_die( 'Invalid Requests' );
+		$nonce = isset( $_GET['nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['nonce'] ) ) : ''; // phpcs:ignore
+
+		if (
+			empty( $nonce ) ||
+			! wp_verify_nonce( $nonce, 'addonify_quick_view_nonce' )
+		) {
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Invalid security token.', 'addonify-quick-view' ),
+				)
+			);
 		}
 
-		// product id is required.
-		if ( ! isset( $_GET['id'] ) || ! is_numeric( $_GET['id'] ) ) { //phpcs:ignore
-			wp_die( 'product id is missing' );
-		}
+		$product_id = isset( $_GET['product_id'] ) ? (int) wp_unslash( $_GET['product_id'] ) : ''; // phpcs:ignore
 
-		$product_id = absint( wp_unslash( $_GET['id'] ) ); //phpcs:ignore
+		if ( ! $product_id ) {
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Missing product id.', 'addonify-quick-view' ),
+				)
+			);
+		}
 
 		// generate contents dynamically.
 		$this->generate_contents();
@@ -223,16 +291,33 @@ class Addonify_Quick_View_Public {
 			)
 		);
 
-		ob_start();
+		if ( $query_product->have_posts() ) {
 
-		while ( $query_product->have_posts() ) {
+			$call_response = array(
+				'success' => true,
+			);
 
-			$query_product->the_post();
+			ob_start();
 
-			do_action( 'addonify_quick_view_content', $product_id );
+			while ( $query_product->have_posts() ) {
+
+				$query_product->the_post();
+
+				do_action( 'addonify_quick_view_content', $product_id );
+			}
+
+			$call_response['data'] = ob_get_clean(); //phpcs:ignore
+
+			wp_send_json( $call_response );
+		} else {
+
+			wp_send_json(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'There is no product with the id.', 'addonify-quick-view' ),
+				)
+			);
 		}
-
-		echo ob_get_clean(); //phpcs:ignore
 
 		wp_die();
 
@@ -364,22 +449,5 @@ class Addonify_Quick_View_Public {
 		$css = preg_replace( '/(:| )(\.?)0(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}0', $css );
 
 		return trim( $css );
-	}
-
-
-	/**
-	 * Adds custom classes to the array of body classes.
-	 *
-	 * @since 1.1.1
-	 * @param array $classes Classes for the body element.
-	 * @return array
-	 */
-	public function body_classes_callback( $classes ) {
-
-		if ( (int) addonify_quick_view_get_settings_fields_values( 'disable_quick_view_on_mobile_device' ) === 1 ) {
-			$classes[] = 'addonify-quick-view-disabled';
-		}
-
-		return $classes;
 	}
 }

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,8 +23,7 @@
  * @subpackage Addonify_Quick_View/includes
  * @author     Addonify <info@addonify.com>
  */
-class Addonify_Quick_View_i18n {
-
+class Addonify_Quick_View_i18n { // phpcs:ignore
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -39,9 +37,5 @@ class Addonify_Quick_View_i18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

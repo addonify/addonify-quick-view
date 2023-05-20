@@ -1,76 +1,85 @@
-<?php 
+<?php
 /**
- * Sanitize multiple choices values.
- * 
- * @since 1.0.7
- * @param array $args
- * @return array $sanitized_values
+ * Helper functions for settings.
+ *
+ * @since      1.0.7
+ *
+ * @package    Addonify_Quick_View
+ * @subpackage Addonify_Quick_View/includes/functions
+ * @author     Addonify <contact@addonify.com>
  */
+
 if ( ! function_exists( 'addonify_quick_view_sanitize_multi_choices' ) ) {
+	/**
+	 * Sanitize multiple choices values.
+	 *
+	 * @since 1.0.7
+	 *
+	 * @param array $args Raw values.
+	 * @return array $sanitized_values
+	 */
+	function addonify_quick_view_sanitize_multi_choices( $args ) {
 
-    function addonify_quick_view_sanitize_multi_choices( $args ) {
+		if (
+			is_array( $args['choices'] ) &&
+			count( $args['choices'] ) &&
+			is_array( $args['values'] ) &&
+			count( $args['values'] )
+		) {
 
-        if ( 
-            is_array( $args['choices'] ) && 
-            count( $args['choices'] ) && 
-            is_array( $args['values'] ) && 
-            count( $args['values'] ) 
-        ) {
+			$sanitized_values = array();
 
-            $sanitized_values = array();
+			foreach ( $args['values'] as $value ) {
 
-            foreach ( $args['values'] as $value ) {
-                
-                if ( array_key_exists( $value, $args['choices'] ) ) {
+				if ( array_key_exists( $value, $args['choices'] ) ) {
 
-                    $sanitized_values[] = $value;
-                }
-            }
+					$sanitized_values[] = $value;
+				}
+			}
 
-            return $sanitized_values;
-        }
+			return $sanitized_values;
+		}
 
-        return array();
-    }
+		return array();
+	}
 }
 
 
-
-/**
- * Check if the device is mobile.
- * 
- * @since 1.1.1
- * @return boolean
- */
 if ( ! function_exists( 'addonify_quick_view_is_mobile' ) ) {
+	/**
+	 * Check if the device is mobile.
+	 *
+	 * @since 1.1.1
+	 *
+	 * @return boolean
+	 */
+	function addonify_quick_view_is_mobile() {
 
-    function addonify_quick_view_is_mobile() {
+		if ( class_exists( '\Detection\MobileDetect' ) ) {
 
-        if ( class_exists( 'Mobile_Detect' ) ) {
+			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
-            $mobile_detect = new Mobile_Detect;
-
-            return $mobile_detect->isMobile();
-        }
-    }
+			return $device_detect->isMobile();
+		}
+	}
 }
 
 
-/**
- * Check if the device is tablet.
- * 
- * @since 1.1.1
- * @return boolean
- */
 if ( ! function_exists( 'addonify_quick_view_is_tablet' ) ) {
+	/**
+	 * Check if the device is tablet.
+	 *
+	 * @since 1.1.1
+	 *
+	 * @return boolean
+	 */
+	function addonify_quick_view_is_tablet() {
 
-    function addonify_quick_view_is_tablet() {
+		if ( class_exists( '\Detection\MobileDetect' ) ) {
 
-        if ( class_exists( 'Mobile_Detect' ) ) {
+			$device_detect =  new \Detection\MobileDetect; // phpcs:ignore
 
-            $mobile_detect = new Mobile_Detect;
-
-            return $mobile_detect->isTablet();
-        }
-    }
+			return $device_detect->isTablet();
+		}
+	}
 }

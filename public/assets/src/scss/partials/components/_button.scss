@@ -40,3 +40,20 @@
 	border-radius: 100%;
 	@include transation_delay();
 }
+
+/**
+*
+* Hide quick view button if disabled in mobile view is 'enabled' on the setting page.
+*
+* @since: 1.2.4
+*/
+
+@media ( max-width: 575px ) {
+
+	.addonify-quick-view-disabled-on-mobile .addonify-qvm-button,
+	.addonify-quick-view-disabled-on-mobile.woocommerce ul.products li.product .button.addonify-qvm-button,
+	.addonify-quick-view-disabled-on-mobile.woocommerce-page ul.products li.product .button.addonify-qvm-button {
+		
+		display: none;
+	}
+}
