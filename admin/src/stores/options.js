@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-const { isEqual, cloneDeep } = lodash;
-const { apiFetch } = wp;
 import { ElMessage } from 'element-plus'
 
-const { __ } = wp.i18n;
-const BASE_API_URL = adfy_wp_locolizer.rest_namespace;
 let oldOptions = {};
+const { apiFetch } = wp;
+const { __ } = wp.i18n;
+const { isEqual, cloneDeep } = lodash;
+const BASE_API_URL = adfy_wp_locolizer.rest_namespace;
 
 export const useOptionsStore = defineStore({
 
