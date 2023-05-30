@@ -10,7 +10,16 @@
 	const store = useOptionsStore();
 
 	onMounted(() => {
-		store.fetchOptions();
+		/**
+		 *
+		 * Check if we have state in the memory before fetching options from API.
+		 *
+		 * @since:
+		 */
+
+		if (!store.haveStateInMemory) {
+			store.fetchOptions();
+		}
 	});
 </script>
 

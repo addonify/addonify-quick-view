@@ -5,8 +5,8 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view
 Requires at least: 5.9
 Requires PHP: 7.4
-Tested up to: 6.2.1
-Stable tag: 1.2.4
+Tested up to: 6.2.2
+Stable tag: 1.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,11 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.2.5 - ?, 2023 =
+
+- Tweak: How reactive state on plugin setting's page is managed (vue js).
+- Enhancement: Better error handelling on plugin setting's page (vue js).
 
 = 1.2.4 - 20 May, 2023 =
 
