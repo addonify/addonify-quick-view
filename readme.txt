@@ -2,7 +2,7 @@
 
 Contributors: addonify
 Donate link: https://addonify.com/contact/
-Tags:  woocommerce, quick view, woocommerce quick view, products quick view
+Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
@@ -67,8 +67,9 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.2.5 - ?, 2023 =
+= 1.2.5 - 31 May, 2023 =
 
+- Fix: Uncaught ReferenceError: PerfectScrollbar is not defined.
 - Tweak: How reactive state on plugin setting's page is managed (vue js).
 - Enhancement: Better error handelling on plugin setting's page (vue js).
 
