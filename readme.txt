@@ -70,6 +70,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 = 1.2.5 - 31 May, 2023 =
 
 - Fix: Uncaught ReferenceError: PerfectScrollbar is not defined.
+- Tweak: Disabled page scrolling when quick view modal is visible.
 - Tweak: How reactive state on plugin setting's page is managed (vue js).
 - Enhancement: Better error handelling on plugin setting's page (vue js).
 
