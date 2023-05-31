@@ -36,9 +36,11 @@
 	background-color: var(--addonify_qv_modal_overlay_background);
 }
 
-.addonify-qvm-is-active {
+body.addonify-qvm-is-active {
 
-	overflow: hidden;
+	position: relative;
+	overflow-y: hidden;
+	max-height: 100vh;
 }
 
 .addonify-qvm-is-active #addonify-quick-view-modal,
