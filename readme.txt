@@ -69,6 +69,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.5 - ?, 2023 =
 
+- Fix: Uncaught ReferenceError: PerfectScrollbar is not defined.
 - Tweak: How reactive state on plugin setting's page is managed (vue js).
 - Enhancement: Better error handelling on plugin setting's page (vue js).
 
