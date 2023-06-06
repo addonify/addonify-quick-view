@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,10 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.2.6 - 06 June, 2023 =
+
+- Enhancement: Console warn if perfect scroll bar couldn't be initialized. #165
 
 = 1.2.5 - 31 May, 2023 =
 
