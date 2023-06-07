@@ -67,7 +67,7 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.2.6 - 06 June, 2023 =
+= 1.2.6 - 07 June, 2023 =
 
 - Enhancement: Console warn if perfect scroll bar couldn't be initialized. #165
 
