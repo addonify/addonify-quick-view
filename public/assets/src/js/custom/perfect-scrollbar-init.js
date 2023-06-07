@@ -11,16 +11,22 @@
 
 addonifyQuickViewPerfectScrollBar = () => {
 
-    const addonifyQvScrollableDivEle = document.getElementById('addonify-quick-view-modal');
+    if (typeof PerfectScrollbar === 'function') {
 
-    if (addonifyQvScrollableDivEle) {
+        const addonifyQvScrollableDivEle = document.getElementById('addonify-quick-view-modal');
 
-        new PerfectScrollbar(addonifyQvScrollableDivEle, {
+        if (addonifyQvScrollableDivEle) {
 
-            wheelSpeed: 1,
-            wheelPropagation: true,
-            minScrollbarLength: 20
-        });
+            new PerfectScrollbar(addonifyQvScrollableDivEle, {
+
+                wheelSpeed: 1,
+                wheelPropagation: true,
+                minScrollbarLength: 20
+            });
+        }
+    } else {
+
+        console.warn("Info: Addonify Quick View, PerfectScrollbar is not defined. Perfect scroll bar won't be initialized.");
     }
 }
 
