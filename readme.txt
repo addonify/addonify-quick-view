@@ -1,4 +1,4 @@
-=== Addonify WooCommerce Quick View ===
+=== Addonify - Quick View For WooCommerce ===
 
 Contributors: addonify
 Donate link: https://addonify.com/contact/
@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,9 +16,9 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 
 Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
 
-👉 [Demo one](https://demo.addonify.com/woo/01/) *(Custom quick view button)*
-👉 [Demo two](https://demo.addonify.com/woo/01/quick-view-ii/) *(Default Store Front theme)*
-👉 [Documentation guide](https://docs.addonify.com/kb/woocommerce-quick-view/) 
+🌍 Official Demo: [Link 1](https://demo.addonify.com/woo/01/)
+🌍 Official Demo: [Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
+📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
 
 If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
 
@@ -49,8 +49,8 @@ Need a getting started guide? Feel free to check [developer documentation](https
 
 We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas. Please be informed that discussions are not just limited to sharing ideas, feel free to ask questions related to our plugin, submit a bug report and participate in poll.
 
-👉 [Create a new discussion](https://github.com/addonify/addonify-quick-view/discussions)
-👉 [Report a bug](https://github.com/addonify/addonify-quick-view/issues)
+🌍 [Create a new Discussion](https://github.com/addonify/addonify-quick-view/discussions)
+🪲 [Report a bug](https://github.com/addonify/addonify-quick-view/issues)
 
 
 == Installation ==
@@ -66,6 +66,11 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 2. Addonify Quick View button & modal box popup on frontend.
 
 == Changelog ==
+
+= 1.2.7 - 19 July, 2023 =
+
+- Fixed: Vue JS components [color-picker] fix incorrect cursor position. 
+- Updated: Logo in plugin setting page.
 
 = 1.2.6 - 07 June, 2023 =
 
