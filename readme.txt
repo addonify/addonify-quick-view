@@ -16,9 +16,9 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 
 Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
 
-🌍 Official Demo: [#Link 1](https://demo.addonify.com/woo/01/)
-🌍 Official Demo: [#Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
-📜 Official Doc: [#Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
+🌍 Official Demo: [Link 1](https://demo.addonify.com/woo/01/)
+🌍 Official Demo: [Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
+📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
 
 If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
 
