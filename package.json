@@ -1,7 +1,7 @@
 {
   "name": "addonify-quick-view",
   "version": "1.0.0",
-  "description": "Addonify Quick View",
+  "description": "Addonify Quick View For WooCommerce",
   "license": "GPLv3",
   "private": true,
   "author": "Addonify",
@@ -15,7 +15,7 @@
     "zip": "mix --production && gulp zip"
   },
   "dependencies": {
-    "element-plus": "^2.2.2",
+    "element-plus": "^2.3.8",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"
@@ -43,12 +43,12 @@
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.1.0",
     "laravel-mix": "^6.0.43",
+    "postcss-preset-env": "^7.6.0",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0",
     "unplugin-element-plus": "^0.4.0",
     "vue-loader": "^16.8.3",
-    "vue-template-compiler": "^2.6.14",
-    "postcss-preset-env": "^7.6.0"
+    "vue-template-compiler": "^2.6.14"
   }
 }
