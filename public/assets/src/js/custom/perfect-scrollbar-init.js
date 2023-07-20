@@ -2,7 +2,7 @@
 
 /**
 *
-* Function that checks "addonify-quick-view-modal" div.
+* Function that checks "adfy-qvm-scrollbar" div.
 * If it exists, then it will initiate perfect scrollbar.
 * 
 * @return {void} void

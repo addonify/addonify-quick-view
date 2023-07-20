@@ -1,0 +1,20 @@
+/* -------------------------------------------------------------------------- 
+	WooCommerce light box.
+  -------------------------------------------------------------------------- */
+
+.addonify-qvm-is-active {
+
+    &.woocommerce,
+    &.woocommerce-page {
+
+        .pswp {
+
+            z-index: calc( var(--addonify_qv_modal_zindex) + 10 );
+
+            img.pswp__img {
+
+                background-color: white;
+            }
+        }
+    }
+}
