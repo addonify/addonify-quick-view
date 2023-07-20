@@ -16,10 +16,33 @@
             });
 
             // remove class from body when quick view close button is clicked
+            $('body').on('click', '#addonify-qvm-close-button', function (e) {
 
-            $('body').on('click', '#addonify-qvm-close-button', function () {
+                e.preventDefault(); // prevent empty links clicks
 
-                $('body').removeClass('addonify-qvm-is-active');
+                let animationOpeningTask = null;
+                let animationClosingTask = null;
+                let quickViewModelWrapperEle = $('#addonify-quick-view-modal-wrapper');
+
+                // If closing animation is enabled.
+                quickViewModelWrapperEle.removeClass('play-opening-animation');
+                quickViewModelWrapperEle.addClass('play-closing-animation');
+
+                clearTimeout(animationOpeningTask);
+                animationOpeningTask = setTimeout(() => {
+
+                    $('body').removeClass('addonify-qvm-is-active');
+                    quickViewModelWrapperEle.removeClass('play-closing-animation');
+
+                    clearTimeout(animationOpeningTask);
+                }, 800);
+
+                clearTimeout(animationClosingTask);
+                animationClosingTask = setTimeout(() => {
+
+                    quickViewModelWrapperEle.addClass('play-opening-animation');
+                    clearTimeout(animationClosingTask);
+                }, 1000);
             });
         }
 

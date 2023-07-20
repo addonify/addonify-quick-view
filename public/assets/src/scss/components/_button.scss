@@ -1,0 +1,87 @@
+/* -------------------------------------------------------------------------- 
+	Quick view button
+  -------------------------------------------------------------------------- */
+
+.adfy-qv-button {
+	
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	border: none;
+	background-color: transparent;
+	@include transation_delay();
+
+	&:is(:hover) {
+
+		border: none;
+		background-color: transparent;
+	}
+
+	&:is(:focus) {
+
+		outline: none;
+		border: none;
+		background-color: transparent;
+	}
+}
+
+/* -------------------------------------------------------------------------- 
+	Quick view model close button
+  -------------------------------------------------------------------------- */
+
+#addonify-qvm-close-button {
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	fill: var(--addonify_qv_close_button_text);
+	color: var(--addonify_qv_close_button_text);
+	height: 30px;
+	width: 30px;
+	background-color: var(--addonify_qv_close_button_background);
+	border-radius: 100%;
+	cursor: pointer;
+
+	&:is(:hover) {
+
+		fill: var(--addonify_qv_close_button_text_hover);
+		color: var(--addonify_qv_close_button_text_hover);
+		background-color: var(--addonify_qv_close_button_background_hover);
+	}
+
+	svg {
+
+    	height: 14px;
+    	width: 14px;
+	}
+}
+
+/**
+*
+* Hide quick view button if disabled in mobile view is 'enabled' on the setting page.
+*
+* @since: 1.2.4
+*/
+
+@media ( max-width: 575px ) {
+
+	.addonify-quick-view-disabled-on-mobile {
+
+		&.woocommerce {
+
+			ul.products li.product .button.addonify-qvm-button,
+			ul.products li.product .button.addonify-qvm-button {
+
+				display: none;
+			}
+		}
+
+		.addonify-qvm-button {
+
+			display: none;
+		}
+	}
+}

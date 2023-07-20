@@ -1,0 +1,37 @@
+/* -------------------------------------------------------------------------- 
+	Model spinner
+  -------------------------------------------------------------------------- */
+
+#adfy-qvm-spinner {
+
+  	@include flex(row, center, center, wrap, 0);
+	position: fixed;
+	height: auto;
+	width: auto;
+	overflow: hidden;
+	border-radius: 100%;
+	z-index: calc( var(--addonify_qv_modal_zindex) + 10 );
+	@include visibility(visible);
+	@include position_topnleft();
+
+    &.hide {
+
+		@include display(none);
+		@include visibility(hidden);
+		animation: none;
+    }
+
+	svg {
+
+		display: inline-flex;
+		width: var(--addonify_qv_spinner_icon_size);
+		height: var(--addonify_qv_spinner_icon_size);
+		fill: var(--addonify_qv_modal_spinner_icon_color);
+		color: var(--addonify_qv_modal_spinner_icon_color);
+		line-height: 1;
+		animation-name: AddonifyQuickViewSpin;
+		animation-duration: 800ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+}

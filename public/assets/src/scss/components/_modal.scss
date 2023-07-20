@@ -1,0 +1,232 @@
+/* -------------------------------------------------------------------------- 
+	Model Default
+  -------------------------------------------------------------------------- */
+
+#addonify-quick-view-modal {
+
+	@include flex(column, stretch, stretch, wrap, 0);
+	position: relative;
+	opacity: 1;
+	visibility: visible;
+	margin: 0 auto;
+    width: 100%;
+	max-width: 1000px;
+	height: auto;
+	min-height: 400px;
+	max-height: 80vh;
+	border-radius: var(--addonify_qv_modal_border_radius);
+	box-shadow: 0 0 65px rgba(0, 0, 0, 0.1);
+    background-color: var(--addonify_qv_modal_background);
+	z-index: var(--addonify_qv_modal_zindex);
+	@include visibility(hidden);
+	transition: none;
+
+	.adfy-quick-view-model-inner {
+
+		position: relative;
+		height: 100%;
+		width: 100%;
+		max-width: 100%;
+
+		.adfy-qvm-header {
+
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			z-index: 10;
+		}
+
+		.adfy-quick-view-modal-content  {
+
+			position: relative;
+			padding: 40px 30px;
+			color: var(--addonify_qv_modal_general_text_color);
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------- 
+	Visibility
+  -------------------------------------------------------------------------- */
+
+.addonify-qvm-is-active {
+
+	#addonify-quick-view-modal {
+
+		@include visibility(visible);
+	}
+}
+
+/* -------------------------------------------------------------------------- 
+	Animations - Exit animations
+  -------------------------------------------------------------------------- */
+
+.addonify-qvm-is-active {
+
+	#addonify-quick-view-modal-wrapper {
+
+		&.play-closing-animation {
+
+			&[data-close_animation="fade-out"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewFadeOut 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="fade-out-down"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewFadeOutDown 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="bounce-out"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewBounceOut 1.2s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="slide-out-left"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSlideOutLeft 1.2s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="slide-out-right"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSlideOutRight 1.2s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="zoom-out"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewZoomOut 1.2s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="swing"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSwing 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="jello"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewJello 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-close_animation="rubber-band"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewRubberBand 0.8s ease-in-out forwards;
+				}
+			}
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------- 
+	Animations - Entrance Animations
+  -------------------------------------------------------------------------- */
+
+.addonify-qvm-is-active {
+
+	position: relative;
+	overflow: hidden;
+	max-height: 100vh;
+
+	#addonify-quick-view-modal-wrapper {
+
+		&.play-opening-animation {
+
+			&[data-open_animation="fade-in"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewFadeIn 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="fade-in-up"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewFadeInUp 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="bounce-in"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewBounceIn 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="slide-in-left"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSlideInLeft 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="slide-in-right"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSlideInRight 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="zoom-in"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewZoomIn 0.8s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="swing"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewSwing 1s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="jello"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewJello 1s ease-in-out forwards;
+				}
+			}
+
+			&[data-open_animation="rubber-band"] {
+
+				#addonify-quick-view-modal {
+
+					animation: AddonifyQuickViewRubberBand 1s ease-in-out forwards;
+				}
+			}
+		} 
+	}
+}

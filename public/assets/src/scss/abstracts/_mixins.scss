@@ -3,15 +3,60 @@
 	Mixins
   -------------------------------------------------------------------------- */
 
-@mixin transation_delay () {
+@mixin flex( $direction: row, $align, $justify, $wrap: warp, $gap ) {
 
-    transition: all 0.5s ease;
+	display: flex;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+	gap: $gap;
+
+	@if $align {
+
+		align-items: $align;
+	}
+
+	@if $justify {
+
+		justify-content: $justify;
+	}
+
+	@if $gap {
+
+		gap: $gap;
+	}
+}
+
+@mixin grid () {
+
+	display: grid;
+}
+
+@mixin transation_delay ($delay: 0.5s, $property: all, $function: ease) {
+
+    transition: $property $delay $function;
 }
 
 @mixin transation_delay_none () {
 
     transition: none;
 }
+
+@mixin display ($display: none) {
+
+	display: $display;
+}
+
+@mixin visibility ($visibility: hidden) {
+
+	@if $visibility == hidden {
+		opacity: 0;
+		visibility: hidden;
+	} @else {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
 
 @mixin scale () {
 
@@ -21,27 +66,27 @@
 
 @mixin position ( $top, $bottom, $left, $right ) {
 	
-	 top: $top;
-	 bottom: $bottom;
-	 left: $left;
-	 right: $right;
-	 transform:translateY(-50%);
+	top: $top;
+	bottom: $bottom;
+	left: $left;
+	right: $right;
+	transform:translateY(-50%);
 }
 
 @mixin position_topnleft () {
 	
-	 top: 50%;
-	 left: 50%;
+	top: 50%;
+	left: 50%;
     transform: translateX(-50%) translateY(-50%);
 }
 
 @mixin overlay () {
 
-	 top: 0;
-	 bottom: 0;
-	 left: 0;
-	 right: 0;
-	 @include transation_delay();
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	@include transation_delay();
 }
 
 @mixin border_radius ( $radius ) {
