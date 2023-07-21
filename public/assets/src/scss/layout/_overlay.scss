@@ -14,13 +14,12 @@
 	right: 0;
 	width: 100%;
 	height: 100%;
-	@include overlay();
 	backdrop-filter: blur(10px);
-	z-index: -1;
+	z-index: calc( var(--addonify_qv_modal_zindex) - 30 );
 	background-color: var(--addonify_qv_modal_overlay_background);
 	@include visibility(hidden);
 	overflow: hidden;
-	@include transation_delay(all, 0.5s, ease-in);
+	@include transation_delay(all, 0.3s, ease-in);
 }
 
 .addonify-qvm-is-active {
@@ -28,6 +27,5 @@
     #addonify-quick-view-modal-wrapper {
 
 		@include visibility(visible);
-		z-index: calc( var(--addonify_qv_modal_zindex) - 30 );
     }
 }

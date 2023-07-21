@@ -51,12 +51,13 @@
 	@if $visibility == hidden {
 		opacity: 0;
 		visibility: hidden;
+		backface-visibility: hidden;
 	} @else {
 		opacity: 1;
 		visibility: visible;
+		backface-visibility: visible;
 	}
 }
-
 
 @mixin scale () {
 
@@ -78,20 +79,6 @@
 	top: 50%;
 	left: 50%;
     transform: translateX(-50%) translateY(-50%);
-}
-
-@mixin overlay () {
-
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	@include transation_delay();
-}
-
-@mixin border_radius ( $radius ) {
-
-    border-radius: $radius;
 }
 
 @mixin box_shadow () {
