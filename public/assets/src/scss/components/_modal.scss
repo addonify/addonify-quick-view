@@ -4,10 +4,8 @@
 
 #addonify-quick-view-modal {
 
-	@include flex(column, stretch, stretch, wrap, 0);
+	@include flex(column, stretch, stretch, 10px, wrap);
 	position: relative;
-	opacity: 1;
-	visibility: visible;
 	margin: 0 auto;
     width: 100%;
 	max-width: 1000px;
@@ -20,6 +18,7 @@
 	z-index: var(--addonify_qv_modal_zindex);
 	@include visibility(hidden);
 	transition: none;
+	cursor: initial;
 
 	.adfy-quick-view-model-inner {
 
@@ -71,7 +70,7 @@
 
 				#addonify-quick-view-modal {
 
-					animation: AddonifyQuickViewFadeOut 0.8s ease-in-out forwards;
+					animation: AddonifyQuickViewFadeOut 1.2s ease-in-out forwards;
 				}
 			}
 
@@ -95,7 +94,7 @@
 
 				#addonify-quick-view-modal {
 
-					animation: AddonifyQuickViewSlideOutLeft 1.2s ease-in-out forwards;
+					animation: AddonifyQuickViewSlideOutLeft 0.8s linear forwards;
 				}
 			}
 
@@ -103,7 +102,7 @@
 
 				#addonify-quick-view-modal {
 
-					animation: AddonifyQuickViewSlideOutRight 1.2s ease-in-out forwards;
+					animation: AddonifyQuickViewSlideOutRight 0.8s linear forwards;
 				}
 			}
 
@@ -112,30 +111,6 @@
 				#addonify-quick-view-modal {
 
 					animation: AddonifyQuickViewZoomOut 1.2s ease-in-out forwards;
-				}
-			}
-
-			&[data-close_animation="swing"] {
-
-				#addonify-quick-view-modal {
-
-					animation: AddonifyQuickViewSwing 0.8s ease-in-out forwards;
-				}
-			}
-
-			&[data-close_animation="jello"] {
-
-				#addonify-quick-view-modal {
-
-					animation: AddonifyQuickViewJello 0.8s ease-in-out forwards;
-				}
-			}
-
-			&[data-close_animation="rubber-band"] {
-
-				#addonify-quick-view-modal {
-
-					animation: AddonifyQuickViewRubberBand 0.8s ease-in-out forwards;
 				}
 			}
 		}

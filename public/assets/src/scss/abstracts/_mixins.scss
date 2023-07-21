@@ -3,26 +3,29 @@
 	Mixins
   -------------------------------------------------------------------------- */
 
-@mixin flex( $direction: row, $align, $justify, $wrap: warp, $gap ) {
+@mixin flex( $direction: row, $align: null, $justify: null, $gap: null, $wrap: null ) {
 
 	display: flex;
 	flex-direction: $direction;
-	flex-wrap: $wrap;
-	gap: $gap;
 
-	@if $align {
+	@if $gap != null {
+
+		gap: $gap;
+	}
+
+	@if $align != null {
 
 		align-items: $align;
 	}
 
-	@if $justify {
+	@if $justify != null {
 
 		justify-content: $justify;
 	}
 
-	@if $gap {
+	@if $wrap != null {
 
-		gap: $gap;
+		flex-wrap: $wrap;
 	}
 }
 
@@ -51,12 +54,13 @@
 	@if $visibility == hidden {
 		opacity: 0;
 		visibility: hidden;
+		backface-visibility: hidden;
 	} @else {
 		opacity: 1;
 		visibility: visible;
+		backface-visibility: visible;
 	}
 }
-
 
 @mixin scale () {
 
@@ -78,20 +82,6 @@
 	top: 50%;
 	left: 50%;
     transform: translateX(-50%) translateY(-50%);
-}
-
-@mixin overlay () {
-
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	@include transation_delay();
-}
-
-@mixin border_radius ( $radius ) {
-
-    border-radius: $radius;
 }
 
 @mixin box_shadow () {

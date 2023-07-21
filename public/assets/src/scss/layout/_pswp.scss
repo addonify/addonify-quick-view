@@ -9,7 +9,15 @@
 
         .pswp {
 
+            opacity: 1;
             z-index: calc( var(--addonify_qv_modal_zindex) + 10 );
+
+            .pswp__bg {
+
+                opacity: 1 !important;
+                backdrop-filter: blur(10px);
+                background-color: rgba(0, 0, 0, 1);
+            }
 
             img.pswp__img {
 
