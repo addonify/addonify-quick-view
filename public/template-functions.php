@@ -170,21 +170,42 @@ add_action( 'addonify_quick_view_content', 'addonify_quick_view_content_template
  * @since 1.2.8
  * @param string action. Opening or closing.
  */
-function addonify_quick_view_get_modal_animation( $action ) {
+if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
 
-	if ( $action === '') {
+	function addonify_quick_view_get_modal_animation( $action ) {
 
-		return 'none';
+		if ( $action === '') {
+
+			return 'none';
+		}
+
+		if ( $action === 'opening' ) {
+
+			return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
+		}
+
+		if ( $action === 'closing' ) {
+
+			return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+		}
 	}
+}
 
-	if ( $action === 'opening' ) {
 
-		return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
-	}
+/**
+ * Return the loading spinner svg icon.
+ *
+ * @since 1.2.8
+ * @param string action. Opening or closing.
+ */
+if ( ! function_exists( 'addonify_quick_view_get_spinner_icon' ) ) {
 
-	if ( $action === 'closing' ) {
+	function addonify_quick_view_get_spinner_icon() {
 
-		return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+		// Get spinner choices array from the field settings.
+		$spinners = addonify_quick_view_modal_box_content_settings_fields();
+
+		return $spinners['spinner_icons']['choices'][addonify_quick_view_get_settings_fields_values( 'spinner_icons' )];
 	}
 }
 

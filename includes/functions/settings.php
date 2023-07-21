@@ -47,6 +47,10 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_closing_animation'             => 'bounce-out', // NEW
 				'close_modal_when_esc_pressed'		  => '1', // NEW
 				'close_modal_when_clicked_outside'	  => false, // NEW
+				'modal_zindex'	  					  => '10000000000000000', // NEW
+				'modal_border_radius'				  => '10', // NEW
+				'spinner_icons' 					  => 'icon_one', // NEW
+				'spinner_size' 					  	  => 28, // NEW
 	
 				'read_more_button_label'              => __( 'View Detail', 'addonify-quick-view' ),
 				// Styles.

@@ -405,6 +405,9 @@ class Addonify_Quick_View_Public {
 	public function dynamic_css() {
 
 		$css_values = array(
+			'--addonify_qv_modal_zindex'				  => addonify_quick_view_get_settings_fields_values( 'modal_zindex' ),
+			'--addonify_qv_modal_border_radius'			  => addonify_quick_view_get_settings_fields_values( 'modal_border_radius' ) . 'px', 
+			'--addonify_qv_spinner_icon_size'			  => addonify_quick_view_get_settings_fields_values( 'spinner_size' ) . 'px', 
 			'--addonify_qv_modal_overlay_background'      => addonify_quick_view_get_settings_fields_values( 'modal_box_overlay_background_color' ),
 			'--addonify_qv_modal_background'              => addonify_quick_view_get_settings_fields_values( 'modal_box_background_color' ),
 			'--addonify_qv_modal_general_text_color'      => addonify_quick_view_get_settings_fields_values( 'modal_box_general_text_color' ),

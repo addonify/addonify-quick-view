@@ -7,6 +7,7 @@
 	import Checkbox from "../inputs/Checkbox.vue";
 	import CheckboxButton from "../inputs/CheckboxButton.vue";
 	import Radio from "../inputs/Radio.vue";
+	import RadioIcon from "../inputs/RadioIcon.vue";
 	import ColorPicker from "../inputs/ColorPicker.vue";
 	import InvalidControl from "../inputs/InvalidControl.vue";
 	const props = defineProps({
@@ -53,9 +54,19 @@
 		v-else-if="props.field.type == 'number'"
 		v-model="props.reactiveState[props.fieldKey]"
 		:placeholder="props.field.placeholder"
+		:style="props.field.style"
+		:min="props.field.min"
+		:max="props.field.max"
+		:step="props.field.step"
+		:precision="props.field.precision"
 	/>
 	<Radio
 		v-else-if="props.field.type == 'radio'"
+		v-model="props.reactiveState[props.fieldKey]"
+		:choices="props.field.choices"
+	/>
+	<RadioIcon
+		v-else-if="props.field.type == 'radio-icons'"
 		v-model="props.reactiveState[props.fieldKey]"
 		:choices="props.field.choices"
 	/>

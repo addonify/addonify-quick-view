@@ -47,6 +47,95 @@
         line-height: 1;
         @include transation_delay();
     }
+
+    // Draggable
+    .adfy-draggable-elements {
+
+		> div {
+            
+			@include flex();
+			flex-direction: column;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--addonify_border_color);
+
+			.adfy-draggable-element {
+
+				display: block;
+				padding: 20px;
+				cursor: move;
+                background-color: transparent;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+                border-bottom: 1px solid var(--addonify_border_color);
+                overflow: auto;
+                opacity: 1;
+                visibility: visible;
+
+                &:last-child {
+
+                    border-bottom: none;
+                }
+
+                &.sortable-chosen {
+
+                    border-bottom-color: transparent;
+                }
+
+                &.sortable-ghost {
+
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .adfy-draggable-box {
+
+                    display: grid;
+                    column-gap: 10px;
+                    grid-template-columns: 50px 1fr;
+                    align-items: center;
+
+                     .draggable-switch {
+
+                        .el-switch {
+
+                            margin: 0;
+                            height: auto;
+                        }
+                    }
+
+                    .label-icon-box {
+
+                        @include flex();
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .option-label {
+
+                            
+                        }
+
+                        .option-icon {
+
+                            display: inline-flex;
+                            align-items: center;
+                            line-height: 1;
+
+                            svg {
+
+                                width: 22px;
+                                height: 22px;
+                                line-height: 1;
+                                fill: #bbbbbb;
+                                color: #bbbbbb;
+                                @include transation_delay();
+                            }
+                        }
+                    }
+                }
+			}
+		}
+	}
 }
 
 .adfy-navigation {
