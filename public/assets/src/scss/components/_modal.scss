@@ -4,7 +4,7 @@
 
 #addonify-quick-view-modal {
 
-	@include flex(column, stretch, stretch, wrap, 0);
+	@include flex(column, stretch, stretch, 10px, wrap);
 	position: relative;
 	margin: 0 auto;
     width: 100%;
@@ -18,6 +18,7 @@
 	z-index: var(--addonify_qv_modal_zindex);
 	@include visibility(hidden);
 	transition: none;
+	cursor: initial;
 
 	.adfy-quick-view-model-inner {
 

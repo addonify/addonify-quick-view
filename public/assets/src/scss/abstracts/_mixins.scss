@@ -3,26 +3,29 @@
 	Mixins
   -------------------------------------------------------------------------- */
 
-@mixin flex( $direction: row, $align, $justify, $wrap: warp, $gap ) {
+@mixin flex( $direction: row, $align: null, $justify: null, $gap: null, $wrap: null ) {
 
 	display: flex;
 	flex-direction: $direction;
-	flex-wrap: $wrap;
-	gap: $gap;
 
-	@if $align {
+	@if $gap != null {
+
+		gap: $gap;
+	}
+
+	@if $align != null {
 
 		align-items: $align;
 	}
 
-	@if $justify {
+	@if $justify != null {
 
 		justify-content: $justify;
 	}
 
-	@if $gap {
+	@if $wrap != null {
 
-		gap: $gap;
+		flex-wrap: $wrap;
 	}
 }
 

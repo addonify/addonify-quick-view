@@ -4,7 +4,7 @@
 
 #addonify-quick-view-modal-wrapper {
 
-    @include flex(column, center, center, wrap, 0);
+	@include flex(column, center, center, null, wrap);
 	position: fixed;
 	width: 100%;
 	height: 100%;
