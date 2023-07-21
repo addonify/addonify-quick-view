@@ -285,7 +285,7 @@
         */
         renderWooCommerceGalleryTriggerIcon: function () {
 
-            let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,24H17a1,1,0,0,1,0-2h2a3,3,0,0,0,3-3V17a1,1,0,0,1,2,0v2A5.006,5.006,0,0,1,19,24Z"/><path d="M1,8A1,1,0,0,1,0,7V5A5.006,5.006,0,0,1,5,0H7A1,1,0,0,1,7,2H5A3,3,0,0,0,2,5V7A1,1,0,0,1,1,8Z"/><path d="M7,24H5a5.006,5.006,0,0,1-5-5V17a1,1,0,0,1,2,0v2a3,3,0,0,0,3,3H7a1,1,0,0,1,0,2Z"/><path d="M23,8a1,1,0,0,1-1-1V5a3,3,0,0,0-3-3H17a1,1,0,0,1,0-2h2a5.006,5.006,0,0,1,5,5V7A1,1,0,0,1,23,8Z"/></svg>';
+            let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24,8V2a2,2,0,0,0-2-2H16V2h4.586L12,10.586,3.414,2H8V0H2A2,2,0,0,0,0,2V8H2V3.414L10.586,12,2,20.586V16H0v6a2,2,0,0,0,2,2H8V22H3.414L12,13.414,20.586,22H16v2h6a2,2,0,0,0,2-2V16H22v4.586L13.414,12,22,3.414V8Z"/></svg>';
 
             let triggerEle = $('#addonify-quick-view-modal .woocommerce-product-gallery__trigger');
 
@@ -409,16 +409,4 @@
         addonifyQuickView.loadOnResize();
     });
 
-    //$(document).on('addonifyQuickViewModalContentLoded', function (e, data) {
-
-    //    console.log('addonifyQuickViewModalContentLoded event fired!');
-    //    console.log(data);
-    //});
-
 })(jQuery);
-
-//document.addEventListener('addonifyQuickViewModalContentLoded', function (e) {
-
-//    console.log('addonifyQuickViewModalContentLoded event fired!');
-//    console.log(e.detail);
-//});
