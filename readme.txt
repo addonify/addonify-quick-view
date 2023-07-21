@@ -34,6 +34,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ Color option for elements inside quick view modal popup box.
 ✅ Change a label for the “Quick view” button.
 ✅ Developer friendly & easy to implement according to your need.
+✅ JavaScript API for developers.
 ✅ Friendly support.
 
 **DEVELOPER DOCUMENTATION:**
