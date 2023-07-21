@@ -37,11 +37,12 @@
 
     // Image gallery
     --addonify_qv_modal_images_border: rgba(238, 238, 238, 1);
-    --addonify_qv_gallery_trigger_icon_color: rgba(51, 51, 51, 1); // NEW
+    --addonify_qv_gallery_trigger_icon_color: #9F9F9F; // NEW
     --addonify_qv_gallery_trigger_icon_color_hover: rgb(54, 91, 255); // NEW
-    --addonify_qv_gallery_trigger_icon_background_color: rbga(255, 255, 255, 0); // NEW
-    --addonify_qv_gallery_trigger_icon_background_color_hover: rbga(255, 255, 255, 0); // NEW
-    --addonify_qv_gallery_trigger_icon_size: 20px; // NEW
+    --addonify_qv_gallery_trigger_icon_background_color: #FFFFFF; // NEW
+    --addonify_qv_gallery_trigger_icon_background_color_hover: #FFFFFF; // NEW
+    --addonify_qv_modal_images_border_color: rgba(238, 238, 238, 1); // NEW
+    --addonify_qv_gallery_trigger_icon_size: 18px; // NEW
     
     // Close button
     --addonify_qv_close_button_text: rgba(118, 118, 118, 1);
