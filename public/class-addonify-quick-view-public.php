@@ -227,8 +227,18 @@ class Addonify_Quick_View_Public {
 			'addonify-quick-view-public',
 			'addonifyQuickViewPublicScriptObject',
 			array(
-				'ajaxURL'         => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'quickViewAction' => 'get_quick_view_contents',
+				'ajaxURL'             => esc_url( admin_url( 'admin-ajax.php' ) ),
+
+				'quickViewAction' 	  => 'get_quick_view_contents',
+
+				'animateModelOnClose' => addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) === 'none' ? false : true,
+
+				'closeModalOnEscClicked' => addonify_quick_view_get_settings_fields_values( 'close_modal_when_esc_pressed' ) === '1' ? true : false,
+
+				'closeModelOnOutsideClicked' => addonify_quick_view_get_settings_fields_values( 'close_modal_when_clicked_outside' ) === '1' ? true : false,
+
+				'enableWcGalleryLightBox' => (int) addonify_quick_view_get_settings_fields_values( 'enable_lightbox' ) === 1 ? true : false,
+
 				'nonce'           => wp_create_nonce( 'addonify_quick_view_nonce' ),
 			)
 		);

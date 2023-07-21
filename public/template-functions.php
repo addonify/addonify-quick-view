@@ -164,6 +164,30 @@ function addonify_quick_view_content_template( $product_id ) {
 add_action( 'addonify_quick_view_content', 'addonify_quick_view_content_template' );
 
 
+/**
+ * Return the name of the modal animation.
+ *
+ * @since 1.2.8
+ * @param string action. Opening or closing.
+ */
+function addonify_quick_view_get_modal_animation( $action ) {
+
+	if ( $action === '') {
+
+		return 'none';
+	}
+
+	if ( $action === 'opening' ) {
+
+		return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
+	}
+
+	if ( $action === 'closing' ) {
+
+		return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+	}
+}
+
 
 
 

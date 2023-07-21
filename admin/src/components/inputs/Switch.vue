@@ -16,6 +16,8 @@
 			emit("update:modelValue", newValue);
 		},
 	});
+
+	console.log(typeof props.modelValue);
 </script>
 <template>
 	<el-switch

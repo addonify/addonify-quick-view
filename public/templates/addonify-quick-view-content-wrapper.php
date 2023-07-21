@@ -21,9 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <aside id="addonify-quick-view-modal-wrapper" 
 	class="play-opening-animation"
-	data-open_animation="jello" 
-	data-close_animation="bounce-out">
-	<div id="addonify-quick-view-modal" id="addonify-quick-modal-scrollbar" data-layout="default">
+	data-open_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('opening') ); ?>" 
+	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('closing') ); ?>">
+	<div id="addonify-quick-view-modal" data-layout="default">
 		<div class="adfy-quick-view-model-inner" >
 			<header class="adfy-qvm-header">
 				<button id="addonify-qvm-close-button" class="adfy-qv-button">
