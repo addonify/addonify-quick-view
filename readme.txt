@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,15 +68,21 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Changelog ==
 
-= 1.2.7 - 19 July, 2023 =
+= 1.2.8 - ? July, 2023 =
 
 - Added: Option to close modal when ESC key is pressed.
-- Added: Option to close modal when clicked outside.
-- Added: Option, modal opening & exit animations.
+- Added: Option to close modal when clicked outside. #176
+- Added: Option, modal opening & exit animations. #176
 - Added: Option, modal z-index. 
-- Added: Option, modal border radius.
-- Added: Option, spinner icons.
-- Added: Option, spinner icon font size.
+- Added: Option, modal border radius. 
+- Added: Option, spinner icons. #177
+- Added: Option, spinner icon font size. #177
+- Added: JavaScript API, `addonifyQuickViewModalOpened`, `addonifyQuickViewModalClosed`, `addonifyQuickViewModalContentLoded`.
+- Refactored: Public facing JavaScript code.
+- Updated: Admin setting page UI SCSS code.
+
+= 1.2.7 - 19 July, 2023 =
+
 - Fixed: Vue JS components [color-picker] fix incorrect cursor position. 
 - Updated: Logo in plugin setting page.
 
