@@ -227,8 +227,18 @@ class Addonify_Quick_View_Public {
 			'addonify-quick-view-public',
 			'addonifyQuickViewPublicScriptObject',
 			array(
-				'ajaxURL'         => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'quickViewAction' => 'get_quick_view_contents',
+				'ajaxURL'             => esc_url( admin_url( 'admin-ajax.php' ) ),
+
+				'quickViewAction' 	  => 'get_quick_view_contents',
+
+				'animateModelOnClose' => addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) === 'none' ? false : true,
+
+				'closeModalOnEscClicked' => addonify_quick_view_get_settings_fields_values( 'close_modal_when_esc_pressed' ) === '1' ? true : false,
+
+				'closeModelOnOutsideClicked' => addonify_quick_view_get_settings_fields_values( 'close_modal_when_clicked_outside' ) === '1' ? true : false,
+
+				'enableWcGalleryLightBox' => (int) addonify_quick_view_get_settings_fields_values( 'enable_lightbox' ) === 1 ? true : false,
+
 				'nonce'           => wp_create_nonce( 'addonify_quick_view_nonce' ),
 			)
 		);
@@ -395,6 +405,9 @@ class Addonify_Quick_View_Public {
 	public function dynamic_css() {
 
 		$css_values = array(
+			'--addonify_qv_modal_zindex'				  => addonify_quick_view_get_settings_fields_values( 'modal_zindex' ),
+			'--addonify_qv_modal_border_radius'			  => addonify_quick_view_get_settings_fields_values( 'modal_border_radius' ) . 'px', 
+			'--addonify_qv_spinner_icon_size'			  => addonify_quick_view_get_settings_fields_values( 'spinner_size' ) . 'px', 
 			'--addonify_qv_modal_overlay_background'      => addonify_quick_view_get_settings_fields_values( 'modal_box_overlay_background_color' ),
 			'--addonify_qv_modal_background'              => addonify_quick_view_get_settings_fields_values( 'modal_box_background_color' ),
 			'--addonify_qv_modal_general_text_color'      => addonify_quick_view_get_settings_fields_values( 'modal_box_general_text_color' ),

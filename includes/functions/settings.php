@@ -35,7 +35,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 			'addonify_quick_view_settings_fields_defaults',
 			array(
 				// Options.
-				'enable_quick_view'                   => true,
+				'enable_quick_view'                   => '1',
 				'disable_quick_view_on_mobile_device' => false,
 				'quick_view_btn_position'             => 'after_add_to_cart_button',
 				'quick_view_btn_label'                => __( 'Quick view', 'addonify-quick-view' ),
@@ -43,6 +43,15 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'product_thumbnail'                   => 'product_image_only',
 				'enable_lightbox'                     => false,
 				'display_read_more_button'            => false,
+				'modal_opening_animation'             => 'jello', // NEW
+				'modal_closing_animation'             => 'bounce-out', // NEW
+				'close_modal_when_esc_pressed'		  => '1', // NEW
+				'close_modal_when_clicked_outside'	  => false, // NEW
+				'modal_zindex'	  					  => '10000000000000000', // NEW
+				'modal_border_radius'				  => '10', // NEW
+				'spinner_icons' 					  => 'icon_one', // NEW
+				'spinner_size' 					  	  => 28, // NEW
+	
 				'read_more_button_label'              => __( 'View Detail', 'addonify-quick-view' ),
 				// Styles.
 				'enable_plugin_styles'                => false,

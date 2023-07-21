@@ -2,9 +2,10 @@
 
     'use strict';
 
-    const animateModelOnClose = true; // NEW
-    const closeModalOnEscClicked = true; // NEW
-    const closeModelOnOutsideClicked = true; // NEW
+    const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose; // NEW
+    const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked; // NEW
+    const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked; // NEW
+    const enableWcGalleryLightBox = addonifyQuickViewPublicScriptObject.enableWcGalleryLightBox;
 
     /**
      * Main object for addonify quick view modal.
@@ -104,7 +105,7 @@
             }
 
             // close quick view modal when outside modal is clicked.
-            if (closeModalOnEscClicked) {
+            if (closeModelOnOutsideClicked) {
 
                 // set cursor to pointer.
                 $('#addonify-quick-view-modal-wrapper').css('cursor', 'pointer');
@@ -227,7 +228,10 @@
                     complete: function () {
 
                         // render trigger icon for WooCommerce gallery.
-                        addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
+                        if (enableWcGalleryLightBox) {
+
+                            addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
+                        }
 
                         // hide loading state.
                         addonifyQuickView.setSpinner('hide');
@@ -285,11 +289,7 @@
 
             let triggerEle = $('#addonify-quick-view-modal .woocommerce-product-gallery__trigger');
 
-            console.log('renderWooCommerceGalleryTriggerIcon fn invoked!');
-
             if (triggerEle.length > 0) {
-
-                console.log('Found WooCommerce gallery trigger icon!');
 
                 triggerEle.html(" ");
                 triggerEle.html(icon);

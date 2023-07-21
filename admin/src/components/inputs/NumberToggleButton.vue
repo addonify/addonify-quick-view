@@ -27,10 +27,4 @@
 		:max="max ? max : 365"
 	/>
 </template>
-<style lang="scss">
-	.adfy-options {
-		.el-input-number--large {
-			width: 140px;
-		}
-	}
-</style>
+

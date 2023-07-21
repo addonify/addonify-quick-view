@@ -70,6 +70,13 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.7 - 19 July, 2023 =
 
+- Added: Option to close modal when ESC key is pressed.
+- Added: Option to close modal when clicked outside.
+- Added: Option, modal opening & exit animations.
+- Added: Option, modal z-index. 
+- Added: Option, modal border radius.
+- Added: Option, spinner icons.
+- Added: Option, spinner icon font size.
 - Fixed: Vue JS components [color-picker] fix incorrect cursor position. 
 - Updated: Logo in plugin setting page.
 
