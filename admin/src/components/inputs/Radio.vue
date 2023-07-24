@@ -102,10 +102,12 @@
 						}
 						svg.check {
 							display: none;
+							width: 26px;
+							height: 26px;
 							fill: var(--addonify_primary_color);
 							position: absolute;
-							right: -8px;
-							top: -8px;
+							right: -10px;
+							top: -10px;
 							z-index: 5;
 						}
 					}

@@ -22,9 +22,9 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                     'add_to_cart' => __( 'Add to Cart', 'addonify-quick-view' ),
                 ),
             ),
-            'modal_content_row_layout' => array(  
-                'label'         => __( 'Content row layout inside modal', 'addonify-quick-view' ),
-                'description'   => __( 'Choose how content row should appear inside the modal box.', 'addonify-quick-view' ),
+            'modal_content_column_layout' => array(  
+                'label'         => __( 'Content column layout inside modal', 'addonify-quick-view' ),
+                'description'   => __( 'Choose how content column should appear inside the modal box.', 'addonify-quick-view' ),
                 'type'          => 'radio',
                 'style'         => 'images',
                 'className'     => 'fullwidth',
@@ -33,6 +33,17 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                     'default'          => __( 'Default', 'addonify-quick-view' ),
                     'row-reversed'     => __( 'Row reversed', 'addonify-quick-view' ),
                 ),
+            ),
+            'modal_content_column_gap' => array(  
+                'label'         => __( 'Modal content column gap', 'addonify-quick-view' ),
+                'description'   => __( 'Specify the gap for the modal content inner column in px.', 'addonify-quick-view' ),
+                'placeholder'   => __( '40', 'addonify-quick-view' ),
+                'type'          => 'number',
+                'style'         => 'buttons-plus-minus',
+                'min'           => 0,
+                'max'           => 150,
+                'step'          => 5,
+                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
             ),
             'product_thumbnail' => array(
                 'label'         => __( 'Product Thumbnail', 'addonify-quick-view' ),
@@ -128,6 +139,17 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             'modal_border_radius' => array(
                 'label'         => __( 'Modal border radius', 'addonify-quick-view' ),
                 'description'   => __( 'Border radius of addonify quick view modal box in px.', 'addonify-quick-view'),
+                'placeholder'   => __( '10', 'addonify-quick-view' ),
+                'type'          => 'number',
+                'style'         => 'buttons-arrows',
+                'min'           => 0,
+                'max'           => 100,
+                'step'          => 1,
+                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
+            ),
+            'modal_image_radius' => array(
+                'label'         => __( 'Modal image border radius', 'addonify-quick-view' ),
+                'description'   => __( 'Image border radius inside modal box.', 'addonify-quick-view'),
                 'placeholder'   => __( '10', 'addonify-quick-view' ),
                 'type'          => 'number',
                 'style'         => 'buttons-arrows',
