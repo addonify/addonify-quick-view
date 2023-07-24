@@ -83,3 +83,44 @@ if ( ! function_exists( 'addonify_quick_view_is_tablet' ) ) {
 		}
 	}
 }
+
+/**
+ * Sanitizes SVG
+ *
+ * @since 1.2.8
+ * @package Addonify_Quick_View
+ * @subpackage Addonify_Quick_View/includes/functions
+ */
+
+if ( ! function_exists( 'addonify_quick_view_escape_svg' ) ) {
+	/**
+	 * Sanitizes SVG
+	 *
+	 * @param string $svg SVG code.
+	 * @return string $svg Sanitized SVG code.
+	 */
+	function addonify_quick_view_escape_svg( $svg ) {
+
+		$allowed_html = array(
+			'svg'   => array(
+				'class'           => true,
+				'aria-hidden'     => true,
+				'aria-labelledby' => true,
+				'role'            => true,
+				'xmlns'           => true,
+				'width'           => true,
+				'height'          => true,
+				'viewbox'         => true, // <= Must be lower case!
+			),
+			'g'     => array( 'fill' => true ),
+			'title' => array( 'title' => true ),
+			'path'  => array(
+				'd'    => true,
+				'fill' => true,
+			),
+		);
+
+		return wp_kses( $svg, $allowed_html );
+	}
+}
+

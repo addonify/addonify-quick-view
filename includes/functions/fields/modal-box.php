@@ -40,6 +40,12 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
+            'hide_modal_close_button' => array(
+                'label'         => __( 'Hide modal close button', 'addonify-quick-view' ),
+                'description'   => __( 'Enable this option is you wish to hide the modal close button.', 'addonify-quick-view' ),
+                'dependent'     => array('enable_quick_view'),
+                'type'          => 'switch'
+            ),
             'close_modal_when_esc_pressed' => array(
                 'label'         => __( 'Close modal if ESC key is pressed', 'addonify-quick-view' ),
                 'description'   => __( 'Enable to close modal if ESC key is pressed on keyboard.', 'addonify-quick-view' ),
