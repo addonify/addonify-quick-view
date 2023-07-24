@@ -205,3 +205,46 @@
 		} 
 	}
 }
+
+
+/* -------------------------------------------------------------------------- 
+	Modal content layout
+  -------------------------------------------------------------------------- */
+
+#addonify-quick-view-modal-wrapper  {
+
+	#addonify-quick-view-modal {
+
+		[data-content_layout="row-reversed"] {
+
+			.woocommerce {
+
+				.product  {
+
+					.images {
+
+						order: 2;
+
+						.woocommerce-product-gallery__trigger {
+
+							right: auto;
+							left: 20px;
+						}
+					}
+
+					.summary {
+
+						order: 1;
+					}
+
+					// ON SALE
+					.onsale {
+
+						left: auto;
+						right: 20px;
+					}
+				}
+			}
+		}
+	}
+}
