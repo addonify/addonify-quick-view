@@ -70,7 +70,8 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.8 - ? July, 2023 =
 
-- Added: Option to define content row layout inside modal.
+- Added: Option to control content column direction layout inside modal.
+- Added: Option to control content column gap.
 - Added: Option to hide modal close button.
 - Added: Option to close modal when ESC key is pressed.
 - Added: Option to close modal when clicked outside. #176

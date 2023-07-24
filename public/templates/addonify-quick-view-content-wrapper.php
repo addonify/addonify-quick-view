@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<section id="adfy-quick-view-modal-content" 
 				class="adfy-quick-view-modal-content" 
-				data-content_layout="<?php echo esc_attr( addonify_quick_view_get_settings_fields_values( 'modal_content_row_layout' ) ); ?>">
+				data-content_layout="<?php echo esc_attr( addonify_quick_view_get_settings_fields_values( 'modal_content_column_layout' ) ); ?>">
 			</section>
 		</div>
 	</div>

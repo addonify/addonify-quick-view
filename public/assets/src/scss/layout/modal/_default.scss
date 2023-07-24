@@ -10,7 +10,7 @@
 
             @include grid();
             grid-template-columns: repeat(2, 1fr);
-            column-gap: 40px;
+            column-gap: var(--addonify_qv_modal_content_column_gap);
             position: relative;
 
             &::after,
@@ -33,6 +33,7 @@
                 z-index: 10;
                 margin: 0;
                 padding: 5px 15px;
+                border: none;
                 height: auto;
                 width: auto;
                 min-width: 1px;
@@ -127,7 +128,7 @@
 
                         position: relative;
                         overflow: hidden;
-                        border-radius: 10px;
+                        border-radius: var(--addonify_qv_modal_image_border_radius);
 
                         img {
 
@@ -136,7 +137,7 @@
                             height: auto;
                             padding: 0;
                             border: none;
-                            border-radius: 10px;
+                            border-radius: var(--addonify_qv_modal_image_border_radius);
                             border: 1px solid var(--addonify_qv_modal_images_border_color);
                         }
                     }
@@ -224,8 +225,14 @@
                     .woocommerce-product-rating {
 
                         @include flex(row, center, null, 10px);
-                        
                         margin: 10px 0 0 0;
+
+                        &::after,
+                        &::before {
+
+                            content: "";
+                            display: none;
+                        }
 
                         .star-rating {
                             
@@ -471,8 +478,10 @@
                     .product_meta {
 
                         @include flex(column, stretch, stretch, 10px);
-                        margin-top: 30px;
-                        padding-top: 30px;
+                        padding: 30px 0 0;
+                        margin: 30px 0 0;
+                        border: none;
+                        box-shadow: none;
                         border-top: 1px dashed var(--addonify_qv_modal_inputs_border_color);
 
                         a {
@@ -561,7 +570,11 @@
                         // Table.
                         .variations {
 
+                            display: block;
                             margin: 0;
+                            padding: 20px;
+                            border: 1px solid var(--addonify_qv_modal_inputs_border_color);
+                            border-radius: 10px;
 
                             tbody {
 
@@ -572,7 +585,10 @@
 
                             tr {
 
-                                @include flex(column, flex-start, flex-start, 10px);
+                                @include grid();
+                                align-items: center;
+                                grid-template-columns: 80px 1fr;
+                                column-gap: 20px;
                                 padding: 0;
                                 margin: 0;
 
@@ -644,20 +660,6 @@
                             .woocommerce-variation {
 
                                 margin: 0 0 20px 0;
-
-                                .woocommerce-variation-description {
-
-                                    p {
-
-                                        display: block;
-                                        margin: 0 0 20px 0;
-
-                                        &:last-child {
-
-                                            margin-bottom: 0;
-                                        }
-                                    }
-                                }
                             }
 
                             // ADD TO CART
