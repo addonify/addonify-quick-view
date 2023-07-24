@@ -25,16 +25,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('closing') ); ?>">
 	<div id="addonify-quick-view-modal" data-layout="default">
 		<div class="adfy-quick-view-model-inner" >
-			<header class="adfy-qvm-header">
-				<button id="addonify-qvm-close-button" class="adfy-qv-button">
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<line x1="18" y1="6" x2="6" y2="18"></line>
-						<line x1="6" y1="6" x2="18" y2="18"></line>
-					</svg>
-				</button>
-			</header>
+			<?php if ( !addonify_quick_view_get_settings_fields_values( 'hide_modal_close_button' ) ) { ?>
+				<header class="adfy-qvm-header">
+					<button id="addonify-qvm-close-button" class="adfy-qv-button">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+				</header>
+			<?php } ?>
 			<div id="adfy-qvm-spinner">
-				<?php echo wp_kses_post( addonify_quick_view_get_spinner_icon() ); ?>
+				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon() ); ?>
 			</div>
 			<section id="adfy-quick-view-modal-content" class="adfy-quick-view-modal-content"></section>
 		</div>

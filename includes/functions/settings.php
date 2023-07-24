@@ -45,6 +45,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'display_read_more_button'            => false,
 				'modal_opening_animation'             => 'jello', // NEW
 				'modal_closing_animation'             => 'bounce-out', // NEW
+				'hide_modal_close_button'			  => false, // NEW 
 				'close_modal_when_esc_pressed'		  => '1', // NEW
 				'close_modal_when_clicked_outside'	  => false, // NEW
 				'modal_zindex'	  					  => '10000000000000000', // NEW
