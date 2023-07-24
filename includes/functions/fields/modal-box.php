@@ -21,7 +21,18 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                     'meta'      => __( 'Meta', 'addonify-quick-view' ),
                     'add_to_cart' => __( 'Add to Cart', 'addonify-quick-view' ),
                 ),
-                
+            ),
+            'modal_content_row_layout' => array(  
+                'label'         => __( 'Content row layout inside modal', 'addonify-quick-view' ),
+                'description'   => __( 'Choose how content row should appear inside the modal box.', 'addonify-quick-view' ),
+                'type'          => 'radio',
+                'style'         => 'images',
+                'className'     => 'fullwidth',
+                'dependent'     => array('enable_quick_view'),
+                'choices'       => array(
+                    'default'          => __( 'Default', 'addonify-quick-view' ),
+                    'row-reversed'     => __( 'Row reversed', 'addonify-quick-view' ),
+                ),
             ),
             'product_thumbnail' => array(
                 'label'         => __( 'Product Thumbnail', 'addonify-quick-view' ),

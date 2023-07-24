@@ -64,6 +64,7 @@
 		v-else-if="props.field.type == 'radio'"
 		v-model="props.reactiveState[props.fieldKey]"
 		:choices="props.field.choices"
+		:style="props.field.style"
 	/>
 	<RadioIcon
 		v-else-if="props.field.type == 'radio-icons'"

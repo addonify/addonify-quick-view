@@ -40,6 +40,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'quick_view_btn_position'             => 'after_add_to_cart_button',
 				'quick_view_btn_label'                => __( 'Quick view', 'addonify-quick-view' ),
 				'modal_box_content'                   => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating', 'excerpt' ) ), // phpcs:ignore
+				'modal_content_row_layout'			  => 'default', // NEW
 				'product_thumbnail'                   => 'product_image_only',
 				'enable_lightbox'                     => false,
 				'display_read_more_button'            => false,
