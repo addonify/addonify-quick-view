@@ -43,7 +43,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'min'           => 0,
                 'max'           => 150,
                 'step'          => 5,
-                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
+                'dependent'     => array('enable_quick_view'),
             ),
             'product_thumbnail' => array(
                 'label'         => __( 'Product Thumbnail', 'addonify-quick-view' ),
@@ -134,7 +134,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'min'           => 0,
                 'max'           => 1000000000000000000,
                 'step'          => 10,
-                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
+                'dependent'     => array('enable_quick_view'),
             ),
             'modal_border_radius' => array(
                 'label'         => __( 'Modal border radius', 'addonify-quick-view' ),
@@ -145,7 +145,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'min'           => 0,
                 'max'           => 100,
                 'step'          => 1,
-                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
+                'dependent'     => array('enable_quick_view'),
             ),
             'modal_image_radius' => array(
                 'label'         => __( 'Modal image border radius', 'addonify-quick-view' ),
@@ -156,7 +156,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'min'           => 0,
                 'max'           => 100,
                 'step'          => 1,
-                'dependent'     => array('enable_quick_view', 'display_read_more_button'),
+                'dependent'     => array('enable_quick_view'),
             ),
             'spinner_icons'     => array(
                 'label'         => __( 'Spinner icon', 'addonify-quick-view' ),
