@@ -8,10 +8,10 @@
 	position: relative;
 	margin: 0 auto;
     width: 100%;
-	max-width: 1000px;
 	height: auto;
 	min-height: 400px;
-	max-height: 80vh;
+	max-height: calc( 100vh - 10% );
+	max-width: var(--addonify_qv_modal_width);
 	border-radius: var(--addonify_qv_modal_border_radius);
 	box-shadow: 0 0 65px rgba(0, 0, 0, 0.1);
     background-color: var(--addonify_qv_modal_background);
