@@ -40,23 +40,33 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'quick_view_btn_position'             => 'after_add_to_cart_button',
 				'quick_view_btn_label'                => __( 'Quick view', 'addonify-quick-view' ),
 				'modal_box_content'                   => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating', 'excerpt' ) ), // phpcs:ignore
-				'modal_content_column_layout'		  => 'default', // NEW
-				'modal_content_column_gap'			  => '40px', // NEW
+				'modal_content_column_layout'		  => 'default', // NEW - Done
+				'modal_content_column_gap'			  => 40, // NEW - Done
 				'product_thumbnail'                   => 'product_image_only',
 				'enable_lightbox'                     => false,
 				'display_read_more_button'            => false,
-				'modal_opening_animation'             => 'jello', // NEW
-				'modal_closing_animation'             => 'bounce-out', // NEW
-				'hide_modal_close_button'			  => false, // NEW 
-				'close_modal_when_esc_pressed'		  => '1', // NEW
-				'close_modal_when_clicked_outside'	  => false, // NEW
-				'modal_zindex'	  					  => '10000000000000000', // NEW
-				'modal_border_radius'				  => '10', // NEW
-				'modal_image_radius'				  => '10', // NEW
-				'spinner_icons' 					  => 'icon_one', // NEW
-				'spinner_size' 					  	  => 28, // NEW
-	
+				'modal_opening_animation'             => 'jello', // NEW - Done
+				'modal_closing_animation'             => 'bounce-out', // NEW - Done
+				'hide_modal_close_button'			  => false, // NEW  - Done
+				'close_modal_when_esc_pressed'		  => '1', // NEW - Done
+				'close_modal_when_clicked_outside'	  => false, // NEW - Done
+				'modal_zindex'	  					  => 10000000000000000, // NEW - Done
+				'modal_border_radius'				  => 10, // NEW - Done
+				'modal_image_radius'				  => 10, // NEW - Done
+				'spinner_icons' 					  => 'icon_one', // NEW - Done
+				'spinner_size' 					  	  => 28, // NEW - Done
+				'modal_general_text_font_size'		  => 15, // NEW
+				'modal_product_title_font_size'		  => 32, // NEW
+				'modal_product_title_font_weight'	  => 400, // NEW
+				'modal_product_title_line_height'	  => 1.2, // NEW
+				'modal_product_price_font_size'	  	  => 22, // NEW
+				'modal_product_price_font_font_weight' => 400, // NEW
+				'modal_on_sale_badge_font_size'		  => 22, // NEW
+				'modal_on_sale_badge_font_weight' 	  => 400, // NEW
+				'wc_gallery_trigger_icon_size'		  => 18, // NEW
+				'wc_gallery_trigger_icon_border_radius' => 10, // NEW
 				'read_more_button_label'              => __( 'View Detail', 'addonify-quick-view' ),
+
 				// Styles.
 				'enable_plugin_styles'                => false,
 				'modal_box_overlay_background_color'  => 'rgba(0, 0, 0, 0.8)',
@@ -64,7 +74,15 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_box_general_text_color'        => 'rgba(51, 51, 51, 1)',
 				'modal_box_inputs_background_color'   => 'rgba(255, 255, 255, 1)',
 				'modal_box_inputs_text_color'         => 'rgba(51, 51, 51, 1)',
+				'modal_box_inputs_border_color'       => 'rgba(238, 238, 238, 1)', // NEW
 				'modal_box_spinner_icon_color'        => 'rgba(51, 51, 51, 1)',
+
+				'wc_gallery_trigger_icon_color'		  => '#9F9F9F', // NEW
+				'wc_gallery_trigger_icon_hover_color' => 'rgb(54, 91, 255)', // NEW
+				'wc_gallery_trigger_icon_bg_color'	  => 'rgba(255, 255, 255, 1)', // NEW
+				'wc_gallery_trigger_icon_bg_hover_color' => 'rgba(255, 255, 255, 1)', // NEW
+				'wc_gallery_image_border_color' 	  => 'rgba(238, 238, 238, 1)', // NEW
+
 				'product_title_color'                 => 'rgba(51, 51, 51, 1)',
 				'product_rating_star_empty_color'     => 'rgba(147, 147, 147, 1)',
 				'product_rating_star_filled_color'    => 'rgba(245, 196, 14, 1)',
@@ -81,6 +99,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_misc_buttons_text_hover_color' => 'rgba(255, 255, 255, 1)',
 				'modal_misc_buttons_background_color' => 'rgba(51, 51, 51, 1)',
 				'modal_misc_buttons_background_hover_color' => 'rgba(2, 134, 231, 1)',
+
 				// Custom CSS.
 				'custom_css'                          => '',
 			)
