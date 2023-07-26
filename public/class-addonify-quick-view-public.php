@@ -83,23 +83,21 @@ class Addonify_Quick_View_Public {
 			}
 		}
 
-		/**
-		 * Loads front-end templates functions.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/template-functions.php';
-
 		// Enqueue styles and scripts used in front-end.
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		// Add "Quick View" button after add to cart button.
 		$quick_view_btn_position = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_position' );
+
 		if ( 'before_add_to_cart_button' === $quick_view_btn_position ) {
-			add_action( 'woocommerce_after_shop_loop_item', 'addonify_quick_view_quick_view_button_template', 5 );
+
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'render_addonify_quick_view_button' ), 5 );
 		}
 
 		if ( 'after_add_to_cart_button' === $quick_view_btn_position ) {
-			add_action( 'woocommerce_after_shop_loop_item', 'addonify_quick_view_quick_view_button_template', 15 );
+
+			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'render_addonify_quick_view_button' ), 15 );
 		}
 
 		// Add custom markup into footer.
@@ -109,7 +107,6 @@ class Addonify_Quick_View_Public {
 		add_action( 'wp_ajax_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 		add_action( 'wp_ajax_nopriv_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
 	}
-
 
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
@@ -262,6 +259,16 @@ class Addonify_Quick_View_Public {
 	}
 
 	/**
+	 * Renders quick view button.
+	 *
+	 * @since    1.2.8
+	 */
+	function render_addonify_quick_view_button() {
+
+		do_action( 'addonify_quick_view_button' );
+	}
+
+	/**
 	 * Ajax callback function for displaying content in modal when quick view button is clicked.
 	 */
 	public function quick_view_contents_callback() {
@@ -332,7 +339,6 @@ class Addonify_Quick_View_Public {
 		wp_die();
 
 	}
-
 
 	/**
 	 * Generate and render contents for quick view modal.
@@ -446,7 +452,6 @@ class Addonify_Quick_View_Public {
 
 		return $css;
 	}
-
 
 	/**
 	 * Minify the dynamic css.

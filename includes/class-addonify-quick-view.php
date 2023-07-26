@@ -120,13 +120,18 @@ class Addonify_Quick_View {
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-addonify-quick-view-public.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-rest-api.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/helpers.php';
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/settings.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/addonify-quick-view-template-functions.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/addonify-quick-view-template-hooks.php';
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-addonify-quick-view-public.php';
 
 		/**
 		 * User data processing functions.

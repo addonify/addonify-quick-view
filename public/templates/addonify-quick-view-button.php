@@ -1,31 +1,35 @@
 <?php
 /**
- * Display quick view button in product loop.
- *
+ * Template for addonify quick view button.
  * This template can be overridden by copying it to yourtheme/addonify/addonify-quick-view-button.php.
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
+ * @link       https://addonify.com/
+ * @since      1.0.0
  *
- * @package     Addonify_Quick_View\Public\Templates
- * @version     1.0.7
+ * @package    Addonify_Quick_View
+ * @subpackage Addonify_Quick_View/public/templates
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+?>
+<button 
+	type="button" 
+	class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" 
+	data-product_id="<?php echo esc_attr( $product_id ); ?>"
+	<?php echo !empty( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : ''; ?>
+>
+	<?php 
 
-echo wp_kses_post(
-	apply_filters(
-		'addonify_quick_view_quick_view_button',
-		sprintf(
-			'<button type="button" class="addonify-qvm-button button %s" data-product_id="%s" rel="nofollow" >%s</button>',
-			esc_attr( $args['css_class'] ),
-			esc_attr( $args['product_id'] ),
-			$args['label']
-		)
-	)
-);
+		if ( !empty( $label ) ) {
+
+			echo '<span class="label">' . esc_html( $label ) . '</span>';
+		}
+		
+		if ( !empty( $icon ) ) {
+
+			echo '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>';
+		}
+	?>
+</button>
+

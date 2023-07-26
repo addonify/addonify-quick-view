@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</header>
 			<?php } ?>
 			<div id="adfy-qvm-spinner">
-				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon() ); ?>
+				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon( addonify_quick_view_get_settings_fields_values( 'spinner_icons' ) ) ); ?>
 			</div>
 			<section id="adfy-quick-view-modal-content" 
 				class="adfy-quick-view-modal-content" 

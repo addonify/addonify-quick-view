@@ -45,7 +45,7 @@
         font-weight: normal;
         padding: 10px 20px 12px 20px;
         line-height: 1;
-        @include transation_delay();
+        @include transition_delay();
     }
 
     // Draggable
@@ -128,7 +128,7 @@
                                 line-height: 1;
                                 fill: #bbbbbb;
                                 color: #bbbbbb;
-                                @include transation_delay();
+                                @include transition_delay();
                             }
                         }
                     }

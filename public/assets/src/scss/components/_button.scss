@@ -2,22 +2,20 @@
 	Quick view button
   -------------------------------------------------------------------------- */
 
-.adfy-qv-button {
+.addonify-qvm-button {
 	
-	display: inline-block;
-	padding: 0;
-	margin: 0;
-	font-size: inherit;
-	font-weight: inherit;
-	line-height: inherit;
-	border: none;
-	background-color: transparent;
-	@include transation_delay();
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	fill: currentColor;
+	justify-content: center;
+	@include transition_delay();
 
 	&:is(:hover) {
 
 		border: none;
 		background-color: transparent;
+		fill: currentColor;
 	}
 
 	&:is(:focus) {
@@ -25,6 +23,57 @@
 		outline: none;
 		border: none;
 		background-color: transparent;
+	}
+
+	.icon,
+	.label {
+
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		background-color: transparent;
+	}
+
+	.icon {
+
+		display: inline-flex;
+		align-items: center;
+		line-height: 1;
+		
+		svg {
+
+			display: inline-flex;
+			align-items: center;
+			width: 16px;
+			height: 16px;
+			line-height: 1;
+		}
+	}
+
+	&[data-icon_position="left"] {
+
+		.icon {
+
+			order: 1;
+		}
+
+		.label {
+
+			order: 2;
+		}
+	}
+
+	&[data-icon_position="right"] {
+
+		.icon {
+
+			order: 2;
+		}
+
+		.label {
+
+			order: 1;
+		}
 	}
 }
 
