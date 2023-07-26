@@ -70,6 +70,8 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.8 - ? July, 2023 =
 
+- Added: Option to display icon in quick view button. #175
+- Added: Option to control the position of icon in quick view button. #175
 - Added: Option to control content column direction layout inside modal.
 - Added: Option to control content column gap.
 - Added: Option to hide modal close button.

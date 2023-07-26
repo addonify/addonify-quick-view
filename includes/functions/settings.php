@@ -39,6 +39,9 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'disable_quick_view_on_mobile_device' => false,
 				'quick_view_btn_position'             => 'after_add_to_cart_button',
 				'quick_view_btn_label'                => __( 'Quick view', 'addonify-quick-view' ),
+				'enable_quick_view_btn_icon'		  => false,
+				'quick_view_btn_icon'				  => 'icon_one',
+				'quick_view_btn_icon_position'		  => 'before_label',
 				'modal_box_content'                   => serialize( array( 'image', 'title', 'price', 'add_to_cart', 'rating', 'excerpt' ) ), // phpcs:ignore
 				//'modal_width'						  => 30, // PLANNED WITH RESPONSIVE CONTROL
 				'modal_content_column_layout'		  => 'default', // NEW - Done

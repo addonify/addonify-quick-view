@@ -19,7 +19,7 @@
 	background-color: var(--addonify_qv_modal_overlay_background);
 	@include visibility(hidden);
 	overflow: hidden;
-	@include transation_delay(all, 0.3s, ease-in);
+	@include transition_delay(all, 0.3s, ease-in);
 }
 
 .addonify-qvm-is-active {

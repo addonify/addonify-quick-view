@@ -34,12 +34,12 @@
 	display: grid;
 }
 
-@mixin transation_delay ($delay: 0.5s, $property: all, $function: ease) {
+@mixin transition_delay ($delay: 0.5s, $property: all, $function: ease) {
 
     transition: $property $delay $function;
 }
 
-@mixin transation_delay_none () {
+@mixin transition_delay_none () {
 
     transition: none;
 }
@@ -65,7 +65,7 @@
 @mixin scale () {
 
     transform: scale(1.1);
-    @include transation_delay();
+    @include transition_delay();
 }
 
 @mixin position ( $top, $bottom, $left, $right ) {

@@ -79,7 +79,7 @@
                     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
                     background: transparent;
                     background-color: var(--addonify_qv_gallery_trigger_icon_background_color);
-                    @include transation_delay();
+                    @include transition_delay();
 
                     svg {
 
@@ -522,7 +522,7 @@
                     color: var(--addonify_qv_misc_button_text);
                     border-radius: 5px;
                     background-color: var(--addonify_qv_misc_button_background);
-                    @include transation_delay();
+                    @include transition_delay();
 
                     &:is(:hover) {
 
