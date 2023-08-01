@@ -2,7 +2,7 @@
 	Responsive
   -------------------------------------------------------------------------- */
 
-@media ( min-width: 2560px ) {
+@media ( min-width: 1920px ) {
 
 	#addonify-quick-view-modal {
 
@@ -44,18 +44,24 @@
 
 @media ( max-width: 768px) {
 
-	#addonify-quick-view-modal .woocommerce .product {
+	#addonify-quick-view-modal {
 
-		grid-template-columns: repeat(1, 1fr);
-		row-gap: 20px;
-		column-gap: 0;
-	}
+		.woocommerce {
 
-	#addonify-quick-view-modal .woocommerce .product .images,
-	#addonify-quick-view-modal .woocommerce .product .summary {
+			.product {
 
-		margin: 0;
-		padding: 0;
+				grid-template-columns: repeat(1, 1fr);
+				row-gap: 20px;
+				column-gap: 0;
+
+				.images,
+				.summary {
+
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
 	}
 }
 
@@ -64,13 +70,101 @@
 	#addonify-quick-view-modal {
 
 		max-width: 90vw;
-		height: 90vh;
-		min-height: 90vh;
-		max-height: 90vh;
-	}
+		height: 95vh;
+		min-height: 95vh;
+		max-height: 95vh;
 
-	.adfy-quick-view-modal-content {
+		.adfy-quick-view-model-inner {
 
-		padding: 30px 20px;
+			.adfy-qvm-header {
+
+				top: 5px;
+				right: 5px;
+			}
+		}
+
+		#adfy-quick-view-modal-content {
+
+			padding: 35px 20px 30px 20px;
+
+			.woocommerce {
+
+				.product {
+
+					.images {
+
+						.flex-control-nav {
+
+							row-gap: 10px;
+							column-gap: 10px;
+						}
+					}
+
+					.summary {
+
+						.summary-content {
+
+							.product_title {
+
+								font-size: 24px;
+							}
+
+							.price {
+
+								font-size: 16px;
+							}
+							
+							// VARIATIONS FORMS
+							.variations_form {
+
+								.variations {
+
+									tr {
+
+										grid-template-columns: repeat(1, 1fr);
+										row-gap: 10px;
+										column-gap: 0;
+									}
+								}
+							}
+
+							// GROUPED PRODUCT
+							.cart {
+
+								.woocommerce-grouped-product-list {
+
+									tbody {
+
+										tr {
+
+											flex-direction: column;
+											align-items: flex-start;
+											justify-content: flex-start;
+
+											.woocommerce-grouped-product-list-item__quantity {
+
+												width: 100%;
+												max-width: 100%;
+											}
+
+											.woocommerce-grouped-product-list-item__price {
+
+												text-align: left;
+
+												.stock {
+
+													justify-content: flex-start;
+													text-align: left;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

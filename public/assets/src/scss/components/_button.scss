@@ -2,7 +2,11 @@
 	Quick view button
   -------------------------------------------------------------------------- */
 
-.addonify-qvm-button {
+.addonify-qvm-button,
+.wc-block-grid__products .product .button.addonify-qvm-button,
+.woocommerce ul.products .product .button.addonify-qvm-button, 
+.woocommerce ul.products .wc-block-grid__product .button.addonify-qvm-button, 
+.wc-block-grid__products .wc-block-grid__product .button.addonify-qvm-button {
 	
 	display: inline-flex;
 	align-items: center;
@@ -90,14 +94,21 @@
 	color: var(--addonify_qv_close_button_text);
 	height: 30px;
 	width: 30px;
-	background-color: var(--addonify_qv_close_button_background);
+	padding: 0;
+	margin: 0;
+	border: none;
 	border-radius: 100%;
 	cursor: pointer;
+	background: transparent;
+	background-color: var(--addonify_qv_close_button_background);
+	@include transition_delay();
 
 	&:is(:hover) {
 
 		fill: var(--addonify_qv_close_button_text_hover);
 		color: var(--addonify_qv_close_button_text_hover);
+		border: none;
+		background: transparent;
 		background-color: var(--addonify_qv_close_button_background_hover);
 	}
 
