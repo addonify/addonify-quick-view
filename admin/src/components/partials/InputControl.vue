@@ -59,6 +59,7 @@
 		:max="props.field.max"
 		:step="props.field.step"
 		:precision="props.field.precision"
+		:unit="props.field.unit"
 	/>
 	<Radio
 		v-else-if="props.field.type == 'radio'"

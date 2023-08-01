@@ -1,11 +1,22 @@
 <script setup>
 	import { computed } from "vue";
 	import { ElCheckbox } from "element-plus";
+
+	/**
+	 * Define props.
+	 *
+	 * @since 1.0.0
+	 */
 	const props = defineProps({
 		modelValue: [Boolean],
 		label: [String],
 	});
-	// Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+
+	/**
+	 * Define emit.
+	 *
+	 * @since 1.0.0
+	 */
 	const emit = defineEmits(["update:modelValue"]);
 	const value = computed({
 		get() {

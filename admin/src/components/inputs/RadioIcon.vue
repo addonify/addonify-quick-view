@@ -2,12 +2,22 @@
 	import { computed } from "vue";
 	import { ElRadio, ElRadioGroup } from "element-plus";
 
+	/**
+	 * Define props.
+	 *
+	 * @since 1.1.8
+	 */
 	const props = defineProps({
 		modelValue: String,
 		choices: [Object, Array],
 	});
 
-	// Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+	/**
+	 * Define emit.
+	 * Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+	 *
+	 * @since 1.1.8
+	 */
 	const emit = defineEmits(["update:modelValue"]);
 	const vModalVal = computed({
 		get() {
