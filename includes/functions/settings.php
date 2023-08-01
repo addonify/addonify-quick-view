@@ -59,16 +59,15 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_image_radius'				  => 10, // NEW - Done
 				'spinner_icons' 					  => 'icon_one', // NEW - Done
 				'spinner_size' 					  	  => 28, // NEW - Done
-				'modal_general_text_font_size'		  => 15, // NEW
-				'modal_product_title_font_size'		  => 32, // NEW
-				'modal_product_title_font_weight'	  => 400, // NEW
-				'modal_product_title_line_height'	  => 1.2, // NEW
-				'modal_product_price_font_size'	  	  => 22, // NEW
-				'modal_product_price_font_font_weight' => 400, // NEW
-				'modal_on_sale_badge_font_size'		  => 22, // NEW
-				'modal_on_sale_badge_font_weight' 	  => 400, // NEW
-				'wc_gallery_trigger_icon_size'		  => 18, // NEW
-				'wc_gallery_trigger_icon_border_radius' => 10, // NEW
+				'modal_general_text_font_size'		  => 15, // NEW - Done
+				'modal_product_title_font_size'		  => 32, // NEW - Done
+				'modal_product_title_font_weight'	  => 400, // NEW - Done
+				'modal_product_title_line_height'	  => 1.2, // NEW - Done
+				'modal_product_price_font_size'	  	  => 22, // NEW - Done
+				'modal_product_price_font_weight' 	  => 400, // NEW - Done
+				'modal_on_sale_badge_font_size'		  => 14, // NEW - Done
+				'wc_gallery_trigger_icon_size'		  => 18, // NEW - Done
+				'wc_gallery_trigger_icon_border_radius' => 10, // NEW - Done
 				'read_more_button_label'              => __( 'View Detail', 'addonify-quick-view' ),
 
 				// Styles.
@@ -78,14 +77,14 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_box_general_text_color'        => 'rgba(51, 51, 51, 1)',
 				'modal_box_inputs_background_color'   => 'rgba(255, 255, 255, 1)',
 				'modal_box_inputs_text_color'         => 'rgba(51, 51, 51, 1)',
-				'modal_box_inputs_border_color'       => 'rgba(238, 238, 238, 1)', // NEW
+				'modal_box_inputs_border_color'       => 'rgba(238, 238, 238, 1)', // NEW - Done
 				'modal_box_spinner_icon_color'        => 'rgba(51, 51, 51, 1)',
 
-				'wc_gallery_trigger_icon_color'		  => '#9F9F9F', // NEW
-				'wc_gallery_trigger_icon_hover_color' => 'rgb(54, 91, 255)', // NEW
-				'wc_gallery_trigger_icon_bg_color'	  => 'rgba(255, 255, 255, 1)', // NEW
-				'wc_gallery_trigger_icon_bg_hover_color' => 'rgba(255, 255, 255, 1)', // NEW
-				'wc_gallery_image_border_color' 	  => 'rgba(238, 238, 238, 1)', // NEW
+				'wc_gallery_trigger_icon_color'		  => '#9F9F9F', // NEW - Done
+				'wc_gallery_trigger_icon_hover_color' => 'rgb(54, 91, 255)', // NEW - Done
+				'wc_gallery_trigger_icon_bg_color'	  => 'rgba(255, 255, 255, 1)', // NEW - Done
+				'wc_gallery_trigger_icon_bg_hover_color' => 'rgba(255, 255, 255, 1)', // NEW - Done
+				'wc_gallery_image_border_color' 	  => 'rgba(238, 238, 238, 1)', // NEW - Done
 
 				'product_title_color'                 => 'rgba(51, 51, 51, 1)',
 				'product_rating_star_empty_color'     => 'rgba(147, 147, 147, 1)',

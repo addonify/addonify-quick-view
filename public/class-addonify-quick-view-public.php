@@ -412,31 +412,91 @@ class Addonify_Quick_View_Public {
 
 		$css_values = array(
 			'--addonify_qv_modal_zindex'				  => addonify_quick_view_get_settings_fields_values( 'modal_zindex' ),
+
 			'--addonify_qv_modal_border_radius'			  => addonify_quick_view_get_settings_fields_values( 'modal_border_radius' ) . 'px', 
+
 			'--addonify_qv_modal_image_border_radius'	  => addonify_quick_view_get_settings_fields_values( 'modal_image_radius' ) . 'px', 
+
 			'--addonify_qv_modal_content_column_gap'	  => addonify_quick_view_get_settings_fields_values( 'modal_content_column_gap' ) . 'px', 
+
+			'--addonify_qv_modal_general_text_font_size'  => addonify_quick_view_get_settings_fields_values( 'modal_general_text_font_size' ) . 'px', 
+
+			'--adonify_qv_product_title_font_size'		  => addonify_quick_view_get_settings_fields_values( 'modal_product_title_font_size' ) . 'px', 
+
+			'--adonify_qv_product_title_font_weight'	  => addonify_quick_view_get_settings_fields_values( 'modal_product_title_font_weight' ),
+
+			'--adonify_qv_product_title_line_height'	  => addonify_quick_view_get_settings_fields_values( 'modal_product_title_line_height' ), 
+
+			'--adonify_qv_product_title_line_height'	  => addonify_quick_view_get_settings_fields_values( 'modal_product_title_line_height' ), 
+
+			'--adonify_qv_product_price_font_size'	 	  => addonify_quick_view_get_settings_fields_values( 'modal_product_price_font_size' ) . 'px', 
+
+			'--adonify_qv_product_price_font_weight'	  => addonify_quick_view_get_settings_fields_values( 'modal_product_price_font_weight' ),
+
+			'--addonify_qv_product_onsale_badge_font_size' => addonify_quick_view_get_settings_fields_values( 'modal_on_sale_badge_font_size' ) . 'px',
+
+			'--addonify_qv_gallery_trigger_icon_size' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_size' ) . 'px',
+
+			'--addonify_qv_modal_image_border_radius' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_border_radius' ) . 'px',
+
 			'--addonify_qv_spinner_icon_size'			  => addonify_quick_view_get_settings_fields_values( 'spinner_size' ) . 'px', 
+
 			'--addonify_qv_modal_overlay_background'      => addonify_quick_view_get_settings_fields_values( 'modal_box_overlay_background_color' ),
+
 			'--addonify_qv_modal_background'              => addonify_quick_view_get_settings_fields_values( 'modal_box_background_color' ),
+
 			'--addonify_qv_modal_general_text_color'      => addonify_quick_view_get_settings_fields_values( 'modal_box_general_text_color' ),
+
 			'--addonify_qv_modal_inputs_background_color' => addonify_quick_view_get_settings_fields_values( 'modal_box_inputs_background_color' ),
-			'--addonify_qv_modal_inputs_text_color'       => addonify_quick_view_get_settings_fields_values( 'modal_box_inputs_text_color' ),
+
+			'--addonify_qv_modal_inputs_border_color'     => addonify_quick_view_get_settings_fields_values( 'modal_box_inputs_border_color' ),
+
 			'--addonify_qv_modal_spinner_icon_color'      => addonify_quick_view_get_settings_fields_values( 'modal_box_spinner_icon_color' ),
+
 			'--addonify_qv_product_title'                 => addonify_quick_view_get_settings_fields_values( 'product_title_color' ),
+
 			'--addonify_qv_product_excerpt'               => addonify_quick_view_get_settings_fields_values( 'product_excerpt_text_color' ),
+
 			'--addonify_qv_product_rating_filled'         => addonify_quick_view_get_settings_fields_values( 'product_rating_star_filled_color' ),
+
 			'--addonify_qv_product_rating_empty'          => addonify_quick_view_get_settings_fields_values( 'product_rating_star_empty_color' ),
+
 			'--addonify_qv_product_price'                 => addonify_quick_view_get_settings_fields_values( 'product_price_color' ),
+
 			'--addonify_qv_product_price_sale'            => addonify_quick_view_get_settings_fields_values( 'product_on_sale_price_color' ),
+
 			'--addonify_qv_product_meta'                  => addonify_quick_view_get_settings_fields_values( 'product_meta_text_color' ),
+
 			'--addonify_qv_product_meta_hover'            => addonify_quick_view_get_settings_fields_values( 'product_meta_text_hover_color' ),
+
+			// WC Gallery Trigger button
+			'--addonify_qv_gallery_trigger_icon_color'    => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_color' ),
+
+			'--addonify_qv_gallery_trigger_icon_color_hover' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_hover_color' ),
+
+			'--addonify_qv_gallery_trigger_icon_background_color' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_bg_color' ),
+
+			'--addonify_qv_gallery_trigger_icon_background_color_hover' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_bg_hover_color' ),
+
+			'--addonify_qv_modal_images_border_color' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_image_border_color' ),
+
+
+			// Close button
 			'--addonify_qv_close_button_text'             => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_color' ),
+
 			'--addonify_qv_close_button_text_hover'       => addonify_quick_view_get_settings_fields_values( 'modal_close_button_text_hover_color' ),
+			
 			'--addonify_qv_close_button_background'       => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_color' ),
+
 			'--addonify_qv_close_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_hover_color' ),
+
+			// Misc buttons
 			'--addonify_qv_misc_button_text'              => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_color' ),
+
 			'--addonify_qv_misc_button_text_hover'        => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_hover_color' ),
+
 			'--addonify_qv_misc_button_background'        => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_color' ),
+
 			'--addonify_qv_misc_button_background_hover'  => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_background_hover_color' ),
 		);
 
