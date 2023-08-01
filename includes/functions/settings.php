@@ -57,21 +57,23 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_zindex'	  					  => 10000000000000000, // NEW - Done
 				'modal_border_radius'				  => 10, // NEW - Done
 				'modal_image_radius'				  => 10, // NEW - Done
+				'modal_gallery_thumbs_columns'		  => 4, // NEW - Done
+				'modal_gallery_thumbs_columns_gap'	  => 20, // NEW - Done
 				'spinner_icons' 					  => 'icon_one', // NEW - Done
 				'spinner_size' 					  	  => 28, // NEW - Done
 				'modal_general_text_font_size'		  => 15, // NEW - Done
 				'modal_product_title_font_size'		  => 32, // NEW - Done
-				'modal_product_title_font_weight'	  => 400, // NEW - Done
+				'modal_product_title_font_weight'	  => '400', // NEW - Done
 				'modal_product_title_line_height'	  => 1.2, // NEW - Done
 				'modal_product_price_font_size'	  	  => 22, // NEW - Done
-				'modal_product_price_font_weight' 	  => 400, // NEW - Done
+				'modal_product_price_font_weight' 	  => '400', // NEW - Done
 				'modal_on_sale_badge_font_size'		  => 14, // NEW - Done
 				'wc_gallery_trigger_icon_size'		  => 18, // NEW - Done
 				'wc_gallery_trigger_icon_border_radius' => 10, // NEW - Done
 				'read_more_button_label'              => __( 'View Detail', 'addonify-quick-view' ),
 
 				// Styles.
-				'enable_plugin_styles'                => false,
+				'enable_plugin_styles'                => '1',
 				'modal_box_overlay_background_color'  => 'rgba(0, 0, 0, 0.8)',
 				'modal_box_background_color'          => 'rgba(255, 255, 255, 1)',
 				'modal_box_general_text_color'        => 'rgba(51, 51, 51, 1)',
@@ -98,6 +100,13 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_close_button_text_hover_color' => 'rgba(2, 134, 231, 1)',
 				'modal_close_button_background_color' => 'rgba(238, 238, 238, 1)',
 				'modal_close_button_background_hover_color' => 'rgba(182, 222, 255, 1)',
+				'modal_misc_buttons_font_size'		  => 15, // NEW - Done
+				'modal_misc_buttons_font_weight'	  => '400', // NEW - Done
+				'modal_misc_buttons_letter_spacing'	  => 0, // NEW - Done
+				'modal_misc_buttons_line_height'	  => 1, // NEW - Done
+				'modal_misc_buttons_text_transform'	  => 'capitalize', // NEW - Done
+				'modal_misc_buttons_height'		  	  => 50, // NEW - Done
+				'modal_misc_buttons_border_radius'	  => 4, // NEW - Done
 				'modal_misc_buttons_text_color'       => 'rgba(255, 255, 255, 1)',
 				'modal_misc_buttons_text_hover_color' => 'rgba(255, 255, 255, 1)',
 				'modal_misc_buttons_background_color' => 'rgba(51, 51, 51, 1)',
@@ -314,27 +323,25 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 							'fields'      => addonify_quick_view_general_styles_settings_fields(),
 						),
 						'modal'        => array(
-							'title'       => __( 'Modal Box Colors', 'addonify-quick-view' ),
-							'description' => __( 'Choose inner and overlay background colors of quick view modal box.', 'addonify-quick-view' ),
-							'type'        => 'color-options-group',
+							'title'       => __( 'Modal box UI options', 'addonify-quick-view' ),
+							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_modal_box_styles_settings_fields(),
 						),
 						'product'      => array(
-							'title'       => __( 'Product Content Colors', 'addonify-quick-view' ),
-							'description' => __( 'Choose colors for each individual content elements of quick view modal box.', 'addonify-quick-view' ),
-							'type'        => 'color-options-group',
+							'title'       => __( 'Product content options', 'addonify-quick-view' ),
+							'description' => __( 'Product content inside modal box options.', 'addonify-quick-view' ),
+							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_modal_box_content_styles_settings_fields(),
 						),
 						'close_button' => array(
-							'title'       => __( 'Close Button Colors', 'addonify-quick-view' ),
-							'description' => __( 'Choose colors for quick view modal box close button.', 'addonify-quick-view' ),
-							'type'        => 'color-options-group',
+							'title'       => __( 'Modal box close button options', 'addonify-quick-view' ),
+							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
 						),
 						'misc_buttons' => array(
-							'title'       => __( 'Miscellaneous Buttons Colors', 'addonify-quick-view' ),
-							'description' => __( 'Choose colors for buttons inside quick view modal box.', 'addonify-quick-view' ),
-							'type'        => 'color-options-group',
+							'title'       => __( 'All misc buttons inside options', 'addonify-quick-view' ),
+							'description' => __( 'This option will be applied to all the buttons inside the modal box except close button.', 'addonify-quick-view' ),
+							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_misc_button_styles_settings_fields(),
 						),
 						'custom_css'   => array(

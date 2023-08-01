@@ -146,10 +146,13 @@
 
                 .flex-control-nav {
 
+                    --wc-thumb-items: var(--addonify_qv_modal_gallery_thumb_in_row);
+                    --wc-thumbs-gap: var(--addonify_qv_modal_gallery_thumbs_gap);
+
                     @include grid();
-                    grid-template-columns: repeat(4, 1fr);
-                    column-gap: 20px;
-                    row-gap: 20px;
+                    grid-template-columns: repeat( var(--wc-thumb-items), 1fr );
+                    column-gap: var(--wc-thumbs-gap);
+                    row-gap: var(--wc-thumbs-gap);
                     margin: 0;
                     list-style: none;
                     padding: 0;
@@ -181,6 +184,7 @@
                             display: block;
                             max-width: 100%;
                             padding: 0;
+                            margin: 0;
                             border: none;
                             cursor: pointer;
 
@@ -519,13 +523,16 @@
                     justify-content: center;
                     flex-wrap: wrap;
                     width: fit-content;
-                    height: 50px;
+                    height: var(--addonify_qv_misc_button_height);
                     padding: 0 30px;
+                    font-size: var(--addonify_qv_misc_button_font_size);
+                    line-height: var(--addonify_qv_misc_button_line_height);
                     font-weight: var(--addonify_qv_misc_button_font_weight);
                     text-transform: var(--addonify_qv_misc_button_text_transform);
+                    letter-spacing: var(--addonify_qv_misc_button_letter_spacing);
                     fill: var(--addonify_qv_misc_button_text);
                     color: var(--addonify_qv_misc_button_text);
-                    border-radius: 5px;
+                    border-radius: var(--addonify_qv_misc_button_border_radius);
                     border: none;
                     background: transparent;
                     background-color: var(--addonify_qv_misc_button_background);

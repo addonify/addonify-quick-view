@@ -1,7 +1,12 @@
 <script setup>
 	import { computed } from "vue";
-	import { ElInput, ElInputNumber } from "element-plus";
+	import { ElInput, ElInputNumber, ElSlider } from "element-plus";
 
+	/**
+	 * Define props.
+	 *
+	 * @since 1.2.8
+	 */
 	const props = defineProps({
 		modelValue: {
 			type: [Number, String],
@@ -33,20 +38,41 @@
 			required: false,
 			default: "default",
 		},
+		unit: {
+			type: String,
+			required: false,
+			default: "px",
+		},
 	});
 
-	// Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+	// Desctructure props.
+	const { style, min, max, precision, step, unit, placeholder } = props;
+
+	/**
+	 * Define emit.
+	 *
+	 * @param {String/Number} value
+	 * @returns {String/Number} updated value
+	 * @since 1.2.8
+	 */
 	const emit = defineEmits(["update:modelValue"]);
 	const value = computed({
 		get() {
-			return parseInt(props.modelValue);
+			return parseFloat(props.modelValue);
 		},
 		set(newValue) {
 			emit("update:modelValue", newValue);
 		},
 	});
 
-	const { style, min, max, precision, step, placeholder } = props;
+	/**
+	 * Add the unit to the tooltip for slider control.
+	 *
+	 * @param {Number} val
+	 * @returns {String} i.e 10px
+	 * @since 1.2.8
+	 */
+	const processToolTip = (val) => val + " " + unit;
 </script>
 <template>
 	<template v-if="style === 'default'">
@@ -77,17 +103,21 @@
 			size="large"
 			:min="min ? min : 0"
 			:max="max ? max : 365"
-			controls-position="right"
 			:step="step"
 			:precision="precision"
 			:placeholder="placeholder"
+			controls-position="right"
+		/>
+	</template>
+	<template v-if="style === 'slider'">
+		<el-slider
+			v-model="value"
+			show-tooltip
+			:min="min"
+			:max="max"
+			:step="step ? step : 1"
+			size="large"
+			:format-tooltip="processToolTip"
 		/>
 	</template>
 </template>
-<style lang="scss">
-	.adfy-options {
-		.el-input-number--large {
-			width: 140px;
-		}
-	}
-</style>

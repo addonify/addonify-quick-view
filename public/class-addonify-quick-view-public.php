@@ -478,7 +478,11 @@ class Addonify_Quick_View_Public {
 
 			'--addonify_qv_gallery_trigger_icon_background_color_hover' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_bg_hover_color' ),
 
-			'--addonify_qv_modal_images_border_color' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_image_border_color' ),
+			'--addonify_qv_modal_images_border_color' 		=> addonify_quick_view_get_settings_fields_values( 'wc_gallery_image_border_color' ),
+
+			'--addonify_qv_modal_gallery_thumb_in_row' 		=> addonify_quick_view_get_settings_fields_values( 'modal_gallery_thumbs_columns' ),
+
+			'--addonify_qv_modal_gallery_thumbs_gap' 		=> addonify_quick_view_get_settings_fields_values( 'modal_gallery_thumbs_columns_gap' ) . 'px',
 
 
 			// Close button
@@ -491,6 +495,20 @@ class Addonify_Quick_View_Public {
 			'--addonify_qv_close_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_hover_color' ),
 
 			// Misc buttons
+			'--addonify_qv_misc_button_font_size'         => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_font_size' ) . 'px',
+
+			'--addonify_qv_misc_button_letter_spacing'    => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_letter_spacing' ). 'px',
+
+			'--addonify_qv_misc_button_line_height'      => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_line_height' ),
+
+			'--addonify_qv_misc_button_font_weight'       => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_font_weight' ),
+
+			'--addonify_qv_misc_button_text_transform'   => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_transform' ),
+
+			'--addonify_qv_misc_button_height'   		 => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_height' ) . 'px',
+
+			'--addonify_qv_misc_button_border_radius'    => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_border_radius' ) . 'px',
+
 			'--addonify_qv_misc_button_text'              => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_color' ),
 
 			'--addonify_qv_misc_button_text_hover'        => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_text_hover_color' ),

@@ -1,24 +1,46 @@
 <script setup>
 	import { computed } from "vue";
 	import { ElSelect, ElOption } from "element-plus";
-	const { __ } = wp.i18n;
 
+	/**
+	 * Define props.
+	 *
+	 * @since 1.2.8
+	 */
 	const props = defineProps({
-		modelValue: [Number, String, Array],
-		choices: [Object, Array],
-		placeholder: String,
+		modelValue: {
+			type: [Number, String],
+			required: true,
+		},
+		choices: {
+			type: [Object, Array],
+			required: true,
+		},
+		placeholder: {
+			type: String,
+			required: false,
+			default: "",
+		},
 	});
 
-	// Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+	/**
+	 * Define emit.
+	 *
+	 * @param {String/Number} value
+	 * @returns {String/Number} updated value
+	 * @since 1.2.8
+	 */
 	const emit = defineEmits(["update:modelValue"]);
 	const value = computed({
 		get() {
-			return props.modelValue;
+			return props.modelValue.toString();
 		},
 		set(newValue) {
 			emit("update:modelValue", newValue);
 		},
 	});
+
+	const { __ } = wp.i18n;
 </script>
 <template>
 	<el-select

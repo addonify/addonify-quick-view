@@ -2,6 +2,7 @@
 	import { useOptionsStore } from "../../stores/options";
 	import InputControl from "./InputControl.vue";
 	import { ElTag } from "element-plus";
+
 	const props = defineProps({
 		section: Object,
 		sectionKey: [String, Object],

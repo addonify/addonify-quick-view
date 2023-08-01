@@ -70,6 +70,14 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.8 - ? July, 2023 =
 
+- Added: Option, Misc button font size.
+- Added: Option, Misc button font weight.
+- Added: Option, Misc button line height.
+- Added: Option, Misc button border radius.
+- Added: Option, Misc button letter spacing.
+- Added: Option, Misc button text transform.
+- Added: Option, Gallery thumb gap.
+- Added: Option, Gallery number of thumb in row. 
 - Added: Option, Product title font size.
 - Added: Option, Product title font weight.
 - Added: Option, Product title line height.
@@ -93,9 +101,14 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 - Added: Option, modal border radius. 
 - Added: Option, spinner icons. #177
 - Added: Option, spinner icon font size. #177
+- Added: Control, range slider (Vue JS).
 - Added: JavaScript API, `addonifyQuickViewModalOpened`, `addonifyQuickViewModalClosed`, `addonifyQuickViewModalContentLoded`.
 - Refactored: Public facing JavaScript code.
 - Updated: Admin setting page UI SCSS code.
+- Tweak: Select v-model val changed to string (Vue JS)
+- Tweak: Refactor design tab UI (Vue JS)
+- Improvement: Number input control (Vue JS)
+- Improvement: Admin setting page design tab user interface.
 
 = 1.2.7 - 19 July, 2023 =
 
