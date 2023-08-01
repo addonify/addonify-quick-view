@@ -70,6 +70,17 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 = 1.2.8 - ? July, 2023 =
 
+- Added: Option, Product title font size.
+- Added: Option, Product title font weight.
+- Added: Option, Product title line height.
+- Added: Option, Price font size.
+- Added: Option, Price font weight.
+- Added: Option. WC gallery icon font size.
+- Added: Option, WC gallery image border radius.
+- Added: Option, WC gallery image border color.
+- Added: Option, WC gallery icon trigger color.
+- Added: Option, WC gallery icon trigger background color.
+- Added: Option, Modal box general text font size.
 - Added: Option to display icon in quick view button. #175
 - Added: Option to control the position of icon in quick view button. #175
 - Added: Option to control content column direction layout inside modal.
