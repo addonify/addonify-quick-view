@@ -22,7 +22,7 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 
 If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
 
-**MAIN FEATURES:**
+**🦄 MAIN FEATURES:**
 
 ✅ Easy to use.
 ✅ Super light-weight & optimized for performance. 
@@ -30,28 +30,85 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ Display product image or gallery on quick view modal.
 ✅ Display product title, price, add to cart button, excerpt and view detail button on quick view modal.
 ✅ Disable quick view on mobile device.
-✅ Color option for quick view modal popup & overlay.
-✅ Color option for elements inside quick view modal popup box.
+✅ Modal box opening & closing animations.
+✅ Modal content row direction layout.
 ✅ Change a label for the “Quick view” button.
-✅ Developer friendly & easy to implement according to your need.
+✅ Display icon on “Quick view” button.
+✅ Choose spinner icon.
+✅ Customize what you would like to display inside the modal box.
+✅ Display product detail page link in modal.
+✅ Close modal on ESC key pressed.
+✅ Close modal when clicked outside.
+✅ Display/Hide modal close button.
 ✅ JavaScript API for developers.
+✅ Developer friendly & easy to implement according to your need.
+✅ Add custom CSS if required from admin setting page.
+✅ Clean setting page design.
 ✅ Friendly support.
 
-**DEVELOPER DOCUMENTATION:**
+**🌈 DESIGN OPTIONS: **
 
-If you are a developer or a theme author, below are the two different ways on how Addonify WooCommerce Quick View can be implemented in your project. 
+✅ Customize quick view button text color.
+✅ Customize quick view button background color.
+✅ Customize quick view border color.
+✅ Customize quick view button border radius.
+✅ Customize modal box background color.
+✅ Customize modal overlay mask background color.
+✅ Customize modal box border color.
+✅ Customize modal text colors.
+✅ Customize modal box border radius.
+✅ Customize modal CSS z-index.
+✅ Customize spinner icon color.
+✅ Customize spinner icon size.
+✅ Customize WC Gallery border color.
+✅ Customize WC Gallery icon color.
+✅ Customize WC Gallery icon background color.
+✅ Customize WC Gallery icon size.
+✅ Customize WC product image border.
+✅ Customize WC Gallery thumbnails gap.
+✅ Customize WC Gallery thumbnails number in row.
+✅ Customize product title color.
+✅ Customize product title font size.
+✅ Customize product title font weight.
+✅ Customize price color.
+✅ Customize price font size.
+✅ Customize rating stars color.
+✅ Customize misc buttons inside modal box color.
+✅ More customization options, give it a try.
 
-✅ Using Hooks & Filters.
-✅ Overwrite Addonify quick view plugin template file. 
 
-Need a getting started guide? Feel free to check [developer documentation](https://docs.addonify.com/docs/woocommerce-quick-view/) in our knowledgebase site.
+**👨‍💻 DEVELOPER:**
 
-**SUGGESTION & SUPPORT:**
+Developers, we got you. Below are the different ways on how Addonify Quick View helpful for you.
 
-We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas. Please be informed that discussions are not just limited to sharing ideas, feel free to ask questions related to our plugin, submit a bug report and participate in poll.
+✅ Custom quick view button [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/)
+✅ Using Hooks & Filters [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/)
+✅ Overwrite plugin template file [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/)
+✅ JavaScript API [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/javascript-events/)
 
-🌍 [Create a new Discussion](https://github.com/addonify/addonify-quick-view/discussions)
-🪲 [Report a bug](https://github.com/addonify/addonify-quick-view/issues)
+Still not sure how to start? Create [a new discussion](https://github.com/addonify/addonify-quick-view/discussions) and we will help you out.
+
+
+**🤎 FEEDBACK & SUPPORT:**
+
+Let's make a better software together. We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas.
+
+🌍 Feedback - [Have feedback](https://github.com/addonify/addonify-quick-view/discussions) or [I would love to rate](https://wordpress.org/support/plugin/addonify-quick-view/reviews/).
+
+🪲 Report BUG - [Option - 1](https://github.com/addonify/addonify-quick-view/issues) or [Option - 2](https://wordpress.org/support/plugin/addonify-quick-view/).
+
+
+**📦 UPCOMING FEATURES:**
+
+- Quick view shortcode.
+- Modal width with responsive control.
+- Modal padding with responsive control.
+- Modal content gap with responsive control.
+- Content/Modal layouts.
+- Reset / Backup / Restore settings.
+- Quick view for Gutenberg WooCommerce products blocks. 
+- More customization options.
+- Why don't you let us know. [Let's discuss](https://github.com/addonify/addonify-quick-view/discussions) on what you would like to see in the next version.
 
 
 == Installation ==
@@ -63,13 +120,22 @@ We are open to discuss on how we can improve our plugin. We would like to welcom
 
 == Screenshots ==
 
-1. Addonify Quick View setting page at dashboard.
-2. Addonify Quick View button & modal box popup on frontend.
+1. Addonify Quick View in action.
+2. Addonify Quick View admin setting page - General options tab.
+3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
 
-= 1.2.8 - ? July, 2023 =
+= 1.2.8 - ? August, 2023 =
 
+- Added: Option, Quick view button text color.
+- Added: Option, Quick view button text color hover.
+- Added: Option, Quick view button background color.
+- Added: Option, Quick view button background color hover.
+- Added: Option, Quick view button border color.
+- Added: Option, Quick view button border color hover.
+- Added: Option, Quick view button border style.
+- Added: Option, Quick view button border radius.
 - Added: Option, Misc button font size.
 - Added: Option, Misc button font weight.
 - Added: Option, Misc button line height.
