@@ -4,6 +4,18 @@
 
   :root {
 
+    // Quick view button.
+    --addonify_qv_button_text: rgba(255, 255, 255, 1);
+    --addonify_qv_button_text_hover: rgba(255, 255, 255, 1);
+    --addonify_qv_button_background: rgb(33, 33, 33);
+    --addonify_qv_button_background_hover: rgb(14, 86, 255);
+    --addonify_qv_button_border_style: solid;
+    --addonify_qv_button_border_width: 0;
+    --addonify_qv_button_border_color: rgba(255, 255, 255, 0);
+    --addonify_qv_button_border_color_hover: rgba(255, 255, 255, 0);
+    --addonify_qv_button_border_radius: 4px;
+
+
     // Modal
     --addonify_qv_modal_overlay_background: rgba(0, 0, 0, 0.6);
     --addonify_qv_modal_background: rgba(255, 255, 255, 1);

@@ -40,7 +40,7 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_settings_fields' ) )
 
         return array(
             'enable_plugin_styles' => array(
-                'label'			    => __('Enable Plugin Styles', 'addonify-quick-view' ),
+                'label'			    => __('Enable Dymanic Styles', 'addonify-quick-view' ),
                 'description'       => __( 'Enable this to apply custom styles from plugin for quick view content.', 'addonify-quick-view' ),
                 'badge'             => __('Optional', 'addonify-quick-view' ),
                 'type'              => 'switch',

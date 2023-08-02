@@ -411,6 +411,24 @@ class Addonify_Quick_View_Public {
 	public function dynamic_css() {
 
 		$css_values = array(
+			'--addonify_qv_button_text'				  	=> addonify_quick_view_get_settings_fields_values( 'quick_view_button_text_color' ),
+
+			'--addonify_qv_button_text_hover'		  	=> addonify_quick_view_get_settings_fields_values( 'quick_view_button_text_color_hover' ),
+
+			'--addonify_qv_button_background'		  	=> addonify_quick_view_get_settings_fields_values( 'quick_view_button_bg_color' ),
+
+			'--addonify_qv_button_background_hover'		=> addonify_quick_view_get_settings_fields_values( 'quick_view_button_bg_color_hover' ),
+
+			'--addonify_qv_button_border_color'			=> addonify_quick_view_get_settings_fields_values( 'quick_view_button_border_color' ),
+
+			'--addonify_qv_button_border_color_hover'	 => addonify_quick_view_get_settings_fields_values( 'quick_view_button_border_color_hover' ),
+
+			'--addonify_qv_button_border_style'			 => addonify_quick_view_get_settings_fields_values( 'quick_view_button_border_style' ),
+
+			'--addonify_qv_button_border_radius'		  => addonify_quick_view_get_settings_fields_values( 'quick_view_button_border_radius' ) . 'px',
+
+			'--addonify_qv_button_border_width'			 => addonify_quick_view_get_settings_fields_values( 'quick_view_button_border_width' ) . 'px',
+
 			'--addonify_qv_modal_zindex'				  => addonify_quick_view_get_settings_fields_values( 'modal_zindex' ),
 
 			'--addonify_qv_modal_border_radius'			  => addonify_quick_view_get_settings_fields_values( 'modal_border_radius' ) . 'px', 

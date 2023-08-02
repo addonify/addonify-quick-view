@@ -529,7 +529,7 @@
                 }
                 
                 // TARGET ALL BUTTONS ISNIDE SUMMARY.
-                :is( .btn, button, .button, .single_add_to_cart_button ) {
+                :is( .btn, button, .button, .single_add_to_cart_button ):not(.woo-quantity-btn) {
 
                     display: inline-flex;
                     align-items: center;

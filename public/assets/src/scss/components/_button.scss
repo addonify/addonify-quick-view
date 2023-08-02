@@ -10,23 +10,24 @@
 	
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
+	gap: 5px;
 	fill: currentColor;
 	justify-content: center;
+	fill: var(--addonify_qv_button_text);
+	color: var(--addonify_qv_button_text);
+	border-width: var(--addonify_qv_button_border_width);
+	border-style: var(--addonify_qv_button_border_style);
+	border-color: var(--addonify_qv_button_border_color);
+	background-color: var(--addonify_qv_button_background);
+	border-radius: var(--addonify_qv_button_border_radius);
 	@include transition_delay();
 
-	&:is(:hover) {
+	&:is(:hover, :focus) {
 
-		border: none;
-		background-color: transparent;
-		fill: currentColor;
-	}
-
-	&:is(:focus) {
-
-		outline: none;
-		border: none;
-		background-color: transparent;
+		fill: var(--addonify_qv_button_text_hover);
+		color: var(--addonify_qv_button_text_hover);
+		border-color: var(--addonify_qv_button_border_color_hover);
+		background-color: var(--addonify_qv_button_background_hover);
 	}
 
 	.icon,
