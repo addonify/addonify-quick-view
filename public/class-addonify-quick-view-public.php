@@ -449,8 +449,6 @@ class Addonify_Quick_View_Public {
 
 			'--addonify_qv_modal_inputs_background_color' => addonify_quick_view_get_settings_fields_values( 'modal_box_inputs_background_color' ),
 
-			'--addonify_qv_modal_inputs_border_color'     => addonify_quick_view_get_settings_fields_values( 'modal_box_inputs_border_color' ),
-
 			'--addonify_qv_modal_spinner_icon_color'      => addonify_quick_view_get_settings_fields_values( 'modal_box_spinner_icon_color' ),
 
 			'--addonify_qv_product_title'                 => addonify_quick_view_get_settings_fields_values( 'product_title_color' ),
