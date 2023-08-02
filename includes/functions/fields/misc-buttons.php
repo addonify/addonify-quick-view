@@ -5,25 +5,25 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 
         return array(
             'modal_misc_buttons_text_color' => array(
-                'label'			  => __( 'Default text', 'addonify-quick-view'),
+                'label'			  => __( 'Text color', 'addonify-quick-view'),
                 'type'            => 'color',
                 'className'       => 'fullwidth',
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
             'modal_misc_buttons_text_hover_color' => array(
-                'label'			  => __( 'Text on mouse hover', 'addonify-quick-view'),
+                'label'			  => __( 'Text color on hover', 'addonify-quick-view'),
                 'type'            => 'color',
                 'className'       => 'fullwidth',
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
             'modal_misc_buttons_background_color' => array(
-                'label'			  => __( 'Default background', 'addonify-quick-view'),
+                'label'			  => __( 'Background color', 'addonify-quick-view'),
                 'type'            => 'color',
                 'className'       => 'fullwidth',
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
             'modal_misc_buttons_background_hover_color' => array(
-                'label'			  => __( 'Background on mouse hover', 'addonify-quick-view'),
+                'label'			  => __( 'Background on hover', 'addonify-quick-view'),
                 'type'            => 'color',
                 'className'       => 'fullwidth',
                 'dependent'       => array( 'enable_plugin_styles' ),
@@ -67,7 +67,7 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
                 'style'         => 'buttons-plus-minus',
                 'min'           => 0,
                 'max'           => 10,
-                'step'          => 0.5,
+                'step'          => 0.1,
                 'dependent'     => array( 'enable_plugin_styles' ),
             ),
             'modal_misc_buttons_line_height' => array(

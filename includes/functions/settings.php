@@ -79,7 +79,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_box_general_text_color'        => 'rgba(51, 51, 51, 1)',
 				'modal_box_inputs_background_color'   => 'rgba(255, 255, 255, 1)',
 				'modal_box_inputs_text_color'         => 'rgba(51, 51, 51, 1)',
-				'modal_box_inputs_border_color'       => 'rgba(238, 238, 238, 1)', // NEW - Done
+				'modal_box_general_border_color'      => 'rgba(238, 238, 238, 1)', // NEW - Done
 				'modal_box_spinner_icon_color'        => 'rgba(51, 51, 51, 1)',
 
 				'wc_gallery_trigger_icon_color'		  => '#9F9F9F', // NEW - Done
