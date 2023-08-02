@@ -51,7 +51,7 @@ if ( ! function_exists( 'addonify_quick_view_button_settings_fields' ) ) {
 
 if ( ! function_exists( 'addonify_quick_view_button_add_to_settings_fields' ) ) {
 	/**
-	 * General options.
+	 * Button options.
 	 *
 	 * @return array
 	 */
@@ -61,4 +61,93 @@ if ( ! function_exists( 'addonify_quick_view_button_add_to_settings_fields' ) ) 
 	}
 
 	add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_button_add_to_settings_fields' );
+}
+
+if( ! function_exists( 'addonify_quick_view_button_styles_settings_fields' )  ) {
+
+	function addonify_quick_view_button_styles_settings_fields() {
+		return array(
+			'quick_view_button_text_color' => array(
+                'label'			  => __( 'Text color', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_text_color_hover' => array(
+                'label'			  => __( 'Text color on hover', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_bg_color' => array(
+                'label'			  => __( 'Background color', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_bg_color_hover' => array(
+                'label'			  => __( 'Background color on hover', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_border_color' => array(
+                'label'			  => __( 'Border color', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_border_color_hover' => array(
+                'label'			  => __( 'Border color on hover', 'addonify-quick-view'),
+                'type'            => 'color',
+                'isAlpha'         => true,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_border_width' => array(
+                'label'			  => __( 'Border width', 'addonify-quick-view'),
+                'type'            => 'number',
+				'style'			  => 'slider',
+				'min'			  => 0,
+				'max'			  => 10,
+				'step'			  => 1,
+				'unix'			  => 'px',
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_border_style' => array(
+                'label'			  => __( 'Border style', 'addonify-quick-view'),
+                'type'            => 'select',
+				'choices'		  => array(
+					'none'   => __( 'None', 'addonify-quick-view' ),
+					'solid'  => __( 'Solid', 'addonify-quick-view' ),
+					'dotted' => __( 'Dotted', 'addonify-quick-view' ),
+					'dashed' => __( 'Dashed', 'addonify-quick-view' ),
+					'double' => __( 'Double', 'addonify-quick-view' ),
+				),
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+			'quick_view_button_border_radius' => array(
+                'label'			  => __( 'Border radius (unit: px)', 'addonify-quick-view'),
+                'type'            => 'number',
+				'style'			  => 'buttons-plus-minus',
+				'min'			  => 0,
+				'max'			  => 100,
+				'step'			  => 2,
+                'dependent'       => array( 'enable_plugin_styles' ), 
+            ),
+		);
+	}
+}
+	
+if ( ! function_exists( 'addonify_quick_view_button_add_to_styles_settings_field' ) ) {
+	/**
+	 * Button styles options.
+	 *
+	 * @return array
+	 */
+	function addonify_quick_view_button_add_to_styles_settings_field( $settings_fields ) {
+
+		return array_merge( $settings_fields, addonify_quick_view_button_styles_settings_fields() );
+	}
+
+	add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_button_add_to_styles_settings_field' );
 }

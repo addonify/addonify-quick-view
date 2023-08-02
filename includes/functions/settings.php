@@ -74,6 +74,20 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 
 				// Styles.
 				'enable_plugin_styles'                => '1',
+
+				// Quick view button.
+				'quick_view_button_text_color'		  => 'rgba(255, 255, 255, 1)',
+				'quick_view_button_text_color_hover'  => 'rgba(255, 255, 255, 1)',
+				'quick_view_button_bg_color'  		  => 'rgba(0, 0, 0, 1)',
+				'quick_view_button_bg_color_hover'    => 'rgb(14, 86, 255)',
+				'quick_view_button_border_color'	  => 'rgba(255, 255, 255, 0)',
+				'quick_view_button_border_color_hover' => 'rgba(255, 255, 255, 0)',
+				'quick_view_button_border_width' 	   => 0,
+				'quick_view_button_border_width_hover' => 0,
+				'quick_view_button_border_style'	   => 'solid',
+				'quick_view_button_border_radius'	   => 4,
+
+				// Modal box.
 				'modal_box_overlay_background_color'  => 'rgba(0, 0, 0, 0.8)',
 				'modal_box_background_color'          => 'rgba(255, 255, 255, 1)',
 				'modal_box_general_text_color'        => 'rgba(51, 51, 51, 1)',
@@ -82,6 +96,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_box_general_border_color'      => 'rgba(238, 238, 238, 1)', // NEW - Done
 				'modal_box_spinner_icon_color'        => 'rgba(51, 51, 51, 1)',
 
+				// WC Gallery.
 				'wc_gallery_trigger_icon_color'		  => '#9F9F9F', // NEW - Done
 				'wc_gallery_trigger_icon_hover_color' => 'rgb(54, 91, 255)', // NEW - Done
 				'wc_gallery_trigger_icon_bg_color'	  => 'rgba(255, 255, 255, 1)', // NEW - Done
@@ -321,6 +336,12 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 							'title'       => __( 'General', 'addonify-quick-view' ),
 							'description' => '',
 							'fields'      => addonify_quick_view_general_styles_settings_fields(),
+						),
+						'button'      => array(
+							'title'       => __( 'Quick view button', 'addonify-quick-view' ),
+							'description' => __( 'Change how quick view button should appear in the WooCommerce products listing.', 'addonify-quick-view' ),
+							'type'        => 'render-jumbo-box',
+							'fields'      => addonify_quick_view_button_styles_settings_fields(),
 						),
 						'modal'        => array(
 							'title'       => __( 'Modal box UI options', 'addonify-quick-view' ),
