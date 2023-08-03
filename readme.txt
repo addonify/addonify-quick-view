@@ -173,6 +173,7 @@ Let's make a better software together. We are open to discuss on how we can impr
 - Updated: Admin setting page UI SCSS code.
 - Tweak: Select v-model val changed to string (Vue JS)
 - Tweak: Refactor design tab UI (Vue JS)
+- Tweak: Addonify Quick View is enabled but not effective notice is now non-dismissible.
 - Improvement: Number input control (Vue JS)
 - Improvement: Admin setting page design tab user interface.
 
