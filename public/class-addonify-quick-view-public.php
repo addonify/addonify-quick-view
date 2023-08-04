@@ -263,7 +263,7 @@ class Addonify_Quick_View_Public {
 	 *
 	 * @since    1.2.8
 	 */
-	function render_addonify_quick_view_button() {
+	public function render_addonify_quick_view_button() {
 
 		do_action( 'addonify_quick_view_button' );
 	}
@@ -455,7 +455,7 @@ class Addonify_Quick_View_Public {
 
 			'--addonify_qv_gallery_trigger_icon_size' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_size' ) . 'px',
 
-			'--addonify_qv_modal_image_border_radius' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_border_radius' ) . 'px',
+			'--addonify_qv_gallery_trigger_icon_border_radius' => addonify_quick_view_get_settings_fields_values( 'wc_gallery_trigger_icon_border_radius' ) . 'px',
 
 			'--addonify_qv_spinner_icon_size'			  => addonify_quick_view_get_settings_fields_values( 'spinner_size' ) . 'px', 
 
