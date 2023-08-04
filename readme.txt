@@ -126,7 +126,7 @@ Let's make a better software together. We are open to discuss on how we can impr
 
 == Changelog ==
 
-= 1.2.8 - ? August, 2023 =
+= 1.2.8 - 04 August, 2023 =
 
 - Added: Option, Quick view button text color.
 - Added: Option, Quick view button text color hover.
