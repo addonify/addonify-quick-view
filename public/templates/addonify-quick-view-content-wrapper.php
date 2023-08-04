@@ -18,20 +18,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<div id="addonify-quick-view-modal">
-	<div class="adfy-quick-view-model-inner">
-		<div class="adfy-qvm-head">
-			<button id="addonify-qvm-close-button" class="adfy-qv-button">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-					<line x1="18" y1="6" x2="6" y2="18"></line>
-					<line x1="6" y1="6" x2="18" y2="18"></line>
-				</svg>
-			</button><!-- #addonify-qvm-close-button.adfy-qv-button -->
-		</div><!-- .adfy-qvm-head -->
-		<div id="adfy-qvm-spinner">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-		</div><!-- .adfy-qvm-spinner -->
-		<div class="adfy-quick-view-modal-content"></div><!-- .adfy-quick-view-modal-content -->
-	</div><!-- .adfy-quick-view-model-inner -->
-</div><!-- #addonify-quick-view-modal -->
-<aside id="addonify-quick-view-overlay" class="adfy-quick-view-overlay"></aside><!-- #addonify-quick-view-overlay.adfy-quick-view-overlay -->
+
+<aside id="addonify-quick-view-modal-wrapper" 
+	class="play-opening-animation"
+	data-open_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('opening') ); ?>" 
+	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('closing') ); ?>">
+	<div id="addonify-quick-view-modal" data-layout="default">
+		<div class="adfy-quick-view-model-inner" >
+			<?php if ( !addonify_quick_view_get_settings_fields_values( 'hide_modal_close_button' ) ) { ?>
+				<header class="adfy-qvm-header">
+					<button id="addonify-qvm-close-button" class="adfy-qv-button">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+				</header>
+			<?php } ?>
+			<div id="adfy-qvm-spinner">
+				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon( addonify_quick_view_get_settings_fields_values( 'spinner_icons' ) ) ); ?>
+			</div>
+			<section id="adfy-quick-view-modal-content" 
+				class="adfy-quick-view-modal-content" 
+				data-content_layout="<?php echo esc_attr( addonify_quick_view_get_settings_fields_values( 'modal_content_column_layout' ) ); ?>">
+			</section>
+		</div>
+	</div>
+</aside>

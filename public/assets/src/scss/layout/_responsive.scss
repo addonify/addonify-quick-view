@@ -1,0 +1,170 @@
+/* -------------------------------------------------------------------------- 
+	Responsive
+  -------------------------------------------------------------------------- */
+
+@media ( min-width: 1920px ) {
+
+	#addonify-quick-view-modal {
+
+		max-width: 1200px;
+	}
+}
+
+@media ( max-width: 1366px ) {
+
+	#addonify-quick-view-modal {
+
+		max-width: 90vw;
+	}
+}
+
+@media ( max-width: 1200px ) {
+
+	#addonify-quick-view-modal {
+
+		max-width: 95vw;
+	}
+}
+
+@media ( max-width: 992px ) {
+
+	#addonify-quick-view-modal {
+
+		.woocommerce {
+
+			.product {
+
+				grid-template-columns: repeat( 1, 1fr );
+				row-gap: 30px;
+				column-gap: 0;
+			}
+		}
+	}
+}
+
+@media ( max-width: 768px) {
+
+	#addonify-quick-view-modal {
+
+		.woocommerce {
+
+			.product {
+
+				grid-template-columns: repeat(1, 1fr);
+				row-gap: 20px;
+				column-gap: 0;
+
+				.images,
+				.summary {
+
+					margin: 0;
+					padding: 0;
+				}
+			}
+		}
+	}
+}
+
+@media ( max-width: 575px ) {
+
+	#addonify-quick-view-modal {
+
+		max-width: 90vw;
+		height: 95vh;
+		min-height: 95vh;
+		max-height: 95vh;
+
+		.adfy-quick-view-model-inner {
+
+			.adfy-qvm-header {
+
+				top: 5px;
+				right: 5px;
+			}
+		}
+
+		#adfy-quick-view-modal-content {
+
+			padding: 35px 20px 30px 20px;
+
+			.woocommerce {
+
+				.product {
+
+					.images {
+
+						.flex-control-nav {
+
+							row-gap: 10px;
+							column-gap: 10px;
+						}
+					}
+
+					.summary {
+
+						.summary-content {
+
+							.product_title {
+
+								font-size: 24px;
+							}
+
+							.price {
+
+								font-size: 16px;
+							}
+							
+							// VARIATIONS FORMS
+							.variations_form {
+
+								.variations {
+
+									tr {
+
+										grid-template-columns: repeat(1, 1fr);
+										row-gap: 10px;
+										column-gap: 0;
+									}
+								}
+							}
+
+							// GROUPED PRODUCT
+							.cart {
+
+								.woocommerce-grouped-product-list {
+
+									tbody {
+
+										tr {
+
+											flex-direction: column;
+											align-items: flex-start;
+											justify-content: flex-start;
+
+											.woocommerce-grouped-product-list-item__quantity {
+
+												width: 100%;
+												max-width: 100%;
+											}
+
+											.woocommerce-grouped-product-list-item__price {
+
+												text-align: left;
+
+												.stock {
+
+													justify-content: flex-start;
+													text-align: left;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

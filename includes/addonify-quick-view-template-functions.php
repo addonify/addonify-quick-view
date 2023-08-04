@@ -62,15 +62,16 @@ function addonify_quick_view_locate_template( $template_name, $template_path = '
  */
 function addonify_quick_view_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 
-	if ( ! is_array( $args ) ) {
-		extract( $args ); // @codingStandardsIgnoreLine
+	if (  is_array( $args ) && isset( $args ) ) {
+
+		extract( $args ); //phpcs:ignore
 	}
 
 	$template_file = addonify_quick_view_locate_template( $template_name . '.php', $template_path, $default_path );
 
 	if ( ! file_exists( $template_file ) ) {
 		/* translators: %s template */
-		_doing_it_wrong( __FUNCTION__, sprintf( __( '%s does not exist.', 'addonify-floating-cart' ), '<code>' . $template_file . '</code>' ), '1.0.0' ); // phpcs:ignore
+		_doing_it_wrong( __FUNCTION__, sprintf( __( '%s does not exist.', 'addonify-quick-view' ), '<code>' . $template_file . '</code>' ), '1.0.0' ); // phpcs:ignore
 		return;
 	}
 
@@ -83,25 +84,50 @@ function addonify_quick_view_get_template( $template_name, $args = array(), $tem
  *
  * @since 1.1.6
  */
-function addonify_quick_view_quick_view_button_template() {
+function addonify_quick_view_render_button_template() {
 
-	if ( empty( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ) ) ) {
+	if ( 
+		empty( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ) ) && !addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' )
+	) {
 
 		return;
 	}
 
 	global $product;
 
+	$button_icon = '';
+
+	$icon_position = '';
+
+	$button_css_classes = array( 'button', 'addonify-qvm-button' );
+
+	if ( 
+		addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' ) &&  				 addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' )
+	) {
+
+		$icon_key = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon' );
+
+		$button_icon = addonify_quick_view_get_button_icons( $icon_key );
+
+		$position = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' );
+
+		$icon_position = $position === 'before_label' ? 'left' : 'right';
+	}
+
+	$quick_view_button_args = array(
+		'product_id' 	=> $product->get_id(),
+		'label'      	=> addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ),
+		'classes'    	=> apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
+		'icon'		 	=> $button_icon,
+		'icon_position' => $icon_position,
+	);
+
 	addonify_quick_view_get_template(
 		'addonify-quick-view-button',
 		apply_filters(
-			'addonify_quick_view_button_template_args',
-			array(
-				'product_id' => $product->get_id(),
-				'label'      => addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ),
-				'css_class'  => '',
-			)
-		)
+			'addonify_quick_view_button_args', 
+			$quick_view_button_args 
+		),
 	);
 }
 
@@ -129,7 +155,7 @@ function addonify_quick_view_detail_button_template( $product_id ) {
 		)
 	);
 }
-add_action( 'addonify_quick_view_after_product_summary_content', 'addonify_quick_view_detail_button_template' );
+
 
 
 /**
@@ -161,11 +187,31 @@ function addonify_quick_view_content_template( $product_id ) {
 		)
 	);
 }
-add_action( 'addonify_quick_view_content', 'addonify_quick_view_content_template' );
 
 
+/**
+ * Return the name of the modal animation.
+ *
+ * @since 1.2.8
+ * @param string action. Opening or closing.
+ */
+if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
 
+	function addonify_quick_view_get_modal_animation( $action ) {
 
+		if ( $action === '') {
 
+			return 'none';
+		}
 
+		if ( $action === 'opening' ) {
 
+			return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
+		}
+
+		if ( $action === 'closing' ) {
+
+			return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+		}
+	}
+}

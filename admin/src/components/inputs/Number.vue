@@ -1,24 +1,123 @@
 <script setup>
 	import { computed } from "vue";
-	import { ElInput } from "element-plus";
+	import { ElInput, ElInputNumber, ElSlider } from "element-plus";
+
+	/**
+	 * Define props.
+	 *
+	 * @since 1.2.8
+	 */
 	const props = defineProps({
-		modelValue: [String, Number], // loose strict checking.
-		min: Number,
-		max: Number,
+		modelValue: {
+			type: [Number, String],
+			required: true,
+		},
+		min: {
+			type: [String, Number],
+			required: false,
+		},
+		max: {
+			type: [String, Number],
+			required: false,
+		},
+		step: {
+			type: [String, Number],
+			required: false,
+		},
+		precision: {
+			type: [String, Number],
+			required: false,
+		},
+		placeholder: {
+			type: String,
+			required: false,
+			default: "",
+		},
+		style: {
+			type: String,
+			required: false,
+			default: "default",
+		},
+		unit: {
+			type: String,
+			required: false,
+			default: "px",
+		},
 	});
 
-	// Ref: https://vuejs.org/guide/components/events.html#usage-with-v-model
+	// Desctructure props.
+	const { style, min, max, precision, step, unit, placeholder } = props;
+
+	/**
+	 * Define emit.
+	 *
+	 * @param {String/Number} value
+	 * @returns {String/Number} updated value
+	 * @since 1.2.8
+	 */
 	const emit = defineEmits(["update:modelValue"]);
 	const value = computed({
 		get() {
-			return parseInt(props.modelValue);
+			return parseFloat(props.modelValue);
 		},
 		set(newValue) {
 			emit("update:modelValue", newValue);
 		},
 	});
-	const { min, max } = props;
+
+	/**
+	 * Add the unit to the tooltip for slider control.
+	 *
+	 * @param {Number} val
+	 * @returns {String} i.e 10px
+	 * @since 1.2.8
+	 */
+	const processToolTip = (val) => val + " " + unit;
 </script>
 <template>
-	<el-input type="number" v-model="value" :min="min ? min : 0" :max="max" />
+	<template v-if="style === 'default'">
+		<el-input
+			type="number"
+			v-model="value"
+			:min="min ? min : 0"
+			:max="max"
+			:step="step"
+			:precision="precision"
+			:placeholder="placeholder"
+		/>
+	</template>
+	<template v-if="style === 'buttons-plus-minus'">
+		<el-input-number
+			v-model="value"
+			size="large"
+			:min="min ? min : 0"
+			:max="max ? max : 365"
+			:step="step"
+			:precision="precision"
+			:placeholder="placeholder"
+		/>
+	</template>
+	<template v-if="style === 'buttons-arrows'">
+		<el-input-number
+			v-model="value"
+			size="large"
+			:min="min ? min : 0"
+			:max="max ? max : 365"
+			:step="step"
+			:precision="precision"
+			:placeholder="placeholder"
+			controls-position="right"
+		/>
+	</template>
+	<template v-if="style === 'slider'">
+		<el-slider
+			v-model="value"
+			show-tooltip
+			:min="min"
+			:max="max"
+			:step="step ? step : 1"
+			size="large"
+			:format-tooltip="processToolTip"
+		/>
+	</template>
 </template>

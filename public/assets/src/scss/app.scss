@@ -1,0 +1,25 @@
+/*
+===========================================================
+
+# Pugin: Addonify - Quick View For WooCommerce
+# Author: https://addonify.com/
+# Since: 28 July, 2020
+
+=====================================
+*/
+
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+@import 'components/modal';
+@import 'components/button';
+
+@import 'layout/pswp';
+@import 'layout/overlay';
+@import 'layout/spinner';
+
+// Layout example: default, card etc.
+@import 'layout/modal/default';
+
+@import 'layout/responsive';
+@import 'components/keyframe';

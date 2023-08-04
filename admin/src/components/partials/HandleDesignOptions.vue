@@ -3,6 +3,7 @@
 	import OptionBox from "./OptionBox.vue";
 	import ColorGroup from "./design/ColorGroup.vue";
 	import SectionTitle from "./SectionTitle.vue";
+
 	const props = defineProps({
 		section: Object,
 		reactiveState: Object,
@@ -13,15 +14,15 @@
 	//console.log(props.section);
 </script>
 <template>
-	<div
+	<section
 		v-for="(section, sectionKey) in props.section"
 		v-show="
 			sectionKey == 'general' ? true : store.options.enable_plugin_styles
 		"
-		class="adfy-ui-option"
+		class="addonify-section"
 	>
 		<ColorGroup
-			v-if="section.type == 'color-options-group'"
+			v-if="section.type == 'render-jumbo-box'"
 			:section="section"
 			:reactiveState="props.reactiveState"
 		/>
@@ -38,5 +39,5 @@
 				:currentPage="props.currentPage"
 			/>
 		</OptionBox>
-	</div>
+	</section>
 </template>

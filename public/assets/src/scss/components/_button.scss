@@ -1,0 +1,148 @@
+/* -------------------------------------------------------------------------- 
+	Quick view button
+  -------------------------------------------------------------------------- */
+
+.addonify-qvm-button,
+.wc-block-grid__products .product .button.addonify-qvm-button,
+.woocommerce ul.products .product .button.addonify-qvm-button, 
+.woocommerce ul.products .wc-block-grid__product .button.addonify-qvm-button, 
+.wc-block-grid__products .wc-block-grid__product .button.addonify-qvm-button {
+	
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	fill: currentColor;
+	justify-content: center;
+	fill: var(--addonify_qv_button_text);
+	color: var(--addonify_qv_button_text);
+	border-width: var(--addonify_qv_button_border_width);
+	border-style: var(--addonify_qv_button_border_style);
+	border-color: var(--addonify_qv_button_border_color);
+	background-color: var(--addonify_qv_button_background);
+	border-radius: var(--addonify_qv_button_border_radius);
+	@include transition_delay();
+
+	&:is(:hover, :focus) {
+
+		fill: var(--addonify_qv_button_text_hover);
+		color: var(--addonify_qv_button_text_hover);
+		border-color: var(--addonify_qv_button_border_color_hover);
+		background-color: var(--addonify_qv_button_background_hover);
+	}
+
+	.icon,
+	.label {
+
+		margin: 0;
+		padding: 0;
+		background: transparent;
+		background-color: transparent;
+	}
+
+	.icon {
+
+		display: inline-flex;
+		align-items: center;
+		line-height: 1;
+		
+		svg {
+
+			display: inline-flex;
+			align-items: center;
+			width: 16px;
+			height: 16px;
+			line-height: 1;
+		}
+	}
+
+	&[data-icon_position="left"] {
+
+		.icon {
+
+			order: 1;
+		}
+
+		.label {
+
+			order: 2;
+		}
+	}
+
+	&[data-icon_position="right"] {
+
+		.icon {
+
+			order: 2;
+		}
+
+		.label {
+
+			order: 1;
+		}
+	}
+}
+
+/* -------------------------------------------------------------------------- 
+	Quick view model close button
+  -------------------------------------------------------------------------- */
+
+#addonify-qvm-close-button {
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	fill: var(--addonify_qv_close_button_text);
+	color: var(--addonify_qv_close_button_text);
+	height: 30px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	border-radius: 100%;
+	cursor: pointer;
+	background: transparent;
+	background-color: var(--addonify_qv_close_button_background);
+	@include transition_delay();
+
+	&:is(:hover) {
+
+		fill: var(--addonify_qv_close_button_text_hover);
+		color: var(--addonify_qv_close_button_text_hover);
+		border: none;
+		background: transparent;
+		background-color: var(--addonify_qv_close_button_background_hover);
+	}
+
+	svg {
+
+    	height: 14px;
+    	width: 14px;
+	}
+}
+
+/**
+*
+* Hide quick view button if disabled in mobile view is 'enabled' on the setting page.
+*
+* @since: 1.2.4
+*/
+
+@media ( max-width: 575px ) {
+
+	.addonify-quick-view-disabled-on-mobile {
+
+		&.woocommerce {
+
+			ul.products li.product .button.addonify-qvm-button,
+			ul.products li.product .button.addonify-qvm-button {
+
+				display: none;
+			}
+		}
+
+		.addonify-qvm-button {
+
+			display: none;
+		}
+	}
+}
