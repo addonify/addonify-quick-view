@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-07T11:52:23+00:00\n"
+"POT-Creation-Date: 2023-08-07T16:28:21+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: addonify-quick-view\n"
@@ -35,7 +35,7 @@ msgid "https://addonify.com"
 msgstr ""
 
 #: admin/class-addonify-quick-view-admin.php:179
-#: admin/assets/js/main.js:3443
+#: admin/assets/js/main.js:3580
 msgid "Settings"
 msgstr ""
 
@@ -812,124 +812,116 @@ msgstr ""
 msgid "There is no product with the id."
 msgstr ""
 
-#: admin/assets/js/main.js:225
+#: admin/assets/js/main.js:318
 #: admin/src/stores/options.js:65
 msgid "Something went wrong while fetching settings."
 msgstr ""
 
-#: admin/assets/js/main.js:281
+#: admin/assets/js/main.js:374
 #: admin/src/stores/options.js:136
 msgid "Something went wrong while updating settings."
 msgstr ""
 
-#: admin/assets/js/main.js:389
+#: admin/assets/js/main.js:482
 #: admin/src/stores/product.js:76
 msgid "Error: couldn't fetch recommended plugins list."
 msgstr ""
 
-#: admin/assets/js/main.js:433
+#: admin/assets/js/main.js:526
 #: admin/src/stores/product.js:124
 msgid "Error: couldn't process the recommended plugins list."
 msgstr ""
 
-#: admin/assets/js/main.js:472
+#: admin/assets/js/main.js:565
 #: admin/src/stores/product.js:161
 msgid "Error: Couldn't retrive the list of installed plugins."
 msgstr ""
 
-#: admin/assets/js/main.js:547
+#: admin/assets/js/main.js:640
 #: admin/src/stores/product.js:240
 msgid "Plugin installed successfully."
 msgstr ""
 
-#: admin/assets/js/main.js:564
+#: admin/assets/js/main.js:657
 #: admin/src/stores/product.js:254
 msgid "Error: couldn't install plugin."
 msgstr ""
 
-#: admin/assets/js/main.js:612
+#: admin/assets/js/main.js:705
 #: admin/src/stores/product.js:293
 msgid "Plugin activated successfully."
 msgstr ""
 
-#: admin/assets/js/main.js:629
+#: admin/assets/js/main.js:722
 #: admin/src/stores/product.js:307
 msgid "Error: Couldn't activate the plugin."
 msgstr ""
 
-#: admin/assets/js/main.js:1866
+#: admin/assets/js/main.js:1983
 msgid "Activate now"
 msgstr ""
 
-#: admin/assets/js/main.js:1867
+#: admin/assets/js/main.js:1984
 msgid "Activating..."
 msgstr ""
 
-#: admin/assets/js/main.js:1868
+#: admin/assets/js/main.js:1985
 msgid "Install now"
 msgstr ""
 
-#: admin/assets/js/main.js:1869
+#: admin/assets/js/main.js:1986
 msgid "Installing..."
 msgstr ""
 
-#: admin/assets/js/main.js:1870
+#: admin/assets/js/main.js:1987
 msgid "Installed"
 msgstr ""
 
-#: admin/assets/js/main.js:2908
+#: admin/assets/js/main.js:3045
 msgid "Check docs"
 msgstr ""
 
-#: admin/assets/js/main.js:3107
+#: admin/assets/js/main.js:3244
 msgid "Select"
 msgstr ""
 
-#: admin/assets/js/main.js:3170
-#: admin/assets/js/main.js:3198
+#: admin/assets/js/main.js:3307
+#: admin/assets/js/main.js:3335
 msgid "Enter text here..."
 msgstr ""
 
-#: admin/assets/js/main.js:3246
+#: admin/assets/js/main.js:3383
 msgid "Version"
 msgstr ""
 
-#: admin/assets/js/main.js:3246
+#: admin/assets/js/main.js:3383
 msgid "Rate"
 msgstr ""
 
-#: admin/assets/js/main.js:3347
+#: admin/assets/js/main.js:3484
 msgid "Documentation"
 msgstr ""
 
-#: admin/assets/js/main.js:3355
+#: admin/assets/js/main.js:3492
 msgid "Save Options"
 msgstr ""
 
-#: admin/assets/js/main.js:3451
+#: admin/assets/js/main.js:3588
 msgid "Design"
 msgstr ""
 
-#: admin/assets/js/main.js:3459
+#: admin/assets/js/main.js:3596
 msgid "Products"
 msgstr ""
 
-#: admin/assets/js/main.js:3500
-msgid "This is a major release, review new features & improvements."
-msgstr ""
-
-#: admin/assets/js/main.js:3500
-msgid "Change logs"
-msgstr ""
-
-#: admin/assets/js/main.js:3945
+#: admin/assets/js/main.js:4084
 msgid "404"
 msgstr ""
 
-#: admin/assets/js/main.js:3945
+#: admin/assets/js/main.js:4084
 msgid "Oops, page not found!"
 msgstr ""
 
-#: admin/assets/js/main.js:3950
+#: admin/assets/js/main.js:4089
 msgid "Go Back"
 msgstr ""
