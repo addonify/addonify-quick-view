@@ -9,25 +9,36 @@ import OptionSection from "../components/partials/OptionSection.vue";
 import Notice from "../components/layouts/Notice.vue";
 
 import { useOptionsStore } from "../stores/options";
+import { useNoticeStore } from "../stores/notice";
 
 const store = useOptionsStore();
+const noticeStore = useNoticeStore();
 
 onMounted(() => {
 	/**
 	 *
 	 * Check if we have state in the memory before fetching options from API.
 	 *
-	 * @since:
+	 * @since: 1.2.9
 	 */
-
 	if (!store.haveStateInMemory) {
 		store.fetchOptions();
+	}
+
+	/**
+	 *
+	 * Check notices state in the memory before fetching notices.
+	 *
+	 * @since: 1.2.9
+	 */
+	if (!noticeStore.hasNoticeStateInMemory) {
+		noticeStore.getNotices();
 	}
 });
 </script>
 
 <template>
-	<section class="adfy-container">
+	<section class="adfy-container" id="addonify-layout">
 		<Notice />
 		<main class="adfy-columns main-content">
 			<aside class="adfy-col start site-secondary">

@@ -42,6 +42,12 @@
         min-height: 100vh;
     }
 
+    #addonify-layout {
+
+        margin-top: 120px;
+        margin-bottom: 120px;
+    }
+
     .main-content {
 
         @include grid();
@@ -49,7 +55,7 @@
         column-gap: 60px;
         align-items: stretch;
         justify-content: stretch;
-        margin: 60px 0 0 0;
+        margin: 0;
 
         .end {
 
