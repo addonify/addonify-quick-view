@@ -24,16 +24,6 @@ onMounted(() => {
 	if (!store.haveStateInMemory) {
 		store.fetchOptions();
 	}
-
-	/**
-	 *
-	 * Check notices state in the memory before fetching notices.
-	 *
-	 * @since: 1.2.9
-	 */
-	if (!noticeStore.hasNoticeStateInMemory) {
-		noticeStore.getNotices();
-	}
 });
 </script>
 

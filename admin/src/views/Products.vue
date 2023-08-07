@@ -28,16 +28,6 @@ onMounted(() => {
 			res.status === 200 ? proStore.fetchInstalledAddons() : null;
 		});
 	}
-
-	/**
-	 *
-	 * Check notices state in the memory before fetching notices.
-	 *
-	 * @since: 1.2.9
-	 */
-	if (!noticeStore.hasNoticeStateInMemory) {
-		noticeStore.getNotices();
-	}
 });
 </script>
 

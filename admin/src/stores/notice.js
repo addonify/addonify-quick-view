@@ -6,7 +6,8 @@ export const useNoticeStore = defineStore({
 
     state: () => ({
 
-        notices: [],
+        alerts: {},
+
         status: {
             isFetching: true,
         }
@@ -15,7 +16,7 @@ export const useNoticeStore = defineStore({
     getters: {
 
         /**
-        * Return if we have notice in memo.
+        * Return if we have alerts in memo.
         *
         * @param {Object} state
         * @return {Boolean} true/false
@@ -23,36 +24,17 @@ export const useNoticeStore = defineStore({
         */
         hasNoticeStateInMemory: (state) => {
 
-            if (typeof state.notices === 'object') {
+            if (typeof state.alerts === 'object') {
 
-                return Object.keys(state.notices).length > 0 ? true : false;
+                return Object.keys(state.alerts).length > 0 ? true : false;
             }
 
-            if (typeof state.notice === 'array') {
+            if (typeof state.alerts === 'array') {
 
-                return state.notices.length > 0 ? true : false;
+                return state.alerts.length > 0 ? true : false;
             }
 
             return false;
-        },
-
-        /**
-        * Return if the notice is live or not.
-        *
-        * @param {Object} state
-        * @return {Boolean} true/false
-        * @since 1.2.9
-        */
-        isNoticeLive: (state) => {
-
-            if (state.notice.hasOwn(state.notices, 'live')) {
-
-                return state.notices.live ? true : false;
-
-            } else {
-
-                return false;
-            }
         },
     },
 
@@ -64,15 +46,16 @@ export const useNoticeStore = defineStore({
         *
         * @since 1.2.9
         */
-        async getNotices() {
+        async checkNotices() {
             try {
 
-                const res = await fetch("https://raw.githubusercontent.com/addonify/addonify-quick-view/main/notice.json");
+                const res = await fetch("https://raw.githubusercontent.com/addonify/addonify-quick-view/development/notice.json");
+
                 const data = await res.json();
 
                 if (res.status == 200) {
 
-                    this.notices = data.notice;
+                    this.alerts = data;
                     this.status.isFetching = false;
                 } else {
 
