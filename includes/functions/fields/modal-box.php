@@ -47,7 +47,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'product_thumbnail' => array(
                 'label'         => __( 'Product Thumbnail', 'addonify-quick-view' ),
-                'description'   => __( 'Choose whether you want to display single product image or gallery in quick view modal box.', 'addonify-quick-view' ),
                 'type'          => 'select',
                 'placeholder'   => __('Choose option', 'addonify-quick-view'),
                 'dependent'     => array('enable_quick_view'),
@@ -58,7 +57,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'enable_lightbox' => array(
                 'label'         => __( 'Enable Lightbox', 'addonify-quick-view' ),
-                'description'   => __( 'Enable lightbox for product images in quick view.', 'addonify-quick-view' ),
+                'description'   => __( 'May not work with all the themes.', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
@@ -115,7 +114,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'display_read_more_button' => array(
                 'label'         => __( 'Display View Detail Button', 'addonify-quick-view' ), 
-                'description'   => __( 'Enable to display View Detail Button in quick view modal box.', 'addonify-quick-view' ),
+                'description'   => __( 'Enable to display link to product single page button', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
@@ -127,7 +126,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'spinner_icons'     => array(
                 'label'         => __( 'Spinner icon', 'addonify-quick-view' ),
-                'description'   => __( 'Choose modal spinner icon', 'addonify-quick-view' ),
+                'description'   => __( 'Choose modal box loading spinner icon', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'radio-icons',
                 'className'     => 'fullwidth', 

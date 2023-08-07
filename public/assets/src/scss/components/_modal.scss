@@ -30,8 +30,8 @@
 		.adfy-qvm-header {
 
 			position: absolute;
-			top: 10px;
-			right: 10px;
+			top: 3px;
+			right: 3px;
 			z-index: 10;
 		}
 
@@ -212,6 +212,19 @@
   -------------------------------------------------------------------------- */
 
 #addonify-quick-view-modal-wrapper  {
+
+	.ps__rail-x, 
+	.ps__rail-y {
+
+		width: 1px;
+
+		[class*="ps__thumb-"] {
+
+			width: 1px;
+			border-radius: 0;
+			background-color: #DDDDDD;
+		}
+	}
 
 	#addonify-quick-view-modal {
 

@@ -1,19 +1,36 @@
 <script setup>
-	import InputControl from "../InputControl.vue";
+import InputControl from "../InputControl.vue";
+import Icon from "../../../components/icons/Icons.vue";
 
-	const props = defineProps({
-		section: Object,
-		reactiveState: Object,
-	});
+/**
+ * Define props.
+ *
+ * @since 1.0.0
+ */
+const props = defineProps({
+	section: {
+		type: Object,
+		required: true,
+	},
+	reactiveState: {
+		type: Object,
+		required: true,
+	},
+});
 </script>
 <template>
 	<section class="jumbo-section jumbo-box">
 		<div class="jumbo-header">
-			<p class="sec-title" v-if="props.section.title !== ''">
+			<p class="sec-title" v-if="props.section.title">
 				{{ props.section.title }}
 			</p>
-			<p class="sec-excerpt" v-if="props.section.description !== ''">
-				{{ props.section.description }}
+			<p class="sec-excerpt" v-if="props.section.description">
+				<span class="icon">
+					<Icon icon="bulb-solid" />
+				</span>
+				<span class="text">
+					{{ props.section.description }}
+				</span>
 			</p>
 		</div>
 		<div class="jumbo-content adfy-options">
