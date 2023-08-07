@@ -1,15 +1,15 @@
 <script setup>
-	/**
-	 * Define props.
-	 *
-	 * @since 1.1.8
-	 */
-	const props = defineProps({
-		layout: {
-			type: String,
-			required: true,
-		},
-	});
+/**
+ * Define props.
+ *
+ * @since 1.1.8
+ */
+const props = defineProps({
+	layout: {
+		type: String,
+		required: true,
+	},
+});
 </script>
 <template>
 	<template v-if="props.layout === 'default'">
@@ -23,8 +23,6 @@
 			></path>
 		</svg>
 		<svg
-			width="160"
-			height="110"
 			viewBox="0 0 160 110"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
@@ -75,8 +73,6 @@
 		</svg>
 
 		<svg
-			width="160"
-			height="110"
 			viewBox="0 0 160 110"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

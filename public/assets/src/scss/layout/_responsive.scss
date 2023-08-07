@@ -69,10 +69,9 @@
 
 	#addonify-quick-view-modal {
 
-		max-width: 90vw;
-		height: 95vh;
-		min-height: 95vh;
-		max-height: 95vh;
+		max-width: calc( 100vw - 40px );
+		height: calc( 100vh - 60px );
+		max-height: calc( 100vh - 60px );
 
 		.adfy-quick-view-model-inner {
 
@@ -93,8 +92,11 @@
 
 					.images {
 
+						gap: 10px;
+
 						.flex-control-nav {
 
+							grid-template-columns: repeat(3, 1fr);
 							row-gap: 10px;
 							column-gap: 10px;
 						}

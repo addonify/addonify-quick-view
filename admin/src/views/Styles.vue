@@ -1,53 +1,59 @@
 <script setup>
-	import { onMounted } from "vue";
-	import { useOptionsStore } from "../stores/options";
-	import Loading from "../components/layouts/Loading.vue";
-	import Navigation from "../components/layouts/Navigation.vue";
-	import Form from "../components/partials/Form.vue";
-	import SectionTitle from "../components/partials/SectionTitle.vue";
-	import HandleDesignOptions from "../components/partials/HandleDesignOptions.vue";
-	import OptionSection from "../components/partials/OptionSection.vue";
-	const store = useOptionsStore();
+import { onMounted } from "vue";
 
-	onMounted(() => {
-		/**
-		 *
-		 * Check if we have state in the memory before fetching options from API.
-		 *
-		 * @since:
-		 */
+import Form from "../components/partials/Form.vue";
+import Loading from "../components/layouts/Loading.vue";
+import Navigation from "../components/layouts/Navigation.vue";
+import HandleDesignOptions from "../components/partials/HandleDesignOptions.vue";
+import OptionSection from "../components/partials/OptionSection.vue";
+import Notice from "../components/layouts/Notice.vue";
 
-		if (!store.haveStateInMemory) {
-			store.fetchOptions();
-		}
-	});
+import { useOptionsStore } from "../stores/options";
+
+const store = useOptionsStore();
+
+onMounted(() => {
+	/**
+	 *
+	 * Check if we have state in the memory before fetching options from API.
+	 *
+	 * @since:
+	 */
+
+	if (!store.haveStateInMemory) {
+		store.fetchOptions();
+	}
+});
 </script>
 
 <template>
 	<section class="adfy-container">
+		<Notice />
 		<main class="adfy-columns main-content">
 			<aside class="adfy-col start site-secondary">
 				<Navigation />
 			</aside>
 			<section class="adfy-col end site-primary">
-				<Loading v-if="store.isLoading" />
-				<Form v-else divId="adfy-style-options-form">
-					<OptionSection
-						v-for="(section, sectionKey) in store.data.styles"
-					>
-						<HandleDesignOptions
-							:section="section"
-							:reactiveState="store.options"
+				<template v-if="store.isLoading">
+					<Loading />
+				</template>
+				<template v-else>
+					<Form divId="adfy-style-options-form">
+						<OptionSection
+							v-for="(section, sectionKey) in store.data.styles
+								.sections"
+							:sectionKey="sectionKey"
 							currentPage="design"
 						>
-							<SectionTitle
+							<HandleDesignOptions
 								:section="section"
-								:sectionkey="sectionKey"
+								:sectionKey="sectionKey"
+								:reactiveState="store.options"
 								currentPage="design"
 							/>
-						</HandleDesignOptions>
-					</OptionSection>
-				</Form>
+						</OptionSection>
+					</Form>
+				</template>
 			</section>
 		</main>
 	</section>

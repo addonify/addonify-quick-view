@@ -333,7 +333,7 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 				'styles'   => array(
 					'sections' => array(
 						'general'      => array(
-							'title'       => __( 'General', 'addonify-quick-view' ),
+							'title'       => __( 'Interface Design', 'addonify-quick-view' ),
 							'description' => '',
 							'fields'      => addonify_quick_view_general_styles_settings_fields(),
 						),
@@ -345,6 +345,7 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 						),
 						'modal'        => array(
 							'title'       => __( 'Modal box UI options', 'addonify-quick-view' ),
+							'description' => __( 'Customize the look and feel of quick view modal box.', 'addonify-quick-view' ),
 							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_modal_box_styles_settings_fields(),
 						),
@@ -356,11 +357,12 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 						),
 						'close_button' => array(
 							'title'       => __( 'Modal box close button options', 'addonify-quick-view' ),
+							'description' => __( 'Customize how modal close button should appear.', 'addonify-quick-view' ),
 							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
 						),
 						'misc_buttons' => array(
-							'title'       => __( 'All misc buttons inside options', 'addonify-quick-view' ),
+							'title'       => __( 'Misc buttons inside modal box', 'addonify-quick-view' ),
 							'description' => __( 'This option will be applied to all the buttons inside the modal box except close button.', 'addonify-quick-view' ),
 							'type'        => 'render-jumbo-box',
 							'fields'      => addonify_quick_view_misc_button_styles_settings_fields(),

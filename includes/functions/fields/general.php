@@ -6,17 +6,13 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
         return array(
             'enable_quick_view' => array(
                 'label'			=> __( 'Enable Quick View', 'addonify-quick-view' ),
-                'description'     => 'Enable this to enable the quick view in frontend.',
+                'description'     => __( 'If disabled, quick view features will be disabled completely.', 'addonify-quick-view' ),
                 'type'            => 'switch',
-                'badge'           => 'Required',
-                'badgeType'       => '',
             ),
             'disable_quick_view_on_mobile_device' => array(
-                'label'			=> __( 'Disable on Mobile Devices', 'addonify-quick-view' ),
-                'description'     => 'Enable this to disable quick view on mobile devices.',
+                'label'			  => __( 'Disable on Mobile Devices', 'addonify-quick-view' ),
+                'description'     => __( 'If enabled, quick view will be disabled on mobile devices.', 'addonify-quick-view'),
                 'type'            => 'switch',
-                'badge'           => 'Optional',
-                'badgeType'       => '',
                 'dependent'       => array('enable_quick_view'),
             ),
         );
@@ -40,9 +36,8 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_settings_fields' ) )
 
         return array(
             'enable_plugin_styles' => array(
-                'label'			    => __('Enable Dymanic Styles', 'addonify-quick-view' ),
-                'description'       => __( 'Enable this to apply custom styles from plugin for quick view content.', 'addonify-quick-view' ),
-                'badge'             => __('Optional', 'addonify-quick-view' ),
+                'label'			    => __('Enable dymanic styles', 'addonify-quick-view' ),
+                'description'       => __('Once enabled, below selected option will overwrite the default plugin stylesheet.', 'addonify-quick-view' ),
                 'type'              => 'switch',
             ),
         );

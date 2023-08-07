@@ -9,6 +9,7 @@
 /admin/assets/scss/           
 /public/assets/src/
 
+.editorconfig
 .distignore
 .gitignore
 .babelrc
