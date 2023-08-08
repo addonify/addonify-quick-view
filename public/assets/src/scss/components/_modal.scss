@@ -21,52 +21,6 @@
 	cursor: initial;
 	overflow: hidden;
 
-	//#adfy-qvm-header {
-
-	//	position: absolute;
-	//	top: 3px;
-	//	right: 3px;
-	//	z-index: 10;
-	//}
-
-	//#adfy-qvm-footer {
-
-	//	@include flex();
-	//	position: absolute;
-	//	flex-direction: column;
-	//	width: 100%;
-	//	bottom: 0;
-	//	right: 0;
-	//	left: 0;
-	//	padding: 0;
-	//	margin: 0 auto;
-	//	z-index: 10;
-
-	//	.addonify-qvm-close-button {
-
-	//		--size: var(--addonify_qv_mobile_close_button_font_size);
-
-	//		@include flex();
-	//		gap: 5px;
-	//		align-items: center;
-	//		justify-content: center;
-	//		width: 100%;
-	//		height: 35px;
-	//		padding: 0;
-	//		margin: 0;
-	//		font-size: var(--size);
-	//		font-weight: normal;
-	//		text-transform: none;
-	//		border-radius: 0;
-
-	//		svg {
-
-	//			width: var(--size);
-	//			height: var(--size);
-	//		}
-	//	}
-	//}
-
 	#adfy-quick-view-model-inner {
 
 		position: relative;
