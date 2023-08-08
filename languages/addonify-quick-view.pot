@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-08T06:17:20+00:00\n"
+"POT-Creation-Date: 2023-08-08T07:20:09+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: addonify-quick-view\n"
@@ -384,7 +384,7 @@ msgid "Hide modal close button"
 msgstr ""
 
 #: includes/functions/fields/modal-box.php:66
-msgid "Enable this option is you wish to hide the modal close button."
+msgid "If enabled, close button will be hidden for all media screen except mobile device."
 msgstr ""
 
 #: includes/functions/fields/modal-box.php:71
