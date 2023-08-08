@@ -63,7 +63,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'hide_modal_close_button' => array(
                 'label'         => __( 'Hide modal close button', 'addonify-quick-view' ),
-                'description'   => __( 'Enable this option is you wish to hide the modal close button.', 'addonify-quick-view' ),
+                'description'   => __( 'If enabled, close button will be hidden for all media screen except mobile device.', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),

@@ -69,7 +69,7 @@
         handleCloseButtonEvents: function () {
 
             // close quick view modal when close button is clicked.
-            $('body').on('click', '.addonify-qvm-close-button', function (e) {
+            $('body').on('click', '#addonify-quick-view-modal-close', function (e) {
 
                 e.preventDefault();
 
