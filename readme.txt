@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 1.2.9
+Stable tag: 1.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ Let's make a better software together. We are open to discuss on how we can impr
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.10 - ? August, 2023 =
+
+- Tweak: Implemented scroll to top everytime when the modal is opened.
 
 = 1.2.9 - 08 August, 2023 =
 
