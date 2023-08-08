@@ -1,24 +1,39 @@
 <script setup>
-	import { onMounted, onBeforeMount } from "vue";
-	import Loading from "../components/layouts/Loading.vue";
-	import Navigation from "../components/layouts/Navigation.vue";
-	import Recommended from "../components/layouts/Recommended.vue";
-	import { useProductStore } from "../stores/product";
+import { onMounted } from "vue";
+import Loading from "../components/layouts/Loading.vue";
+import Navigation from "../components/layouts/Navigation.vue";
+import Recommended from "../components/layouts/Recommended.vue";
+import Notice from "../components/layouts/Notice.vue";
 
-	const proStore = useProductStore();
-	//const { __ } = wp.i18n;
+import { useProductStore } from "../stores/product";
+import { useNoticeStore } from "../stores/notice";
 
-	onBeforeMount(() => {
-		proStore.fetchInstalledAddons();
-	});
+const proStore = useProductStore();
+const noticeStore = useNoticeStore();
 
-	onMounted(() => {
-		proStore.fetchGithubRepo();
-	});
+/**
+ * Hook: onMounted.
+ *
+ * @since 1.0.0
+ */
+onMounted(() => {
+	/**
+	 * Get the recommended products list.
+	 * Use cache if available.
+	 *
+	 * @since 1.0.0
+	 */
+	if (!proStore.hasAddonsStateInMemory) {
+		proStore.getRecommdedProductsList().then((res) => {
+			res.status === 200 ? proStore.fetchInstalledAddons() : null;
+		});
+	}
+});
 </script>
 
 <template>
-	<section class="adfy-container">
+	<section class="adfy-container" id="addonify-layout">
+		<Notice />
 		<main class="adfy-columns main-content">
 			<aside class="adfy-col start aside secondary">
 				<Navigation />

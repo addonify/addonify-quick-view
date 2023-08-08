@@ -47,7 +47,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'product_thumbnail' => array(
                 'label'         => __( 'Product Thumbnail', 'addonify-quick-view' ),
-                'description'   => __( 'Choose whether you want to display single product image or gallery in quick view modal box.', 'addonify-quick-view' ),
                 'type'          => 'select',
                 'placeholder'   => __('Choose option', 'addonify-quick-view'),
                 'dependent'     => array('enable_quick_view'),
@@ -58,13 +57,13 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'enable_lightbox' => array(
                 'label'         => __( 'Enable Lightbox', 'addonify-quick-view' ),
-                'description'   => __( 'Enable lightbox for product images in quick view.', 'addonify-quick-view' ),
+                'description'   => __( 'May not work with all the themes.', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
             'hide_modal_close_button' => array(
                 'label'         => __( 'Hide modal close button', 'addonify-quick-view' ),
-                'description'   => __( 'Enable this option is you wish to hide the modal close button.', 'addonify-quick-view' ),
+                'description'   => __( 'If enabled, close button will be hidden for all media screen except mobile device.', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
@@ -79,6 +78,13 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'description'   => __( 'Enable to close modal if clicked outside of modal box.', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
+            ),
+            'mobile_close_button_label' => array(
+                'label'         => __( 'Close button label on mobile device', 'addonify-quick-view' ),
+                'description'   => __( 'Check docs to learn about mobile close button.', 'addonify-quick-view' ),
+                'type'          => 'text',
+                'placeholder'   => __( 'Close', 'addonify-quick-view' ),
+                'dependent'     => array( 'enable_quick_view' ),
             ),
             'modal_opening_animation' => array(
                 'label'         => __( 'Modal opening animation', 'addonify-quick-view' ),
@@ -115,7 +121,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'display_read_more_button' => array(
                 'label'         => __( 'Display View Detail Button', 'addonify-quick-view' ), 
-                'description'   => __( 'Enable to display View Detail Button in quick view modal box.', 'addonify-quick-view' ),
+                'description'   => __( 'Enable to display link to product single page button', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
@@ -127,7 +133,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
             ),
             'spinner_icons'     => array(
                 'label'         => __( 'Spinner icon', 'addonify-quick-view' ),
-                'description'   => __( 'Choose modal spinner icon', 'addonify-quick-view' ),
+                'description'   => __( 'Choose modal box loading spinner icon', 'addonify-quick-view' ),
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'radio-icons',
                 'className'     => 'fullwidth', 
@@ -513,6 +519,15 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_close_button_styles_setti
                 'type'            => 'color',
                 'isAlpha'         => true,
                 'className'       => 'fullwidth', 
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
+            'mobile_close_button_font_size' => array(
+                'label'			  => __( 'Mobile close button font size (unit: px)', 'addonify-quick-view'),
+                'type'            => 'number',
+                'style'           => 'buttons-plus-minus',
+                'min'             => 12,
+                'max'             => 18,
+                'step'            => 1,
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
         );

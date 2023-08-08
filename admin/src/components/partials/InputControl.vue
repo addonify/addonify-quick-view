@@ -1,21 +1,39 @@
 <script setup>
-	import Switch from "../inputs/Switch.vue";
-	import Text from "../inputs/Text.vue";
-	import Textarea from "../inputs/Textarea.vue";
-	import Number from "../inputs/Number.vue";
-	import Select from "../inputs/Select.vue";
-	import Checkbox from "../inputs/Checkbox.vue";
-	import CheckboxButton from "../inputs/CheckboxButton.vue";
-	import Radio from "../inputs/Radio.vue";
-	import RadioIcon from "../inputs/RadioIcon.vue";
-	import ColorPicker from "../inputs/ColorPicker.vue";
-	import InvalidControl from "../inputs/InvalidControl.vue";
-	const props = defineProps({
-		field: Object,
-		fieldKey: String,
-		label: String,
-		reactiveState: Object,
-	});
+import Switch from "../inputs/Switch.vue";
+import Text from "../inputs/Text.vue";
+import Textarea from "../inputs/Textarea.vue";
+import Number from "../inputs/Number.vue";
+import Select from "../inputs/Select.vue";
+import Checkbox from "../inputs/Checkbox.vue";
+import CheckboxButton from "../inputs/CheckboxButton.vue";
+import Radio from "../inputs/Radio.vue";
+import RadioIcon from "../inputs/RadioIcon.vue";
+import ColorPicker from "../inputs/ColorPicker.vue";
+import InvalidControl from "../inputs/InvalidControl.vue";
+
+/**
+ * Define props.
+ *
+ * @since 1.0.0
+ */
+const props = defineProps({
+	field: {
+		type: Object,
+		required: true,
+	},
+	fieldKey: {
+		type: String,
+		required: true,
+	},
+	label: {
+		type: String,
+		required: false,
+	},
+	reactiveState: {
+		type: Object,
+		required: true,
+	},
+});
 </script>
 <template>
 	<Switch

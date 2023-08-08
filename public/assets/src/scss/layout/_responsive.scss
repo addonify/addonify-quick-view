@@ -65,27 +65,67 @@
 	}
 }
 
+@media ( min-width: 576px ) {
+
+	#addonify-quick-view-modal-wrapper  {
+
+		#addonify-quick-view-modal-close {
+
+			&[data_hide-desktop="true"] {
+
+				display: none;
+			}
+		}
+	}
+}
+
 @media ( max-width: 575px ) {
+
+	#addonify-quick-view-modal-wrapper {
+
+		#addonify-quick-view-modal-close {
+
+			--mobile-size: var(--addonify_qv_mobile_close_button_font_size);
+			
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			top: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 35px;
+			padding: 0;
+			margin: 0 auto;
+			border-radius: 0;
+
+			.button-label {
+
+				&.mobile {
+
+					display: inline-flex;
+				}
+			}
+
+			.button-icon {
+
+				svg {
+
+					width: var(--mobile-size);
+					height: var(--mobile-size);
+				}
+			}
+		}
+	}
 
 	#addonify-quick-view-modal {
 
-		max-width: 90vw;
-		height: 95vh;
-		min-height: 95vh;
-		max-height: 95vh;
-
-		.adfy-quick-view-model-inner {
-
-			.adfy-qvm-header {
-
-				top: 5px;
-				right: 5px;
-			}
-		}
+		position: relative;
 
 		#adfy-quick-view-modal-content {
 
-			padding: 35px 20px 30px 20px;
+			padding: 15px 15px 45px 15px;
 
 			.woocommerce {
 
@@ -93,8 +133,11 @@
 
 					.images {
 
+						gap: 10px;
+
 						.flex-control-nav {
 
+							grid-template-columns: repeat(3, 1fr);
 							row-gap: 10px;
 							column-gap: 10px;
 						}

@@ -10,7 +10,7 @@
     width: 100%;
 	height: auto;
 	min-height: 400px;
-	max-height: calc( 100vh - 10% );
+	max-height: calc( 100vh - 40px );
 	max-width: var(--addonify_qv_modal_width);
 	border-radius: var(--addonify_qv_modal_border_radius);
 	box-shadow: 0 0 65px rgba(0, 0, 0, 0.1);
@@ -19,28 +19,21 @@
 	@include visibility(hidden);
 	transition: none;
 	cursor: initial;
+	overflow: hidden;
 
-	.adfy-quick-view-model-inner {
+	#adfy-quick-view-model-inner {
 
 		position: relative;
 		height: 100%;
 		width: 100%;
 		max-width: 100%;
+	}
 
-		.adfy-qvm-header {
+	#adfy-quick-view-modal-content  {
 
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			z-index: 10;
-		}
-
-		.adfy-quick-view-modal-content  {
-
-			position: relative;
-			padding: 40px 30px;
-			color: var(--addonify_qv_modal_general_text_color);
-		}
+		position: relative;
+		padding: 40px 30px;
+		color: var(--addonify_qv_modal_general_text_color);
 	}
 }
 
@@ -212,6 +205,19 @@
   -------------------------------------------------------------------------- */
 
 #addonify-quick-view-modal-wrapper  {
+
+	.ps__rail-x, 
+	.ps__rail-y {
+
+		width: 1px;
+
+		[class*="ps__thumb-"] {
+
+			width: 1px;
+			border-radius: 0;
+			background-color: #DDDDDD;
+		}
+	}
 
 	#addonify-quick-view-modal {
 

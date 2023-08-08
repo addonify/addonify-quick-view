@@ -100,6 +100,7 @@ const source__files__folders__to__compress = {
         '!./sftp-config.json',
         '!./webpack.mix.js',
         '!./babelrc',
+        '!./notice.json'
     ],
 
     path__to__save__production__zip: "./",

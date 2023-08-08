@@ -1,43 +1,47 @@
 <script setup>
-	import { useOptionsStore } from "../../stores/options";
-	import OptionBox from "./OptionBox.vue";
-	import ColorGroup from "./design/ColorGroup.vue";
-	import SectionTitle from "./SectionTitle.vue";
+import OptionBox from "./OptionBox.vue";
+import JumboBox from "./design/JumboBox.vue";
+import SectionTitle from "./SectionTitle.vue";
 
-	const props = defineProps({
-		section: Object,
-		reactiveState: Object,
-		currentPage: String,
-	});
-
-	const store = useOptionsStore();
-	//console.log(props.section);
+/**
+ * Define props.
+ *
+ * @since 1.0.0
+ */
+const props = defineProps({
+	section: {
+		type: Object,
+		required: true,
+	},
+	sectionKey: {
+		type: String,
+		required: true,
+	},
+	reactiveState: {
+		type: Object,
+		required: true,
+	},
+	currentPage: {
+		type: String,
+		required: true,
+	},
+});
 </script>
 <template>
-	<section
-		v-for="(section, sectionKey) in props.section"
-		v-show="
-			sectionKey == 'general' ? true : store.options.enable_plugin_styles
-		"
-		class="addonify-section"
-	>
-		<ColorGroup
-			v-if="section.type == 'render-jumbo-box'"
-			:section="section"
+	<template v-if="section.type === 'render-jumbo-box'">
+		<JumboBox
+			:section="props.section"
 			:reactiveState="props.reactiveState"
 		/>
+	</template>
+	<template v-else>
 		<OptionBox
-			v-else
-			:section="section"
-			:sectionKey="sectionKey"
+			:section="props.section"
+			:sectionKey="props.sectionKey"
 			:reactiveState="props.reactiveState"
 			:currentPage="props.currentPage"
 		>
-			<SectionTitle
-				:section="section"
-				:sectionKey="sectionKey"
-				:currentPage="props.currentPage"
-			/>
+			<SectionTitle :section="props.section" />
 		</OptionBox>
-	</section>
+	</template>
 </template>

@@ -2,9 +2,9 @@
 
     'use strict';
 
-    const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose; // NEW
-    const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked; // NEW
-    const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked; // NEW
+    const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;
+    const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
+    const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked;
     const enableWcGalleryLightBox = addonifyQuickViewPublicScriptObject.enableWcGalleryLightBox;
 
     /**
@@ -22,6 +22,7 @@
             this.handleQuickViewButtonEvents();
             this.handleCloseButtonEvents();
             this.initPerfectScrollbar();
+            this.calculateModalHeight();
         },
 
         loadOnScroll: function () {
@@ -31,7 +32,7 @@
 
         loadOnResize: function () {
 
-            // Fire all these methods on document resize.
+            this.calculateModalHeight();
         },
 
         /**
@@ -68,7 +69,7 @@
         handleCloseButtonEvents: function () {
 
             // close quick view modal when close button is clicked.
-            $('body').on('click', '#addonify-qvm-close-button', function (e) {
+            $('body').on('click', '#addonify-quick-view-modal-close', function (e) {
 
                 e.preventDefault();
 
@@ -257,7 +258,7 @@
             if (typeof PerfectScrollbar === 'function') {
 
                 // use vanilla to query the DOM. jQuery is not working here.
-                let scrollEle = document.getElementById('addonify-quick-view-modal');
+                let scrollEle = document.getElementById('adfy-quick-view-model-inner');
 
                 if (scrollEle) {
 
@@ -293,6 +294,28 @@
 
                 triggerEle.html(" ");
                 triggerEle.html(icon);
+            }
+        },
+
+
+        /**
+        *
+        * Method: calculateModalHeight
+        * Calculates modal height.
+        *
+        * @param {null} null
+        * @return {void} void.
+        * @since 1.2.8
+        */
+        calculateModalHeight: function () {
+
+            const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+            const addonifyQuickViewModalEle = document.getElementById('addonify-quick-view-modal');
+
+            if (addonifyQuickViewModalEle) {
+
+                let processHeight = height - 40; // Deduct '40px' from the height of the window.
+                addonifyQuickViewModalEle.style.maxHeight = processHeight + 'px';
             }
         }
     }

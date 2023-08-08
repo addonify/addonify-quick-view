@@ -1,5 +1,5 @@
 <script setup>
-	const { __ } = wp.i18n;
+const { __ } = wp.i18n;
 </script>
 <template>
 	<div class="error-404">

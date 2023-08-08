@@ -86,39 +86,82 @@
 	Quick view model close button
   -------------------------------------------------------------------------- */
 
-#addonify-qvm-close-button {
+#addonify-quick-view-modal-wrapper {
 
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	fill: var(--addonify_qv_close_button_text);
-	color: var(--addonify_qv_close_button_text);
-	height: 30px;
-	width: 30px;
-	padding: 0;
-	margin: 0;
-	border: none;
-	border-radius: 100%;
-	cursor: pointer;
-	background: transparent;
-	background-color: var(--addonify_qv_close_button_background);
-	@include transition_delay();
+	#addonify-quick-view-modal-close {
 
-	&:is(:hover) {
+		--mobile-size: var(--addonify_qv_mobile_close_button_font_size);
 
-		fill: var(--addonify_qv_close_button_text_hover);
-		color: var(--addonify_qv_close_button_text_hover);
+		position: absolute;
+		right: 3px;
+		top: 3px;
+		z-index: 10000;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		fill: var(--addonify_qv_close_button_text);
+		color: var(--addonify_qv_close_button_text);
+		height: 30px;
+		width: 30px;
+		padding: 0;
+		margin: 0;
 		border: none;
+		line-height: 1;
+		border-radius: 100%;
+		cursor: pointer;
 		background: transparent;
-		background-color: var(--addonify_qv_close_button_background_hover);
-	}
+		background-color: var(--addonify_qv_close_button_background);
+		@include transition_delay();
 
-	svg {
+		&:is(:hover, :focus) {
 
-    	height: 14px;
-    	width: 14px;
+			fill: var(--addonify_qv_close_button_text_hover);
+			color: var(--addonify_qv_close_button_text_hover);
+			border: none;
+			background: transparent;
+			background-color: var(--addonify_qv_close_button_background_hover);
+		}
+
+		&:is(:focus) {
+
+			outline: none;
+			box-shadow: none;
+		}
+
+		.button-icon {
+
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+
+			svg {
+
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				height: 14px;
+				width: 14px;
+				line-height: 1;
+			}
+		}
+
+		.button-label {
+
+			display: inline-flex;
+			font-weight: normal;
+			text-transform: none;
+			line-height: 1;
+
+			&.mobile {
+
+				display: none;
+				font-size: var(--mobile-size);
+			}
+		}
 	}
 }
+
 
 /**
 *

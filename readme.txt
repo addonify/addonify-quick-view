@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.2.2
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,7 +46,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ Clean setting page design.
 ✅ Friendly support.
 
-**🌈 DESIGN OPTIONS: **
+**🌈 DESIGN OPTIONS:**
 
 ✅ Customize quick view button text color.
 ✅ Customize quick view button background color.
@@ -94,7 +94,6 @@ Still not sure how to start? Create [a new discussion](https://github.com/addoni
 Let's make a better software together. We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas.
 
 🌍 Feedback - [Have feedback](https://github.com/addonify/addonify-quick-view/discussions) or [I would love to rate](https://wordpress.org/support/plugin/addonify-quick-view/reviews/).
-
 🪲 Report BUG - [Option - 1](https://github.com/addonify/addonify-quick-view/issues) or [Option - 2](https://wordpress.org/support/plugin/addonify-quick-view/).
 
 
@@ -125,6 +124,14 @@ Let's make a better software together. We are open to discuss on how we can impr
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.9 - 08 August, 2023 =
+
+- Added: Dedicated close button for mobile devices.
+- Added: Dynamic notice in quick view admin setting page.
+- Tweak: The way modal box height is being calculated. 
+- Improvement: Admin setting page UI.
+- Refactor: Admin setting page code (Vue JS).
 
 = 1.2.8 - 04 August, 2023 =
 

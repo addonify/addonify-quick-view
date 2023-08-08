@@ -1,35 +1,22 @@
 <script setup>
-	import { useOptionsStore } from "../../stores/options";
-	const props = defineProps({
-		section: Object,
-		sectionkey: String,
-		currentPage: String,
-	});
+//import { useOptionsStore } from "../../stores/options";
 
-	//console.log(props.sectionkey);
-	//console.log(props.currentPage);
-	//console.log(props.section);
-
-	const store = useOptionsStore();
-
-	const titleVisibility = (page) => {
-		if (page === "design") {
-			return true;
-		} else if (page === "settings") {
-			return props.sectionkey.includes("general")
-				? true
-				: store.options.enable_quick_view;
-		} else {
-			return false;
-		}
-	};
+/**
+ * Define props.
+ *
+ * @since 1.0.0
+ */
+const props = defineProps({
+	section: {
+		type: Object,
+		required: true,
+	},
+});
 </script>
 <template>
-	<h3
-		class="option-box-title"
-		v-if="props.section.title"
-		v-show="titleVisibility(props.currentPage)"
-	>
-		{{ props.section.title }}
-	</h3>
+	<div v-if="props.section.title" class="section-title-holder">
+		<h3 class="section-title">
+			{{ props.section.title }}
+		</h3>
+	</div>
 </template>
