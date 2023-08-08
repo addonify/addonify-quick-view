@@ -54,6 +54,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'hide_modal_close_button'			  => false, // NEW  - Done
 				'close_modal_when_esc_pressed'		  => '1', // NEW - Done
 				'close_modal_when_clicked_outside'	  => false, // NEW - Done
+				'mobile_close_button_label'			  => __( 'Close', 'addonify-quick-view' ), // NEW - Done
 				'modal_zindex'	  					  => 10000000000000000, // NEW - Done
 				'modal_border_radius'				  => 10, // NEW - Done
 				'modal_image_radius'				  => 10, // NEW - Done
@@ -115,6 +116,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields_defaults' ) ) {
 				'modal_close_button_text_hover_color' => 'rgba(2, 134, 231, 1)',
 				'modal_close_button_background_color' => 'rgba(238, 238, 238, 1)',
 				'modal_close_button_background_hover_color' => 'rgba(182, 222, 255, 1)',
+				'mobile_close_button_font_size'		  => 14, // NEW - Done
 				'modal_misc_buttons_font_size'		  => 15, // NEW - Done
 				'modal_misc_buttons_font_weight'	  => '400', // NEW - Done
 				'modal_misc_buttons_letter_spacing'	  => 0, // NEW - Done

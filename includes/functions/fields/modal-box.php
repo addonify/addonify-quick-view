@@ -79,6 +79,13 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_content_settings_fields' 
                 'dependent'     => array('enable_quick_view'),
                 'type'          => 'switch'
             ),
+            'mobile_close_button_label' => array(
+                'label'         => __( 'Close button label on mobile device', 'addonify-quick-view' ),
+                'description'   => __( 'Check docs to learn about mobile close button.', 'addonify-quick-view' ),
+                'type'          => 'text',
+                'placeholder'   => __( 'Close', 'addonify-quick-view' ),
+                'dependent'     => array( 'enable_quick_view' ),
+            ),
             'modal_opening_animation' => array(
                 'label'         => __( 'Modal opening animation', 'addonify-quick-view' ),
                 'description'   => __( 'Choose animation effect when modal opens.', 'addonify-quick-view' ),
@@ -512,6 +519,15 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_close_button_styles_setti
                 'type'            => 'color',
                 'isAlpha'         => true,
                 'className'       => 'fullwidth', 
+                'dependent'       => array( 'enable_plugin_styles' ),
+            ),
+            'mobile_close_button_font_size' => array(
+                'label'			  => __( 'Mobile close button font size (unit: px)', 'addonify-quick-view'),
+                'type'            => 'number',
+                'style'           => 'buttons-plus-minus',
+                'min'             => 12,
+                'max'             => 18,
+                'step'            => 1,
                 'dependent'       => array( 'enable_plugin_styles' ),
             ),
         );

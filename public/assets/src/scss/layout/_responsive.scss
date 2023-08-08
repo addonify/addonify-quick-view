@@ -65,26 +65,31 @@
 	}
 }
 
+@media ( min-width: 576px ) {
+
+	#addonify-quick-view-modal {
+
+		#adfy-qvm-footer {
+
+			display: none;
+		}
+	}
+}
+
 @media ( max-width: 575px ) {
 
 	#addonify-quick-view-modal {
 
-		max-width: calc( 100vw - 40px );
-		height: calc( 100vh - 60px );
-		max-height: calc( 100vh - 60px );
+		position: relative;
 
-		.adfy-quick-view-model-inner {
+		#adfy-qvm-header {
 
-			.adfy-qvm-header {
-
-				top: 5px;
-				right: 5px;
-			}
+			display: none;
 		}
 
 		#adfy-quick-view-modal-content {
 
-			padding: 35px 20px 30px 20px;
+			padding: 15px 15px 45px 15px;
 
 			.woocommerce {
 

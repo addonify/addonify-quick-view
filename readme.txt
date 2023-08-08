@@ -127,7 +127,9 @@ Let's make a better software together. We are open to discuss on how we can impr
 
 = 1.2.9 - 08 August, 2023 =
 
-- Tweak: Modal box height in mobile devices.
+- Added: Dedicated close button for mobile devices.
+- Added: Dynamic notice in quick view admin setting page.
+- Tweak: The way modal box height is being calculated. 
 - Improvement: Admin setting page UI.
 - Refactor: Admin setting page code (Vue JS).
 
