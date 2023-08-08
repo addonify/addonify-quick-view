@@ -86,39 +86,46 @@
 	Quick view model close button
   -------------------------------------------------------------------------- */
 
-#addonify-qvm-close-button {
+#addonify-quick-view-modal-wrapper {
 
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	fill: var(--addonify_qv_close_button_text);
-	color: var(--addonify_qv_close_button_text);
-	height: 30px;
-	width: 30px;
-	padding: 0;
-	margin: 0;
-	border: none;
-	border-radius: 100%;
-	cursor: pointer;
-	background: transparent;
-	background-color: var(--addonify_qv_close_button_background);
-	@include transition_delay();
+	.addonify-qvm-close-button {
 
-	&:is(:hover) {
-
-		fill: var(--addonify_qv_close_button_text_hover);
-		color: var(--addonify_qv_close_button_text_hover);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		fill: var(--addonify_qv_close_button_text);
+		color: var(--addonify_qv_close_button_text);
+		height: 30px;
+		width: 30px;
+		padding: 0;
+		margin: 0;
 		border: none;
+		border-radius: 100%;
+		cursor: pointer;
 		background: transparent;
-		background-color: var(--addonify_qv_close_button_background_hover);
-	}
+		background-color: var(--addonify_qv_close_button_background);
+		@include transition_delay();
 
-	svg {
+		&:is(:hover) {
 
-    	height: 14px;
-    	width: 14px;
+			fill: var(--addonify_qv_close_button_text_hover);
+			color: var(--addonify_qv_close_button_text_hover);
+			border: none;
+			background: transparent;
+			background-color: var(--addonify_qv_close_button_background_hover);
+		}
+
+		svg {
+
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 14px;
+			width: 14px;
+		}
 	}
 }
+
 
 /**
 *

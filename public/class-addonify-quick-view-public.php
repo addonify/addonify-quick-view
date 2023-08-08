@@ -510,6 +510,9 @@ class Addonify_Quick_View_Public {
 
 			'--addonify_qv_close_button_background_hover' => addonify_quick_view_get_settings_fields_values( 'modal_close_button_background_hover_color' ),
 
+			'--addonify_qv_mobile_close_button_font_size' => addonify_quick_view_get_settings_fields_values( 'mobile_close_button_font_size' ) . 'px',
+
+
 			// Misc buttons
 			'--addonify_qv_misc_button_font_size'         => addonify_quick_view_get_settings_fields_values( 'modal_misc_buttons_font_size' ) . 'px',
 
