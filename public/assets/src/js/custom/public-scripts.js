@@ -53,6 +53,9 @@
                 // hydrate modal content by passing ID.
                 addonifyQuickView.hydrateModalContent(parseInt($(this).data('product_id')));
 
+                // Scroll to top of the modal.
+                addonifyQuickView.scrollIntoView();
+
                 // dispatch event to open quick view modal.
                 dispatchAddonifyQuickViewEvent.open();
             });
@@ -305,7 +308,7 @@
         *
         * @param {null} null
         * @return {void} void.
-        * @since 1.2.8
+        * @since 1.2.9
         */
         calculateModalHeight: function () {
 
@@ -316,6 +319,25 @@
 
                 let processHeight = height - 40; // Deduct '40px' from the height of the window.
                 addonifyQuickViewModalEle.style.maxHeight = processHeight + 'px';
+            }
+        },
+
+        /**
+        *
+        * Method: scrollIntoView
+        * Scrolls to top of the modal.
+        *
+        * @param {null} null
+        * @return {void} void.
+        * @since 1.2.10
+        */
+        scrollIntoView: function () {
+
+            const modalInnerEle = $("#adfy-quick-view-model-inner");
+
+            if (modalInnerEle.length > 0) {
+
+                modalInnerEle.animate({ scrollTop: 0 }, "slow");
             }
         }
     }
