@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 5.9
 Requires PHP: 7.4
-Tested up to: 6.2.2
+Tested up to: 6.3
 Stable tag: 1.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -125,9 +125,11 @@ Let's make a better software together. We are open to discuss on how we can impr
 
 == Changelog ==
 
-= 1.2.10 - ? August, 2023 =
+= 1.2.10 - 09 August, 2023 =
 
-- Tweak: Implemented scroll to top everytime when the modal is opened.
+- Added: Implemented scroll to top everytime when the modal is opened.
+- Tested: WordPress version 6.3
+- Tested: WooCommerce version 8.0.0
 
 = 1.2.9 - 08 August, 2023 =
 
