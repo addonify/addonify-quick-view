@@ -6,7 +6,7 @@ Tags:  woocommerce, quick view, woocommerce quick view, products quick view, qui
 Requires at least: 5.9
 Requires PHP: 7.4
 Tested up to: 6.3
-Stable tag: 1.2.10
+Stable tag: 1.2.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,11 @@ Let's make a better software together. We are open to discuss on how we can impr
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.10 - 25 August, 2023 =
+
+- Fix: Quick view modal overflow issue in mobile devices.
+- Tested: WooCommerce 8.0.2
 
 = 1.2.10 - 09 August, 2023 =
 
