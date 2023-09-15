@@ -196,6 +196,12 @@
                             // we expect response.data to be html content.
                             $(modalContentContainer).html(response.data);
 
+                            let modalCartFormEle = modalContentContainer.find('form.cart');
+
+                            if (modalCartFormEle.length > 0 ) {
+                                modalCartFormEle.removeAttr('action');   
+                            }
+
                             // dispatch DOM event.
                             dispatchAddonifyQuickViewEvent.modalContentLoaded(response.data);
 
