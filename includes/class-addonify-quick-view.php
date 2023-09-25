@@ -178,10 +178,9 @@ class Addonify_Quick_View {
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
 		// custom link in all plugin page.
-		$this->loader->add_action( 'plugin_action_links', $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
+		$this->loader->add_action( 'plugin_action_links_' . ADDONIFY_QUICK_VIEW_BASENAME, $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
 
-		// show notice if woocommerce is not active.
-		$this->loader->add_action( 'admin_init', $plugin_admin, 'show_woocommerce_not_active_notice_callback' );
+		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'plugin_row_meta', 10, 2 );
 	}
 
 

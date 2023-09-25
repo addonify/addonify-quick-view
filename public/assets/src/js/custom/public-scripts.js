@@ -23,6 +23,7 @@
             this.handleCloseButtonEvents();
             this.initPerfectScrollbar();
             this.calculateModalHeight();
+            this.handleQVModalEvents();
         },
 
         loadOnScroll: function () {
@@ -33,6 +34,22 @@
         loadOnResize: function () {
 
             this.calculateModalHeight();
+        },
+
+        /**
+         * Handles Quick View Modal events.
+         * 
+         * @since 1.2.13
+         */
+        handleQVModalEvents: function () {
+            $(document).on('addonifyQuickViewModalContentLoded', function (e) {
+                /**
+                 * If All Products for WooCommerce Subscriptions is active, trigger JS event `wcsatt-initialize` to enable the subscription selection.
+                 */
+                if (addonifyQuickViewPublicScriptObject.hasOwnProperty('wcsattEnabled') && addonifyQuickViewPublicScriptObject.wcsattEnabled === '1') {
+                    $(document.body).trigger('wcsatt-initialize');
+                }
+            });
         },
 
         /**

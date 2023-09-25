@@ -4,9 +4,9 @@ Contributors: addonify
 Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 5.9
-Requires PHP: 7.4
+Requires PHP: 7.2
 Tested up to: 6.3.1
-Stable tag: 1.2.12
+Stable tag: 1.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,12 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ More customization options, give it a try.
 
 
+**🧩 COMPATIBLE THIRD-PARTY PLUGINS:**
+
+- [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/)
+
+
+
 **👨‍💻 DEVELOPER:**
 
 Developers, we got you. Below are the different ways on how Addonify Quick View helpful for you.
@@ -87,6 +93,7 @@ Developers, we got you. Below are the different ways on how Addonify Quick View 
 ✅ JavaScript API [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/javascript-events/)
 
 Still not sure how to start? Create [a new discussion](https://github.com/addonify/addonify-quick-view/discussions) and we will help you out.
+
 
 
 **🤎 FEEDBACK & SUPPORT:**
@@ -124,6 +131,12 @@ Let's make a better software together. We are open to discuss on how we can impr
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.13 - ? September, 2023 =
+
+- Added: Compatibility with All Products for WooCommerce Subscriptions plugin.
+- Added: Documentation link, GitHub link, and support link to the plugin row in plugins list table.
+- Updated: Plugin setting page link moved before the 'Deactivate' link in plugins list page.
 
 = 1.2.12 - 15 September, 2023 =
 
