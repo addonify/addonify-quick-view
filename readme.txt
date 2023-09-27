@@ -158,7 +158,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 1.2.10 - 09 August, 2023 =
 
-- Added: Implemented scroll to top everytime when the modal is opened.
+- Added: Implemented scroll to top every time when the modal is opened.
 - Tested: WordPress version 6.3
 - Tested: WooCommerce version 8.0.0
 
