@@ -20,7 +20,9 @@ Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce 
 🌍 Official Demo: [Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
 📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
 
-If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.  
+If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.
+
+
 
 **🦄 MAIN FEATURES:**
 
@@ -45,6 +47,8 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ Add custom CSS if required from admin setting page.
 ✅ Clean setting page design.
 ✅ Friendly support.
+
+
 
 **🌈 DESIGN OPTIONS:**
 
@@ -77,6 +81,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 ✅ More customization options, give it a try.
 
 
+
 **🧩 COMPATIBLE THIRD-PARTY PLUGINS:**
 
 - [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/)
@@ -102,6 +107,7 @@ Let's make a better software together. We are open to discuss on how we can impr
 
 🌍 Feedback - [Have feedback](https://github.com/addonify/addonify-quick-view/discussions) or [I would love to rate](https://wordpress.org/support/plugin/addonify-quick-view/reviews/).
 🪲 Report BUG - [Option - 1](https://github.com/addonify/addonify-quick-view/issues) or [Option - 2](https://wordpress.org/support/plugin/addonify-quick-view/).
+
 
 
 **📦 UPCOMING FEATURES:**
@@ -132,11 +138,13 @@ Let's make a better software together. We are open to discuss on how we can impr
 
 == Changelog ==
 
-= 1.2.13 - ? September, 2023 =
+= 1.2.13 - 27 September, 2023 =
 
 - Added: Compatibility with All Products for WooCommerce Subscriptions plugin.
 - Added: Documentation link, GitHub link, and support link to the plugin row in plugins list table.
+- Fix: Issue of color options, `General border color` and `Input fields text color`, not getting rendered.
 - Updated: Plugin setting page link moved before the 'Deactivate' link in plugins list page.
+- Tested: WooCommerce 8.1.1.
 
 = 1.2.12 - 15 September, 2023 =
 
