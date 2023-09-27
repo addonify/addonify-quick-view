@@ -10,17 +10,17 @@ Stable tag: 1.2.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
+Addonify WooCommerce Quick View plugin adds functionality to have a quick preview of WooCommerce product on a popup modal.
 
 == Description ==
 
-Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
+Addonify WooCommerce Quick View plugin adds functionality to have a quick preview of WooCommerce product on a popup modal.
 
 🌍 Official Demo: [Link 1](https://demo.addonify.com/woo/01/)
 🌍 Official Demo: [Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
 📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
 
-If you run an online e-commerce shop you are already familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary insisted on going through each products detail page. This could save the time of your visitors & increase your revenue.
+If you run an online e-commerce shop, then you must be familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary instead of going through each product's detail page. This could save the time of your visitors & increase your revenue.
 
 
 
@@ -28,7 +28,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 
 ✅ Easy to use.
 ✅ Super light-weight & optimized for performance. 
-✅ Add a quick view button in product loop to open a modal window with the product summary using ajax.
+✅ Add a quick view button in product loop to open a modal window with the product summary using AJAX.
 ✅ Display product image or gallery on quick view modal.
 ✅ Display product title, price, add to cart button, excerpt and view detail button on quick view modal.
 ✅ Disable quick view on mobile device.
@@ -90,7 +90,7 @@ If you run an online e-commerce shop you are already familiar with the number of
 
 **👨‍💻 DEVELOPER:**
 
-Developers, we got you. Below are the different ways on how Addonify Quick View helpful for you.
+Developers, we got you. Follow the links below to easily customize Addonify Quick View as you like.
 
 ✅ Custom quick view button [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/)
 ✅ Using Hooks & Filters [Check Doc](https://docs.addonify.com/kb/woocommerce-quick-view/developer/)
@@ -103,7 +103,7 @@ Still not sure how to start? Create [a new discussion](https://github.com/addoni
 
 **🤎 FEEDBACK & SUPPORT:**
 
-Let's make a better software together. We are open to discuss on how we can improve our plugin. We would like to welcome you to join the discussion and share your ideas.
+Let's make Addonify Quick View better together. We are open to discuss how we can improve our plugin. You're always welcome to join the discussion and share your ideas with us.
 
 🌍 Feedback - [Have feedback](https://github.com/addonify/addonify-quick-view/discussions) or [I would love to rate](https://wordpress.org/support/plugin/addonify-quick-view/reviews/).
 🪲 Report BUG - [Option - 1](https://github.com/addonify/addonify-quick-view/issues) or [Option - 2](https://wordpress.org/support/plugin/addonify-quick-view/).
@@ -120,7 +120,7 @@ Let's make a better software together. We are open to discuss on how we can impr
 - Reset / Backup / Restore settings.
 - Quick view for Gutenberg WooCommerce products blocks. 
 - More customization options.
-- Why don't you let us know. [Let's discuss](https://github.com/addonify/addonify-quick-view/discussions) on what you would like to see in the next version.
+- Do you have any requests to make? [Let's discuss](https://github.com/addonify/addonify-quick-view/discussions) on what you would like to see in the next version.
 
 
 == Installation ==
