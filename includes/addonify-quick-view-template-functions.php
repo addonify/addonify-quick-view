@@ -62,7 +62,7 @@ function addonify_quick_view_locate_template( $template_name, $template_path = '
  */
 function addonify_quick_view_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 
-	if (  is_array( $args ) && isset( $args ) ) {
+	if ( is_array( $args ) && isset( $args ) ) {
 
 		extract( $args ); //phpcs:ignore
 	}
@@ -86,8 +86,8 @@ function addonify_quick_view_get_template( $template_name, $args = array(), $tem
  */
 function addonify_quick_view_render_button_template() {
 
-	if ( 
-		empty( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ) ) && !addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' )
+	if (
+		empty( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ) ) && ! addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' )
 	) {
 
 		return;
@@ -101,8 +101,9 @@ function addonify_quick_view_render_button_template() {
 
 	$button_css_classes = array( 'button', 'addonify-qvm-button' );
 
-	if ( 
-		addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' ) &&  				 addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' )
+	if (
+		addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' ) &&
+		addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' )
 	) {
 
 		$icon_key = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon' );
@@ -111,22 +112,22 @@ function addonify_quick_view_render_button_template() {
 
 		$position = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' );
 
-		$icon_position = $position === 'before_label' ? 'left' : 'right';
+		$icon_position = ( 'before_label' === $position ) ? 'left' : 'right';
 	}
 
 	$quick_view_button_args = array(
-		'product_id' 	=> $product->get_id(),
-		'label'      	=> addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ),
-		'classes'    	=> apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
-		'icon'		 	=> $button_icon,
+		'product_id'    => $product->get_id(),
+		'label'         => addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ),
+		'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
+		'icon'          => $button_icon,
 		'icon_position' => $icon_position,
 	);
 
 	addonify_quick_view_get_template(
 		'addonify-quick-view-button',
 		apply_filters(
-			'addonify_quick_view_button_args', 
-			$quick_view_button_args 
+			'addonify_quick_view_button_args',
+			$quick_view_button_args
 		),
 	);
 }
@@ -189,27 +190,28 @@ function addonify_quick_view_content_template( $product_id ) {
 }
 
 
-/**
- * Return the name of the modal animation.
- *
- * @since 1.2.8
- * @param string action. Opening or closing.
- */
-if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
 
+if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
+	/**
+	 * Return the name of the modal animation.
+	 *
+	 * @since 1.2.8
+	 *
+	 * @param string $action Opening or closing.
+	 */
 	function addonify_quick_view_get_modal_animation( $action ) {
 
-		if ( $action === '') {
+		if ( ! $action ) {
 
 			return 'none';
 		}
 
-		if ( $action === 'opening' ) {
+		if ( 'opening' === $action ) {
 
 			return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
 		}
 
-		if ( $action === 'closing' ) {
+		if ( 'closing' === $action ) {
 
 			return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
 		}

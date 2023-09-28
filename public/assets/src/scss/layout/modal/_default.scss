@@ -237,9 +237,9 @@
                         padding: 0;
                         margin: 0;
                         color: var(--addonify_qv_product_title);
-                        font-size: var(--adonify_qv_product_title_font_size);
-                        font-weight: var(--adonify_qv_product_title_font_weight);
-                        line-height: var(--adonify_qv_product_title_line_height);
+                        font-size: var(--addonify_qv_product_title_font_size);
+                        font-weight: var(--addonify_qv_product_title_font_weight);
+                        line-height: var(--addonify_qv_product_title_line_height);
                     }
 
                     .woocommerce-product-rating {
@@ -299,8 +299,8 @@
                         margin: 20px 0;
                         padding: 0;
                         color: var(--addonify_qv_product_price);
-                        font-size: var(--adonify_qv_product_price_font_size);
-                        font-weight: var(--adonify_qv_product_price_font_weight);
+                        font-size: var(--addonify_qv_product_price_font_size);
+                        font-weight: var(--addonify_qv_product_price_font_weight);
                         line-height: 1;
 
                         ins,
@@ -317,7 +317,7 @@
                         del {
 
                             color: var(--addonify_qv_product_price);
-                            font-size: calc( var(--adonify_qv_product_price_font_size) - 30% );
+                            font-size: calc( var(--addonify_qv_product_price_font_size) - 30% );
                             font-weight: normal;
                         }
 
@@ -326,8 +326,8 @@
                             font-size: 150%;
                             font-weight: bold;
                             color: var(--addonify_qv_product_price_sale);
-                            font-size: var(--adonify_qv_product_price_font_size);
-                            font-weight: var(--adonify_qv_product_price_font_weight);
+                            font-size: var(--addonify_qv_product_price_font_size);
+                            font-weight: var(--addonify_qv_product_price_font_weight);
                         }
                     }
 
