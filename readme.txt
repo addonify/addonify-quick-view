@@ -138,7 +138,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 == Changelog ==
 
-= 1.2.13 - 27 September, 2023 =
+= 1.2.13 - 28 September, 2023 =
 
 - Added: Compatibility with All Products for WooCommerce Subscriptions plugin.
 - Added: Documentation link, GitHub link, and support link to the plugin row in plugins list table.
