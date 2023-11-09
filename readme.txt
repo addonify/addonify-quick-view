@@ -5,8 +5,8 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 5.9
 Requires PHP: 7.2
-Tested up to: 6.3.1
-Stable tag: 1.2.13
+Tested up to: 6.4.0
+Stable tag: 1.2.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,11 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.14 - 09 November, 2023 =
+
+- Tested: WordPress v6.4.0
+- Tested: WooCommerce v8.2.2
 
 = 1.2.13 - 28 September, 2023 =
 
