@@ -19,10 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<aside id="addonify-quick-view-modal-wrapper" 
+<aside
+	id="addonify-quick-view-modal-wrapper" 
 	class="play-opening-animation"
-	data-open_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('opening') ); ?>" 
-	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation('closing') ); ?>">
+	data-open_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation( 'opening' ) ); ?>" 
+	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation( 'closing' ) ); ?>"
+>
 	<div id="addonify-quick-view-modal" data-layout="default">
 		<button 
 		id="addonify-quick-view-modal-close"
@@ -37,9 +39,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</button>
 		<div class="adfy-quick-view-model-inner" id="adfy-quick-view-model-inner">
 			<div id="adfy-qvm-spinner">
-				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon( addonify_quick_view_get_settings_fields_values( 'spinner_icons' ) ) ); ?>
+				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon( addonify_quick_view_get_settings_fields_values( 'spinner_icons' ) ) ); // phpcs:ignore ?>
 			</div>
-			<section id="adfy-quick-view-modal-content" 
+			<section
+				id="adfy-quick-view-modal-content" 
 				class="adfy-quick-view-modal-content" 
 				data-content_layout="<?php echo esc_attr( addonify_quick_view_get_settings_fields_values( 'modal_content_column_layout' ) ); ?>">
 			</section>

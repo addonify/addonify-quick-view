@@ -82,12 +82,6 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 
 
 
-**🧩 COMPATIBLE THIRD-PARTY PLUGINS:**
-
-- [All Products for WooCommerce Subscriptions](https://woocommerce.com/products/all-products-for-woocommerce-subscriptions/)
-
-
-
 **👨‍💻 DEVELOPER:**
 
 Developers, we got you. Follow the links below to easily customize Addonify Quick View as you like.
@@ -137,6 +131,11 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 3. Addonify Quick View admin setting page - Design options tab. 
 
 == Changelog ==
+
+= 1.2.15 - ? March, 2024 =
+
+- Removed: WooCommerce dependency admin notice.
+- Tested:  WordPress version 6.5.
 
 = 1.2.15 - 26 January, 2023 =
 

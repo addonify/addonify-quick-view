@@ -354,50 +354,43 @@ class Addonify_Quick_View_Public {
 		// Show Hide Image according to user choices.
 		if ( in_array( 'image', $modal_box_content, true ) ) {
 
-			// show or hide gallery thumbnails according to user choice.
+			// Show or hide gallery thumbnails according to user choice.
 			if ( addonify_quick_view_get_settings_fields_values( 'product_thumbnail' ) === 'product_image_only' ) {
-
 				remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
 			}
 
-			// show images.
+			// Show images.
 			add_action( 'addonify_quick_view_product_image', 'woocommerce_show_product_sale_flash', 10 );
 			add_action( 'addonify_quick_view_product_image', 'woocommerce_show_product_images', 20 );
 		}
 
-		// show or hide title.
+		// Show or hide title.
 		if ( in_array( 'title', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_title', 5 );
 		}
 
-		// show or hide product ratings.
+		// Show or hide product ratings.
 		if ( in_array( 'rating', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_rating', 10 );
 		}
 
-		// show or hide price.
+		// Show or hide price.
 		if ( in_array( 'price', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_price', 15 );
 		}
 
-		// show or hide excerpt.
+		// Show or hide excerpt.
 		if ( in_array( 'excerpt', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_excerpt', 20 );
 		}
 
-		// show or hide add to cart button.
+		// Show or hide add to cart button.
 		if ( in_array( 'add_to_cart', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
 		}
 
-		// show or hide product meta.
+		// Show or hide product meta.
 		if ( in_array( 'meta', $modal_box_content, true ) ) {
-
 			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
 	}

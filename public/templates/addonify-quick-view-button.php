@@ -14,22 +14,19 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 <button 
-	type="button" 
+	type="button"
 	class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" 
 	data-product_id="<?php echo esc_attr( $product_id ); ?>"
-	<?php echo !empty( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : ''; ?>
+	<?php echo $icon_position ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : 'before_label'; ?>
 >
-	<?php 
+	<?php
+	if ( $label ) {
+		echo '<span class="label">' . esc_html( $label ) . '</span>';
+	}
 
-		if ( !empty( $label ) ) {
-
-			echo '<span class="label">' . esc_html( $label ) . '</span>';
-		}
-		
-		if ( !empty( $icon ) ) {
-
-			echo '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>';
-		}
+	if ( $icon ) {
+		echo '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>'; // phpcs:ignore
+	}
 	?>
 </button>
 
