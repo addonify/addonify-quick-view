@@ -18,11 +18,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-echo apply_filters( // phpcs:ignore
-	'addonify_quick_view_detail_button',
-	sprintf(
-		'<a href="%s" class="button to-wc-ps-link" >%s</a>',
-		get_the_permalink( $args['product_id'] ),
-		esc_html( $args['button_label'] )
-	)
-);
+global $product;
+
+?>
+<div id="adfy-qv-product-link">
+	<?php
+	echo apply_filters( // phpcs:ignore
+		'addonify_quick_view_detail_button',
+		sprintf(
+			'<a href="%s" class="button to-wc-ps-link" >%s</a>',
+			$product->get_permalink(),
+			esc_html( $args['button_label'] )
+		)
+	);
+	?>
+</div>

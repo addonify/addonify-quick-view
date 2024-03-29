@@ -137,9 +137,8 @@ function addonify_quick_view_render_button_template() {
  * Renders view detail button in quick view product content.
  *
  * @since 1.1.6
- * @param int $product_id Product ID.
  */
-function addonify_quick_view_detail_button_template( $product_id ) {
+function addonify_quick_view_detail_button_template() {
 
 	if ( (int) addonify_quick_view_get_settings_fields_values( 'display_read_more_button' ) !== 1 ) {
 		return;
@@ -150,7 +149,6 @@ function addonify_quick_view_detail_button_template( $product_id ) {
 		apply_filters(
 			'addonify_quick_view_detail_button_template_args',
 			array(
-				'product_id'   => $product_id,
 				'button_label' => addonify_quick_view_get_settings_fields_values( 'read_more_button_label' ),
 			)
 		)
@@ -174,17 +172,14 @@ function addonify_quick_view_content_wrapper_template() {
  * Renders quick view product content.
  *
  * @since 1.1.6
- * @param int $product_id Product ID.
  */
-function addonify_quick_view_content_template( $product_id ) {
+function addonify_quick_view_content_template() {
 
 	addonify_quick_view_get_template(
 		'addonify-quick-view-content',
 		apply_filters(
 			'addonify_quick_view_content_template_args',
-			array(
-				'product_id' => $product_id,
-			)
+			array()
 		)
 	);
 }
@@ -214,6 +209,69 @@ if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
 		if ( 'closing' === $action ) {
 
 			return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+		}
+	}
+}
+
+
+if ( ! function_exists( 'addonify_quick_view_generate_quick_view_content' ) ) {
+	/**
+	 * Renders product content with respect to setting's selection.
+	 *
+	 * @since 1.0.0
+	 */
+	function addonify_quick_view_generate_quick_view_content() {
+
+		$modal_box_content = unserialize( addonify_quick_view_get_settings_fields_values( 'modal_box_content' ) ); // phpcs:ignore
+
+		if (
+			! is_array( $modal_box_content ) ||
+			empty( $modal_box_content )
+		) {
+			return;
+		}
+
+		// Show Hide Image according to user choices.
+		if ( in_array( 'image', $modal_box_content, true ) ) {
+
+			// Show or hide gallery thumbnails according to user choice.
+			if ( addonify_quick_view_get_settings_fields_values( 'product_thumbnail' ) === 'product_image_only' ) {
+				remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
+			}
+
+			// Show images.
+			add_action( 'addonify_quick_view_product_image', 'woocommerce_show_product_sale_flash', 10 );
+			add_action( 'addonify_quick_view_product_image', 'woocommerce_show_product_images', 20 );
+		}
+
+		// Show or hide title.
+		if ( in_array( 'title', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_title', 5 );
+		}
+
+		// Show or hide product ratings.
+		if ( in_array( 'rating', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_rating', 10 );
+		}
+
+		// Show or hide price.
+		if ( in_array( 'price', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_price', 15 );
+		}
+
+		// Show or hide excerpt.
+		if ( in_array( 'excerpt', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_excerpt', 20 );
+		}
+
+		// Show or hide add to cart button.
+		if ( in_array( 'add_to_cart', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_add_to_cart', 25 );
+		}
+
+		// Show or hide product meta.
+		if ( in_array( 'meta', $modal_box_content, true ) ) {
+			add_action( 'addonify_quick_view_product_summary', 'woocommerce_template_single_meta', 30 );
 		}
 	}
 }

@@ -20,8 +20,8 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
 
 		return array(
 			'custom_css' => array(
-				'label'       => __( 'Additional CSS', 'addonify-quick-view' ),
-				'description' => __( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
+				'label'       => esc_html__( 'Additional CSS', 'addonify-quick-view' ),
+				'description' => esc_html__( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
 				'type'        => 'textarea',
 				'className'   => 'fullwidth custom-css-box',
 				'placeholder' => '#app { color: blue; }',
@@ -29,6 +29,22 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
 			),
 		);
 	}
+
+
+	add_filter(
+		'addonify_quick_view_style_sections',
+		function( $sections ) {
+
+			$sections['custom_css'] = array(
+				'title'       => esc_html__( 'Developer', 'addonify-quick-view' ),
+				'description' => '',
+				'fields'      => addonify_quick_view_custom_css_settings_fields(),
+			);
+
+			return $sections;
+		},
+		15
+	);
 }
 
 

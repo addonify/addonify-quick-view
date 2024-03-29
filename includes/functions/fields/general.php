@@ -18,18 +18,21 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
 	 */
 	function addonify_quick_view_general_settings_fields() {
 
-		return array(
-			'enable_quick_view'                   => array(
-				'label'       => __( 'Enable Quick View', 'addonify-quick-view' ),
-				'description' => __( 'If disabled, quick view features will be disabled completely.', 'addonify-quick-view' ),
-				'type'        => 'switch',
-			),
-			'disable_quick_view_on_mobile_device' => array(
-				'label'       => __( 'Disable on Mobile Devices', 'addonify-quick-view' ),
-				'description' => __( 'If enabled, quick view will be disabled on mobile devices.', 'addonify-quick-view' ),
-				'type'        => 'switch',
-				'dependent'   => array( 'enable_quick_view' ),
-			),
+		return apply_filters(
+			'addonify_quick_view_general_setting_fields',
+			array(
+				'enable_quick_view'                   => array(
+					'label'       => __( 'Enable Quick View', 'addonify-quick-view' ),
+					'description' => __( 'If disabled, quick view features will be disabled completely.', 'addonify-quick-view' ),
+					'type'        => 'switch',
+				),
+				'disable_quick_view_on_mobile_device' => array(
+					'label'       => __( 'Disable on Mobile Devices', 'addonify-quick-view' ),
+					'description' => __( 'If enabled, quick view will be disabled on mobile devices.', 'addonify-quick-view' ),
+					'type'        => 'switch',
+					'dependent'   => array( 'enable_quick_view' ),
+				),
+			)
 		);
 	}
 }

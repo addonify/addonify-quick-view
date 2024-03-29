@@ -152,7 +152,7 @@ if ( ! function_exists( 'addonify_quick_view_settings_fields' ) ) {
 }
 
 
-if ( ! function_exists( 'addonify_quick_view_get_setting_field_value' ) ) {
+if ( ! function_exists( 'addonify_quick_view_get_option' ) ) {
 	/**
 	 * Retrieve the value of a settings field.
 	 *
@@ -160,7 +160,7 @@ if ( ! function_exists( 'addonify_quick_view_get_setting_field_value' ) ) {
 	 *
 	 * @param string $setting_id Setting ID.
 	 */
-	function addonify_quick_view_get_setting_field_value( $setting_id ) {
+	function addonify_quick_view_get_option( $setting_id ) {
 
 		$defaults = addonify_quick_view_settings_fields_defaults();
 
@@ -185,7 +185,7 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields_values' ) ) {
 
 		if ( $setting_id ) {
 
-			return addonify_quick_view_get_setting_field_value( $setting_id );
+			return addonify_quick_view_get_option( $setting_id );
 		} else {
 
 			$key_values = array();
@@ -197,27 +197,27 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields_values' ) ) {
 				switch ( $field_type ) {
 
 					case 'text':
-						$key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
+						$key_values[ $key ] = addonify_quick_view_get_option( $key );
 						break;
 
 					case 'switch':
-						$key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) === '1' ) ? true : false;
+						$key_values[ $key ] = ( addonify_quick_view_get_option( $key ) === '1' ) ? true : false;
 						break;
 
 					case 'checkbox':
-						$key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key ) ? unserialize( addonify_quick_view_get_setting_field_value( $key ) ): array(); // phpcs:ignore
+						$key_values[ $key ] = addonify_quick_view_get_option( $key ) ? unserialize( addonify_quick_view_get_option( $key ) ): array(); // phpcs:ignore
 						break;
 
 					case 'select':
-						$key_values[ $key ] = ( addonify_quick_view_get_setting_field_value( $key ) === '' ) ? 'Choose value' : addonify_quick_view_get_setting_field_value( $key );
+						$key_values[ $key ] = ( addonify_quick_view_get_option( $key ) === '' ) ? 'Choose value' : addonify_quick_view_get_option( $key );
 						break;
 
 					case 'color':
-						$key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
+						$key_values[ $key ] = addonify_quick_view_get_option( $key );
 						break;
 
 					default:
-						$key_values[ $key ] = addonify_quick_view_get_setting_field_value( $key );
+						$key_values[ $key ] = addonify_quick_view_get_option( $key );
 						break;
 				}
 			}
@@ -314,66 +314,67 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields' ) ) {
 			'settings_values' => addonify_quick_view_get_settings_fields_values(),
 			'tabs'            => array(
 				'settings' => array(
-					'sections' => array(
-						'general' => array(
-							'title'       => __( 'General', 'addonify-quick-view' ),
-							'description' => '',
-							'fields'      => addonify_quick_view_general_settings_fields(),
-						),
-						'button'  => array(
-							'title'       => __( 'Button Options', 'addonify-quick-view' ),
-							'description' => '',
-							'fields'      => addonify_quick_view_button_settings_fields(),
-						),
-						'modal'   => array(
-							'title'       => __( 'Modal Box Options', 'addonify-quick-view' ),
-							'description' => '',
-							'fields'      => addonify_quick_view_modal_box_content_settings_fields(),
-						),
+					'sections' => apply_filters(
+						'addonify_quick_view_general_sections',
+						array(
+							'general' => array(
+								'title'       => __( 'General', 'addonify-quick-view' ),
+								'description' => '',
+								'fields'      => addonify_quick_view_general_settings_fields(),
+							),
+							'button'  => array(
+								'title'       => __( 'Button Options', 'addonify-quick-view' ),
+								'description' => '',
+								'fields'      => addonify_quick_view_button_settings_fields(),
+							),
+							'modal'   => array(
+								'title'       => __( 'Modal Box Options', 'addonify-quick-view' ),
+								'description' => '',
+								'fields'      => addonify_quick_view_modal_box_content_settings_fields(),
+							),
+						)
 					),
 				),
 				'styles'   => array(
-					'sections' => array(
-						'general'      => array(
-							'title'       => __( 'Interface Design', 'addonify-quick-view' ),
-							'description' => '',
-							'fields'      => addonify_quick_view_general_styles_settings_fields(),
-						),
-						'button'       => array(
-							'title'       => __( 'Quick view button', 'addonify-quick-view' ),
-							'description' => __( 'Change how quick view button should appear in the WooCommerce products listing.', 'addonify-quick-view' ),
-							'type'        => 'render-jumbo-box',
-							'fields'      => addonify_quick_view_button_styles_settings_fields(),
-						),
-						'modal'        => array(
-							'title'       => __( 'Modal box UI options', 'addonify-quick-view' ),
-							'description' => __( 'Customize the look and feel of quick view modal box.', 'addonify-quick-view' ),
-							'type'        => 'render-jumbo-box',
-							'fields'      => addonify_quick_view_modal_box_styles_settings_fields(),
-						),
-						'product'      => array(
-							'title'       => __( 'Product content options', 'addonify-quick-view' ),
-							'description' => __( 'Product content inside modal box options.', 'addonify-quick-view' ),
-							'type'        => 'render-jumbo-box',
-							'fields'      => addonify_quick_view_modal_box_content_styles_settings_fields(),
-						),
-						'close_button' => array(
-							'title'       => __( 'Modal box close button options', 'addonify-quick-view' ),
-							'description' => __( 'Customize how modal close button should appear.', 'addonify-quick-view' ),
-							'type'        => 'render-jumbo-box',
-							'fields'      => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
-						),
-						'misc_buttons' => array(
-							'title'       => __( 'Misc buttons inside modal box', 'addonify-quick-view' ),
-							'description' => __( 'This option will be applied to all the buttons inside the modal box except close button.', 'addonify-quick-view' ),
-							'type'        => 'render-jumbo-box',
-							'fields'      => addonify_quick_view_misc_button_styles_settings_fields(),
-						),
-						'custom_css'   => array(
-							'title'       => __( 'Developer', 'addonify-quick-view' ),
-							'description' => '',
-							'fields'      => addonify_quick_view_custom_css_settings_fields(),
-						),
+					'sections' => apply_filters(
+						'addonify_quick_view_style_sections',
+						array(
+							'general'      => array(
+								'title'       => __( 'Interface Design', 'addonify-quick-view' ),
+								'description' => '',
+								'fields'      => addonify_quick_view_general_styles_settings_fields(),
+							),
+							'button'       => array(
+								'title'       => __( 'Quick view button', 'addonify-quick-view' ),
+								'description' => __( 'Change how quick view button should appear in the WooCommerce products listing.', 'addonify-quick-view' ),
+								'type'        => 'render-jumbo-box',
+								'fields'      => addonify_quick_view_button_styles_settings_fields(),
+							),
+							'modal'        => array(
+								'title'       => __( 'Modal box UI options', 'addonify-quick-view' ),
+								'description' => __( 'Customize the look and feel of quick view modal box.', 'addonify-quick-view' ),
+								'type'        => 'render-jumbo-box',
+								'fields'      => addonify_quick_view_modal_box_styles_settings_fields(),
+							),
+							'product'      => array(
+								'title'       => __( 'Product content options', 'addonify-quick-view' ),
+								'description' => __( 'Product content inside modal box options.', 'addonify-quick-view' ),
+								'type'        => 'render-jumbo-box',
+								'fields'      => addonify_quick_view_modal_box_content_styles_settings_fields(),
+							),
+							'close_button' => array(
+								'title'       => __( 'Modal box close button options', 'addonify-quick-view' ),
+								'description' => __( 'Customize how modal close button should appear.', 'addonify-quick-view' ),
+								'type'        => 'render-jumbo-box',
+								'fields'      => addonify_quick_view_modal_box_close_button_styles_settings_fields(),
+							),
+							'misc_buttons' => array(
+								'title'       => __( 'Misc buttons inside modal box', 'addonify-quick-view' ),
+								'description' => __( 'This option will be applied to all the buttons inside the modal box except close button.', 'addonify-quick-view' ),
+								'type'        => 'render-jumbo-box',
+								'fields'      => addonify_quick_view_misc_button_styles_settings_fields(),
+							),
+						)
 					),
 				),
 				'products' => array(

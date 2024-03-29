@@ -41,11 +41,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div id="adfy-qvm-spinner">
 				<?php echo addonify_quick_view_escape_svg ( addonify_quick_view_get_spinner_icon( addonify_quick_view_get_settings_fields_values( 'spinner_icons' ) ) ); // phpcs:ignore ?>
 			</div>
+			<?php do_action( 'addonify_quick_view_before_modal_content' ); ?>
 			<section
 				id="adfy-quick-view-modal-content" 
 				class="adfy-quick-view-modal-content" 
 				data-content_layout="<?php echo esc_attr( addonify_quick_view_get_settings_fields_values( 'modal_content_column_layout' ) ); ?>">
 			</section>
+			<?php do_action( 'addonify_quick_view_after_modal_content' ); ?>
 		</div>
 	</div>
 </aside>
