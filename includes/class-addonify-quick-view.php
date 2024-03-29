@@ -251,5 +251,4 @@ class Addonify_Quick_View {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

@@ -6,6 +6,7 @@
     const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
     const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked;
     const enableWcGalleryLightBox = addonifyQuickViewPublicScriptObject.enableWcGalleryLightBox;
+    let modalContentContainer = jQuery('#addonify-quick-view-modal #adfy-quick-view-modal-content');
 
     /**
      * Main object for addonify quick view modal.
@@ -42,14 +43,56 @@
          * @since 1.2.13
          */
         handleQVModalEvents: function () {
-            $(document).on('addonifyQuickViewModalContentLoded', function (e) {
+
+            $(document).on('addonifyQuickViewModalContentLoading', function(event){
+
+                // Show loading state.
+                addonifyQuickView.setSpinner('show');
+
+                // Clear the modal content.
+                modalContentContainer.html(" ");
+            });
+
+            $(document).on('addonifyQuickViewModalContentLoaded', function(event,data) {
+
+                if ( data !== undefined && data.hasOwnProperty('content') ) {
+
+                    addonifyQuickView.hydrateModalContent(data.content);
+
+                    // Scroll to top of the modal.
+                    addonifyQuickView.scrollIntoView();
+
+                    // Hide loading state.
+                    addonifyQuickView.setSpinner('hide');
+
+                    // Dispatch event to open quick view modal.
+                    dispatchAddonifyQuickViewEvent.open();
+                }
+            });
+
+            $(document).on( 'addonifyQuickViewModalOpened', function(event) {
+
+                // Re-initiazlize PerfectScrollBar.
+                addonifyQuickView.initPerfectScrollbar();
+
+                // Re-initialize variation form.
+                addonifyQuickView.initiateVariationForm();
+
+                // Re-initialize WC Gallery.
+                addonifyQuickView.initiateWCGallery();
+
+                // Render trigger icon for WooCommerce gallery.
+                if (enableWcGalleryLightBox) {
+                    addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
+                }
+
                 /**
                  * If All Products for WooCommerce Subscriptions is active, trigger JS event `wcsatt-initialize` to enable the subscription selection.
                  */
                 if (addonifyQuickViewPublicScriptObject.hasOwnProperty('wcsattEnabled') && addonifyQuickViewPublicScriptObject.wcsattEnabled === '1') {
                     $(document.body).trigger('wcsatt-initialize');
                 }
-            });
+            } );
         },
 
         /**
@@ -67,14 +110,10 @@
 
                 e.preventDefault();
 
-                // hydrate modal content by passing ID.
-                addonifyQuickView.hydrateModalContent(parseInt($(this).data('product_id')));
-
-                // Scroll to top of the modal.
-                addonifyQuickView.scrollIntoView();
-
-                // dispatch event to open quick view modal.
-                dispatchAddonifyQuickViewEvent.open();
+                if(addonifyQuickViewPublicScriptObject.hasOwnProperty('quickViewAction')) {
+                    // Get modal content by passing ID.
+                    addonifyQuickView.getModalContent(parseInt($(this).data('product_id')));
+                }
             });
         },
 
@@ -170,6 +209,40 @@
             }
         },
 
+        getModalContent: function(productID) {
+            if (!productID) {
+                throw new Error('Addonify Quick View: Product id is not supplied!');
+            }
+
+            dispatchAddonifyQuickViewEvent.modalContentLoading();
+
+            $.ajax({
+                type: 'GET',
+                url: addonifyQuickViewPublicScriptObject.ajaxURL,
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    'action': addonifyQuickViewPublicScriptObject.quickViewAction,
+                    'product_id': productID,
+                    'nonce': addonifyQuickViewPublicScriptObject.nonce,
+                },
+                success: function(response) {
+
+                    if(!response.success) {
+                        console.warn(response.message);
+                        return;
+                    }
+
+                    if(response.success) {
+                        // Dispatch DOM event.
+                        dispatchAddonifyQuickViewEvent.modalContentLoaded(response.data);
+                    }
+                },
+                error: function(jqXHR, textStatus) {
+                    console.log(textStatus);
+                }
+            });
+        },
+
         /**
         * Method: hydrateModalContent
         * Fn hat does Ajax call to get modal content.
@@ -178,96 +251,44 @@
         * @return void
         * @since 1.2.8
         */
-        hydrateModalContent: function (productID) {
+        hydrateModalContent: function(data) {
 
-            let modalContentContainer = $('#addonify-quick-view-modal #adfy-quick-view-modal-content');
+            // we expect response.data to be html content.
+            modalContentContainer.html(data);
 
-            // show loading state.
-            addonifyQuickView.setSpinner('show');
+            let modalCartFormEle = modalContentContainer.find('form.cart');
 
-            // clear the modal content.
-            $(modalContentContainer).html(" ");
+            if (modalCartFormEle.length > 0) {
+                modalCartFormEle.removeAttr('action');
+            }
+        },
 
-            // check if we have product id before doing call.
-            if (productID) {
+        initiateVariationForm: function() {
 
-                $.ajax({
-                    type: 'GET',
-                    url: addonifyQuickViewPublicScriptObject.ajaxURL,
-                    contentType: "application/json; charset=utf-8",
-                    data: {
-                        'action': addonifyQuickViewPublicScriptObject.quickViewAction,
-                        'product_id': productID,
-                        'nonce': addonifyQuickViewPublicScriptObject.nonce,
-                    },
-                    success: function (response) {
+            let variationsForm = modalContentContainer.find('.variations_form');
 
-                        if (!response.success) {
+            if (variationsForm.length > 0) {
 
-                            console.warn(response.message);
-                            return;
-                        }
+                variationsForm.each(function () {
 
-                        if (response.success) {
-
-                            // we expect response.data to be html content.
-                            $(modalContentContainer).html(response.data);
-
-                            let modalCartFormEle = modalContentContainer.find('form.cart');
-
-                            if (modalCartFormEle.length > 0 ) {
-                                modalCartFormEle.removeAttr('action');   
-                            }
-
-                            // dispatch DOM event.
-                            dispatchAddonifyQuickViewEvent.modalContentLoaded(response.data);
-
-                            let variationsForm = $(modalContentContainer).find('.variations_form');
-
-                            if (variationsForm.length > 0) {
-
-                                variationsForm.each(function () {
-
-                                    $(this).wc_variation_form();
-                                });
-
-                                variationsForm.trigger('check_variations');
-                                variationsForm.trigger('reset_image');
-                            }
-
-                            // Re-initiate wp_product_gallery() for gallery inside modal to work.
-                            let wcGallery = $('#addonify-quick-view-modal .woocommerce-product-gallery');
-
-                            if (wcGallery.length > 0) {
-
-                                wcGallery.each(function () {
-
-                                    $(this).wc_product_gallery();
-                                })
-                            }
-                        }
-                    },
-                    error: function (event) {
-
-                        console.error('Addonify Quick View - error loading modal content!');
-                        console.log(event);
-                    },
-                    complete: function () {
-
-                        // render trigger icon for WooCommerce gallery.
-                        if (enableWcGalleryLightBox) {
-
-                            addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
-                        }
-
-                        // hide loading state.
-                        addonifyQuickView.setSpinner('hide');
-                    }
+                    $(this).wc_variation_form();
                 });
 
-            } else {
+                variationsForm.trigger('check_variations');
+                variationsForm.trigger('reset_image');
+            }
+        },
 
-                throw new Error('Addonify Quick View: Product id is not supplied!');
+        initiateWCGallery: function() {
+
+            let wcGallery = $('#addonify-quick-view-modal .woocommerce-product-gallery');
+
+            if (wcGallery.length > 0) {
+
+                wcGallery.each(function () {
+
+                    $(this).wc_product_gallery();
+                })
             }
         },
 
@@ -434,6 +455,12 @@
             }, 1200);
         },
 
+        modalContentLoading: function() {
+
+            jQuery(document).trigger('addonifyQuickViewModalContentLoading');
+            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoading'));
+        },
+
         /**
         * Modal content loded event.
         *
@@ -446,9 +473,9 @@
             let eventData = { content: data };
 
             // dispatch event: jQuery
-            $(document).trigger('addonifyQuickViewModalContentLoded', [eventData]);
+            $(document).trigger('addonifyQuickViewModalContentLoaded', [eventData]);
             // dispatch event: vanilla
-            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoded', {
+            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoaded', {
                 detail: eventData
             }));
         }

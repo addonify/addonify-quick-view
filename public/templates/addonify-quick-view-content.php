@@ -17,15 +17,22 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+global $product;
+
+do_action( 'addoify_quick_view_before_single_content', $product );
 ?>
 <div class="woocommerce single-product">
-	<div id="product-<?php echo esc_attr( $args['product_id'] ); ?>" <?php post_class( 'product' ); ?>>
+	<div id="product-<?php echo esc_attr( $product->get_id() ); ?>" <?php post_class( 'product' ); ?>>
 		<?php do_action( 'addonify_quick_view_product_image' ); ?>
 		<div class="summary entry-summary">
+			<?php do_action( 'addonify_quick_view_before_product_summary_content', $product ); ?>
 			<div class="summary-content">
-				<?php do_action( 'addonify_quick_view_product_summary' ); ?>
+				<?php do_action( 'addonify_quick_view_product_summary', $product ); ?>
 			</div>
-			<?php do_action( 'addonify_quick_view_after_product_summary_content', $args['product_id'] ); ?>
+			<?php do_action( 'addonify_quick_view_after_product_summary_content', $product ); ?>
 		</div>
 	</div>
 </div>
+<?php
+do_action( 'addonify_quick_view_after_single_content', $product );
