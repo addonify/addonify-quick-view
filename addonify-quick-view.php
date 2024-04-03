@@ -89,7 +89,7 @@ if ( ! function_exists( 'addonify_quick_view_run' ) ) {
 			$plugin = new Addonify_Quick_View();
 			$plugin->run();
 		} else {
-			if ( absint( get_bloginfo( 'version' ) ) < 6.5 ) {
+			if ( version_compare( get_bloginfo( 'version' ), '6.5', '<' ) ) {
 				add_action(
 					'admin_notices',
 					function() {
