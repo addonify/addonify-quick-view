@@ -46,6 +46,8 @@
 
             $(document).on('addonifyQuickViewModalContentLoading', function(event){
 
+                $('body').addClass('addonify-qvm-is-active');
+
                 // Show loading state.
                 addonifyQuickView.setSpinner('show');
 
