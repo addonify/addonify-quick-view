@@ -6,7 +6,7 @@
 /.github
 /node_modules
 /admin/src/
-/admin/assets/scss/           
+/admin/assets/scss/
 /public/assets/src/
 
 .editorconfig
@@ -15,6 +15,7 @@
 .babelrc
 gulpfile.js
 webpack.config.js
+pnpm-lock.yaml
 webpack.mix.js
 package.json
 package-lock.json

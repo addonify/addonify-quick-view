@@ -1,48 +1,20 @@
 const mix = require('laravel-mix');
 
 /**
-* Notification 
+* Notification
 */
-
 mix.disableNotifications();
-
-/**
- * Modules
-*/
-
-//module.exports = {
-//    plugins: [
-//        require('postcss-preset-env')
-//    ]
-//}
-
-/**
-* Alias
-*/
-
-//mix.alias({
-//    '@': path.join(__dirname, 'admin/src/')
-//});
-
-/**
-* Browser sync
-*/
-
-//mix.browserSync({
-//    proxy: 'http://xenial.local/wp-admin/admin.php?page=addonify_quick_view#/',
-//});
 
 /**
  * Setup public path to generate assets
  */
-
 mix.setPublicPath('admin/assets/');
 
 /**
- * Autoload jQuery
+ * Auto load jQuery
  */
 mix.autoload({
-    jquery: ['$', 'window.jQuery', 'jQuery']
+	jquery: ['$', 'window.jQuery', 'jQuery']
 });
 
 /**
@@ -55,20 +27,17 @@ mix.sass('admin/assets/scss/index.scss', 'admin/assets/css/admin.css');
 * Extract Vendor
 * Note: https://laravel-mix.com/docs/6.0/extract
 */
-
 mix.extract();
 
 /**
-*
 * Extend Mix
 */
-
 mix.webpackConfig(webpack => {
-    return {
-        plugins: [
-            require('unplugin-element-plus/webpack')({
-                // options
-            }),
-        ]
-    };
+	return {
+		plugins: [
+			require('unplugin-element-plus/webpack')({
+				// options
+			}),
+		]
+	};
 });
