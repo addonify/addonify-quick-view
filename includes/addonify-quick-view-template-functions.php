@@ -87,7 +87,7 @@ function addonify_quick_view_get_template( $template_name, $args = array(), $tem
 function addonify_quick_view_render_button_template() {
 
 	if (
-		empty( addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ) ) && ! addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' )
+		empty( addonify_quick_view_get_option( 'quick_view_btn_label' ) ) && ! addonify_quick_view_get_option( 'enable_quick_view_btn_icon' )
 	) {
 
 		return;
@@ -102,22 +102,22 @@ function addonify_quick_view_render_button_template() {
 	$button_css_classes = array( 'button', 'addonify-qvm-button' );
 
 	if (
-		addonify_quick_view_get_settings_fields_values( 'enable_quick_view_btn_icon' ) &&
-		addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' )
+		addonify_quick_view_get_option( 'enable_quick_view_btn_icon' ) &&
+		addonify_quick_view_get_option( 'quick_view_btn_icon_position' )
 	) {
 
-		$icon_key = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon' );
+		$icon_key = addonify_quick_view_get_option( 'quick_view_btn_icon' );
 
 		$button_icon = addonify_quick_view_get_button_icons( $icon_key );
 
-		$position = addonify_quick_view_get_settings_fields_values( 'quick_view_btn_icon_position' );
+		$position = addonify_quick_view_get_option( 'quick_view_btn_icon_position' );
 
 		$icon_position = ( 'before_label' === $position ) ? 'left' : 'right';
 	}
 
 	$quick_view_button_args = array(
 		'product_id'    => $product->get_id(),
-		'label'         => addonify_quick_view_get_settings_fields_values( 'quick_view_btn_label' ),
+		'label'         => addonify_quick_view_get_option( 'quick_view_btn_label' ),
 		'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
 		'icon'          => $button_icon,
 		'icon_position' => $icon_position,
@@ -140,7 +140,7 @@ function addonify_quick_view_render_button_template() {
  */
 function addonify_quick_view_detail_button_template() {
 
-	if ( (int) addonify_quick_view_get_settings_fields_values( 'display_read_more_button' ) !== 1 ) {
+	if ( (int) addonify_quick_view_get_option( 'display_read_more_button' ) !== 1 ) {
 		return;
 	}
 
@@ -149,7 +149,7 @@ function addonify_quick_view_detail_button_template() {
 		apply_filters(
 			'addonify_quick_view_detail_button_template_args',
 			array(
-				'button_label' => addonify_quick_view_get_settings_fields_values( 'read_more_button_label' ),
+				'button_label' => addonify_quick_view_get_option( 'read_more_button_label' ),
 			)
 		)
 	);
@@ -203,12 +203,12 @@ if ( ! function_exists( 'addonify_quick_view_get_modal_animation' ) ) {
 
 		if ( 'opening' === $action ) {
 
-			return addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_opening_animation' ) : 'jello';
+			return addonify_quick_view_get_option( 'modal_opening_animation' ) ? addonify_quick_view_get_option( 'modal_opening_animation' ) : 'jello';
 		}
 
 		if ( 'closing' === $action ) {
 
-			return addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) ? addonify_quick_view_get_settings_fields_values( 'modal_closing_animation' ) : 'bounce-out';
+			return addonify_quick_view_get_option( 'modal_closing_animation' ) ? addonify_quick_view_get_option( 'modal_closing_animation' ) : 'bounce-out';
 		}
 	}
 }
@@ -222,7 +222,7 @@ if ( ! function_exists( 'addonify_quick_view_generate_quick_view_content' ) ) {
 	 */
 	function addonify_quick_view_generate_quick_view_content() {
 
-		$modal_box_content = unserialize( addonify_quick_view_get_settings_fields_values( 'modal_box_content' ) ); // phpcs:ignore
+		$modal_box_content = unserialize( addonify_quick_view_get_option( 'modal_box_content' ) ); // phpcs:ignore
 
 		if (
 			! is_array( $modal_box_content ) ||
@@ -235,7 +235,7 @@ if ( ! function_exists( 'addonify_quick_view_generate_quick_view_content' ) ) {
 		if ( in_array( 'image', $modal_box_content, true ) ) {
 
 			// Show or hide gallery thumbnails according to user choice.
-			if ( addonify_quick_view_get_settings_fields_values( 'product_thumbnail' ) === 'product_image_only' ) {
+			if ( addonify_quick_view_get_option( 'product_thumbnail' ) === 'product_image_only' ) {
 				remove_action( 'woocommerce_product_thumbnails', 'woocommerce_show_product_thumbnails', 20 );
 			}
 

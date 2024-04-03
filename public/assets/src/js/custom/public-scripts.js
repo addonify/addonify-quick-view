@@ -46,8 +46,10 @@
 
 			$(document).on('addonifyQuickViewModalContentLoading', function (event) {
 
-				// Show loading state.
-				addonifyQuickView.setSpinner('show');
+        $('body').addClass('addonify-qvm-is-active');
+
+        // Show loading state.
+        addonifyQuickView.setSpinner('show');
 
 				// Clear the modal content.
 				modalContentContainer.html(" ");
