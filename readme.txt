@@ -5,7 +5,7 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 6.3
 Requires PHP: 7.4
-Tested up to: 6.4.2
+Tested up to: 6.5
 Stable tag: 1.2.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -132,16 +132,16 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 == Changelog ==
 
-= 1.2.16 - ? March, 2024 =
+= 1.2.16 - 3 April, 2024 =
 
 - Renamed: Function `addonify_quick_view_get_setting_field_value` to `addonify_quick_view_get_option`.
-- Added: JS event, `addonifyQuickViewModalContentLoading`, while content is being loaded.
-- Added: Action hooks and filter hooks.
+- Added:   JS event, `addonifyQuickViewModalContentLoading`, while content is being loaded.
+- Added:   Action hooks and filter hooks.
 - Updated: Quick view templates.
-- Removed: WooCommerce dependency admin notice.
 - Tested:  WordPress version 6.5.
+- Tested:  WooCommerce version 8.7.0.
 
-= 1.2.15 - 26 January, 2023 =
+= 1.2.15 - 26 January, 2024 =
 
 - Tested: WordPress version 6.4.2.
 - Tested: WooCommerce version 8.5.2.
