@@ -1,480 +1,509 @@
 (function ($) {
 
-    'use strict';
-
-    const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;
-    const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
-    const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked;
-    const enableWcGalleryLightBox = addonifyQuickViewPublicScriptObject.enableWcGalleryLightBox;
-
-    /**
-     * Main object for addonify quick view modal.
-     * Define all necessary actions/methods here.
-     * Below defined methods can be called on document ready, scroll and resize.
-     *
-     * @since 1.2.8
-     */
-    const addonifyQuickView = {
-
-        loadOnReady: function () {
-
-            // Fire all these methods on document ready.
-            this.handleQuickViewButtonEvents();
-            this.handleCloseButtonEvents();
-            this.initPerfectScrollbar();
-            this.calculateModalHeight();
-            this.handleQVModalEvents();
-        },
-
-        loadOnScroll: function () {
-
-            // Fire all these methods on document scroll.
-        },
-
-        loadOnResize: function () {
-
-            this.calculateModalHeight();
-        },
-
-        /**
-         * Handles Quick View Modal events.
-         * 
-         * @since 1.2.13
-         */
-        handleQVModalEvents: function () {
-            $(document).on('addonifyQuickViewModalContentLoded', function (e) {
-                /**
-                 * If All Products for WooCommerce Subscriptions is active, trigger JS event `wcsatt-initialize` to enable the subscription selection.
-                 */
-                if (addonifyQuickViewPublicScriptObject.hasOwnProperty('wcsattEnabled') && addonifyQuickViewPublicScriptObject.wcsattEnabled === '1') {
-                    $(document.body).trigger('wcsatt-initialize');
-                }
-            });
-        },
-
-        /**
-         * Method: handleQuickViewButtonEvents
-         * Handles events addonify quick view buttons.
-         * 
-         * @param {null} null
-         * @return void
-         * @since 1.2.8
-         */
-        handleQuickViewButtonEvents: function () {
-
-            // open quick view modal when quick view button is clicked.
-            $('body').on('click', '.addonify-qvm-button', function (e) {
-
-                e.preventDefault();
-
-                // hydrate modal content by passing ID.
-                addonifyQuickView.hydrateModalContent(parseInt($(this).data('product_id')));
-
-                // Scroll to top of the modal.
-                addonifyQuickView.scrollIntoView();
-
-                // dispatch event to open quick view modal.
-                dispatchAddonifyQuickViewEvent.open();
-            });
-        },
-
-        /**
-         * Method: handleCloseButtonEvents
-         * Handles modal close button events.
-         * 
-         * @param {null} null
-         * @return void
-         * @since 1.2.8
-         */
-        handleCloseButtonEvents: function () {
-
-            // close quick view modal when close button is clicked.
-            $('body').on('click', '#addonify-quick-view-modal-close', function (e) {
-
-                e.preventDefault();
-
-                if (animateModelOnClose) {
-
-                    // close quick view modal with animation.
-                    dispatchAddonifyQuickViewEvent.animate();
-                } else {
-
-                    // close quick view modal without animation.
-                    dispatchAddonifyQuickViewEvent.close();
-                }
+	'use strict';
 
-            });
+	const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;
+	const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
+	const closeModelOnOutsideClicked = addonifyQuickViewPublicScriptObject.closeModelOnOutsideClicked;
+	const enableWcGalleryLightBox = addonifyQuickViewPublicScriptObject.enableWcGalleryLightBox;
+	let modalContentContainer = jQuery('#addonify-quick-view-modal #adfy-quick-view-modal-content');
 
-            // close quick view modal when escape key is pressed.
-            if (closeModalOnEscClicked) {
+	/**
+	 * Main object for addonify quick view modal.
+	 * Define all necessary actions/methods here.
+	 * Below defined methods can be called on document ready, scroll and resize.
+	 *
+	 * @since 1.2.8
+	 */
+	const addonifyQuickView = {
 
-                $(document).keyup(function (e) {
+		loadOnReady: function () {
+
+			// Fire all these methods on document ready.
+			this.handleQuickViewButtonEvents();
+			this.handleCloseButtonEvents();
+			this.initPerfectScrollbar();
+			this.calculateModalHeight();
+			this.handleQVModalEvents();
+		},
+
+		loadOnScroll: function () {
+
+			// Fire all these methods on document scroll.
+		},
+
+		loadOnResize: function () {
+
+			this.calculateModalHeight();
+		},
 
-                    if (e.keyCode === 27) {
+		/**
+		 * Handles Quick View Modal events.
+		 *
+		 * @since 1.2.13
+		 */
+		handleQVModalEvents: function () {
+
+			$(document).on('addonifyQuickViewModalContentLoading', function (event) {
+
+        $('body').addClass('addonify-qvm-is-active');
 
-                        if (animateModelOnClose) {
+        // Show loading state.
+        addonifyQuickView.setSpinner('show');
 
-                            // close quick view modal with animation.
-                            dispatchAddonifyQuickViewEvent.animate();
-                        } else {
+				// Clear the modal content.
+				modalContentContainer.html(" ");
+			});
 
-                            // close quick view modal without animation.
-                            dispatchAddonifyQuickViewEvent.close();
-                        }
-                    }
-                });
-            }
+			$(document).on('addonifyQuickViewModalContentLoaded', function (event, data) {
 
-            // close quick view modal when outside modal is clicked.
-            if (closeModelOnOutsideClicked) {
+				if (data !== undefined && data.hasOwnProperty('content')) {
 
-                // set cursor to pointer.
-                $('#addonify-quick-view-modal-wrapper').css('cursor', 'pointer');
+					addonifyQuickView.hydrateModalContent(data.content);
 
-                // listen to click event.
-                $('body').on('click', '#addonify-quick-view-modal-wrapper', function (e) {
+					// Scroll to top of the modal.
+					addonifyQuickView.scrollIntoView();
 
-                    if (e.target.id === 'addonify-quick-view-modal-wrapper') {
+					// Hide loading state.
+					addonifyQuickView.setSpinner('hide');
 
-                        if (animateModelOnClose) {
+					// Dispatch event to open quick view modal.
+					dispatchAddonifyQuickViewEvent.open();
+				}
+			});
 
-                            // close quick view modal with animation.
-                            dispatchAddonifyQuickViewEvent.animate();
-                        } else {
+			$(document).on('addonifyQuickViewModalOpened', function (event) {
 
-                            // close quick view modal without animation.
-                            dispatchAddonifyQuickViewEvent.close();
-                        }
-                    }
-                });
-            }
-        },
+				// Re-initiazlize PerfectScrollBar.
+				addonifyQuickView.initPerfectScrollbar();
 
-        /**
-        * Method: setSpinner
-        * Show or hide spinner.
-        * 
-        * @param {string} action. show | hide
-        * @return void
-        */
-        setSpinner: function (action) {
+				// Re-initialize variation form.
+				addonifyQuickView.initiateVariationForm();
 
-            let spinner = $('#adfy-qvm-spinner');
+				// Re-initialize WC Gallery.
+				addonifyQuickView.initiateWCGallery();
 
-            if (action === 'show') {
+				// Render trigger icon for WooCommerce gallery.
+				if (enableWcGalleryLightBox) {
+					addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
+				}
 
-                spinner.removeClass('hide');
-            } else {
+				/**
+				 * If All Products for WooCommerce Subscriptions is active, trigger JS event `wcsatt-initialize` to enable the subscription selection.
+				 */
+				if (addonifyQuickViewPublicScriptObject.hasOwnProperty('wcsattEnabled') && addonifyQuickViewPublicScriptObject.wcsattEnabled === '1') {
+					$(document.body).trigger('wcsatt-initialize');
+				}
+			});
+		},
 
-                spinner.addClass('hide');
-            }
-        },
+		/**
+		 * Method: handleQuickViewButtonEvents
+		 * Handles events addonify quick view buttons.
+		 *
+		 * @param {null} null
+		 * @return void
+		 * @since 1.2.8
+		 */
+		handleQuickViewButtonEvents: function () {
 
-        /**
-        * Method: hydrateModalContent
-        * Fn hat does Ajax call to get modal content.
-        * 
-        * @param {int} productID. ID of the product.
-        * @return void
-        * @since 1.2.8
-        */
-        hydrateModalContent: function (productID) {
+			// open quick view modal when quick view button is clicked.
+			$('body').on('click', '.addonify-qvm-button', function (e) {
 
-            let modalContentContainer = $('#addonify-quick-view-modal #adfy-quick-view-modal-content');
+				e.preventDefault();
 
-            // show loading state.
-            addonifyQuickView.setSpinner('show');
+				if (addonifyQuickViewPublicScriptObject.hasOwnProperty('quickViewAction')) {
+					// Get modal content by passing ID.
+					addonifyQuickView.getModalContent(parseInt($(this).data('product_id')));
+				}
+			});
+		},
 
-            // clear the modal content.
-            $(modalContentContainer).html(" ");
+		/**
+		 * Method: handleCloseButtonEvents
+		 * Handles modal close button events.
+		 *
+		 * @param {null} null
+		 * @return void
+		 * @since 1.2.8
+		 */
+		handleCloseButtonEvents: function () {
+
+			// close quick view modal when close button is clicked.
+			$('body').on('click', '#addonify-quick-view-modal-close', function (e) {
+
+				e.preventDefault();
+
+				if (animateModelOnClose) {
+
+					// close quick view modal with animation.
+					dispatchAddonifyQuickViewEvent.animate();
+				} else {
+
+					// close quick view modal without animation.
+					dispatchAddonifyQuickViewEvent.close();
+				}
+
+			});
+
+			// close quick view modal when escape key is pressed.
+			if (closeModalOnEscClicked) {
+
+				$(document).keyup(function (e) {
+
+					if (e.keyCode === 27) {
+
+						if (animateModelOnClose) {
+
+							// close quick view modal with animation.
+							dispatchAddonifyQuickViewEvent.animate();
+						} else {
+
+							// close quick view modal without animation.
+							dispatchAddonifyQuickViewEvent.close();
+						}
+					}
+				});
+			}
+
+			// close quick view modal when outside modal is clicked.
+			if (closeModelOnOutsideClicked) {
+
+				// set cursor to pointer.
+				$('#addonify-quick-view-modal-wrapper').css('cursor', 'pointer');
+
+				// listen to click event.
+				$('body').on('click', '#addonify-quick-view-modal-wrapper', function (e) {
+
+					if (e.target.id === 'addonify-quick-view-modal-wrapper') {
+
+						if (animateModelOnClose) {
+
+							// close quick view modal with animation.
+							dispatchAddonifyQuickViewEvent.animate();
+						} else {
+
+							// close quick view modal without animation.
+							dispatchAddonifyQuickViewEvent.close();
+						}
+					}
+				});
+			}
+		},
 
-            // check if we have product id before doing call.
-            if (productID) {
+		/**
+		* Method: setSpinner
+		* Show or hide spinner.
+		*
+		* @param {string} action. show | hide
+		* @return void
+		*/
+		setSpinner: function (action) {
+
+			let spinner = $('#adfy-qvm-spinner');
+
+			if (action === 'show') {
+
+				spinner.removeClass('hide');
+			} else {
+
+				spinner.addClass('hide');
+			}
+		},
+
+		getModalContent: function (productID) {
+			if (!productID) {
+				throw new Error('Addonify Quick View: Product id is not supplied!');
+			}
 
-                $.ajax({
-                    type: 'GET',
-                    url: addonifyQuickViewPublicScriptObject.ajaxURL,
-                    contentType: "application/json; charset=utf-8",
-                    data: {
-                        'action': addonifyQuickViewPublicScriptObject.quickViewAction,
-                        'product_id': productID,
-                        'nonce': addonifyQuickViewPublicScriptObject.nonce,
-                    },
-                    success: function (response) {
-
-                        if (!response.success) {
-
-                            console.warn(response.message);
-                            return;
-                        }
-
-                        if (response.success) {
-
-                            // we expect response.data to be html content.
-                            $(modalContentContainer).html(response.data);
-
-                            let modalCartFormEle = modalContentContainer.find('form.cart');
-
-                            if (modalCartFormEle.length > 0 ) {
-                                modalCartFormEle.removeAttr('action');   
-                            }
-
-                            // dispatch DOM event.
-                            dispatchAddonifyQuickViewEvent.modalContentLoaded(response.data);
-
-                            let variationsForm = $(modalContentContainer).find('.variations_form');
-
-                            if (variationsForm.length > 0) {
-
-                                variationsForm.each(function () {
-
-                                    $(this).wc_variation_form();
-                                });
-
-                                variationsForm.trigger('check_variations');
-                                variationsForm.trigger('reset_image');
-                            }
-
-                            // Re-initiate wp_product_gallery() for gallery inside modal to work.
-                            let wcGallery = $('#addonify-quick-view-modal .woocommerce-product-gallery');
-
-                            if (wcGallery.length > 0) {
-
-                                wcGallery.each(function () {
-
-                                    $(this).wc_product_gallery();
-                                })
-                            }
-                        }
-                    },
-                    error: function (event) {
-
-                        console.error('Addonify Quick View - error loading modal content!');
-                        console.log(event);
-                    },
-                    complete: function () {
-
-                        // render trigger icon for WooCommerce gallery.
-                        if (enableWcGalleryLightBox) {
-
-                            addonifyQuickView.renderWooCommerceGalleryTriggerIcon();
-                        }
-
-                        // hide loading state.
-                        addonifyQuickView.setSpinner('hide');
-                    }
-                });
-
-            } else {
-
-                throw new Error('Addonify Quick View: Product id is not supplied!');
-            }
-        },
-
-        /**
-         * Method: intPerfectScrollbar
-         * Initialize perfect scrollbar.
-         * 
-         * @param {null} null
-         * @return void
-         * @since 1.2.8
-         */
-        initPerfectScrollbar: function () {
-
-            if (typeof PerfectScrollbar === 'function') {
-
-                // use vanilla to query the DOM. jQuery is not working here.
-                let scrollEle = document.getElementById('adfy-quick-view-model-inner');
-
-                if (scrollEle) {
-
-                    new PerfectScrollbar(scrollEle, {
-
-                        wheelSpeed: 1,
-                        wheelPropagation: true,
-                        minScrollbarLength: 20
-                    });
-                }
-            } else {
-
-                console.warn("Addonify Quick View: PerfectScrollbar is not defined. Perfect scroll bar won't be initialized.");
-            }
-        },
-
-        /**
-        *
-        * Method: renderWooCommerceGalleryTriggerIcon
-        * Renders trigger icon for WooCommerce gallery.
-        *
-        * @param {null} null
-        * @return {void} void.
-        * @since 1.2.8
-        */
-        renderWooCommerceGalleryTriggerIcon: function () {
-
-            let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24,8V2a2,2,0,0,0-2-2H16V2h4.586L12,10.586,3.414,2H8V0H2A2,2,0,0,0,0,2V8H2V3.414L10.586,12,2,20.586V16H0v6a2,2,0,0,0,2,2H8V22H3.414L12,13.414,20.586,22H16v2h6a2,2,0,0,0,2-2V16H22v4.586L13.414,12,22,3.414V8Z"/></svg>';
-
-            let triggerEle = $('#addonify-quick-view-modal .woocommerce-product-gallery__trigger');
-
-            if (triggerEle.length > 0) {
-
-                triggerEle.html(" ");
-                triggerEle.html(icon);
-            }
-        },
-
-
-        /**
-        *
-        * Method: calculateModalHeight
-        * Calculates modal height.
-        *
-        * @param {null} null
-        * @return {void} void.
-        * @since 1.2.9
-        */
-        calculateModalHeight: function () {
-
-            const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-            const addonifyQuickViewModalEle = document.getElementById('addonify-quick-view-modal');
-
-            if (addonifyQuickViewModalEle) {
-
-                let processHeight = height - 40; // Deduct '40px' from the height of the window.
-                addonifyQuickViewModalEle.style.maxHeight = processHeight + 'px';
-            }
-        },
-
-        /**
-        *
-        * Method: scrollIntoView
-        * Scrolls to top of the modal.
-        *
-        * @param {null} null
-        * @return {void} void.
-        * @since 1.2.10
-        */
-        scrollIntoView: function () {
-
-            const modalInnerEle = $("#adfy-quick-view-model-inner");
-
-            if (modalInnerEle.length > 0) {
-
-                modalInnerEle.animate({ scrollTop: 0 }, "slow");
-            }
-        }
-    }
-
-
-    /**
-     * Define events.
-     * Also acts as API for dispatching DOM events.
-     *
-     * @since 1.2.8
-     */
-    const dispatchAddonifyQuickViewEvent = {
-
-        /**
-        * Dispatch event when quick view modal is opened.
-        *
-        * @since 1.2.8
-        */
-        open: function () {
-
-            $('body').addClass('addonify-qvm-is-active');
-
-            // dispatch event when quick view modal is opened in DOM.
-            $(document).trigger('addonifyQuickViewModalOpened');
-            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalOpened'));
-        },
-
-        /**
-        * Dispatch event when quick view modal is closed.
-        *
-        * @since 1.2.8
-        */
-        close: function () {
-
-            $('body').removeClass('addonify-qvm-is-active');
-
-            // dispatch event when quick view modal is closed in DOM.
-            $(document).trigger('addonifyQuickViewModalClosed');
-            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalClosed'));
-        },
-
-        /**
-        * Handles quick view modal animation task.
-        *
-        * @since 1.2.8
-        */
-        animate: function () {
-
-            let openingTask = null;
-            let closingTask = null;
-            let quickViewModelWrapperEle = $('#addonify-quick-view-modal-wrapper');
-
-            quickViewModelWrapperEle.removeClass('play-opening-animation');
-            quickViewModelWrapperEle.addClass('play-closing-animation');
-
-            // Remove closing animation class after 800ms
-            clearTimeout(closingTask);
-            closingTask = setTimeout(() => {
-
-                this.close();
-                quickViewModelWrapperEle.removeClass('play-closing-animation');
-                clearTimeout(closingTask);
-            }, 800);
-
-            // Reset opening animation class after 1000ms
-            clearTimeout(openingTask);
-            openingTask = setTimeout(() => {
-
-                quickViewModelWrapperEle.addClass('play-opening-animation');
-                clearTimeout(openingTask);
-            }, 1200);
-        },
-
-        /**
-        * Modal content loded event.
-        *
-        * @param {string} data. HTML content.
-        * @since 1.2.8
-        */
-        modalContentLoaded: function (data) {
-
-            // create event data.
-            let eventData = { content: data };
-
-            // dispatch event: jQuery
-            $(document).trigger('addonifyQuickViewModalContentLoded', [eventData]);
-            // dispatch event: vanilla
-            document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoded', {
-                detail: eventData
-            }));
-        }
-    }
-
-
-    /**
-    * Mount the methods on jQuery events.
-    * Types: ready, scroll, resize
-    *
-    * @since 1.2.8
-    */
-
-    $(document).ready(function () {
-
-        addonifyQuickView.loadOnReady();
-    });
-
-    $(window).on('scroll', function () {
-
-        addonifyQuickView.loadOnScroll();
-    });
-
-    $(window).on('resize', function () {
-
-        addonifyQuickView.loadOnResize();
-    });
+			dispatchAddonifyQuickViewEvent.modalContentLoading();
+
+			$.ajax({
+				type: 'GET',
+				url: addonifyQuickViewPublicScriptObject.ajaxURL,
+				contentType: "application/json; charset=utf-8",
+				data: {
+					'action': addonifyQuickViewPublicScriptObject.quickViewAction,
+					'product_id': productID,
+					'nonce': addonifyQuickViewPublicScriptObject.nonce,
+				},
+				success: function (response) {
+
+					if (!response.success) {
+						console.warn(response.message);
+						return;
+					}
+
+					if (response.success) {
+						// Dispatch DOM event.
+						dispatchAddonifyQuickViewEvent.modalContentLoaded(response.data);
+					}
+				},
+				error: function (jqXHR, textStatus) {
+					console.log(textStatus);
+				}
+			});
+		},
+
+		/**
+		* Method: hydrateModalContent
+		* Fn hat does Ajax call to get modal content.
+		*
+		* @param {int} productID. ID of the product.
+		* @return void
+		* @since 1.2.8
+		*/
+		hydrateModalContent: function (data) {
+
+			// we expect response.data to be html content.
+			modalContentContainer.html(data);
+
+			let modalCartFormEle = modalContentContainer.find('form.cart');
+
+			if (modalCartFormEle.length > 0) {
+				modalCartFormEle.removeAttr('action');
+			}
+		},
+
+		initiateVariationForm: function () {
+
+			let variationsForm = modalContentContainer.find('.variations_form');
+
+			if (variationsForm.length > 0) {
+
+				variationsForm.each(function () {
+
+					$(this).wc_variation_form();
+				});
+
+				variationsForm.trigger('check_variations');
+				variationsForm.trigger('reset_image');
+			}
+		},
+
+		initiateWCGallery: function () {
+
+			let wcGallery = $('#addonify-quick-view-modal .woocommerce-product-gallery');
+
+			if (wcGallery.length > 0) {
+
+				wcGallery.each(function () {
+
+					$(this).wc_product_gallery();
+				})
+			}
+		},
+
+		/**
+		 * Method: intPerfectScrollbar
+		 * Initialize perfect scrollbar.
+		 *
+		 * @param {null} null
+		 * @return void
+		 * @since 1.2.8
+		 */
+		initPerfectScrollbar: function () {
+
+			if (typeof PerfectScrollbar === 'function') {
+
+				// use vanilla to query the DOM. jQuery is not working here.
+				let scrollEle = document.getElementById('adfy-quick-view-model-inner');
+
+				if (scrollEle) {
+
+					new PerfectScrollbar(scrollEle, {
+
+						wheelSpeed: 1,
+						wheelPropagation: true,
+						minScrollbarLength: 20
+					});
+				}
+			} else {
+
+				console.warn("Addonify Quick View: PerfectScrollbar is not defined. Perfect scroll bar won't be initialized.");
+			}
+		},
+
+		/**
+		*
+		* Method: renderWooCommerceGalleryTriggerIcon
+		* Renders trigger icon for WooCommerce gallery.
+		*
+		* @param {null} null
+		* @return {void} void.
+		* @since 1.2.8
+		*/
+		renderWooCommerceGalleryTriggerIcon: function () {
+
+			let icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24,8V2a2,2,0,0,0-2-2H16V2h4.586L12,10.586,3.414,2H8V0H2A2,2,0,0,0,0,2V8H2V3.414L10.586,12,2,20.586V16H0v6a2,2,0,0,0,2,2H8V22H3.414L12,13.414,20.586,22H16v2h6a2,2,0,0,0,2-2V16H22v4.586L13.414,12,22,3.414V8Z"/></svg>';
+
+			let triggerEle = $('#addonify-quick-view-modal .woocommerce-product-gallery__trigger');
+
+			if (triggerEle.length > 0) {
+
+				triggerEle.html(" ");
+				triggerEle.html(icon);
+			}
+		},
+
+
+		/**
+		*
+		* Method: calculateModalHeight
+		* Calculates modal height.
+		*
+		* @param {null} null
+		* @return {void} void.
+		* @since 1.2.9
+		*/
+		calculateModalHeight: function () {
+
+			const height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+			const addonifyQuickViewModalEle = document.getElementById('addonify-quick-view-modal');
+
+			if (addonifyQuickViewModalEle) {
+
+				let processHeight = height - 40; // Deduct '40px' from the height of the window.
+				addonifyQuickViewModalEle.style.maxHeight = processHeight + 'px';
+			}
+		},
+
+		/**
+		*
+		* Method: scrollIntoView
+		* Scrolls to top of the modal.
+		*
+		* @param {null} null
+		* @return {void} void.
+		* @since 1.2.10
+		*/
+		scrollIntoView: function () {
+
+			const modalInnerEle = $("#adfy-quick-view-model-inner");
+
+			if (modalInnerEle.length > 0) {
+
+				modalInnerEle.animate({ scrollTop: 0 }, "slow");
+			}
+		}
+	}
+
+
+	/**
+	 * Define events.
+	 * Also acts as API for dispatching DOM events.
+	 *
+	 * @since 1.2.8
+	 */
+	const dispatchAddonifyQuickViewEvent = {
+
+		/**
+		* Dispatch event when quick view modal is opened.
+		*
+		* @since 1.2.8
+		*/
+		open: function () {
+
+			$('body').addClass('addonify-qvm-is-active');
+
+			// dispatch event when quick view modal is opened in DOM.
+			$(document).trigger('addonifyQuickViewModalOpened');
+			document.dispatchEvent(new CustomEvent('addonifyQuickViewModalOpened'));
+		},
+
+		/**
+		* Dispatch event when quick view modal is closed.
+		*
+		* @since 1.2.8
+		*/
+		close: function () {
+
+			$('body').removeClass('addonify-qvm-is-active');
+
+			// dispatch event when quick view modal is closed in DOM.
+			$(document).trigger('addonifyQuickViewModalClosed');
+			document.dispatchEvent(new CustomEvent('addonifyQuickViewModalClosed'));
+		},
+
+		/**
+		* Handles quick view modal animation task.
+		*
+		* @since 1.2.8
+		*/
+		animate: function () {
+
+			let openingTask = null;
+			let closingTask = null;
+			let quickViewModelWrapperEle = $('#addonify-quick-view-modal-wrapper');
+
+			quickViewModelWrapperEle.removeClass('play-opening-animation');
+			quickViewModelWrapperEle.addClass('play-closing-animation');
+
+			// Remove closing animation class after 800ms
+			clearTimeout(closingTask);
+			closingTask = setTimeout(() => {
+
+				this.close();
+				quickViewModelWrapperEle.removeClass('play-closing-animation');
+				clearTimeout(closingTask);
+			}, 800);
+
+			// Reset opening animation class after 1000ms
+			clearTimeout(openingTask);
+			openingTask = setTimeout(() => {
+
+				quickViewModelWrapperEle.addClass('play-opening-animation');
+				clearTimeout(openingTask);
+			}, 1200);
+		},
+
+		modalContentLoading: function () {
+
+			jQuery(document).trigger('addonifyQuickViewModalContentLoading');
+			document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoading'));
+		},
+
+		/**
+		* Modal content loded event.
+		*
+		* @param {string} data. HTML content.
+		* @since 1.2.8
+		*/
+		modalContentLoaded: function (data) {
+
+			// create event data.
+			let eventData = { content: data };
+
+			// dispatch event: jQuery
+			$(document).trigger('addonifyQuickViewModalContentLoaded', [eventData]);
+			// dispatch event: vanilla
+			document.dispatchEvent(new CustomEvent('addonifyQuickViewModalContentLoaded', {
+				detail: eventData
+			}));
+		}
+	}
+
+
+	/**
+	* Mount the methods on jQuery events.
+	* Types: ready, scroll, resize
+	*
+	* @since 1.2.8
+	*/
+
+	$(document).ready(function () {
+
+		addonifyQuickView.loadOnReady();
+	});
+
+	$(window).on('scroll', function () {
+
+		addonifyQuickView.loadOnScroll();
+	});
+
+	$(window).on('resize', function () {
+
+		addonifyQuickView.loadOnResize();
+	});
 
 })(jQuery);

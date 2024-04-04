@@ -189,3 +189,72 @@ if ( ! function_exists( 'addonify_quick_view_escape_svg' ) ) {
 	}
 }
 
+if ( ! function_exists( 'addonify_quick_view_get_border_styles' ) ) {
+	/**
+	 * Get border styles.
+	 *
+	 * @since 1.2.16
+	 */
+	function addonify_quick_view_get_border_styles() {
+
+		return array(
+			'none'   => esc_html__( 'None', 'addonify-quick-view' ),
+			'solid'  => esc_html__( 'Solid', 'addonify-quick-view' ),
+			'dotted' => esc_html__( 'Dotted', 'addonify-quick-view' ),
+			'dashed' => esc_html__( 'Dashed', 'addonify-quick-view' ),
+			'double' => esc_html__( 'Double', 'addonify-quick-view' ),
+		);
+	}
+}
+
+
+if ( ! function_exists( 'addonify_quick_view_get_font_weights' ) ) {
+	/**
+	 * Get font weights.
+	 *
+	 * @since 1.2.16
+	 */
+	function addonify_quick_view_get_font_weights() {
+
+		return array(
+			'400' => esc_html__( 'Normal', 'addonify-quick-view' ),
+			'500' => esc_html__( 'Medium', 'addonify-quick-view' ),
+			'600' => esc_html__( 'Semi bold', 'addonify-quick-view' ),
+			'700' => esc_html__( 'Bold', 'addonify-quick-view' ),
+		);
+	}
+}
+
+
+if ( ! function_exists( 'addonify_quick_view_get_text_transforms' ) ) {
+	/**
+	 * Get text transforms.
+	 *
+	 * @since 1.2.16
+	 */
+	function addonify_quick_view_get_text_transforms() {
+
+		return array(
+			'default'    => esc_html__( 'Default', 'addonify-quick-view' ),
+			'capitalize' => esc_html__( 'Capitalize', 'addonify-quick-view' ),
+			'lowercase'  => esc_html__( 'Lowercase', 'addonify-quick-view' ),
+			'uppercase'  => esc_html__( 'Uppercase', 'addonify-quick-view' ),
+		);
+	}
+}
+
+
+if ( ! function_exists( 'addonify_quick_view_get_font_styles' ) ) {
+	/**
+	 * Get font styles.
+	 *
+	 * @since 1.2.16
+	 */
+	function addonify_quick_view_get_font_styles() {
+
+		return array(
+			'inherit' => esc_html__( 'Default', 'addonify-quick-view' ),
+			'italic'  => esc_html__( 'Italic', 'addonify-quick-view' ),
+		);
+	}
+}
