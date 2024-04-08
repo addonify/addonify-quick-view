@@ -46,10 +46,10 @@
 
 			$(document).on('addonifyQuickViewModalContentLoading', function (event) {
 
-        $('body').addClass('addonify-qvm-is-active');
+				$('body').addClass('addonify-qvm-is-active');
 
-        // Show loading state.
-        addonifyQuickView.setSpinner('show');
+				// Show loading state.
+				addonifyQuickView.setSpinner('show');
 
 				// Clear the modal content.
 				modalContentContainer.html(" ");
@@ -313,7 +313,7 @@
 
 					new PerfectScrollbar(scrollEle, {
 
-						wheelSpeed: 1,
+						wheelSpeed: 0.25,
 						wheelPropagation: true,
 						minScrollbarLength: 20
 					});
