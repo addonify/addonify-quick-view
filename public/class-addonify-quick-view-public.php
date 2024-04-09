@@ -114,7 +114,7 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_style(
 			'perfect-scrollbar',
-			plugin_dir_url( __FILE__ ) . 'assets/build/css/conditional/perfect-scrollbar.css',
+			plugin_dir_url( __FILE__ ) . 'assets/libs/scrollbar/perfect-scrollbar.min.css',
 			array(),
 			$this->version,
 			'all'
@@ -133,24 +133,13 @@ class Addonify_Quick_View_Public {
 			}
 		}
 
-		if ( is_rtl() ) {
-			wp_enqueue_style(
-				$this->plugin_name,
-				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-rtl.css',
-				$style_dependency,
-				$this->version,
-				'all'
-			);
-		} else {
-
-			wp_enqueue_style(
-				$this->plugin_name,
-				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view.css',
-				$style_dependency,
-				$this->version,
-				'all'
-			);
-		}
+		wp_enqueue_style(
+			$this->plugin_name,
+			plugin_dir_url( __FILE__ ) . 'assets/build/public.min.css',
+			$style_dependency,
+			$this->version,
+			'all'
+		);
 
 		if ( (int) addonify_quick_view_get_option( 'enable_plugin_styles' ) === 1 ) {
 
@@ -175,7 +164,7 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_script(
 			'perfect-scrollbar',
-			plugin_dir_url( __FILE__ ) . 'assets/build/js/conditional/perfect-scrollbar.min.js',
+			plugin_dir_url( __FILE__ ) . 'assets/libs/scrollbar/perfect-scrollbar.min.js',
 			array(),
 			$this->version,
 			true
@@ -231,7 +220,7 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_script(
 			'addonify-quick-view-public',
-			plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view.min.js',
+			plugin_dir_url( __FILE__ ) . 'assets/build/public.min.js',
 			$script_dependency,
 			$this->version,
 			true
