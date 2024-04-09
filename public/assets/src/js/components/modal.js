@@ -1,11 +1,10 @@
-import { action } from "src/js/events/action";
 import { dispatchEvent } from "src/js/events/dispatch";
 
 export const modal = {
 	/**
 	* Calculate modal height.
 	*
-	* @return {void} void.
+	* @returns {void} void.
 	* @since 1.2.9
 	*/
 	calcHeight: function () {
@@ -21,56 +20,13 @@ export const modal = {
 	},
 
 	/**
-	* Load perfect scrollbar in modal.
-	*
-	* @return {void} void.
-	* @since 1.2.8
-	*/
-	scrollbar: function () {
-		if (typeof PerfectScrollbar === 'undefined') {
-			console.log("AQV: perfect scrollbar is not defined.");
-			return;
-		}
-
-		// Use vanilla to query the DOM. jQuery is not working here.
-		const scrollEle = document.getElementById("adfy-quick-view-model-inner");
-
-		if (scrollEle) {
-			new PerfectScrollbar(scrollEle, {
-				wheelSpeed: 0.25,
-				wheelPropagation: true,
-				minScrollbarLength: 20
-			});
-		}
-	},
-
-	/**
-	* Hide/show spinner.
-	*
-	* @param {boolean}
-	* @return {void} void.
-	* @since 1.2.9
-	*/
-	spinner: function (show = true) {
-		const spinner = $('#adfy-qvm-spinner');
-
-		if (spinner) {
-			if (show) {
-				spinner.removeClass('hide');
-			} else {
-				spinner.hideClass('hide');
-			}
-		}
-	},
-
-	/**
 	* Load modal image gallery.
 	*
-	* @return {void} void.
+	* @returns {void} void.
 	* @since 1.2.8
 	*/
 	wcGallery: function () {
-		const gallery = $('#addonify-quick-view-modal .woocommerce-product-gallery');
+		const gallery = $("#addonify-quick-view-modal .woocommerce-product-gallery");
 
 		if (gallery && gallery.length > 0) {
 			gallery.each(function () {
@@ -82,7 +38,7 @@ export const modal = {
 	/**
 	* Render modal gallery icon.
 	*
-	* @return {void} void.
+	* @returns {void} void.
 	* @since 1.2.8
 	*/
 	wcGalleryIcon: function () {
@@ -97,58 +53,10 @@ export const modal = {
 	},
 
 	/**
-	* Scroll to the modal view.
-	*
-	* @return {void}
-	* @since 1.2.10
-	*/
-	scrollToView: function () {
-		const modalEle = $("#adfy-quick-view-model-inner");
-
-		if (modalEle && modalEle.length > 0) {
-			modalEle.animate({ scrollTop: 0 }, "slow");
-		}
-	},
-
-	/**
-	* Animate the modal.
-	*
-	* @return {void}
-	* @since 1.2.10
-	*/
-	animate: function () {
-		let openingTask = null;
-		let closingTask = null;
-		const wrapperEle = $("#addonify-quick-view-modal-wrapper");
-
-		wrapperEle.removeClass("play-opening-animation");
-		wrapperEle.addClass("play-closing-animation");
-
-		/**
-		* Remove closing animation class after 800ms
-		*/
-		clearTimeout(closingTask);
-		closingTask = setTimeout(() => {
-			action.close();
-			wrapperEle.removeClass("play-closing-animation");
-			clearTimeout(closingTask);
-		}, 800);
-
-		/**
-		* Reset opening animation class after 1000ms
-		*/
-		clearTimeout(openingTask);
-		openingTask = setTimeout(() => {
-			wrapperEle.addClass("play-opening-animation");
-			clearTimeout(openingTask);
-		}, 1200);
-	},
-
-	/**
 	* Get modal content.
 	*
 	* @param {string} id.
-	* @return {Promise<void>}
+	* @returns {Promise<void>}
 	* @since 1.2.10
 	*/
 	getContent: async function (id) {

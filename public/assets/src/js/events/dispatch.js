@@ -2,46 +2,45 @@ export const dispatchEvent = {
 	/**
 	* Dispatch event when the modal is closed.
 	*
-	* @param {object} event
-	* @return {void} void.
+	* @return {void}
 	* @since 1.2.8
 	*/
-	closed: function (event) {
-		$(document).trigger("addonifyQuickViewModalClosed", { data: event });
+	closed: function () {
+		$(document).trigger("addonifyQuickViewModalClosed");
 
-		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalClosed", { data: event }));
+		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalClosed"));
 	},
 
 	/**
 	* Dispatch event when the modal is opened.
 	*
-	* @param {object} event
+	* @param {string} id - product id.
 	* @return {void} void.
 	* @since 1.2.8
 	*/
-	opened: function (event) {
-		$(document).trigger("addonifyQuickViewModalOpened");
+	opened: function (id) {
+		$(document).trigger("addonifyQuickViewModalOpened", { data: id });
 
-		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalOpened"));
+		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalOpened", { data: id }));
 	},
 
 	/**
 	* Dispatch event when the modal content is loading.
 	*
-	* @param {object} event
+	* @param {string} id - product id.
 	* @return {void} void.
 	* @since 1.2.8
 	*/
-	loading: function (event) {
-		$(document).trigger("addonifyQuickViewModalLoading");
+	loading: function (id) {
+		$(document).trigger("addonifyQuickViewModalLoading", { data: id });
 
-		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalLoading"));
+		document.dispatchEvent(new CustomEvent("addonifyQuickViewModalLoading", { data: id }));
 	},
 
 	/**
 	* Dispatch event when the modal content is loaded.
 	*
-	* @param {object} event
+	* @param {object} data.
 	* @return {void} void.
 	* @since 1.2.8
 	*/
