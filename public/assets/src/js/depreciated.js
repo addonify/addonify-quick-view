@@ -1,7 +1,5 @@
 'use strict';
 
-const { $ } = window.jQuery;
-
 (function ($) {
 
 	const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;

@@ -58,9 +58,6 @@ export default [
 			file: assets['js']['build'],
 			name: 'js',
 			format: 'umd', // "umd", "iife", "esm", "cjs"
-			globals: {
-				jquery: '$'
-			},
 		},
 		plugins: [
 			resolve(),

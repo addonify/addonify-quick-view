@@ -280,7 +280,7 @@ class Addonify_Quick_View_Public {
 			);
 		}
 
-		$product_id = isset( $_GET['product_id'] ) ? (int) wp_unslash( $_GET['product_id'] ) : ''; // phpcs:ignore
+		$product_id = isset( $_GET['productId'] ) ? (int) wp_unslash( $_GET['productId'] ) : ''; // phpcs:ignore
 
 		if ( ! $product_id ) {
 			wp_send_json(
