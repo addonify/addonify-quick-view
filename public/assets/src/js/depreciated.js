@@ -1,6 +1,6 @@
-(function ($) {
+'use strict';
 
-	'use strict';
+(function ($) {
 
 	const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;
 	const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
@@ -25,11 +25,6 @@
 			this.initPerfectScrollbar();
 			this.calculateModalHeight();
 			this.handleQVModalEvents();
-		},
-
-		loadOnScroll: function () {
-
-			// Fire all these methods on document scroll.
 		},
 
 		loadOnResize: function () {
@@ -74,7 +69,7 @@
 
 			$(document).on('addonifyQuickViewModalOpened', function (event) {
 
-				// Re-initiazlize PerfectScrollBar.
+				// Re-initialize PerfectScrollBar.
 				addonifyQuickView.initPerfectScrollbar();
 
 				// Re-initialize variation form.
@@ -490,15 +485,9 @@
 	*
 	* @since 1.2.8
 	*/
-
 	$(document).ready(function () {
 
 		addonifyQuickView.loadOnReady();
-	});
-
-	$(window).on('scroll', function () {
-
-		addonifyQuickView.loadOnScroll();
 	});
 
 	$(window).on('resize', function () {
