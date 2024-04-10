@@ -271,7 +271,7 @@ export const helper = {
 
 			const content = await res.json();
 
-			if (!content.success) {
+			if (!content.success || !content.data) {
 				throw new Error(content.message || "AQV: error loading content.");
 			}
 
