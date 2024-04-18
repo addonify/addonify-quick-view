@@ -95,7 +95,7 @@ if ( ! function_exists( 'addonify_quick_view_run' ) ) {
 					function() {
 						?>
 						<div class="notice notice-error">
-							<p><?php echo esc_html__( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view' ); ?></p>
+							<p><?php echo esc_html__( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view-pro' ); ?></p>
 						</div>
 						<?php
 					}

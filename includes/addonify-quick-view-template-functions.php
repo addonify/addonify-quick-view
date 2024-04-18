@@ -83,51 +83,15 @@ function addonify_quick_view_get_template( $template_name, $args = array(), $tem
  * Renders quick view button.
  *
  * @since 1.1.6
+ * @param array $args Button arguments.
  */
-function addonify_quick_view_render_button_template() {
-
-	if (
-		empty( addonify_quick_view_get_option( 'quick_view_btn_label' ) ) && ! addonify_quick_view_get_option( 'enable_quick_view_btn_icon' )
-	) {
-
-		return;
-	}
-
-	global $product;
-
-	$button_icon = '';
-
-	$icon_position = '';
-
-	$button_css_classes = array( 'button', 'addonify-qvm-button' );
-
-	if (
-		addonify_quick_view_get_option( 'enable_quick_view_btn_icon' ) &&
-		addonify_quick_view_get_option( 'quick_view_btn_icon_position' )
-	) {
-
-		$icon_key = addonify_quick_view_get_option( 'quick_view_btn_icon' );
-
-		$button_icon = addonify_quick_view_get_button_icons( $icon_key );
-
-		$position = addonify_quick_view_get_option( 'quick_view_btn_icon_position' );
-
-		$icon_position = ( 'before_label' === $position ) ? 'left' : 'right';
-	}
-
-	$quick_view_button_args = array(
-		'product_id'    => $product->get_id(),
-		'label'         => addonify_quick_view_get_option( 'quick_view_btn_label' ),
-		'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
-		'icon'          => $button_icon,
-		'icon_position' => $icon_position,
-	);
+function addonify_quick_view_render_button_template( $args ) {
 
 	addonify_quick_view_get_template(
 		'addonify-quick-view-button',
 		apply_filters(
 			'addonify_quick_view_button_args',
-			$quick_view_button_args
+			$args
 		),
 	);
 }

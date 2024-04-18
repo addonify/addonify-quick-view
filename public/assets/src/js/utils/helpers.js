@@ -105,12 +105,19 @@ export const helper = {
 	* @since 1.2.8
 	*/
 	wcGallery: function () {
+
+		const { flexSliderArgs } = addonifyQuickViewPublicScriptObject;
+	
 		const gallery = $("#addonify-quick-view-modal .woocommerce-product-gallery");
 
 		if (gallery && gallery.length > 0) {
 			gallery.each(function () {
-				$(this).wc_product_gallery();
-			})
+				if (typeof flexSliderArgs !== 'undefined') {
+					$(this).wc_product_gallery({ flexslider: flexSliderArgs });
+				} else {
+					$(this).wc_product_gallery();
+				}
+			});
 		}
 	},
 
@@ -232,10 +239,10 @@ export const helper = {
 			*/
 			dispatchEvent.loading(id);
 
-			const { ajaxURL, quickViewAction, nonce } = addonifyQuickViewPublicScriptObject;
+			const { ajaxURL, ajaxQuickViewAction, nonce } = addonifyQuickViewPublicScriptObject;
 
 			let url = ajaxURL;
-			let query = `action=${quickViewAction}&productId=${id}&nonce=${nonce}`;
+			let query = `action=${ajaxQuickViewAction}&productId=${id}&nonce=${nonce}`;
 
 			/**
 			* Modify the URL and query if args are passed.
@@ -302,15 +309,18 @@ export const helper = {
 	* @since 1.2.10
 	*/
 	renderContent: function (data) {
-		const modalEle = $("#addonify-quick-view-modal #adfy-quick-view-modal-content");
+
+		const modalEle = $("#adfy-quick-view-modal-content");
 
 		const { enableWcGalleryLightBox, wcsattEnabled } = addonifyQuickViewPublicScriptObject;
 
 		if (modalEle && modalEle.length > 0) {
-			/**
-			* Clear the modal HTML and load the new content.
-			*/
-			modalEle.html(" ").html(data);
+
+			if (typeof data === 'object' && data !== null) {
+				Object.keys(data).forEach(key => {
+					$(key).html(" ").html(data[key]);
+				});
+			}
 
 			/**
 			* Load wc gallery images.

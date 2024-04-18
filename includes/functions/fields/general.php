@@ -32,6 +32,15 @@ if ( ! function_exists( 'addonify_quick_view_general_settings_fields' ) ) {
 					'type'        => 'switch',
 					'dependent'   => array( 'enable_quick_view' ),
 				),
+				'delete_plugin_data_on_deactivation'  => array(
+					'label'       => __( 'Delete plugin data on plugin deactivation', 'addonify-quick-view' ),
+					'description' => apply_filters(
+						'addonify_quick_view_delete_plugin_data_on_deactivation_option_desc',
+						''
+					),
+					'type'        => 'switch',
+					'dependent'   => array( 'enable_quick_view' ),
+				),
 			)
 		);
 	}
@@ -67,11 +76,11 @@ if ( ! function_exists( 'addonify_quick_view_general_add_to_settings_fields' ) )
 	 */
 	function addonify_quick_view_general_add_to_settings_fields( $settings_fields ) {
 
-		$settings_fields = array_merge( $settings_fields, addonify_quick_view_general_settings_fields() );
-
-		$settings_fields = array_merge( $settings_fields, addonify_quick_view_general_styles_settings_fields() );
-
-		return $settings_fields;
+		return array_merge(
+			$settings_fields,
+			addonify_quick_view_general_settings_fields(),
+			addonify_quick_view_general_styles_settings_fields(),
+		);
 	}
 
 	add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_general_add_to_settings_fields' );

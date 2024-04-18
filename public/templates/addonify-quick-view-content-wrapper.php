@@ -25,6 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	data-open_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation( 'opening' ) ); ?>" 
 	data-close_animation="<?php echo esc_attr( addonify_quick_view_get_modal_animation( 'closing' ) ); ?>"
 >
+	<?php do_action( 'addonify_quick_view_before_modal' ); ?>
 	<div id="addonify-quick-view-modal" data-layout="default">
 		<button 
 		id="addonify-quick-view-modal-close"
@@ -49,5 +50,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</section>
 			<?php do_action( 'addonify_quick_view_after_modal_content' ); ?>
 		</div>
+		<?php do_action( 'addonify_quick_view_after_modal' ); ?>
 	</div>
 </aside>
