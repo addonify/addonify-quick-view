@@ -82,6 +82,22 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 
 
 
+**📄 SHORTCODE**
+
+The shortcode below can used to display quick view button.
+
+```php
+[addonify_quick_view_button id="1" label="Quick View" classes="btn" icon="icon_one" icon_position="left"]
+```
+The shortcode attributes used are as follows:
+- **id**: Product id.
+- **label**: Button label.
+- **classes**: CSS classes.
+- **icon**: Button icon. Use any one attribute value from `icon_one`, `icon_two`, `icon_three`, ..., `icon_six`.
+- **icon_position**: Button icon position if `icon` attribute is set. Use either `left` or `right`.
+
+
+
 **👨‍💻 DEVELOPER:**
 
 Developers, we got you. Follow the links below to easily customize Addonify Quick View as you like.
@@ -135,6 +151,8 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 = 1.2.17 - ? April, 2024 =
 
 - Added: Label in range slider control (setting page).
+- Added: Shortcode for quick view button.
+- Added: `Delete plugin data on plugin deactivation` option.
 
 = 1.2.16 - 3 April, 2024 =
 

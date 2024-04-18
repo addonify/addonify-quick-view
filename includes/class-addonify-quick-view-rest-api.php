@@ -73,6 +73,42 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					),
 				)
 			);
+
+			register_rest_route(
+				$this->rest_namespace,
+				'/reset_options',
+				array(
+					array(
+						'methods'             => \WP_REST_Server::CREATABLE,
+						'callback'            => array( $this, 'reset_settings' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
+					),
+				)
+			);
+
+			register_rest_route(
+				$this->rest_namespace,
+				'/export_options',
+				array(
+					array(
+						'methods'             => \WP_REST_Server::READABLE,
+						'callback'            => array( $this, 'export_settings' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
+					),
+				)
+			);
+
+			register_rest_route(
+				$this->rest_namespace,
+				'/import_options',
+				array(
+					array(
+						'methods'             => \WP_REST_Server::READABLE,
+						'callback'            => array( $this, 'import_settings' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
+					),
+				)
+			);
 		}
 
 
@@ -119,7 +155,116 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			return rest_ensure_response( $return_data );
 		}
 
+		/**
+		 * API callback handler for resetting plugin settings.
+		 *
+		 * @since 1.2.17
+		 */
+		public function reset_settings() {
 
+			$setting_defaults = addonify_quick_view_settings_fields_defaults();
+
+			foreach ( $setting_defaults as $setting_key => $default_value ) {
+
+				if ( ! update_option( ADDONIFY_DB_INITIALS . $setting_key, $default_value ) ) {
+					return array(
+						'success' => false,
+						'message' => esc_html__( 'Error resetting options', 'addonify-quick-view' ),
+					);
+				}
+			}
+
+			return array(
+				'success' => true,
+				'message' => esc_html__( 'Options resetted sucessfully', 'addonify-quick-view' ),
+			);
+		}
+
+		/**
+		 * API callback handler for exporting saved plugin settings.
+		 *
+		 * @since 1.2.17
+		 */
+		public function export_settings() {
+
+			global $wpdb;
+
+			$query = 'SELECT option_name, option_value FROM ' . $wpdb->options . ' WHERE option_name LIKE %s';
+
+			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_DB_INITIALS . '%' ), ARRAY_A ); //phpcs:ignore
+
+			$json_file = 'adfy-qv-' . time() . '.json';
+
+			if (
+				file_put_contents( //phpcs:ignore
+					trailingslashit( wp_upload_dir()['path'] ) . $json_file,
+					wp_json_encode( $query_results )
+				)
+			) {
+				return new WP_REST_Response(
+					array(
+						'success' => true,
+						'url'     => trailingslashit( wp_upload_dir()['url'] ) . $json_file,
+					)
+				);
+			}
+
+			return new WP_REST_Response(
+				array(
+					'success' => false,
+					'message' => esc_html__( 'Unable to write on server.', 'addonify-quick-view' ),
+				)
+			);
+		}
+
+		/**
+		 * API callback handler for exporting saved plugin settings.
+		 *
+		 * @since 1.2.17
+		 */
+		public function import_settings() {
+
+			if ( empty( $_FILES ) ) {
+				return new WP_REST_Response(
+					array(
+						'success' => false,
+						'message' => esc_html__( 'Import file not found.', 'addonify-quick-view' ),
+					)
+				);
+			}
+			$file_contents = file_get_contents( $_FILES['gocart_import_file']['tmp_name'] ); //phpcs:ignore
+
+			if ( isset( $_FILES['gocart_import_file']['type'] ) && 'application/json' !== $_FILES['gocart_import_file']['type'] ) {
+				return new WP_REST_Response(
+					array(
+						'success' => false,
+						'message' => esc_html__( 'Unsupported file format of uploaded file.', 'addonify-quick-view' ),
+					)
+				);
+			}
+
+			$settings_values = $this->json_to_array( $file_contents );
+
+			if ( ! is_array( $settings_values ) ) {
+				return new WP_REST_Response(
+					array(
+						'success' => false,
+						'message' => esc_html__( 'Invalid json content.', 'addonify-quick-view' ),
+					)
+				);
+			}
+
+			foreach ( $settings_values as $setting_value ) {
+				update_option( $setting_value->option_name, $setting_value->option_value );
+			}
+
+			return new WP_REST_Response(
+				array(
+					'success' => true,
+					'message' => esc_html__( 'Settings imported successfully.', 'addonify-quick-view' ),
+				)
+			);
+		}
 
 		/**
 		 * Permission callback function to check if current user can access the rest api route.

@@ -28,5 +28,16 @@ class Addonify_Quick_View_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {}
+	public static function activate() {
+
+		require plugin_dir_path( dirname( __FILE__ ) ) . 'includes/plugin-setting-defaults.php';
+
+		$setting_defaults = addonify_quick_view_setting_defaults();
+
+		if ( is_array( $setting_defaults ) && $setting_defaults ) {
+			foreach ( $setting_defaults as $setting_id => $setting_default ) {
+				add_option( ADDONIFY_DB_INITIALS . $setting_id, $setting_default );
+			}
+		}
+	}
 }

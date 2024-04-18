@@ -24,12 +24,14 @@ const listeners = {
 	* @since 1.2.17
 	*/
 	open: function () {
-		if (!adfyQVProJSObj) {
+
+		const { ajaxQuickViewAction } = addonifyQuickViewPublicScriptObject;
+
+		if (typeof ajaxQuickViewAction !== 'undefined') {
 			const quickViewBtnEle = $(".addonify-qvm-button");
 
 			quickViewBtnEle.on("click", function (e) {
 				e.preventDefault();
-
 				const id = $(this).data("product_id");
 				return id ? action.open(id) : null;
 			});
