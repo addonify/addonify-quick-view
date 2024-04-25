@@ -322,29 +322,31 @@ class Addonify_Quick_View_Public {
 
 		global $product;
 
-		$button_icon        = '';
-		$icon_position      = '';
-		$button_css_classes = array( 'button', 'addonify-qvm-button' );
+		if ( apply_filters( 'addonify_quick_view_render_button', true, $product ) ) {
+			$button_icon        = '';
+			$icon_position      = '';
+			$button_css_classes = array( 'button', 'addonify-qvm-button' );
 
-		if (
-			'1' === $this->display_quick_view_button_icon &&
-			$this->quick_view_button_icon_position
-		) {
+			if (
+				'1' === $this->display_quick_view_button_icon &&
+				$this->quick_view_button_icon_position
+			) {
 
-			$button_icon = addonify_quick_view_get_button_icons( $this->quick_view_button_icon );
+				$button_icon = addonify_quick_view_get_button_icons( $this->quick_view_button_icon );
 
-			$icon_position = ( 'before_label' === $this->quick_view_button_icon_position ) ? 'left' : 'right';
+				$icon_position = ( 'before_label' === $this->quick_view_button_icon_position ) ? 'left' : 'right';
+			}
+
+			$button_args = array(
+				'product_id'    => $product->get_id(),
+				'label'         => $this->quick_view_button_label,
+				'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
+				'icon'          => $button_icon,
+				'icon_position' => $icon_position,
+			);
+
+			do_action( 'addonify_quick_view_button', $button_args );
 		}
-
-		$button_args = array(
-			'product_id'    => $product->get_id(),
-			'label'         => $this->quick_view_button_label,
-			'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
-			'icon'          => $button_icon,
-			'icon_position' => $icon_position,
-		);
-
-		do_action( 'addonify_quick_view_button', $button_args );
 	}
 
 	/**
@@ -383,34 +385,39 @@ class Addonify_Quick_View_Public {
 			return '';
 		}
 
-		$icon          = false;
-		$icon_position = false;
+		$product = wc_get_product( $product_id );
 
-		if ( isset( $atts['icon'] ) && addonify_quick_view_get_button_icons( $atts['icon'] ) ) {
-			$icon = addonify_quick_view_get_button_icons( $atts['icon'] );
+		if ( apply_filters( 'addonify_quick_view_render_button', true, $product ) ) {
+
+			$icon          = false;
+			$icon_position = false;
+
+			if ( isset( $atts['icon'] ) && addonify_quick_view_get_button_icons( $atts['icon'] ) ) {
+				$icon = addonify_quick_view_get_button_icons( $atts['icon'] );
+			}
+
+			if ( $icon && isset( $atts['icon_position'] ) ) {
+				$icon_position = in_array( $atts['icon_position'], array( 'left', 'right' ), true ) ? $atts['icon_position'] : 'right';
+			}
+
+			$classes = array(
+				'button',
+				'addonify-qvm-button',
+				$shortcode_atts['classes'],
+			);
+
+			return apply_filters(
+				'addonify_quick_view_shortcode_button_html',
+				sprintf(
+					'<button class="%s" data-product_id="%s" %s><span class="label">%s</span>%s</button>',
+					esc_attr( implode( ' ', $classes ) ),
+					esc_attr( $product_id ),
+					( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : '',
+					esc_html( $shortcode_atts['label'] ),
+					( $icon ) ? '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>' : ''
+				)
+			);
 		}
-
-		if ( $icon && isset( $atts['icon_position'] ) ) {
-			$icon_position = in_array( $atts['icon_position'], array( 'left', 'right' ), true ) ? $atts['icon_position'] : 'right';
-		}
-
-		$classes = array(
-			'button',
-			'addonify-qvm-button',
-			$shortcode_atts['classes'],
-		);
-
-		return apply_filters(
-			'addonify_quick_view_shortcode_button_html',
-			sprintf(
-				'<button class="%s" data-product_id="%s" %s><span class="label">%s</span>%s</button>',
-				esc_attr( implode( ' ', $classes ) ),
-				esc_attr( $product_id ),
-				( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : '',
-				esc_html( $shortcode_atts['label'] ),
-				( $icon ) ? '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>' : ''
-			)
-		);
 	}
 
 	/**

@@ -150,9 +150,10 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 = 1.2.17 - ? April, 2024 =
 
 - Added: Label in range slider control (setting page).
-- Added: Shortcode for quick view button.
+- Added: Shortcode for rendering quick view button.
 - Added: `Delete plugin data on plugin deactivation` option.
 - Added: Hooks, `addonify_quick_view_before_modal` and `addonify_quick_view_after_modal` in `addonify-quick-view-content-wrapper.php` template file.
+- Added: Filter hook, `addonify_quick_view_render_button`.
 
 = 1.2.16 - 3 April, 2024 =
 
