@@ -41,8 +41,7 @@ onMounted(() => {
 				<template v-else>
 					<Form divId="adfy-style-options-form">
 						<OptionSection
-							v-for="(section, sectionKey) in store.data.styles
-								.sections"
+							v-for="(section, sectionKey) in store.data.styles.sections"
 							:sectionKey="sectionKey"
 							currentPage="design"
 						>

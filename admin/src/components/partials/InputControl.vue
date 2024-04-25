@@ -45,6 +45,7 @@ const props = defineProps({
 		v-model="props.reactiveState[props.fieldKey]"
 		:choices="props.field.choices"
 		:placeholder="props.field.placeholder"
+		:multiselect="props.field.multiselect"
 	/>
 	<Text
 		v-else-if="props.field.type == 'text'"

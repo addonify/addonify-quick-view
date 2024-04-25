@@ -17,6 +17,7 @@ gulpfile.js
 webpack.config.js
 pnpm-lock.yaml
 webpack.mix.js
+webpack.mix.cjs
 package.json
 package-lock.json
 sftp-config.json
