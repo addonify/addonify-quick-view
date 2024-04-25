@@ -6,311 +6,311 @@ const { __ } = wp.i18n;
 
 export const useProductStore = defineStore({
 
-    id: 'Product',
+	id: 'Product',
 
-    state: () => ({
+	state: () => ({
 
-        allAddons: {}, // Storing all addons slugs.
-        allProductSlugStatus: {}, // Storing all addons slug & status.
-        hotAddons: {},
-        generalAddons: {},
-        installedAddons: [],
+		allAddons: {}, // Storing all addons slugs.
+		allProductSlugStatus: {}, // Storing all addons slug & status.
+		hotAddons: {},
+		generalAddons: {},
+		installedAddons: [],
 
-        isFetching: true, // Fetching recommended plugins list from github.
-        isFetchingAllInstalledAddons: true, // Fetched all installed plugins.
-        isSettingAddonStatus: true, // Checking plugin status on backend.
+		isFetching: true, // Fetching recommended plugins list from github.
+		isFetchingAllInstalledAddons: true, // Fetched all installed plugins.
+		isSettingAddonStatus: true, // Checking plugin status on backend.
 
-    }),
+	}),
 
-    getters: {
+	getters: {
 
-        /**
-        * Getter: return the state of all addons.
-        *
-        * @param {Object} state
-        * @return {Object} allAddons
-        * @since 1.2.9
-        */
-        hasAddonsStateInMemory: (state) => {
+		/**
+		* Getter: return the state of all addons.
+		*
+		* @param {Object} state
+		* @return {Object} allAddons
+		* @since 1.2.9
+		*/
+		hasAddonsStateInMemory: (state) => {
 
-            if (typeof state.allAddons === 'object') {
+			if (typeof state.allAddons === 'object') {
 
-                return Object.keys(state.allAddons).length > 0 ? true : false;
-            }
+				return Object.keys(state.allAddons).length > 0 ? true : false;
+			}
 
-            if (typeof state.allAddons === 'array') {
+			if (typeof state.allAddons === 'array') {
 
-                return state.allAddons.length > 0 ? true : false;
-            }
+				return state.allAddons.length > 0 ? true : false;
+			}
 
-            // Not an object or array.
-            return false;
-        },
-    },
+			// Not an object or array.
+			return false;
+		},
+	},
 
-    actions: {
+	actions: {
 
-        /**
-         * Action: Fetch github repo data.
-         * Get addons slug from github repo.
-         * @param slug
-         */
-        async getRecommdedProductsList() {
+		/**
+		 * Action: Fetch github repo data.
+		 * Get addons slug from github repo.
+		 * @param slug
+		 */
+		async getRecommdedProductsList() {
 
-            try {
+			try {
 
-                const res = await fetch("https://raw.githubusercontent.com/addonify/recommended-products/main/products.json");
-                const data = await res.json();
+				const res = await fetch("https://raw.githubusercontent.com/addonify/recommended-products/main/products.json");
+				const data = await res.json();
 
-                if (res.status == 200) {
+				if (res.status == 200) {
 
-                    console.log("💥 Github repo fetched successfully.");
-                    this.processRecommendedPluginsList(data);
-                    this.isFetching = false;
+					console.log("💥 Github repo fetched successfully.");
+					this.processRecommendedPluginsList(data);
+					this.isFetching = false;
 
-                } else {
+				} else {
 
-                    console.error("Couldn't fetch Github repo " + res);
+					console.error("Couldn't fetch Github repo " + res);
 
-                    ElMessage.error(({
-                        message: __('Error: couldn\'t fetch recommended plugins list.', 'addonify-quick-view'),
-                        offset: 50,
-                        duration: 20000,
-                    }));
-                }
+					ElMessage.error(({
+						message: __('Error: couldn\'t fetch recommended plugins list.', 'addonify-quick-view'),
+						offset: 50,
+						duration: 20000,
+					}));
+				}
 
-                return res;
+				return res;
 
-            } catch (err) {
+			} catch (err) {
 
-                console.error(err);
-                this.isFetching = false;
+				console.error(err);
+				this.isFetching = false;
 
-                return err;
-            }
-        },
+				return err;
+			}
+		},
 
-        /**
-        * Action: Process the recommended plugins list.
-        * Create three arrays [hot, general & all]
-        * Called on getRecommdedProductsList() action.
-        * @param {object} list
-        */
-        processRecommendedPluginsList(list) {
+		/**
+		* Action: Process the recommended plugins list.
+		* Create three arrays [hot, general & all]
+		* Called on getRecommdedProductsList() action.
+		* @param {object} list
+		*/
+		processRecommendedPluginsList(list) {
 
-            console.log("=> Processing the list that was retrived....");
+			console.log("=> Processing the list that was retrived....");
 
-            this.hotAddons = list.data.hot;
-            this.generalAddons = list.data.general;
-            this.allAddons = { ...this.hotAddons, ...this.generalAddons };
+			this.hotAddons = list.data.hot;
+			this.generalAddons = list.data.general;
+			this.allAddons = { ...this.hotAddons, ...this.generalAddons };
 
-            //console.log(this.generalAddons);
+			//console.log(this.generalAddons);
 
-            if (typeof this.allAddons === 'object') {
+			if (typeof this.allAddons === 'object') {
 
-                Object.keys(this.allAddons).forEach((key) => {
+				Object.keys(this.allAddons).forEach((key) => {
 
-                    //console.log(key);
-                    // Let's add the slug to object with status null for now.
-                    // i.e: { 'addonify-quick-view': 'status' }
-                    this.allProductSlugStatus[key] = 'null';
-                });
+					//console.log(key);
+					// Let's add the slug to object with status null for now.
+					// i.e: { 'addonify-quick-view': 'status' }
+					this.allProductSlugStatus[key] = 'null';
+				});
 
-            } else {
+			} else {
 
-                console.error("💥 Couldn't process the list plugins list.");
+				console.error("💥 Couldn't process the list plugins list.");
 
-                ElMessage.error(({
-                    message: __('Error: couldn\'t process the recommended plugins list.', 'addonify-quick-view'),
-                    offset: 50,
-                    duration: 10000,
-                }));
-            }
-        },
+				ElMessage.error(({
+					message: __('Error: couldn\'t process the recommended plugins list.', 'addonify-quick-view'),
+					offset: 50,
+					duration: 10000,
+				}));
+			}
+		},
 
-        /**
-         * Action: Check plugin status.
-         * Call backend api to check plugin status.
-         * @param {Object} addons
-         */
+		/**
+		 * Action: Check plugin status.
+		 * Call backend api to check plugin status.
+		 * @param {Object} addons
+		 */
 
-        async fetchInstalledAddons() {
+		async fetchInstalledAddons() {
 
-            console.log("=> Getting the list of all plugins installed on the site....");
+			console.log("=> Getting the list of all plugins installed on the site....");
 
-            try {
+			try {
 
-                const res = await apiFetch({
+				const res = await apiFetch({
 
-                    method: "GET",
-                    path: `/wp/v2/plugins`,
-                });
+					method: "GET",
+					path: `/wp/v2/plugins`,
+				});
 
-                //console.log(res);
-                console.log("=> Received the list of all installed plugins....");
+				//console.log(res);
+				console.log("=> Received the list of all installed plugins....");
 
-                this.installedAddons = res;
-                this.setAddonStatusFlag(Object.keys(this.allProductSlugStatus)); // Just send the slug array.
-                this.isFetchingAllInstalledAddons = false;
+				this.installedAddons = res;
+				this.setAddonStatusFlag(Object.keys(this.allProductSlugStatus)); // Just send the slug array.
+				this.isFetchingAllInstalledAddons = false;
 
-            } catch (err) {
+			} catch (err) {
 
-                console.error(err);
+				console.error(err);
 
-                ElMessage.error(({
-                    message: __('Error: Couldn\'t retrive the list of installed plugins.', 'addonify-quick-view'),
-                    offset: 50,
-                    duration: 20000,
-                }));
+				ElMessage.error(({
+					message: __('Error: Couldn\'t retrive the list of installed plugins.', 'addonify-quick-view'),
+					offset: 50,
+					duration: 20000,
+				}));
 
-                this.isFetchingAllInstalledAddons = false;
-            }
-        },
+				this.isFetchingAllInstalledAddons = false;
+			}
+		},
 
-        /**
-        * Action: Get plugin installed/active status via slug.
-        * Returns 'active' or 'inactive' or 'not-installed'.
-        * 
-        * @param {Object} slug
-        */
+		/**
+		* Action: Get plugin installed/active status via slug.
+		* Returns 'active' or 'inactive' or 'not-installed'.
+		*
+		* @param {Object} slug
+		*/
 
-        setAddonStatusFlag(slugs) {
+		setAddonStatusFlag(slugs) {
 
-            if (typeof this.installedAddons == 'object' && this.installedAddons.length > 0) {
+			if (typeof this.installedAddons == 'object' && this.installedAddons.length > 0) {
 
-                console.log("=> Setting the status of the addon.");
-                //console.log(slugs);
+				console.log("=> Setting the status of the addon.");
+				//console.log(slugs);
 
-                slugs.forEach((slug) => {
+				slugs.forEach((slug) => {
 
-                    // Find the status in installed addons. 
-                    let tryFind = this.installedAddons.find((plugin) => plugin.textdomain == slug);
+					// Find the status in installed addons.
+					let tryFind = this.installedAddons.find((plugin) => plugin.textdomain == slug);
 
-                    if (tryFind) {
+					if (tryFind) {
 
-                        this.allProductSlugStatus[slug] = tryFind.status;
+						this.allProductSlugStatus[slug] = tryFind.status;
 
-                    } else {
+					} else {
 
-                        this.allProductSlugStatus[slug] = 'not-installed';
-                    }
-                });
+						this.allProductSlugStatus[slug] = 'not-installed';
+					}
+				});
 
-            } else {
+			} else {
 
-                console.log("=> Bailing!!! The installed addons list is empty.");
-            }
+				console.log("=> Bailing!!! The installed addons list is empty.");
+			}
 
-            console.log("💥 Done setting the status of the addon.");
-            this.isSettingAddonStatus = false; // Done setting the status till here. Let's set the flag to false.
-        },
+			console.log("💥 Done setting the status of the addon.");
+			this.isSettingAddonStatus = false; // Done setting the status till here. Let's set the flag to false.
+		},
 
-        /*
-        *
-        * Action: Handle plugin activation.
-        * Call REST API to activate plugin.
-        * Wait for the signal from the backend.
-        * @param slug
-        */
+		/*
+		*
+		* Action: Handle plugin activation.
+		* Call REST API to activate plugin.
+		* Wait for the signal from the backend.
+		* @param slug
+		*/
 
-        async handleAddonInstallation(slug) {
+		async handleAddonInstallation(slug) {
 
-            try {
+			try {
 
-                console.log(`=> Trying to install plugin ${slug}...`);
+				console.log(`=> Trying to install plugin ${slug}...`);
 
-                const res = await apiFetch({
+				const res = await apiFetch({
 
-                    method: "POST",
-                    path: "/wp/v2/plugins",
+					method: "POST",
+					path: "/wp/v2/plugins",
 
-                    data: {
-                        slug: slug,
-                        status: "active",
-                    },
-                });
+					data: {
+						slug: slug,
+						status: "active",
+					},
+				});
 
-                console.log(res);
+				console.log(res);
 
-                if (res.status === 'active') {
+				if (res.status === 'active') {
 
-                    console.log(`=> Plugin ${slug} installed successfully.`);
+					console.log(`=> Plugin ${slug} installed successfully.`);
 
-                    ElMessage.success(({
-                        message: __('Plugin installed successfully.', 'addonify-quick-view'),
-                        offset: 50,
-                        duration: 5000,
-                    }));
+					ElMessage.success(({
+						message: __('Plugin installed successfully.', 'addonify-quick-view'),
+						offset: 50,
+						duration: 5000,
+					}));
 
-                    this.allProductSlugStatus[slug] = 'active'; // Update the status of the plugin.
-                    return await res;
-                }
+					this.allProductSlugStatus[slug] = 'active'; // Update the status of the plugin.
+					return await res;
+				}
 
-            } catch (err) {
+			} catch (err) {
 
-                console.error(err);
+				console.error(err);
 
-                ElMessage.error(({
-                    message: __('Error: couldn\'t install plugin.', 'addonify-quick-view'),
-                    offset: 50,
-                    duration: 20000,
-                }));
+				ElMessage.error(({
+					message: __('Error: couldn\'t install plugin.', 'addonify-quick-view'),
+					offset: 50,
+					duration: 20000,
+				}));
 
-                this.isWaitingForInstallation = false;
-                return await err;
-            }
-        },
+				this.isWaitingForInstallation = false;
+				return await err;
+			}
+		},
 
-        /**
-         * Update plugin status. (active/inactive)
-         * @param {String} slug
-         * @args {slug, status} status
-         */
+		/**
+		 * Update plugin status. (active/inactive)
+		 * @param {String} slug
+		 * @args {slug, status} status
+		 */
 
-        async updateAddonStatus(slug) {
+		async updateAddonStatus(slug) {
 
-            try {
+			try {
 
-                console.log(`=> Trying to set the status of plugin ${slug}...`);
+				console.log(`=> Trying to set the status of plugin ${slug}...`);
 
-                const res = await apiFetch({
+				const res = await apiFetch({
 
-                    method: "POST",
-                    path: `/wp/v2/plugins/${slug}`,
-                    data: {
-                        status: "active",
-                        plugin: `${slug}/${slug}`,
-                    },
-                });
+					method: "POST",
+					path: `/wp/v2/plugins/${slug}`,
+					data: {
+						status: "active",
+						plugin: `${slug}/${slug}`,
+					},
+				});
 
-                console.log(res);
+				console.log(res);
 
-                if (res.status == 'active') {
+				if (res.status == 'active') {
 
-                    console.log(`=> Plugin ${slug} activated successfully.`);
+					console.log(`=> Plugin ${slug} activated successfully.`);
 
-                    ElMessage.success(({
-                        message: __('Plugin activated successfully.', 'addonify-quick-view'),
-                        offset: 50,
-                        duration: 5000,
-                    }));
+					ElMessage.success(({
+						message: __('Plugin activated successfully.', 'addonify-quick-view'),
+						offset: 50,
+						duration: 5000,
+					}));
 
-                    this.allProductSlugStatus[slug] = 'active'; // Update the status of the plugin.
-                    return await res;
-                }
+					this.allProductSlugStatus[slug] = 'active'; // Update the status of the plugin.
+					return await res;
+				}
 
-            } catch (err) {
+			} catch (err) {
 
-                console.log(err);
+				console.log(err);
 
-                ElMessage.error(({
-                    message: __('Error: Couldn\'t activate the plugin.', 'addonify-quick-view'),
-                    offset: 50,
-                    duration: 20000,
-                }));
+				ElMessage.error(({
+					message: __('Error: Couldn\'t activate the plugin.', 'addonify-quick-view'),
+					offset: 50,
+					duration: 20000,
+				}));
 
-                return await err;
-            }
-        }
-    }
+				return await err;
+			}
+		}
+	}
 });

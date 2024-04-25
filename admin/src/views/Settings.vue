@@ -42,8 +42,7 @@ onMounted(() => {
 				<template v-else>
 					<Form divId="adfy-settings-form">
 						<OptionSection
-							v-for="(section, sectionKey) in store.data.settings
-								.sections"
+							v-for="(section, sectionKey) in store.data.settings.sections"
 							:sectionKey="sectionKey"
 							currentPage="settings"
 						>

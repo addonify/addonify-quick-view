@@ -13,20 +13,12 @@ const props = defineProps({
 </script>
 <template>
 	<template v-if="props.layout === 'default'">
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			class="check"
-			viewBox="0 0 24 24"
-		>
+		<svg xmlns="http://www.w3.org/2000/svg" class="check" viewBox="0 0 24 24">
 			<path
 				d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"
 			></path>
 		</svg>
-		<svg
-			viewBox="0 0 160 110"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+		<svg viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect width="160" height="110" rx="10" fill="#EAEAEA" />
 			<rect x="13" y="15" width="55" height="45" rx="4" fill="#DBDBDB" />
 			<rect x="13" y="68" width="15" height="15" rx="2" fill="#DBDBDB" />
@@ -62,21 +54,13 @@ const props = defineProps({
 		</svg>
 	</template>
 	<template v-if="props.layout === 'row-reversed'">
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			class="check"
-			viewBox="0 0 24 24"
-		>
+		<svg xmlns="http://www.w3.org/2000/svg" class="check" viewBox="0 0 24 24">
 			<path
 				d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z"
 			></path>
 		</svg>
 
-		<svg
-			viewBox="0 0 160 110"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-		>
+		<svg viewBox="0 0 160 110" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect width="160" height="110" rx="10" fill="#EAEAEA" />
 			<rect x="93" y="15" width="55" height="45" rx="4" fill="#DBDBDB" />
 			<rect x="93" y="68" width="15" height="15" rx="2" fill="#DBDBDB" />

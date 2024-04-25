@@ -29,10 +29,7 @@ const props = defineProps({
 </script>
 <template>
 	<template v-if="section.type === 'render-jumbo-box'">
-		<JumboBox
-			:section="props.section"
-			:reactiveState="props.reactiveState"
-		/>
+		<JumboBox :section="props.section" :reactiveState="props.reactiveState" />
 	</template>
 	<template v-else>
 		<OptionBox

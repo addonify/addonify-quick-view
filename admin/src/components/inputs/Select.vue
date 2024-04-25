@@ -9,7 +9,7 @@ import { ElSelect, ElOption } from "element-plus";
  */
 const props = defineProps({
 	modelValue: {
-		type: String,
+		type: [String, Array],
 		required: true,
 	},
 	choices: {
@@ -20,6 +20,11 @@ const props = defineProps({
 		type: String,
 		required: false,
 		default: "",
+	},
+	multiselect: {
+		type: Boolean,
+		required: false,
+		default: false,
 	},
 });
 
@@ -33,28 +38,36 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 const value = computed({
 	get() {
-		return props.modelValue.toString();
+		return props.multiselect ? props.modelValue : props.modelValue.toString();
 	},
 	set(newValue) {
 		emit("update:modelValue", newValue);
 	},
 });
 
+//watchEffect(() => {
+//	if (typeof value.value === "object") {
+//		console.log(value.value);
+//	}
+//});
+
 /**
  * Import __ from wp.i18n.
- *
  */
 const { __ } = wp.i18n;
 </script>
 <template>
 	<el-select
 		v-model="value"
+		size="large"
 		:placeholder="
 			props.placeholder
 				? props.placeholder
 				: __('Select', 'addonify-quick-view')
 		"
-		size="large"
+		:multiple="props.multiselect"
+		:collapse-tags="props.multiselect"
+		:collapse-tags-tooltip="props.multiselect"
 	>
 		<el-option
 			v-for="(label, key) in props.choices"
