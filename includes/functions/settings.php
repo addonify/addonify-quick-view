@@ -92,7 +92,23 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_fields_values' ) ) {
 						break;
 
 					case 'select':
-						$key_values[ $key ] = ( addonify_quick_view_get_option( $key ) === '' ) ? 'Choose value' : addonify_quick_view_get_option( $key );
+						if ( isset( $value['multiselect'] ) && $value['multiselect'] ) {
+
+							$setting_value = addonify_quick_view_get_option( $key );
+
+							if ( is_array( $setting_value ) ) {
+								$key_values[ $key ] = $setting_value;
+							} else {
+								$json_decode_setting_value = json_decode( $setting_value, true );
+								if ( is_array( $json_decode_setting_value ) ) {
+									$key_values[ $key ] = $json_decode_setting_value;
+								} else {
+									$key_values[ $key ] = array();
+								}
+							}
+						} else {
+							$key_values[ $key ] = ( addonify_quick_view_get_option( $key ) === '' ) ? 'Choose value' : addonify_quick_view_get_option( $key );
+						}
 						break;
 
 					case 'color':
@@ -158,11 +174,29 @@ if ( ! function_exists( 'addonify_quick_view_update_settings_fields_values' ) ) 
 							break;
 
 						case 'select':
-							$choices = $settings_fields[ $key ]['choices'];
-							if ( array_key_exists( $value, $choices ) ) {
-								$sanitized_value = sanitize_text_field( $value );
+							$choices     = $settings_fields[ $key ]['choices'];
+							$multiselect = isset( $settings_fields[ $key ]['multiselect'] ) ? $settings_fields[ $key ]['multiselect'] : false;
+
+							if ( $multiselect ) {
+								$values_exit = true;
+								if ( is_array( $value ) && $value ) {
+									foreach ( $value as $val ) {
+										if ( ! array_key_exists( $val, $choices ) ) {
+											$values_exit = false;
+											break;
+										}
+									}
+								}
+
+								$sanitized_value = ! $values_exit ? $defaults[ $key ] : $value;
+
+								$sanitized_value = wp_json_encode( $sanitized_value );
 							} else {
-								$sanitized_value = $defaults[ $key ];
+								if ( array_key_exists( $value, $choices ) ) {
+									$sanitized_value = sanitize_text_field( $value );
+								} else {
+									$sanitized_value = $defaults[ $key ];
+								}
 							}
 							break;
 
