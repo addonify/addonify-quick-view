@@ -45,12 +45,6 @@ const value = computed({
 	},
 });
 
-//watchEffect(() => {
-//	if (typeof value.value === "object") {
-//		console.log(value.value);
-//	}
-//});
-
 /**
  * Import __ from wp.i18n.
  */

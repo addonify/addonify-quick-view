@@ -35,9 +35,16 @@ mix.extract();
 mix.webpackConfig(webpack => {
 	return {
 		plugins: [
+			/**
+			* Element Plus
+			*/
 			require('unplugin-element-plus/webpack')({
 				// options
 			}),
+			/**
+			* Recommended for Vue 3.
+			* @ref: https://vuejs.org/api/compile-time-flags
+			*/
 			new webpack.DefinePlugin({
 				__VUE_OPTIONS_API__: 'true',
 				__VUE_PROD_DEVTOOLS__: 'false',
