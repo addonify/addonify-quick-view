@@ -149,6 +149,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 1.2.17 - 18 July, 2024 =
 
+- Added:   New quick view button position - Over Product Image.
 - Updated: MobileDetect library. Fixed issue [#263](https://github.com/addonify/addonify-quick-view/issues/263).
 - Added:   Label in range slider control (setting page).
 - Added:   Shortcode for rendering quick view button.
