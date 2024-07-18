@@ -7,9 +7,8 @@
 	"author": "addonify",
 	"type": "module",
 	"scripts": {
-		"dev": "mix",
-		"watch": "mix watch",
-		"production": "mix --production",
+		"dev:admin": "mix watch",
+		"production:admin": "mix --production",
 		"public": "rollup -c -w"
 	},
 	"dependencies": {
