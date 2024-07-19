@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 	type="button"
 	class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>" 
 	data-product_id="<?php echo esc_attr( $product_id ); ?>"
-	<?php echo $icon_position ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : 'before_label'; ?>
+	<?php echo $icon_position ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : ''; ?>
 >
 	<?php
 	if ( $label ) {

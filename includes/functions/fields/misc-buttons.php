@@ -22,32 +22,32 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 			'addonify_quick_view_misc_button_style_fields',
 			array(
 				'modal_misc_buttons_text_color'       => array(
-					'label'     => __( 'Text color', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Text color', 'addonify-quick-view' ),
 					'type'      => 'color',
 					'className' => 'fullwidth',
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_text_hover_color' => array(
-					'label'     => __( 'Text color on hover', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
 					'type'      => 'color',
 					'className' => 'fullwidth',
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_background_color' => array(
-					'label'     => __( 'Background color', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Background color', 'addonify-quick-view' ),
 					'type'      => 'color',
 					'className' => 'fullwidth',
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_background_hover_color' => array(
-					'label'     => __( 'Background on hover', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Background on hover', 'addonify-quick-view' ),
 					'type'      => 'color',
 					'className' => 'fullwidth',
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_font_size'        => array(
-					'label'       => __( 'Font size (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => __( '15', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Font size (unit: px)', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( '15', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'style'       => 'buttons-plus-minus',
 					'min'         => 10,
@@ -56,7 +56,7 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 					'dependent'   => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_font_weight'      => array(
-					'label'     => __( 'Font weight', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Font weight', 'addonify-quick-view' ),
 					'type'      => 'select',
 					'choices'   => array(
 						'400' => __( 'Normal', 'addonify-quick-view' ),
@@ -67,19 +67,19 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_text_transform'   => array(
-					'label'     => __( 'Text transform', 'addonify-quick-view' ),
+					'label'     => esc_html__( 'Text transform', 'addonify-quick-view' ),
 					'type'      => 'select',
 					'choices'   => array(
-						'default'    => __( 'Default', 'addonify-quick-view' ),
-						'capitalize' => __( 'Capitalize', 'addonify-quick-view' ),
-						'lowercase'  => __( 'Lowercase', 'addonify-quick-view' ),
-						'uppercase'  => __( 'Uppercase', 'addonify-quick-view' ),
+						'default'    => esc_html__( 'Default', 'addonify-quick-view' ),
+						'capitalize' => esc_html__( 'Capitalize', 'addonify-quick-view' ),
+						'lowercase'  => esc_html__( 'Lowercase', 'addonify-quick-view' ),
+						'uppercase'  => esc_html__( 'Uppercase', 'addonify-quick-view' ),
 					),
 					'dependent' => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_letter_spacing'   => array(
-					'label'       => __( 'Letter spacing (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => __( '0', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Letter spacing (unit: px)', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( '0', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'style'       => 'buttons-plus-minus',
 					'min'         => 0,
@@ -88,8 +88,8 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 					'dependent'   => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_line_height'      => array(
-					'label'       => __( 'Line height (unit: em)', 'addonify-quick-view' ),
-					'placeholder' => __( '1', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Line height (unit: em)', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( '1', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'style'       => 'buttons-plus-minus',
 					'min'         => 1,
@@ -98,8 +98,8 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 					'dependent'   => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_height'           => array(
-					'label'       => __( 'Height (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => __( '50', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Height (unit: px)', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( '50', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'style'       => 'buttons-plus-minus',
 					'min'         => 30,
@@ -108,8 +108,8 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_styles_settings_fields'
 					'dependent'   => array( 'enable_plugin_styles' ),
 				),
 				'modal_misc_buttons_border_radius'    => array(
-					'label'       => __( 'Border radius (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => __( '5', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Border radius (unit: px)', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( '5', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'style'       => 'buttons-plus-minus',
 					'min'         => 0,
@@ -131,9 +131,7 @@ if ( ! function_exists( 'addonify_quick_view_misc_button_add_to_settings_fields'
 	 */
 	function addonify_quick_view_misc_button_add_to_settings_fields( $settings_fields ) {
 
-		$settings_fields = array_merge( $settings_fields, addonify_quick_view_misc_button_styles_settings_fields() );
-
-		return $settings_fields;
+		return array_merge( $settings_fields, addonify_quick_view_misc_button_styles_settings_fields() );
 	}
 
 	add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_misc_button_add_to_settings_fields' );

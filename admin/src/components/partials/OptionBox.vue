@@ -80,10 +80,7 @@ function optionVisibility(key, dependent) {
 	<slot></slot>
 	<template v-for="(field, key) in props.section.fields">
 		<div v-if="optionVisibility(key, field.dependent)" class="adfy-options">
-			<div
-				class="adfy-option-columns option-box"
-				:class="field.className"
-			>
+			<div class="adfy-option-columns option-box" :class="field.className">
 				<div class="adfy-col left">
 					<div class="label">
 						<p v-if="field.label" class="option-label">

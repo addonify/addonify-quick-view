@@ -15,10 +15,10 @@ if ( ! function_exists( 'addonify_quick_view_get_button_icons' ) ) {
 	 *
 	 * @since 1.2.8
 	 *
-	 * @param string $action Icon key.
+	 * @param string $key Icon key.
 	 * @return string|array Icon string if found, else returns the array of icons.
 	 */
-	function addonify_quick_view_get_button_icons( $action ) {
+	function addonify_quick_view_get_button_icons( $key ) {
 
 		$icons = array(
 			'icon_one'   => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.0003 3C17.3924 3 21.8784 6.87976 22.8189 12C21.8784 17.1202 17.3924 21 12.0003 21C6.60812 21 2.12215 17.1202 1.18164 12C2.12215 6.87976 6.60812 3 12.0003 3ZM12.0003 19C16.2359 19 19.8603 16.052 20.7777 12C19.8603 7.94803 16.2359 5 12.0003 5C7.7646 5 4.14022 7.94803 3.22278 12C4.14022 16.052 7.7646 19 12.0003 19ZM12.0003 16.5C9.51498 16.5 7.50026 14.4853 7.50026 12C7.50026 9.51472 9.51498 7.5 12.0003 7.5C14.4855 7.5 16.5003 9.51472 16.5003 12C16.5003 14.4853 14.4855 16.5 12.0003 16.5ZM12.0003 14.5C13.381 14.5 14.5003 13.3807 14.5003 12C14.5003 10.6193 13.381 9.5 12.0003 9.5C10.6196 9.5 9.50026 10.6193 9.50026 12C9.50026 13.3807 10.6196 14.5 12.0003 14.5Z"></path></svg>',
@@ -34,8 +34,12 @@ if ( ! function_exists( 'addonify_quick_view_get_button_icons' ) ) {
 			'icon_six'   => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168Z"></path></svg>',
 		);
 
+		if ( 'all' === $key ) {
+			return $icons;
+		}
+
 		// Return specific icon or array.
-		return array_key_exists( $action, $icons ) ? $icons[ $action ] : $icons;
+		return array_key_exists( $key, $icons ) ? $icons[ $key ] : false;
 	}
 }
 
@@ -47,10 +51,10 @@ if ( ! function_exists( 'addonify_quick_view_get_spinner_icon' ) ) {
 	 *
 	 * @since 1.2.8
 	 *
-	 * @param string $action Icon key.
+	 * @param string $key Icon key.
 	 * @return string|array Icon string if found, else returns the array of icons.
 	 */
-	function addonify_quick_view_get_spinner_icon( $action ) {
+	function addonify_quick_view_get_spinner_icon( $key ) {
 
 		$icons = array(
 			'icon_one'   => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C12.5523 2 13 2.44772 13 3V6C13 6.55228 12.5523 7 12 7C11.4477 7 11 6.55228 11 6V3C11 2.44772 11.4477 2 12 2ZM12 17C12.5523 17 13 17.4477 13 18V21C13 21.5523 12.5523 22 12 22C11.4477 22 11 21.5523 11 21V18C11 17.4477 11.4477 17 12 17ZM22 12C22 12.5523 21.5523 13 21 13H18C17.4477 13 17 12.5523 17 12C17 11.4477 17.4477 11 18 11H21C21.5523 11 22 11.4477 22 12ZM7 12C7 12.5523 6.55228 13 6 13H3C2.44772 13 2 12.5523 2 12C2 11.4477 2.44772 11 3 11H6C6.55228 11 7 11.4477 7 12ZM19.0711 19.0711C18.6805 19.4616 18.0474 19.4616 17.6569 19.0711L15.5355 16.9497C15.145 16.5592 15.145 15.9261 15.5355 15.5355C15.9261 15.145 16.5592 15.145 16.9497 15.5355L19.0711 17.6569C19.4616 18.0474 19.4616 18.6805 19.0711 19.0711ZM8.46447 8.46447C8.07394 8.85499 7.44078 8.85499 7.05025 8.46447L4.92893 6.34315C4.53841 5.95262 4.53841 5.31946 4.92893 4.92893C5.31946 4.53841 5.95262 4.53841 6.34315 4.92893L8.46447 7.05025C8.85499 7.44078 8.85499 8.07394 8.46447 8.46447ZM4.92893 19.0711C4.53841 18.6805 4.53841 18.0474 4.92893 17.6569L7.05025 15.5355C7.44078 15.145 8.07394 15.145 8.46447 15.5355C8.85499 15.9261 8.85499 16.5592 8.46447 16.9497L6.34315 19.0711C5.95262 19.4616 5.31946 19.4616 4.92893 19.0711ZM15.5355 8.46447C15.145 8.07394 15.145 7.44078 15.5355 7.05025L17.6569 4.92893C18.0474 4.53841 18.6805 4.53841 19.0711 4.92893C19.4616 5.31946 19.4616 5.95262 19.0711 6.34315L16.9497 8.46447C16.5592 8.85499 15.9261 8.85499 15.5355 8.46447Z"></path></svg>',
@@ -68,8 +72,12 @@ if ( ! function_exists( 'addonify_quick_view_get_spinner_icon' ) ) {
 			</svg>',
 		);
 
+		if ( 'all' === $key ) {
+			return $icons;
+		}
+
 		// Return specific icon or array.
-		return array_key_exists( $action, $icons ) ? $icons[ $action ] : $icons;
+		return array_key_exists( $key, $icons ) ? $icons[ $key ] : false;
 	}
 }
 
@@ -256,5 +264,27 @@ if ( ! function_exists( 'addonify_quick_view_get_font_styles' ) ) {
 			'inherit' => esc_html__( 'Default', 'addonify-quick-view' ),
 			'italic'  => esc_html__( 'Italic', 'addonify-quick-view' ),
 		);
+	}
+}
+
+
+if ( ! function_exists( 'addonify_quick_view_minify_css' ) ) {
+	/**
+	 * Minifies CSS code.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $css Unminified CSS.
+	 */
+	function addonify_quick_view_minify_css( $css ) {
+
+		$css = preg_replace( '/\s+/', ' ', $css );
+		$css = preg_replace( '/\/\*[^\!](.*?)\*\//', '', $css );
+		$css = preg_replace( '/(,|:|;|\{|}) /', '$1', $css );
+		$css = preg_replace( '/ (,|;|\{|})/', '$1', $css );
+		$css = preg_replace( '/(:| )0\.([0-9]+)(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}.${2}${3}', $css );
+		$css = preg_replace( '/(:| )(\.?)0(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}0', $css );
+
+		return trim( $css );
 	}
 }

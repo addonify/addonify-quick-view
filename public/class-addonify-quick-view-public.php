@@ -39,6 +39,51 @@ class Addonify_Quick_View_Public {
 	 */
 	private $version;
 
+	/**
+	 * Quick view button label.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string $quick_view_button_label Quick view button label.
+	 */
+	private $quick_view_button_label;
+
+	/**
+	 * Holds boolean value to display quick view button icon.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    boolean $display_quick_view_button_icon Holds boolean value to display quick view button icon.
+	 */
+	private $display_quick_view_button_icon;
+
+	/**
+	 * Quick view button icon position.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string $quick_view_button_icon_position Quick view button icon position.
+	 */
+	private $quick_view_button_icon_position;
+
+	/**
+	 * Quick view button icon.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    string $quick_view_button_icon Quick view button icon.
+	 */
+	private $quick_view_button_icon;
+
+	/**
+	 * Holds boolean value if quick view is enabled.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    boolean $enable_quick_view Holds boolean value if quick view is enabled.
+	 */
+	private $enable_quick_view;
+
 
 	/**
 	 * Constructor for this class.
@@ -58,9 +103,17 @@ class Addonify_Quick_View_Public {
 	 */
 	public function actions_init() {
 
-		if ( addonify_quick_view_get_option( 'enable_quick_view' ) !== '1' ) {
+		$this->enable_quick_view = addonify_quick_view_get_option( 'enable_quick_view' );
+
+		if ( '1' !== $this->enable_quick_view ) {
 			return;
 		}
+
+		$this->quick_view_button_label = addonify_quick_view_get_option( 'quick_view_btn_label' );
+
+		$this->display_quick_view_button_icon  = addonify_quick_view_get_option( 'enable_quick_view_btn_icon' );
+		$this->quick_view_button_icon_position = addonify_quick_view_get_option( 'quick_view_btn_icon_position' );
+		$this->quick_view_button_icon          = addonify_quick_view_get_option( 'quick_view_btn_icon' );
 
 		add_filter( 'body_class', array( $this, 'body_classes_callback' ) );
 
@@ -80,10 +133,6 @@ class Addonify_Quick_View_Public {
 			}
 		}
 
-		// Enqueue styles and scripts used in front-end.
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
 		// Add "Quick View" button after add to cart button.
 		$quick_view_btn_position = addonify_quick_view_get_option( 'quick_view_btn_position' );
 
@@ -97,8 +146,25 @@ class Addonify_Quick_View_Public {
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'render_addonify_quick_view_button' ), 15 );
 		}
 
+		if ( 'over_image' === $quick_view_btn_position ) {
+
+			add_action(
+				'body_class',
+				function ( $classes ) {
+
+					$classes[] = 'addonify-qv-btn-over-image';
+
+					return $classes;
+				}
+			);
+
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'render_addonify_quick_view_button' ), 15 );
+		}
+
 		// Add custom markup into footer.
 		add_action( 'wp_footer', 'addonify_quick_view_content_wrapper_template' );
+
+		add_shortcode( 'addonify_quick_view_button', array( $this, 'quick_view_button_shortcode_callback' ) );
 
 		// AJAX callback.
 		add_action( 'wp_ajax_get_quick_view_contents', array( $this, 'quick_view_contents_callback' ) );
@@ -112,9 +178,13 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_styles() {
 
+		if ( '1' !== $this->enable_quick_view ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'perfect-scrollbar',
-			plugin_dir_url( __FILE__ ) . 'assets/build/css/conditional/perfect-scrollbar.css',
+			plugin_dir_url( __FILE__ ) . 'assets/libs/scrollbar/perfect-scrollbar.min.css',
 			array(),
 			$this->version,
 			'all'
@@ -133,24 +203,13 @@ class Addonify_Quick_View_Public {
 			}
 		}
 
-		if ( is_rtl() ) {
-			wp_enqueue_style(
-				$this->plugin_name,
-				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view-rtl.css',
-				$style_dependency,
-				$this->version,
-				'all'
-			);
-		} else {
-
-			wp_enqueue_style(
-				$this->plugin_name,
-				plugin_dir_url( __FILE__ ) . 'assets/build/css/addonify-quick-view.css',
-				$style_dependency,
-				$this->version,
-				'all'
-			);
-		}
+		wp_enqueue_style(
+			$this->plugin_name,
+			plugin_dir_url( __FILE__ ) . 'assets/build/public.min.css',
+			$style_dependency,
+			$this->version,
+			'all'
+		);
 
 		if ( (int) addonify_quick_view_get_option( 'enable_plugin_styles' ) === 1 ) {
 
@@ -162,7 +221,7 @@ class Addonify_Quick_View_Public {
 				$inline_css .= $custom_css;
 			}
 
-			$inline_css = $this->minify_css( $inline_css );
+			$inline_css = addonify_quick_view_minify_css( $inline_css );
 
 			wp_add_inline_style( $this->plugin_name, $inline_css );
 		}
@@ -173,9 +232,13 @@ class Addonify_Quick_View_Public {
 	 */
 	public function enqueue_scripts() {
 
+		if ( '1' !== $this->enable_quick_view ) {
+			return;
+		}
+
 		wp_enqueue_script(
 			'perfect-scrollbar',
-			plugin_dir_url( __FILE__ ) . 'assets/build/js/conditional/perfect-scrollbar.min.js',
+			plugin_dir_url( __FILE__ ) . 'assets/libs/scrollbar/perfect-scrollbar.min.js',
 			array(),
 			$this->version,
 			true
@@ -187,7 +250,7 @@ class Addonify_Quick_View_Public {
 			'addonify_quick_view_localize_script_data',
 			array(
 				'ajaxURL'                    => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'quickViewAction'            => 'get_quick_view_contents',
+				'ajaxQuickViewAction'        => 'get_quick_view_contents',
 				'animateModelOnClose'        => addonify_quick_view_get_option( 'modal_closing_animation' ) === 'none' ? false : true,
 				'closeModalOnEscClicked'     => addonify_quick_view_get_option( 'close_modal_when_esc_pressed' ) === '1' ? true : false,
 				'closeModelOnOutsideClicked' => addonify_quick_view_get_option( 'close_modal_when_clicked_outside' ) === '1' ? true : false,
@@ -231,7 +294,7 @@ class Addonify_Quick_View_Public {
 
 		wp_enqueue_script(
 			'addonify-quick-view-public',
-			plugin_dir_url( __FILE__ ) . 'assets/build/js/addonify-quick-view.min.js',
+			plugin_dir_url( __FILE__ ) . 'assets/build/public.min.js',
 			$script_dependency,
 			$this->version,
 			true
@@ -265,11 +328,123 @@ class Addonify_Quick_View_Public {
 	/**
 	 * Renders quick view button.
 	 *
-	 * @since    1.2.8
+	 * @since 1.2.8
 	 */
 	public function render_addonify_quick_view_button() {
 
-		do_action( 'addonify_quick_view_button' );
+		global $product;
+
+		if (
+			$product instanceof WC_Product &&
+			apply_filters( 'addonify_quick_view_render_button', true, $product ) &&
+			(
+				! empty( $this->quick_view_button_label ) ||
+				'1' === $this->display_quick_view_button_icon
+			)
+		) {
+
+			$button_icon        = '';
+			$icon_position      = '';
+			$button_css_classes = array( 'button', 'addonify-qvm-button' );
+
+			if (
+				'1' === $this->display_quick_view_button_icon &&
+				$this->quick_view_button_icon_position
+			) {
+
+				$button_icon = addonify_quick_view_get_button_icons( $this->quick_view_button_icon );
+
+				$icon_position = ( 'before_label' === $this->quick_view_button_icon_position ) ? 'left' : 'right';
+			}
+
+			$button_args = array(
+				'product_id'    => $product->get_id(),
+				'label'         => $this->quick_view_button_label,
+				'classes'       => apply_filters( 'addonify_quick_view_button_css_classes', $button_css_classes ),
+				'icon'          => $button_icon,
+				'icon_position' => $icon_position,
+			);
+
+			do_action( 'addonify_quick_view_button', $button_args );
+		}
+	}
+
+	/**
+	 * Callback function for add_shortcode function to render quick view button via shortcode.
+	 *
+	 * @since 1.2.17
+	 *
+	 * @param array $atts Shortcode attributes.
+	 */
+	public function quick_view_button_shortcode_callback( $atts ) {
+
+		$shortcode_atts = shortcode_atts(
+			array(
+				'id'            => 0,
+				'label'         => '',
+				'classes'       => '',
+				'icon'          => '',
+				'icon_position' => 'right',
+			),
+			$atts,
+			'addonify_quick_view_button'
+		);
+
+		$product_id = (int) $shortcode_atts['id'];
+
+		if ( ! $product_id ) {
+
+			global $product;
+
+			if ( $product && $product instanceof WC_Product ) {
+				$product_id = $product->get_id();
+			}
+		}
+
+		if ( ! $product_id > 0 ) {
+			return '';
+		}
+
+		$product = wc_get_product( $product_id );
+
+		if (
+			apply_filters( 'addonify_quick_view_render_button', true, $product ) &&
+			(
+				! empty( $shortcode_atts['label'] ) ||
+				! empty( $shortcode_atts['icon'] )
+			)
+		) {
+
+			$icon          = false;
+			$icon_position = false;
+
+			if ( isset( $atts['icon'] ) && addonify_quick_view_get_button_icons( $atts['icon'] ) ) {
+				$icon = addonify_quick_view_get_button_icons( $atts['icon'] );
+			}
+
+			if ( $icon && isset( $atts['icon_position'] ) ) {
+				$icon_position = in_array( $atts['icon_position'], array( 'left', 'right' ), true ) ? $atts['icon_position'] : 'right';
+			}
+
+			$classes = array(
+				'button',
+				'addonify-qvm-button',
+				'addonify-qv-shortcode-button',
+				$shortcode_atts['classes'],
+			);
+
+			return apply_filters(
+				'addonify_quick_view_shortcode_button_html',
+				sprintf(
+					'<button type="button" class="%s" data-product_id="%s" %s><span class="label">%s</span>%s</button>',
+					esc_attr( implode( ' ', $classes ) ),
+					esc_attr( $product_id ),
+					( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : '',
+					esc_html( $shortcode_atts['label'] ),
+					( $icon ) ? '<span class="icon">' . addonify_quick_view_escape_svg( $icon ) . '</span>' : ''
+				)
+			);
+		}
 	}
 
 	/**
@@ -291,7 +466,7 @@ class Addonify_Quick_View_Public {
 			);
 		}
 
-		$product_id = isset( $_GET['product_id'] ) ? (int) wp_unslash( $_GET['product_id'] ) : ''; // phpcs:ignore
+		$product_id = isset( $_GET['productId'] ) ? (int) wp_unslash( $_GET['productId'] ) : ''; // phpcs:ignore
 
 		if ( ! $product_id ) {
 			wp_send_json(
@@ -316,6 +491,7 @@ class Addonify_Quick_View_Public {
 
 			$call_response = array(
 				'success' => true,
+				'data'    => array(),
 			);
 
 			ob_start();
@@ -329,7 +505,7 @@ class Addonify_Quick_View_Public {
 				do_action( 'addonify_quick_view_content', array( 'product' => $product ) );
 			}
 
-			$call_response['data'] = ob_get_clean(); //phpcs:ignore
+			$call_response['data']['#adfy-quick-view-modal-content'] = ob_get_clean(); //phpcs:ignore
 
 			wp_send_json( $call_response );
 		} else {
@@ -367,7 +543,6 @@ class Addonify_Quick_View_Public {
 			'modal_general_text_font_size'                => addonify_quick_view_get_option( 'modal_general_text_font_size' ) . 'px',
 			'product_title_font_size'                     => addonify_quick_view_get_option( 'modal_product_title_font_size' ) . 'px',
 			'product_title_font_weight'                   => addonify_quick_view_get_option( 'modal_product_title_font_weight' ),
-			'product_title_line_height'                   => addonify_quick_view_get_option( 'modal_product_title_line_height' ),
 			'product_title_line_height'                   => addonify_quick_view_get_option( 'modal_product_title_line_height' ),
 			'product_price_font_size'                     => addonify_quick_view_get_option( 'modal_product_price_font_size' ) . 'px',
 			'product_price_font_weight'                   => addonify_quick_view_get_option( 'modal_product_price_font_weight' ),
@@ -430,24 +605,6 @@ class Addonify_Quick_View_Public {
 
 		$css .= '}';
 
-		return $this->minify_css( $css );
-	}
-
-	/**
-	 * Minify the dynamic css.
-	 *
-	 * @param string $css css to minify.
-	 * @return string minified css.
-	 */
-	public function minify_css( $css ) {
-
-		$css = preg_replace( '/\s+/', ' ', $css );
-		$css = preg_replace( '/\/\*[^\!](.*?)\*\//', '', $css );
-		$css = preg_replace( '/(,|:|;|\{|}) /', '$1', $css );
-		$css = preg_replace( '/ (,|;|\{|})/', '$1', $css );
-		$css = preg_replace( '/(:| )0\.([0-9]+)(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}.${2}${3}', $css );
-		$css = preg_replace( '/(:| )(\.?)0(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}0', $css );
-
-		return trim( $css );
+		return $css;
 	}
 }

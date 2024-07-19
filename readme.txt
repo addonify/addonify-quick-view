@@ -3,10 +3,10 @@
 Contributors: addonify
 Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
-Requires at least: 6.3
+Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.5
-Stable tag: 1.2.16
+Tested up to: 6.6
+Stable tag: 1.2.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ Addonify WooCommerce Quick View plugin adds functionality to have a quick previe
 
 🌍 Official Demo: [Link 1](https://demo.addonify.com/woo/01/)
 🌍 Official Demo: [Link 2](https://demo.addonify.com/woo/01/quick-view-ii/)
-📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/) 
+📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/)
 
 If you run an online e-commerce shop, then you must be familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary instead of going through each product's detail page. This could save the time of your visitors & increase your revenue.
 
@@ -27,7 +27,7 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 **🦄 MAIN FEATURES:**
 
 ✅ Easy to use.
-✅ Super light-weight & optimized for performance. 
+✅ Super light-weight & optimized for performance.
 ✅ Add a quick view button in product loop to open a modal window with the product summary using AJAX.
 ✅ Display product image or gallery on quick view modal.
 ✅ Display product title, price, add to cart button, excerpt and view detail button on quick view modal.
@@ -82,6 +82,22 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 
 
 
+**📄 SHORTCODE**
+
+The shortcode below can used to display quick view button.
+
+```php
+[addonify_quick_view_button id="1" label="Quick View" classes="btn" icon="icon_one" icon_position="left"]
+```
+The shortcode attributes used are as follows:
+- **id**: Product id.
+- **label**: Button label.
+- **classes**: CSS classes.
+- **icon**: Button icon. Use any one attribute value from `icon_one`, `icon_two`, `icon_three`, ..., `icon_six`.
+- **icon_position**: Button icon position if `icon` attribute is set. Use either `left` or `right`.
+
+
+
 **👨‍💻 DEVELOPER:**
 
 Developers, we got you. Follow the links below to easily customize Addonify Quick View as you like.
@@ -106,13 +122,12 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 **📦 UPCOMING FEATURES:**
 
-- Quick view shortcode.
 - Modal width with responsive control.
 - Modal padding with responsive control.
 - Modal content gap with responsive control.
 - Content/Modal layouts.
 - Reset / Backup / Restore settings.
-- Quick view for Gutenberg WooCommerce products blocks. 
+- Quick view for Gutenberg WooCommerce products blocks.
 - More customization options.
 - Do you have any requests to make? [Let's discuss](https://github.com/addonify/addonify-quick-view/discussions) on what you would like to see in the next version.
 
@@ -128,9 +143,21 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 1. Addonify Quick View in action.
 2. Addonify Quick View admin setting page - General options tab.
-3. Addonify Quick View admin setting page - Design options tab. 
+3. Addonify Quick View admin setting page - Design options tab.
 
 == Changelog ==
+
+= 1.2.17 - 19 July, 2024 =
+
+- Added:   New quick view button position - Over Product Image.
+- Updated: MobileDetect library. Fixed issue [#263](https://github.com/addonify/addonify-quick-view/issues/263).
+- Added:   Label in range slider control (setting page).
+- Added:   Shortcode for rendering quick view button.
+- Added:   `Delete plugin data on plugin deactivation` option.
+- Added:   Hooks, `addonify_quick_view_before_modal` and `addonify_quick_view_after_modal` in `addonify-quick-view-content-wrapper.php` template file.
+- Added:   Filter hook, `addonify_quick_view_render_button`.
+- Tested:  WordPress version 6.6.
+- Tested:  WooCommerce version 9.1.2.
 
 = 1.2.16 - 3 April, 2024 =
 
@@ -179,7 +206,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 - Added: Dedicated close button for mobile devices.
 - Added: Dynamic notice in quick view admin setting page.
-- Tweak: The way modal box height is being calculated. 
+- Tweak: The way modal box height is being calculated.
 - Improvement: Admin setting page UI.
 - Refactor: Admin setting page code (Vue JS).
 
@@ -200,7 +227,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 - Added: Option, Misc button letter spacing.
 - Added: Option, Misc button text transform.
 - Added: Option, Gallery thumb gap.
-- Added: Option, Gallery number of thumb in row. 
+- Added: Option, Gallery number of thumb in row.
 - Added: Option, Product title font size.
 - Added: Option, Product title font weight.
 - Added: Option, Product title line height.
@@ -220,8 +247,8 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 - Added: Option to close modal when ESC key is pressed.
 - Added: Option to close modal when clicked outside. #176
 - Added: Option, modal opening & exit animations. #176
-- Added: Option, modal z-index. 
-- Added: Option, modal border radius. 
+- Added: Option, modal z-index.
+- Added: Option, modal border radius.
 - Added: Option, spinner icons. #177
 - Added: Option, spinner icon font size. #177
 - Added: Control, range slider (Vue JS).
@@ -236,7 +263,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 1.2.7 - 19 July, 2023 =
 
-- Fixed: Vue JS components [color-picker] fix incorrect cursor position. 
+- Fixed: Vue JS components [color-picker] fix incorrect cursor position.
 - Updated: Logo in plugin setting page.
 
 = 1.2.6 - 07 June, 2023 =
@@ -268,7 +295,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 1.2.1 - 24 January, 2023 =
 
-- Added: Recommended products in quick view setting page. 
+- Added: Recommended products in quick view setting page.
 
 = 1.2.0 - 28 December, 2022 =
 
@@ -320,7 +347,7 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 - Added: Option to disable quick view on mobile devices.
 - Added: Mobile_Detect library added.
 
-= 1.1.0 - 18 June, 2022 = 
+= 1.1.0 - 18 June, 2022 =
 
 - Tweak: Changed default setting values.
 
@@ -358,17 +385,17 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 1.0.3 - 8 January, 2021 =
 
-- Added: Tested up to WordPress version 5.6. 
+- Added: Tested up to WordPress version 5.6.
 
-= 1.0.2 - 26 September, 2021 = 
+= 1.0.2 - 26 September, 2021 =
 
 - Fix: Quick view modal content not being populated while in initial installation.
 
-= 1.0.1 - 23 September, 2020 = 
+= 1.0.1 - 23 September, 2020 =
 
 - Fix: Basic styling.
 - Fix: Readme.txt file links.
 
-= 1.0.0 - 11 August, 2020 = 
+= 1.0.0 - 11 August, 2020 =
 
 - Initial release.

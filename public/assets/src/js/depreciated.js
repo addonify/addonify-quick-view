@@ -1,6 +1,6 @@
-(function ($) {
+'use strict';
 
-	'use strict';
+(function ($) {
 
 	const animateModelOnClose = addonifyQuickViewPublicScriptObject.animateModelOnClose;
 	const closeModalOnEscClicked = addonifyQuickViewPublicScriptObject.closeModalOnEscClicked;
@@ -27,11 +27,6 @@
 			this.handleQVModalEvents();
 		},
 
-		loadOnScroll: function () {
-
-			// Fire all these methods on document scroll.
-		},
-
 		loadOnResize: function () {
 
 			this.calculateModalHeight();
@@ -46,10 +41,10 @@
 
 			$(document).on('addonifyQuickViewModalContentLoading', function (event) {
 
-        $('body').addClass('addonify-qvm-is-active');
+				$('body').addClass('addonify-qvm-is-active');
 
-        // Show loading state.
-        addonifyQuickView.setSpinner('show');
+				// Show loading state.
+				addonifyQuickView.setSpinner('show');
 
 				// Clear the modal content.
 				modalContentContainer.html(" ");
@@ -74,7 +69,7 @@
 
 			$(document).on('addonifyQuickViewModalOpened', function (event) {
 
-				// Re-initiazlize PerfectScrollBar.
+				// Re-initialize PerfectScrollBar.
 				addonifyQuickView.initPerfectScrollbar();
 
 				// Re-initialize variation form.
@@ -313,7 +308,7 @@
 
 					new PerfectScrollbar(scrollEle, {
 
-						wheelSpeed: 1,
+						wheelSpeed: 0.25,
 						wheelPropagation: true,
 						minScrollbarLength: 20
 					});
@@ -490,15 +485,9 @@
 	*
 	* @since 1.2.8
 	*/
-
 	$(document).ready(function () {
 
 		addonifyQuickView.loadOnReady();
-	});
-
-	$(window).on('scroll', function () {
-
-		addonifyQuickView.loadOnScroll();
 	});
 
 	$(window).on('resize', function () {

@@ -10,10 +10,10 @@
  * Plugin Name:       Addonify - Quick View For WooCommerce
  * Plugin URI:        https://addonify.com/downloads/woocommerce-quick-view/
  * Description:       Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window.
- * Version:           1.2.16
- * Requires at least: 6.3
+ * Version:           1.2.17
+ * Requires at least: 6.4
  * Requires PHP:      7.4
- * Tested up to:      6.5
+ * Tested up to:      6.6
  * Author:            Addonify
  * Author URI:        https://addonify.com
  * License:           GPL v2 or later
@@ -34,7 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.2.16' );
+define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.2.17' );
 define( 'ADDONIFY_QUICK_VIEW_BASENAME', plugin_basename( __FILE__ ) );
 define( 'ADDONIFY_DB_INITIALS', 'addonify_qv_' );
 
@@ -88,19 +88,17 @@ if ( ! function_exists( 'addonify_quick_view_run' ) ) {
 		if ( class_exists( 'WooCommerce' ) ) {
 			$plugin = new Addonify_Quick_View();
 			$plugin->run();
-		} else {
-			if ( version_compare( get_bloginfo( 'version' ), '6.5', '<' ) ) {
-				add_action(
-					'admin_notices',
-					function() {
-						?>
-						<div class="notice notice-error">
-							<p><?php echo esc_html__( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view' ); ?></p>
-						</div>
-						<?php
-					}
-				);
-			}
+		} elseif ( version_compare( get_bloginfo( 'version' ), '6.5', '<' ) ) {
+			add_action(
+				'admin_notices',
+				function () {
+					?>
+					<div class="notice notice-error">
+						<p><?php echo esc_html__( 'Addonify Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'addonify-quick-view-pro' ); ?></p>
+					</div>
+					<?php
+				}
+			);
 		}
 	}
 

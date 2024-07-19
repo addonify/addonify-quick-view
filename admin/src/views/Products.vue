@@ -49,9 +49,7 @@ onMounted(() => {
 				<section v-else id="recommended-products">
 					<div id="recommended-hot-products">
 						<div class="adfy-grid">
-							<template
-								v-for="(addon, key) in proStore.hotAddons"
-							>
+							<template v-for="(addon, key) in proStore.hotAddons">
 								<Recommended
 									:slug="key"
 									:name="addon.name"

@@ -1,8 +1,20 @@
 /* -------------------------------------------------------------------------- 
 	Quick view button
   -------------------------------------------------------------------------- */
+body.addonify-qv-btn-over-image .woocommerce-LoopProduct-link,
+body.addonify-qv-btn-over-image .wc-block-product {
+
+	position: relative;
+
+	.addonify-qvm-button {
+		position: absolute;
+		right: 10px;
+		top: 10px;
+		z-index: 2; }	
+}
 
 .addonify-qvm-button,
+.addonify-qvm-button.addonify-qv-shortcode-button,
 .wc-block-grid__products .product .button.addonify-qvm-button,
 .woocommerce ul.products .product .button.addonify-qvm-button, 
 .woocommerce ul.products .wc-block-grid__product .button.addonify-qvm-button, 

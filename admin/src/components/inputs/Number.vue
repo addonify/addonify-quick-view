@@ -1,78 +1,78 @@
 <script setup>
-	import { computed } from "vue";
-	import { ElInput, ElInputNumber, ElSlider } from "element-plus";
+import { computed } from "vue";
+import { ElInput, ElInputNumber, ElSlider } from "element-plus";
 
-	/**
-	 * Define props.
-	 *
-	 * @since 1.2.8
-	 */
-	const props = defineProps({
-		modelValue: {
-			type: [Number, String],
-			required: true,
-		},
-		min: {
-			type: [String, Number],
-			required: false,
-		},
-		max: {
-			type: [String, Number],
-			required: false,
-		},
-		step: {
-			type: [String, Number],
-			required: false,
-		},
-		precision: {
-			type: [String, Number],
-			required: false,
-		},
-		placeholder: {
-			type: String,
-			required: false,
-			default: "",
-		},
-		style: {
-			type: String,
-			required: false,
-			default: "default",
-		},
-		unit: {
-			type: String,
-			required: false,
-			default: "px",
-		},
-	});
+/**
+ * Define props.
+ *
+ * @since 1.2.8
+ */
+const props = defineProps({
+	modelValue: {
+		type: [Number, String],
+		required: true,
+	},
+	min: {
+		type: [String, Number],
+		required: false,
+	},
+	max: {
+		type: [String, Number],
+		required: false,
+	},
+	step: {
+		type: [String, Number],
+		required: false,
+	},
+	precision: {
+		type: [String, Number],
+		required: false,
+	},
+	placeholder: {
+		type: String,
+		required: false,
+		default: "",
+	},
+	style: {
+		type: String,
+		required: false,
+		default: "default",
+	},
+	unit: {
+		type: String,
+		required: false,
+		default: "px",
+	},
+});
 
-	// Desctructure props.
-	const { style, min, max, precision, step, unit, placeholder } = props;
+// Desctructure props.
+const { style, min, max, precision, step, unit, placeholder } = props;
 
-	/**
-	 * Define emit.
-	 *
-	 * @param {String/Number} value
-	 * @returns {String/Number} updated value
-	 * @since 1.2.8
-	 */
-	const emit = defineEmits(["update:modelValue"]);
-	const value = computed({
-		get() {
-			return parseFloat(props.modelValue);
-		},
-		set(newValue) {
-			emit("update:modelValue", newValue);
-		},
-	});
+/**
+ * Define emit.
+ *
+ * @param {String/Number} value
+ * @returns {String/Number} updated value
+ * @since 1.2.8
+ */
+const emit = defineEmits(["update:modelValue"]);
+const value = computed({
+	get() {
+		return parseFloat(props.modelValue);
+	},
+	set(newValue) {
+		emit("update:modelValue", newValue);
+	},
+});
 
-	/**
-	 * Add the unit to the tooltip for slider control.
-	 *
-	 * @param {Number} val
-	 * @returns {String} i.e 10px
-	 * @since 1.2.8
-	 */
-	const processToolTip = (val) => val + " " + unit;
+/**
+ * Add the unit to the tooltip for slider control.
+ *
+ * @param {Number} val
+ * @returns {String} i.e 10px
+ * @since 1.2.8
+ */
+const processToolTip = (val) => val + " " + unit;
 </script>
 <template>
 	<template v-if="style === 'default'">
@@ -110,14 +110,43 @@
 		/>
 	</template>
 	<template v-if="style === 'slider'">
-		<el-slider
-			v-model="value"
-			show-tooltip
-			:min="min"
-			:max="max"
-			:step="step ? step : 1"
-			size="large"
-			:format-tooltip="processToolTip"
-		/>
+		<div class="control-slider">
+			<el-slider
+				v-model="value"
+				show-tooltip
+				:min="min"
+				:max="max"
+				:step="step ? step : 1"
+				size="large"
+				:format-tooltip="processToolTip"
+			/>
+			<div class="control-slider-label">
+				<span class="min-val val">{{ min }}</span>
+				<span class="max-val val">{{ max }}</span>
+			</div>
+		</div>
 	</template>
 </template>
+
+<style lang="scss" scoped>
+.control-slider {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	.control-slider-label {
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		justify-content: space-between;
+
+		.val {
+			display: inline-flex;
+			font-size: 14px;
+			line-height: 1;
+			text-transform: uppercase;
+			color: #bdbdbd;
+		}
+	}
+}
+</style>

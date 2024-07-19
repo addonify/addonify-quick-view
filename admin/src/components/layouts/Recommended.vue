@@ -1,69 +1,69 @@
 <script setup>
-	import { ref, computed } from "vue";
-	import { ElButton, ElMessage } from "element-plus";
-	import { Loading } from "@element-plus/icons-vue";
-	import { useProductStore } from "../../stores/product";
+import { ref, computed } from "vue";
+import { ElButton, ElMessage } from "element-plus";
+import { Loading } from "@element-plus/icons-vue";
+import { useProductStore } from "../../stores/product";
 
-	const props = defineProps({
-		slug: String,
-		name: String,
-		description: String,
-		thumb: String,
-		status: String,
-	});
+const props = defineProps({
+	slug: String,
+	name: String,
+	description: String,
+	thumb: String,
+	status: String,
+});
 
-	const { __ } = wp.i18n;
-	const proStore = useProductStore();
-	const { slug, name, thumb, description } = props;
+const { __ } = wp.i18n;
+const proStore = useProductStore();
+const { slug, name, thumb, description } = props;
 
-	const isLoading = ref(false);
-	const isDisabled = ref(false);
-	const isActiviting = ref(false);
-	const isInstalling = ref(false);
+const isLoading = ref(false);
+const isDisabled = ref(false);
+const isActiviting = ref(false);
+const isInstalling = ref(false);
 
-	const activateText = __("Activate now", "addonify-quick-view");
-	const activitingText = __("Activating...", "addonify-quick-view");
-	const installText = __("Install now", "addonify-quick-view");
-	const installingText = __("Installing...", "addonify-quick-view");
-	const installedText = __("Installed", "addonify-quick-view");
+const activateText = __("Activate now", "addonify-quick-view");
+const activitingText = __("Activating...", "addonify-quick-view");
+const installText = __("Install now", "addonify-quick-view");
+const installingText = __("Installing...", "addonify-quick-view");
+const installedText = __("Installed", "addonify-quick-view");
 
-	const activeAddonHandler = (slug) => {
-		isLoading.value = true;
-		isActiviting.value = true;
+const activeAddonHandler = (slug) => {
+	isLoading.value = true;
+	isActiviting.value = true;
 
-		try {
-			const res = proStore.updateAddonStatus(slug);
+	try {
+		const res = proStore.updateAddonStatus(slug);
 
-			if (res.status == "active") {
-				isLoading.value = false;
-				isActiviting.value = false;
-				isDisabled.value = true;
-			}
-		} catch (error) {
+		if (res.status == "active") {
 			isLoading.value = false;
 			isActiviting.value = false;
-			isDisabled.value = false;
+			isDisabled.value = true;
 		}
-	};
+	} catch (error) {
+		isLoading.value = false;
+		isActiviting.value = false;
+		isDisabled.value = false;
+	}
+};
 
-	const installAddonHandler = async (slug) => {
-		isLoading.value = true;
-		isInstalling.value = true;
+const installAddonHandler = async (slug) => {
+	isLoading.value = true;
+	isInstalling.value = true;
 
-		try {
-			const res = await proStore.handleAddonInstallation(slug);
+	try {
+		const res = await proStore.handleAddonInstallation(slug);
 
-			if (res.status == "active") {
-				isLoading.value = false;
-				isInstalling.value = false;
-				isDisabled.value = true;
-			}
-		} catch (error) {
+		if (res.status == "active") {
 			isLoading.value = false;
 			isInstalling.value = false;
-			isDisabled.value = false;
+			isDisabled.value = true;
 		}
-	};
+	} catch (error) {
+		isLoading.value = false;
+		isInstalling.value = false;
+		isDisabled.value = false;
+	}
+};
 </script>
 
 <template>
@@ -77,10 +77,7 @@
 				<p class="adfy-product-description" v-html="description"></p>
 				<div class="adfy-product-actions">
 					<el-button
-						v-if="
-							props.status == 'active' ||
-							props.status == 'network-active'
-						"
+						v-if="props.status == 'active' || props.status == 'network-active'"
 						size="large"
 						:id="slug"
 						plain
@@ -119,13 +116,8 @@
 </template>
 
 <style>
-	#recommended-hot-products .el-skeleton.is-animated .el-skeleton__item {
-		background: linear-gradient(
-			90deg,
-			#e1e1e1 25%,
-			#d8d8d8 37%,
-			#c7c7c7 63%
-		);
-		background-size: 400% 100%;
-	}
+#recommended-hot-products .el-skeleton.is-animated .el-skeleton__item {
+	background: linear-gradient(90deg, #e1e1e1 25%, #d8d8d8 37%, #c7c7c7 63%);
+	background-size: 400% 100%;
+}
 </style>
