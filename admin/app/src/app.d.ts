@@ -1,5 +1,16 @@
-export interface addonifyQuickViewLocalizer {
-	[key: string]: string;
+declare global {
+	interface Window {
+		wp: WP;
+		lodash: any;
+		addonifyQuickViewLocals: {
+			[key: string]: string;
+		};
+	}
+}
+
+export interface ISettings {
+	settings_value: SettingValue;
+	tabs: SettingTab[];
 }
 
 interface I18N {
@@ -9,14 +20,6 @@ interface I18N {
 interface WP {
 	i18n: I18N;
 	apiFetch: (url: string) => Promise<any>;
-}
-
-declare global {
-	interface Window {
-		wp: WP;
-		lodash: any;
-		addonifyQuickViewLocals: addonifyQuickViewLocalizer;
-	}
 }
 
 export interface SettingValue {
@@ -46,9 +49,4 @@ export interface SettingTab {
 			[key: string]: Option;
 		};
 	};
-}
-
-export interface ISettings {
-	settings_value: SettingValue;
-	tabs: SettingTab[];
 }

@@ -3,20 +3,20 @@ const { isEqual: equal, cloneDeep } = window.lodash;
 /**
  * Compare if arguments are equal.
  *
- * @param {any} arg1
- * @param {any} arg2
+ * @param {unknown} arg1
+ * @param {unknown} arg2
  * @returns {boolean}
  */
-export const isEqual = (arg1: any, arg2: any): boolean => {
+export const isEqual = (arg1: unknown, arg2: unknown): boolean => {
 	return equal(arg1, arg2) ? true : false;
 };
 
 /**
  * Clone the deeply nested object.
  *
- * @param {any} arg
- * @returns {any}
+ * @param {unknown} arg
+ * @returns {unknown} - cloned object.
  */
-export const clone = (arg: any): any => {
-	return cloneDeep(arg);
+export const clone = <T>(arg: T): T => {
+	return cloneDeep(arg) as T;
 };

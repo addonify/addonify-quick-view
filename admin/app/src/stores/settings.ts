@@ -5,8 +5,6 @@ import { defineStore } from "pinia";
  *
  * Stores the states of default values/user defined values and,
  * all settings data.
- * Includes getters computed methods.
- * Includes actions to get, update, export, import and reset settings.
  *
  * @since 1.0.0
  */
