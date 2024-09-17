@@ -35,7 +35,7 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 
 			wp_localize_script(
 				$handle,
-				'addonifyQuickViewLocalizer',
+				'addonifyQuickViewLocals',
 				array(
 					'adminURL'      	=> admin_url( '/' ),
 					'siteURL'       	=> site_url( '/' ),

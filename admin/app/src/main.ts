@@ -1,6 +1,9 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 
+import App from "./App.vue";
+import router from "./routes";
+
 import "@fontsource/inter";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -14,18 +17,16 @@ import "@/assets/app.scss";
  */
 import "element-plus/es/components/message/style/css";
 
-import App from "./App.vue";
-
 /**
  * Use the plugins.
  *
  * @since 1.0.0
  */
 const pinia = createPinia();
-
 const app = createApp(App);
 
 app.use(pinia);
+app.use(router);
 
 /**
  * Mount the vue app.

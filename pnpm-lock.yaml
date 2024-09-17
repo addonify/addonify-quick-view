@@ -14,6 +14,9 @@ importers:
       '@fontsource/inter':
         specifier: ^5.1.0
         version: 5.1.0
+      lucide-vue-next:
+        specifier: ^0.441.0
+        version: 0.441.0(vue@3.5.6(typescript@5.6.2))
       pinia:
         specifier: ^2.2.2
         version: 2.2.2(typescript@5.6.2)(vue@3.5.6(typescript@5.6.2))
@@ -90,6 +93,9 @@ importers:
       sass:
         specifier: ^1.75.0
         version: 1.75.0
+      tailwind-merge:
+        specifier: ^2.5.2
+        version: 2.5.2
       tailwindcss:
         specifier: ^3.4.11
         version: 3.4.11
@@ -2176,6 +2182,11 @@ packages:
     resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
 
+  lucide-vue-next@0.441.0:
+    resolution: {integrity: sha512-WaPNRjH5O74mD3hVgKB4HtMYsjAuQSuOcNAeK8h6s8GqySkpsBnd2tmuc+EooNkogNv6l8UNmwgBANZVZ6SHqQ==}
+    peerDependencies:
+      vue: '>=3.0.1'
+
   magic-string@0.26.7:
     resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
     engines: {node: '>=12'}
@@ -2940,6 +2951,9 @@ packages:
     resolution: {integrity: sha512-4PP6CMW/V7l/GmKRKzsLR8xxjdHTV4IMvhTnpuHwwBazSIlw5W/5SmPjN8Dwyt7lKbSJrRDgp4t9ph0HgChFBQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  tailwind-merge@2.5.2:
+    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
 
   tailwindcss@3.4.11:
     resolution: {integrity: sha512-qhEuBcLemjSJk5ajccN9xJFtM/h0AVCPaA6C92jNP+M2J8kX+eMJHI7R2HFKUvvAsMpcfLILMCFYSeDwpMmlUg==}
@@ -4719,9 +4733,9 @@ snapshots:
 
   '@xtuc/long@4.2.2': {}
 
-  acorn-import-assertions@1.9.0(acorn@8.11.3):
+  acorn-import-assertions@1.9.0(acorn@8.12.1):
     dependencies:
-      acorn: 8.11.3
+      acorn: 8.12.1
 
   acorn@8.11.3: {}
 
@@ -5395,6 +5409,10 @@ snapshots:
   lru-cache@6.0.0:
     dependencies:
       yallist: 4.0.0
+
+  lucide-vue-next@0.441.0(vue@3.5.6(typescript@5.6.2)):
+    dependencies:
+      vue: 3.5.6(typescript@5.6.2)
 
   magic-string@0.26.7:
     dependencies:
@@ -6183,6 +6201,8 @@ snapshots:
       csso: 5.0.5
       picocolors: 1.0.0
 
+  tailwind-merge@2.5.2: {}
+
   tailwindcss@3.4.11:
     dependencies:
       '@alloc/quick-lru': 5.2.0
@@ -6443,8 +6463,8 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
-      acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@8.11.3)
+      acorn: 8.12.1
+      acorn-import-assertions: 1.9.0(acorn@8.12.1)
       browserslist: 4.23.3
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.16.0
