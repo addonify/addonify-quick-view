@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitc1c677ee9a869b0454beb4c4449f762c
 {
+    public static $files = array (
+        'b7e1c4cbafbabee94a69519a450ea263' => __DIR__ . '/..' . '/kucrut/vite-for-wp/vite-for-wp.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'D' => 
         array (
