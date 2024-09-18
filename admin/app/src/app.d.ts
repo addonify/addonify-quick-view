@@ -19,7 +19,7 @@ interface I18N {
 
 interface WP {
 	i18n: I18N;
-	apiFetch: (url: string) => Promise<any>;
+	apiFetch: (args: Record<string, any>) => Promise<any>;
 }
 
 export interface SettingValue {
@@ -46,7 +46,7 @@ export interface SettingTab {
 		title: string;
 		icon: string;
 		sections: {
-			[key: string]: Option;
+			[key: string]: Option[];
 		};
 	};
 }

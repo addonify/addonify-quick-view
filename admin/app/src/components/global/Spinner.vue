@@ -18,7 +18,7 @@ const props = defineProps({
  */
 const mergeClass = computed(() => {
 	return mc(
-		`animate-spin inline-block size-4 border-[2px] border-current border-t-transparent text-blue-600 rounded-full dark:text-blue-500 ${props.class}`
+		`animate-spin inline-block size-4 border-[2px] border-current border-t-transparent text-blue-600 rounded-full ${props.class}`
 	);
 });
 </script>

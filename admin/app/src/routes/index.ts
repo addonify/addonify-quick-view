@@ -1,6 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+//import { useSettingsStore } from "@/stores/settings";
 
 import Index from "@/views/Index.vue";
+
+/**
+ * Instantiate the settings store.
+ */
+//const store = useSettingsStore();
 
 /**
  * Define the default routes for our app.
@@ -11,6 +17,12 @@ const defaults = [
 	{
 		path: "/",
 		name: "Index",
+		component: Index,
+		redirect: "/s/general", // Static entry point.
+	},
+	{
+		path: "/s/:slug",
+		name: "Settings",
 		component: Index,
 	},
 	{
