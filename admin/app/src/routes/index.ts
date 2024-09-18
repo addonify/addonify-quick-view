@@ -1,12 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-//import { useSettingsStore } from "@/stores/settings";
 
 import Index from "@/views/Index.vue";
-
-/**
- * Instantiate the settings store.
- */
-//const store = useSettingsStore();
+import Error from "@/views/404.vue";
 
 /**
  * Define the default routes for our app.
@@ -28,7 +23,7 @@ const defaults = [
 	{
 		path: "/:catchAll(.*)*",
 		name: "404",
-		component: Index,
+		component: Error,
 	},
 ];
 
