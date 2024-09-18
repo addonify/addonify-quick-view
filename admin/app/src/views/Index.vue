@@ -3,7 +3,7 @@ import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useSettingsStore } from "@/stores/settings";
 
-import Skeleton from "@/components/global/Skeleton.vue";
+import Divider from "@/components/layout/Divider.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -35,4 +35,6 @@ onMounted(async () => {
 });
 </script>
 
-<template><Skeleton v-if="!store.data || !store.settings" /></template>
+<template>
+	<Divider />
+</template>

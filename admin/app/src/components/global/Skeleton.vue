@@ -19,7 +19,7 @@ const props = defineProps({
  * @since 2.0.0
  */
 const containerClass = computed(() => {
-	return mc(`w-full flex flex-row  ${props.containerClass}`);
+	return mc(`w-full flex flex-row ${props.containerClass}`);
 });
 
 const itemClass = computed(() => {

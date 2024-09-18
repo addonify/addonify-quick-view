@@ -9,7 +9,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				system: ["Arial", "Helvetica", "system-ui", "sans-serif"],
+				system: ["Helvetica", "Arial", "system-ui", "sans-serif"],
 			},
 			colors: {
 				"primary": "#1e73be",
