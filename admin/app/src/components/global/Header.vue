@@ -22,7 +22,8 @@ const disableCompute = computed(() => {
 </script>
 
 <template>
-	<div
+	<header
+		id="app-header"
 		class="px-6 py-4 flex flex-row items-center justify-between gap-5 fixed left-[180px] right-[20px] top-[40px] z-50 bg-white rounded-full shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
 	>
 		<div class="flex flex-row items-center gap-x-3">
@@ -40,5 +41,5 @@ const disableCompute = computed(() => {
 				<Save :size="18" />
 			</Button>
 		</div>
-	</div>
+	</header>
 </template>
