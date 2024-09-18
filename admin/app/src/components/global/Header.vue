@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { Save } from "lucide-vue-next";
 
 import Logo from "@/components/global/Logo.vue";
@@ -8,6 +9,16 @@ import Button from "@/components/global/Button.vue";
  * Get the WordPress localized data.
  */
 const { version } = window.addonifyQuickViewLocals;
+
+/**
+ * Computed function to check if the save button is disabled.
+ *
+ * @returns {boolean}
+ * @since 2.0.0
+ */
+const disableCompute = computed(() => {
+	return true;
+});
 </script>
 
 <template>
@@ -24,7 +35,7 @@ const { version } = window.addonifyQuickViewLocals;
 			</span>
 		</div>
 		<div class="flex flex-row items-center gap-x-3">
-			<Button :disabled="true">
+			<Button :disabled="disableCompute">
 				Save Options
 				<Save :size="18" />
 			</Button>

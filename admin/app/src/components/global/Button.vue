@@ -2,6 +2,8 @@
 import { computed } from "vue";
 import { mc } from "@/utils/tailwind";
 
+import Spinner from "@/components/global/Spinner.vue";
+
 /**
  * Define props.
  *
@@ -28,10 +30,11 @@ const mergeClass = computed(() => {
 <template>
 	<button
 		type="button"
+		:class="mergeClass"
 		:disabled="props.disabled || false"
 		:loading="props.loading || false"
-		:class="mergeClass"
 	>
 		<slot></slot>
+		<Spinner v-if="props.loading" class="size-4 border-[2px] text-gray-400" />
 	</button>
 </template>

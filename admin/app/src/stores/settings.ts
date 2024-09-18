@@ -1,4 +1,7 @@
 import { defineStore } from "pinia";
+import { useFetch } from "@/utils/http";
+
+import type { ISettings, SettingValue } from "@/app";
 
 /**
  * Settings store.
@@ -13,23 +16,65 @@ export const useSettingsStore = defineStore("settings", {
 		/**
 		 * Option defaults/values data.
 		 */
-		data: null,
+		data: null as null | SettingValue,
 
 		/**
 		 * All settings.
 		 */
-		settings: null,
+		settings: null as null | ISettings,
+
+		/**
+		 * Loading flag when fetching settings.
+		 */
+		loading: true,
+
+		/**
+		 * Saving flag when saving settings.
+		 */
+		saving: false,
 	}),
 
 	getters: {},
 
 	actions: {
 		/**
-		 * Get the settings.
+		 * Function to get the settings.
 		 *
-		 * @returns {Promise<void>}
+		 * @returns {Promise<ISettings>}
+		 * @since 2.0.0
 		 */
-		get: async (): Promise<void> => {},
+		async get(): Promise<ISettings> {
+			/**
+			 * Set the loading state.
+			 */
+			this.loading = true;
+
+			const url = "addonify_wishlist_options_api/v2/get_options";
+
+			/**
+			 * Use apiFetch to get the settings.
+			 */
+			const [e, res]: [Error | null, ISettings] = await useFetch(url, "GET");
+
+			if (res && Object.keys(res).length > 0) {
+				/**
+				 * Set the settings.
+				 */
+				this.settings = res.tabs;
+
+				/**
+				 * Set settings defaults and user defined values.
+				 */
+				this.data = res.settings_values;
+			}
+
+			/**
+			 * Set the loading state.
+			 */
+			this.loading = false;
+
+			return res;
+		},
 
 		/**
 		 * Update settings.
@@ -37,7 +82,7 @@ export const useSettingsStore = defineStore("settings", {
 		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
-		update: async (): Promise<void> => {},
+		async update(): Promise<void> {},
 
 		/**
 		 * Export settings.
@@ -45,7 +90,7 @@ export const useSettingsStore = defineStore("settings", {
 		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
-		export: async (): Promise<void> => {},
+		async export(): Promise<void> {},
 
 		/**
 		 * Import settings.
@@ -53,13 +98,13 @@ export const useSettingsStore = defineStore("settings", {
 		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
-		import: async (): Promise<void> => {},
+		async import(): Promise<void> {},
 
 		/**
 		 * Reset settings.
 		 *
 		 * @returns {Promise<any>}
 		 */
-		reset: async (): Promise<void> => {},
+		async reset(): Promise<void> {},
 	},
 });
