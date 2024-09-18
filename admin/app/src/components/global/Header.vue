@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { __ } from "@wordpress/i18n";
 import { Save } from "lucide-vue-next";
 
 import Logo from "@/components/global/Logo.vue";
@@ -37,7 +38,7 @@ const disableCompute = computed(() => {
 		</div>
 		<div class="flex flex-row items-center gap-x-3">
 			<Button :disabled="disableCompute">
-				Save Options
+				{{ __("Save Options", "addonify-quick-view") }}
 				<Save :size="18" />
 			</Button>
 		</div>

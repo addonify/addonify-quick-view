@@ -6,6 +6,7 @@ import { useSettingsStore } from "@/stores/settings";
 import Box from "@/components/box/Box.vue";
 
 const route = useRoute();
+
 const store = useSettingsStore();
 
 /**
@@ -37,7 +38,7 @@ const renderBox = computed(() => {
 		<template v-if="renderBox">
 			<form @submit.prevent class="w-full flex flex-col gap-12 relative">
 				<Box
-					v-for="(sections, key) in store.settings[slug].sections"
+					v-for="(sections, key) in store.settings[slug]?.sections"
 					:key="key"
 					:sections="sections"
 					:reactive="store.data"

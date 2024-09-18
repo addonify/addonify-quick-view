@@ -13,12 +13,7 @@ export interface ISettings {
 	tabs: SettingTab[];
 }
 
-interface I18N {
-	__(key: string, ...args: string[]): string;
-}
-
 interface WP {
-	i18n: I18N;
 	apiFetch: (args: Record<string, any>) => Promise<any>;
 }
 
