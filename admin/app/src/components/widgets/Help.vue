@@ -22,7 +22,7 @@ import { MessagesSquare } from "lucide-vue-next";
 		<a
 			href="https://wordpress.org/support/plugin/addonify-quick-view/"
 			target="_blank"
-			class="px-8 py-4 inline-flex items-center justify-center gap-3 text-blue-500 bg-white rounded-full shadow-lg hover:bg-blue-500 hover:text-white hover:shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)] transition-colors duration-500 ease focus:outline-none focus:shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
+			class="px-8 py-4 inline-flex items-center justify-center gap-3 text-blue-500 bg-white rounded-full shadow-lg hover:bg-emerald-500 hover:text-white hover:shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)] transition-colors duration-500 ease focus:outline-none focus:shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
 		>
 			{{ __("Get Help", "addonify-quick-view") }}
 			<MessagesSquare :size="20" />

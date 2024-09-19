@@ -22,17 +22,17 @@ export interface SettingValue {
 }
 
 export interface Option {
-	[key: string]: {
-		type: string;
-		className: string;
-		label: string;
-		description: string;
-		dependent?: string[];
-		value: string | number | boolean;
-		isAlphaPicker?: boolean;
-		choices?: {
-			[key: string]: string | number | boolean;
-		};
+	type: string;
+	className: string;
+	label: string;
+	description: string;
+	dependent?: string[];
+	value: string | number | boolean;
+	isAlphaPicker?: boolean;
+	placeholder?: string;
+	width?: string;
+	choices?: {
+		[key: string]: any;
 	};
 }
 

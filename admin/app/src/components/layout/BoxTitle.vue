@@ -16,7 +16,7 @@ const props = defineProps({
 });
 
 /**
- * Default docLink.
+ * Default document link.
  *
  * @since 2.0.0
  */
@@ -25,7 +25,7 @@ const docLink = "https://docs.addonify.com/kb/woocommerce-quick-view/";
 
 <template>
 	<div
-		class="pb-4 mb-4 w-full flex flex-row items-center justify-between border-b border-gray-200"
+		class="pb-4 mb-8 w-full flex flex-row items-center justify-between border-b border-gray-200"
 	>
 		<div
 			v-if="props.sections?.title && props.sections?.title?.length"
@@ -42,7 +42,7 @@ const docLink = "https://docs.addonify.com/kb/woocommerce-quick-view/";
 			<a
 				:href="props.sections?.docLink || docLink"
 				target="_blank"
-				class="inline-flex items-center gap-x-2 text-base text-blue-500 hover:text-blue-400 transition-colors duration-300 ease focus:outline-none focus:shadow-none leading-3"
+				class="inline-flex items-center gap-x-2 text-base text-blue-500 hover:text-emerald-500 transition-colors duration-300 ease focus:outline-none focus:shadow-none leading-3"
 			>
 				{{ __("Check docs", "addonify-quick-view") }}
 				<ChevronRight :size="16" />

@@ -1,7 +1,20 @@
 import { defineStore } from "pinia";
 import { useFetch } from "@/utils/http";
+import { isEqual } from "@/utils/helpers";
 
 import type { ISettings, SettingValue } from "@/app";
+
+/**
+ * Interface for the settings store state.
+ *
+ * @since 2.0.0
+ */
+interface State {
+	data: SettingValue | null;
+	settings: ISettings | null;
+	loading: boolean;
+	saving: boolean;
+}
 
 /**
  * Settings store.
@@ -12,29 +25,42 @@ import type { ISettings, SettingValue } from "@/app";
  * @since 1.0.0
  */
 export const useSettingsStore = defineStore("settings", {
-	state: () => ({
-		/**
-		 * Option defaults/values data.
-		 */
-		data: null as null | SettingValue,
+	state: () =>
+		<State>{
+			/**
+			 * Option defaults/values data.
+			 */
+			data: null,
 
-		/**
-		 * All settings.
-		 */
-		settings: null as null | ISettings,
+			/**
+			 * All settings.
+			 */
+			settings: null,
 
-		/**
-		 * Loading flag when fetching settings.
-		 */
-		loading: true,
+			/**
+			 * Loading flag when fetching settings.
+			 */
+			loading: true,
 
-		/**
-		 * Saving flag when saving settings.
-		 */
-		saving: false,
-	}),
+			/**
+			 * Saving flag when saving settings.
+			 */
+			saving: false,
+		},
 
-	getters: {},
+	getters: {
+		/**
+		 * Check if there are any changes in the settings.
+		 * Use lodash function "isEqual()" to compare the objects.
+		 *
+		 * @param {State} state
+		 * @returns {boolean}
+		 * @since 2.0.0
+		 */
+		haveChanges: (state: State): boolean => {
+			return isEqual(state.data, state.settings) ? false : true;
+		},
+	},
 
 	actions: {
 		/**

@@ -1,0 +1,38 @@
+/**----------------------------------------------
+-  Forms.
+-----------------------------------------------*/
+body[class*="addonify-quick-view"] {
+	input[type=date],
+	input[type=email],
+	input[type=month],
+	input[type=number],
+	input[type=password],
+	input[type=search],
+	input[type=tel],
+	input[type=text],
+	input[type=time],
+	input[type=url],
+	input[type=week],
+	input[type=datetime],
+	input[type=datetime-local] {
+		--el-input-inner-height: calc(var(--el-input-height, 32px) - 2px);
+		line-height: var(--el-input-inner-height);
+		@apply font-sans p-0 m-0 min-h-fit shadow-none rounded-none text-gray-600 bg-transparent border-0;
+
+		&:is(:focus) {
+			@apply outline-none shadow-none;
+		}
+	}
+
+	input.readonly,
+	input[readonly],
+	textarea.readonly,
+	textarea[readonly] {
+		-el-input-inner-height: calc(var(--el-input-height, 40px) - 2px);
+		@apply bg-transparent;
+	}
+
+	.el-textarea__inner {
+		@apply block w-full font-mono min-h-[200px] p-6;
+  }
+}
