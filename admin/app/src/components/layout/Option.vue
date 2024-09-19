@@ -6,7 +6,7 @@ import MasterControl from "@/components/controls/MasterControls.vue";
 import type { Option } from "@/app";
 
 interface Props {
-	sections: Option[];
+	sections: Record<string, any>;
 }
 
 /**
@@ -39,6 +39,7 @@ const widthClass = (item: Option): string => {
 			:class="widthClass(item)"
 		>
 			<OptionTitle :label="item.label" :description="item.description" />
+
 			<ControlContainer :control="item">
 				<MasterControl :k="k.toString()" :control="item" />
 			</ControlContainer>

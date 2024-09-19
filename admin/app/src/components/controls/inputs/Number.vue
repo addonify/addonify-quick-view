@@ -7,7 +7,7 @@ interface Props {
 	design: string | null | undefined;
 	min: number | null | undefined;
 	max: number | null | undefined;
-	steps: number | null | undefined;
+	step: number | null | undefined;
 	precision: number | null | undefined;
 	sliderTipText: string | null | undefined;
 	sliderInput: boolean | null | undefined;
@@ -20,7 +20,7 @@ interface Props {
  * @ref https://vuejs.org/api/sfc-script-setup#reactive-props-destructure
  * @since 2.0.0
  */
-const { modelValue, min, max, steps, precision, sliderTipText, sliderInput } =
+const { modelValue, min, max, step, precision, sliderTipText, sliderInput } =
 	defineProps<Props>();
 
 /**
@@ -54,7 +54,7 @@ const tooltip = (val: number): string => {
 		v-model="value"
 		:min="Number(min) || 0"
 		:max="Number(max) || 10000000000000"
-		:step="Number(steps) || 1"
+		:step="Number(step) || 1"
 		:precision="Number(precision) || 2"
 	/>
 
@@ -63,7 +63,7 @@ const tooltip = (val: number): string => {
 		v-model="value"
 		:min="Number(min) || 0"
 		:max="Number(max) || 10000000000000"
-		:step="Number(steps) || 1"
+		:step="Number(step) || 1"
 		:show-input="sliderInput ? true : false"
 		:format-tooltip="tooltip"
 		size="large"
@@ -76,7 +76,7 @@ const tooltip = (val: number): string => {
 		v-model="value"
 		:min="Number(min) || 0"
 		:max="Number(max) || 10000000000000"
-		:step="Number(steps) || 1"
-		:precision="Number(precision) || 2"
+		:step="Number(step) || 1"
+		:precision="Number(precision) || 0"
 	/>
 </template>

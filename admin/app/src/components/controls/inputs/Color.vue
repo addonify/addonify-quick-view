@@ -24,49 +24,71 @@ const { modelValue, size = "normal", title } = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);
 
 const value = computed({
-	get: () => modelValue || "NaN",
+	get: () => modelValue || "",
 	set: (val) => emit("update:modelValue", val),
 });
 
 /**
  * Convert rgba to hex.
  *
- * @param {string} rgba
+ * @param {string} color
  * @returns {string} hex
  * @since 2.0.0
  */
-const getHex = (rgba: string): string => {
-	if (!rgba) {
-		return "NaN";
+const getHex = (color: string): string => {
+	if (typeof color === null || typeof color === "object") {
+		return "N/A";
 	}
 
-	const [r, g, b, a] = rgba
-		.replace("rgba(", "")
-		.replace(")", "")
-		.split(",")
-		.map((val) => val.trim());
+	if (color.substring(0, 1) !== "#" && color.substring(0, 4) !== "rgba") {
+		return "N/A";
+	}
 
-	return `#${(
-		(1 << 24) +
-		(parseInt(r) << 16) +
-		(parseInt(g) << 8) +
-		parseInt(b)
-	)
-		.toString(16)
-		.slice(1)}`;
+	if (color.substring(0, 1) === "#") {
+		return color;
+	}
+
+	let rgba = color
+			.substring(color.indexOf("(") + 1, color.lastIndexOf(")"))
+			.split(","),
+		r = parseInt(rgba[0], 10),
+		g = parseInt(rgba[1], 10),
+		b = parseInt(rgba[2], 10),
+		a = parseFloat(rgba[3]) || 1;
+
+	let hex = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+
+	if (a === 1) {
+		return "#" + hex;
+	}
+
+	let alphaHex = Math.round(a * 255).toString(16);
+
+	if (alphaHex.length === 1) {
+		alphaHex = "0" + alphaHex;
+	}
+
+	return "#" + hex + alphaHex;
+};
+
+/**
+ * Listen to the change event.
+ *
+ * @param {string} color
+ * @returns {void}
+ * @since 2.0.0
+ */
+const handleChange = (color: string | null): void => {
+	emit("update:modelValue", color);
 };
 </script>
 <template>
-	<div class="block" data_type="color-picker" data_size="default">
-		<span v-if="title && title.length > 0" class="control-title">
-			{{ title }}
+	<div
+		class="py-1 ps-6 pe-1 min-w-[80px] flex-shrink-0 flex flex-row items-center border border-gray-200 rounded-full"
+	>
+		<span class="me-2 inline-flex text-xs font-normal font-sans text-gray-500">
+			{{ getHex(value).toUpperCase() }}
 		</span>
-
-		<div class="block">
-			<el-color-picker v-model="value" show-alpha @active-change="getHex" />
-			<span class="inline-flex">
-				{{ getHex(value).toUpperCase() }}
-			</span>
-		</div>
+		<el-color-picker v-model="value" show-alpha @active-change="handleChange" />
 	</div>
 </template>
