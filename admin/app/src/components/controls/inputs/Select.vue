@@ -4,8 +4,8 @@ import { __ } from "@wordpress/i18n";
 
 interface Props {
 	modelValue: string | null | undefined;
+	choices: Record<any, any> | undefined;
 	placeholder: string | null | undefined;
-	className: string | null | undefined;
 }
 
 /**
@@ -14,7 +14,7 @@ interface Props {
  * @ref https://vuejs.org/api/sfc-script-setup#reactive-props-destructure
  * @since 2.0.0
  */
-const { modelValue, placeholder, className } = defineProps<Props>();
+const { modelValue, placeholder, choices } = defineProps<Props>();
 
 /**
  * Define emits for v-model usage.
@@ -42,5 +42,18 @@ const placeholderX = computed((): string => {
 </script>
 
 <template>
-	<el-input v-model="value" :placeholder="placeholderX" size="large" />
+	<el-select
+		v-model="value"
+		size="large"
+		filterable
+		clearable
+		:placeholder="placeholderX"
+	>
+		<el-option
+			v-for="(label, k) in choices"
+			:key="k"
+			:value="k"
+			:label="label"
+		/>
+	</el-select>
 </template>
