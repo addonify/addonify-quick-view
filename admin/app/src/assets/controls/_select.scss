@@ -9,7 +9,7 @@
 			@apply w-full flex flex-row justify-end;
 
 			.el-select__wrapper {
-				@apply w-[300px];
+				@apply w-[300px] h-10 flex flex-row items-center;
 			}
 		}
 	}

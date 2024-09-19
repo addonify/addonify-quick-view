@@ -2,4 +2,25 @@
 -  Control color picker.
 -----------------------------------------------*/
 #addonify-quick-view-app {
+	[data-input="color"] {
+		.el-color-picker  {
+			@apply border-0 rounded-full;
+
+			.el-color-picker__trigger {
+				@apply size-12 rounded-full border-2 border-gray-100 bg-transparent;
+
+				.el-color-picker__color {
+					@apply rounded-full border-none border-gray-100 overflow-hidden shadow-lg;
+
+					.el-color-picker__icon {
+						@apply text-base font-normal;
+					}
+
+					.el-color-picker__empty {
+						@apply text-xl font-medium text-red-600 z-10;
+					}
+				}
+			}
+		}
+	}
 }
