@@ -25,7 +25,7 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 				'admin/app/src/main.ts',
 				array(
 					'handle'           => $handle,
-					'dependencies'     => array( 'lodash', 'wp-api-fetch', 'wp-i18n' ), // Dependencies.
+					'dependencies'     => array( 'lodash', 'wp-api-fetch'), // Dependencies.
 					'css-dependencies' => array(), // Optional style dependencies. Defaults to empty array.
 					'css-media'        => 'all', // Optional.
 					'css-only'         => false, // Optional. Set to true to only load style assets in production mode.

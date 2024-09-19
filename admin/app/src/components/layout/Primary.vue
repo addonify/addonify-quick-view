@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { useSettingsStore } from "@/stores/settings";
 
-import Box from "@/components/box/Box.vue";
+import Box from "@/components/layout/Box.vue";
 
 const route = useRoute();
 
