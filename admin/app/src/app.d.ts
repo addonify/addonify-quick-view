@@ -31,6 +31,14 @@ export interface Option {
 	isAlphaPicker?: boolean;
 	placeholder?: string;
 	width?: string;
+	design?: string;
+	min?: number;
+	max?: number;
+	step?: number;
+	precision?: number;
+	sliderTipText?: string;
+	sliderInput?: boolean;
+	sliderSteps?: number;
 	choices?: {
 		[key: string]: any;
 	};

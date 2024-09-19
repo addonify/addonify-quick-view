@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
 import OptionTitle from "@/components/layout/OptionTitle.vue";
 import ControlContainer from "@/components/controls/Control.vue";
 import MasterControl from "@/components/controls/MasterControls.vue";
@@ -26,7 +24,9 @@ const { sections } = defineProps<Props>();
  * @since 2.0.0
  */
 const widthClass = (item: Option): string => {
-	return item?.width === "full" ? "grid-cols-1 gap-10" : "grid-cols-2";
+	return item?.width === "full"
+		? "grid-cols-1 gap-4"
+		: "grid-cols-2 gap-10 justify-between";
 };
 </script>
 
@@ -35,7 +35,7 @@ const widthClass = (item: Option): string => {
 		<div
 			v-for="(item, k) in sections"
 			:key="k"
-			class="addonify-option pb-10 w-full grid justify-between gap-10 last:pb-0 border-b last:border-b-0 border-dashed border-gray-200"
+			class="addonify-option pb-10 w-full grid last:pb-0 border-b last:border-b-0 border-dashed border-gray-200"
 			:class="widthClass(item)"
 		>
 			<OptionTitle :label="item.label" :description="item.description" />

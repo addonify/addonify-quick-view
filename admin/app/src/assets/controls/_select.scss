@@ -1,0 +1,41 @@
+/**----------------------------------------------
+-  Control select.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="select"] {
+		@apply w-full;
+
+		.el-select {
+			@apply w-full flex flex-row justify-end;
+
+			.el-select__wrapper {
+				@apply w-[300px];
+			}
+		}
+	}
+}
+
+.el-select__popper {
+	@apply max-w-[300px];
+
+	.el-select-dropdown {
+		min-width: auto !important;
+		@apply w-[300px];
+
+		.el-select-dropdown__list {
+			@apply p-4 flex flex-col gap-2 bg-white rounded-2xl border-none overflow-hidden;
+
+			.el-select-dropdown__item {
+				@apply m-0 px-4 py-4 flex flex-row items-center font-sans text-sm font-normal rounded-md transition-all duration-300 ease-in text-gray-500 hover:bg-zinc-100;
+
+				&:is(.selected, .is-selected) {
+					@apply font-sans font-medium text-blue-500 bg-zinc-100;
+				}
+
+				&:is(.is-hovering) {
+					@apply bg-zinc-100 shadow-sm;
+				}
+			}
+		}
+	}
+}
