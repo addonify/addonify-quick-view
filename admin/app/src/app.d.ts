@@ -39,6 +39,9 @@ export interface Option {
 	sliderTipText?: string;
 	sliderInput?: boolean;
 	sliderSteps?: number;
+	note?: string;
+	caption?: string;
+	buttonLabel?: string;
 	choices?: {
 		[key: string]: any;
 	};

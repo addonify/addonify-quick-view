@@ -7,8 +7,10 @@ import Color from "@/components/controls/inputs/Color.vue";
 import Select from "@/components/controls/inputs/Select.vue";
 import Switch from "@/components/controls/inputs/Switch.vue";
 import Number from "@/components/controls/inputs/Number.vue";
-import Textarea from "@/components/controls/inputs/Textarea.vue";
 import Upload from "@/components/controls/inputs/Upload.vue";
+import Export from "@/components/controls/inputs/Export.vue";
+import Radio from "@/components/controls/inputs/Radio.vue";
+import Textarea from "@/components/controls/inputs/Textarea.vue";
 
 import type { Option } from "@/app";
 
@@ -39,8 +41,6 @@ const input = computed((): string => {
  * Instantiate the store.
  */
 const store = useSettingsStore();
-
-console.log(control);
 </script>
 
 <template>
@@ -67,6 +67,13 @@ console.log(control);
 		:placeholder="control?.placeholder"
 	/>
 
+	<Radio
+		v-else-if="input === 'radio'"
+		v-model="store.data[k]"
+		:design="control.design"
+		:choices="control.choices as Record<any, unknown>"
+	/>
+
 	<Color v-else-if="input === 'color'" v-model="store.data[k]" />
 
 	<Number
@@ -86,5 +93,11 @@ console.log(control);
 		v-else-if="input === 'import-option'"
 		:note="control?.note"
 		:caption="control?.caption"
+	/>
+
+	<Export
+		v-else-if="input === 'export-option'"
+		:label="control?.label"
+		:buttonLabel="control?.buttonLabel"
 	/>
 </template>

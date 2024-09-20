@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useFetch } from "@/utils/http";
-import { isEqual } from "@/utils/helpers";
+import { sleep, isEqual } from "@/utils/helpers";
 
 import type { ISettings, SettingValue } from "@/app";
 
@@ -116,7 +116,9 @@ export const useSettingsStore = defineStore("settings", {
 		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
-		async export(): Promise<void> {},
+		async export(): Promise<void> {
+			await sleep(3000);
+		},
 
 		/**
 		 * Import settings.
