@@ -66,7 +66,7 @@ const verify = (raw: string): void => {
 		type: "error",
 		duration: 5000,
 		position: "top-center",
-		message: __("Oops! only JSON file is allowed.", "addonify-quick-view"),
+		message: __("Failed, please upload JSON file.", "addonify-quick-view"),
 	});
 };
 </script>
