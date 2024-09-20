@@ -1,0 +1,28 @@
+/**----------------------------------------------
+-  Upload drop zone.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="import-option"] {
+		@apply w-full justify-start;
+
+		div {
+			@apply w-full;
+		}
+
+		.el-upload-dragger {
+			@apply min-h-64 w-full flex flex-col items-center justify-center gap-4 rounded-xl border-2 border-dashed border-gray-200 bg-white text-center text-gray-600 transition-all duration-300 ease-in;
+
+			&:is(:hover, :focus) {
+				@apply border-blue-500 text-gray-600;
+			}
+		}
+
+		.el-upload-list  {
+			@apply hidden;
+		}
+
+		.el-skeleton__item {
+			@apply w-full rounded-lg;
+		}
+	}
+}
