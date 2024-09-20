@@ -8,6 +8,7 @@ import Select from "@/components/controls/inputs/Select.vue";
 import Switch from "@/components/controls/inputs/Switch.vue";
 import Number from "@/components/controls/inputs/Number.vue";
 import Textarea from "@/components/controls/inputs/Textarea.vue";
+import Upload from "@/components/controls/inputs/Upload.vue";
 
 import type { Option } from "@/app";
 
@@ -38,6 +39,8 @@ const input = computed((): string => {
  * Instantiate the store.
  */
 const store = useSettingsStore();
+
+console.log(control);
 </script>
 
 <template>
@@ -77,5 +80,11 @@ const store = useSettingsStore();
 		:sliderInput="control?.sliderInput"
 		:placeholder="control?.placeholder"
 		:sliderTipText="control?.sliderTipText"
+	/>
+
+	<Upload
+		v-else-if="input === 'import-option'"
+		:note="control?.note"
+		:caption="control?.caption"
 	/>
 </template>

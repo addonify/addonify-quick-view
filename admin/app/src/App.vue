@@ -2,6 +2,9 @@
 import { onMounted } from "vue";
 import { useSettingsStore } from "@/stores/settings";
 
+import { Toaster } from "@steveyuowo/vue-hot-toast";
+import "@steveyuowo/vue-hot-toast/vue-hot-toast.css";
+
 import Header from "@/components/global/Header.vue";
 
 /**
@@ -33,4 +36,5 @@ onMounted(async () => {
 	<div id="AppEntry" class="m-0 p-0 mt-36 pe-8 relative w-full">
 		<router-view></router-view>
 	</div>
+	<Toaster />
 </template>
