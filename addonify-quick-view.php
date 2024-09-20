@@ -36,7 +36,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 define( 'ADDONIFY_QUICK_VIEW_VERSION', '1.2.17' );
 define( 'ADDONIFY_QUICK_VIEW_BASENAME', plugin_basename( __FILE__ ) );
-define( 'ADDONIFY_DB_INITIALS', 'addonify_qv_' );
+define( 'ADDONIFY_QUICK_VIEW_DB_INITIALS', 'addonify_qv_' );
 
 
 /**

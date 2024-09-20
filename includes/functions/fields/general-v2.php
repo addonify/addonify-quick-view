@@ -1,0 +1,87 @@
+<?php
+
+if ( ! function_exists( 'addonify_quick_view_general_tab_general_section' ) ) {
+	/**
+	 * Function to return general fields.
+	 *
+	 * @param array $sections section fields.
+	 */
+	function addonify_quick_view_general_tab_general_section( $sections ) {
+
+		$sections['general_options'] = array(
+			'title'        => esc_html__( 'General Options', 'addonify-quick-view' ),
+			'type'         => 'sub_section',
+			'sub_sections' => addonify_quick_view_general_fields(),
+		);
+
+		$sections['style_options'] = array(
+			'title'        => esc_html__( 'Style Options', 'addonify-quick-view' ),
+			'type'         => 'sub_section',
+			'sub_sections' => addonify_quick_view_general_styles_fields(),
+		);
+
+		return $sections;
+	}
+
+	add_filter( 'addonify_quick_view_general_sections', 'addonify_quick_view_general_tab_general_section' );
+}
+
+if ( ! function_exists( 'addonify_quick_view_general_fields' ) ) {
+	/**
+	 * Function to return general fields.
+	 */
+	function addonify_quick_view_general_fields() {
+		return apply_filters(
+			'addonify_quick_view_general_fields',
+			array(
+				'enable_quick_view'                   => array(
+					'label'       => esc_html__( 'Enable Quick View', 'addonify-quick-view' ),
+					'description' => esc_html__( 'If disabled, quick view features will be disabled completely.', 'addonify-quick-view' ),
+					'type'        => 'switch',
+					'classname'   => '',
+					'badge'       => 'Required',
+					'value'       => addonify_quick_view_get_option( 'enable_quick_view' ),
+				),
+				'disable_quick_view_on_mobile_device' => array(
+					'label'       => esc_html__( 'Disable on Mobile Devices', 'addonify-quick-view' ),
+					'description' => esc_html__( 'If enabled, quick view will be disabled on mobile devices.', 'addonify-quick-view' ),
+					'type'        => 'switch',
+					'classname'   => '',
+					'dependent'   => array( 'enable_quick_view' ),
+					'value'       => addonify_quick_view_get_option( 'disable_quick_view_on_mobile_device' ),
+				),
+			)
+		);
+	}
+}
+
+if ( ! function_exists( 'addonify_quick_view_general_styles_fields' ) ) {
+	/**
+	 * Function to return general styles fields.
+	 */
+	function addonify_quick_view_general_styles_fields() {
+		return apply_filters(
+			'addonify_quick_view_general_styles_fields',
+			array(
+				'enable_plugin_styles' => array(
+					'label'       => esc_html__( 'Enable dymanic styles', 'addonify-quick-view' ),
+					'description' => esc_html__( 'Once enabled, below selected option will overwrite the default plugin stylesheet.', 'addonify-quick-view' ),
+					'type'        => 'switch',
+					'classname'   => '',
+					'value'       => addonify_quick_view_get_option( 'enable_plugin_styles' ),
+				),
+				'custom_css'           => array(
+					'label'          => esc_html__( 'Additional CSS', 'addonify-quick-view' ),
+					'description'    => esc_html__( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
+					'type'           => 'textarea',
+					'className'      => 'custom-css-box fullwidth',
+					'inputClassName' => 'custom-css-textarea',
+					'placeholder'    => '#app { color: blue; }',
+					'width'          => 'full',
+					'dependent'      => array( 'enable_plugin_styles' ),
+					'value'          => addonify_quick_view_get_option( 'custom_css' ),
+				),
+			)
+		);
+	}
+}

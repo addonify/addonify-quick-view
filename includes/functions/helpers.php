@@ -288,3 +288,19 @@ if ( ! function_exists( 'addonify_quick_view_minify_css' ) ) {
 		return trim( $css );
 	}
 }
+
+if ( ! function_exists( 'addonify_quick_view_get_option' ) ) {
+	/**
+	 * Retrieve the value of a settings field.
+	 *
+	 * @since 1.0.7
+	 *
+	 * @param string $setting_id Setting ID.
+	 */
+	function addonify_quick_view_get_option( $setting_id ) {
+
+		$defaults = addonify_quick_view_setting_defaults();
+
+		return get_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $setting_id, $defaults[ $setting_id ] );
+	}
+}
