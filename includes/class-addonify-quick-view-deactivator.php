@@ -36,10 +36,10 @@ class Addonify_Quick_View_Deactivator {
 
 		if (
 			is_array( $setting_defaults ) && $setting_defaults &&
-			get_option( ADDONIFY_DB_INITIALS . 'delete_plugin_data_on_deactivation', false )
+			get_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . 'delete_plugin_data_on_deactivation', false )
 		) {
 			foreach ( $setting_defaults as $setting_id => $setting_default ) {
-				delete_option( ADDONIFY_DB_INITIALS . $setting_id );
+				delete_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $setting_id );
 			}
 		}
 	}

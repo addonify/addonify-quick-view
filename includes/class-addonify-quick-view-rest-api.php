@@ -28,7 +28,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * @access   protected
 		 * @var      string    $rest_namespace.
 		 */
-		protected $rest_namespace = 'addonify_quick_view_options_api';
+		protected $rest_namespace = 'addonify-quick-view-options-api';
 
 
 		/**
@@ -55,9 +55,33 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				'/get_options',
 				array(
 					array(
-						'methods'             => 'GET',
+						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'rest_handler_get_settings_fields' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
+					),
+				)
+			);
+
+			register_rest_route(
+				$this->rest_namespace,
+				'/options',
+				array(
+					array(
+						'methods'             => \WP_REST_Server::READABLE,
+						'callback'            => array( $this, 'rest_handler_get_setting_sections_fields' ),
+						'permission_callback' => '__return_true',
+					),
+				)
+			);
+
+			register_rest_route(
+				$this->rest_namespace,
+				'/options/update',
+				array(
+					array(
+						'methods'             => \WP_REST_Server::CREATABLE,
+						'callback'            => array( $this, 'rest_handler_update_options_v2' ),
+						'permission_callback' => '__return_true',
 					),
 				)
 			);
@@ -76,36 +100,36 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			register_rest_route(
 				$this->rest_namespace,
-				'/reset_options',
+				'/options/reset',
 				array(
 					array(
 						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'reset_settings' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
 					),
 				)
 			);
 
 			register_rest_route(
 				$this->rest_namespace,
-				'/export_options',
+				'/options/export',
 				array(
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'export_settings' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
 					),
 				)
 			);
 
 			register_rest_route(
 				$this->rest_namespace,
-				'/import_options',
+				'/options/import',
 				array(
 					array(
-						'methods'             => \WP_REST_Server::READABLE,
+						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'import_settings' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true', //array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -122,6 +146,15 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			return addonify_quick_view_get_settings_fields();
 		}
 
+		/**
+		 * Callback function to get all settings options values.
+		 *
+		 * @since 1.2.17
+		 */
+		public function rest_handler_get_setting_sections_fields() {
+			return addonify_quick_view_get_settings_sections_fields();
+		}
+
 
 		/**
 		 * Callback function to update all settings options values.
@@ -135,21 +168,53 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$return_data = array(
 				'success' => false,
-				'message' => __( 'Ooops, error saving settings!!!', 'addonify-quick-view' ),
+				'message' => esc_html__( 'Ooops, error saving settings!!!', 'addonify-quick-view' ),
 			);
 
 			$params = $request->get_params();
 
 			if ( ! isset( $params['settings_values'] ) ) {
 
-				$return_data['message'] = __( 'No settings values to update!!!', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'No settings values to update!!!', 'addonify-quick-view' );
 				return $return_data;
 			}
 
 			if ( addonify_quick_view_update_settings_fields_values( $params['settings_values'] ) === true ) {
 
 				$return_data['success'] = true;
-				$return_data['message'] = __( 'Settings saved successfully', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Settings saved successfully', 'addonify-quick-view' );
+			}
+
+			return rest_ensure_response( $return_data );
+		}
+
+		/**
+		 * Callback function to update all settings options values.
+		 *
+		 * @since 1.0.7
+		 *
+		 * @param \WP_REST_Request $request    The request object.
+		 * @return \WP_REST_Response $return_data   The response object.
+		 */
+		public function rest_handler_update_options_v2( $request ) {
+
+			$return_data = array(
+				'success' => false,
+				'message' => esc_html__( 'Ooops, error saving settings!!!', 'addonify-quick-view' ),
+			);
+
+			$params = $request->get_params();
+
+			if ( ! isset( $params['settings_values'] ) ) {
+
+				$return_data['message'] = esc_html__( 'No settings values to update!!!', 'addonify-quick-view' );
+				return $return_data;
+			}
+
+			if ( addonify_quick_view_update_fields_values( $params['settings_values'] ) === true ) {
+
+				$return_data['success'] = true;
+				$return_data['message'] = esc_html__( 'Settings saved successfully', 'addonify-quick-view' );
 			}
 
 			return rest_ensure_response( $return_data );
@@ -162,16 +227,9 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 */
 		public function reset_settings() {
 
-			$setting_defaults = addonify_quick_view_settings_fields_defaults();
-
-			foreach ( $setting_defaults as $setting_key => $default_value ) {
-
-				if ( ! update_option( ADDONIFY_DB_INITIALS . $setting_key, $default_value ) ) {
-					return array(
-						'success' => false,
-						'message' => esc_html__( 'Error resetting options', 'addonify-quick-view' ),
-					);
-				}
+			$setting_defaults = addonify_quick_view_setting_defaults();
+			foreach ( $setting_defaults as $key => $value ) {
+				update_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $key, $value );
 			}
 
 			return array(
@@ -191,7 +249,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$query = 'SELECT option_name, option_value FROM ' . $wpdb->options . ' WHERE option_name LIKE %s';
 
-			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_DB_INITIALS . '%' ), ARRAY_A ); //phpcs:ignore
+			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_QUICK_VIEW_DB_INITIALS . '%' ), ARRAY_A ); //phpcs:ignore
 
 			$json_file = 'adfy-qv-' . time() . '.json';
 

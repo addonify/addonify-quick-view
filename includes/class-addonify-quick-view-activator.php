@@ -36,7 +36,7 @@ class Addonify_Quick_View_Activator {
 
 		if ( is_array( $setting_defaults ) && $setting_defaults ) {
 			foreach ( $setting_defaults as $setting_id => $setting_default ) {
-				add_option( ADDONIFY_DB_INITIALS . $setting_id, $setting_default );
+				add_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $setting_id, $setting_default );
 			}
 		}
 	}
