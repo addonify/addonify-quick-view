@@ -20,3 +20,13 @@ export const isEqual = (arg1: unknown, arg2: unknown): boolean => {
 export const clone = <T>(arg: T): T => {
 	return cloneDeep(arg) as T;
 };
+
+/**
+ * Sleep for a given amount of time.
+ *
+ * @param {number} ms
+ * @returns {Promise<unknown>}
+ */
+export const sleep = (ms: number): Promise<unknown> => {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+};
