@@ -10,6 +10,7 @@ import Number from "@/components/controls/inputs/Number.vue";
 import Upload from "@/components/controls/inputs/Upload.vue";
 import Export from "@/components/controls/inputs/Export.vue";
 import Radio from "@/components/controls/inputs/Radio.vue";
+import Reset from "@/components/controls/inputs/Reset.vue";
 import Textarea from "@/components/controls/inputs/Textarea.vue";
 
 import type { Option } from "@/app";
@@ -97,6 +98,12 @@ const store = useSettingsStore();
 
 	<Export
 		v-else-if="input === 'export-option'"
+		:label="control?.label"
+		:buttonLabel="control?.buttonLabel"
+	/>
+
+	<Reset
+		v-else-if="input === 'action-button'"
 		:label="control?.label"
 		:buttonLabel="control?.buttonLabel"
 	/>
