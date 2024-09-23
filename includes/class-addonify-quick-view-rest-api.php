@@ -28,7 +28,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * @access   protected
 		 * @var      string    $rest_namespace.
 		 */
-		protected $rest_namespace = 'addonify-quick-view-options-api';
+		protected $rest_namespace = 'addonify_quick_view_options_api';
 
 
 		/**
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'rest_handler_get_settings_fields' ),
-						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -69,7 +69,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'rest_handler_get_setting_sections_fields' ),
-						'permission_callback' => '__return_true',
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -81,7 +81,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'rest_handler_update_options_v2' ),
-						'permission_callback' => '__return_true',
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'reset_settings' ),
-						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -117,7 +117,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'export_settings' ),
-						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -129,7 +129,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'import_settings' ),
-						'permission_callback' => '__return_true', //array( $this, 'permission_callback' ),
+						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
 			);
