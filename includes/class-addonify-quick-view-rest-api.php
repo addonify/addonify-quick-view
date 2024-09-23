@@ -164,7 +164,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$nonce = $request->get_param( 'nonce' );
 
 			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -194,7 +194,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$params = $request->get_params();
 
 			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -231,7 +231,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$params = $request->get_params();
 
 			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -265,7 +265,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$params = $request->get_params();
 
 			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -295,7 +295,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$params = $request->get_params();
 
 			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -339,7 +339,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$nonce = $request->get_params( 'nonce' );
 
 			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 

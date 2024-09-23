@@ -1,83 +1,122 @@
 {
-	"_readme": [
-		"This file locks the dependencies of your project to a known state",
-		"Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-		"This file is @generated automatically"
-	],
-	"content-hash": "d5b17e3bb2e910a6b1bb7f71ba8ecc54",
-	"packages": [
-		{
-			"name": "mobiledetect/mobiledetectlib",
-			"version": "3.74.3",
-			"source": {
-				"type": "git",
-				"url": "https://github.com/serbanghita/Mobile-Detect.git",
-				"reference": "39582ab62f86b40e4edb698159f895929a29c346"
-			},
-			"dist": {
-				"type": "zip",
-				"url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/39582ab62f86b40e4edb698159f895929a29c346",
-				"reference": "39582ab62f86b40e4edb698159f895929a29c346",
-				"shasum": ""
-			},
-			"require": {
-				"php": ">=7.4"
-			},
-			"require-dev": {
-				"friendsofphp/php-cs-fixer": "^3.14",
-				"phpunit/phpunit": "^9.6",
-				"squizlabs/php_codesniffer": "^3.7"
-			},
-			"type": "library",
-			"autoload": {
-				"psr-4": {
-					"Detection\\": "src/"
-				},
-				"classmap": [
-					"src/MobileDetect.php"
-				]
-			},
-			"notification-url": "https://packagist.org/downloads/",
-			"license": [
-				"MIT"
-			],
-			"authors": [
-				{
-					"name": "Serban Ghita",
-					"email": "serbanghita@gmail.com",
-					"homepage": "https://mobiledetect.net",
-					"role": "Developer"
-				}
-			],
-			"description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
-			"homepage": "https://github.com/serbanghita/Mobile-Detect",
-			"keywords": [
-				"detect mobile devices",
-				"mobile",
-				"mobile detect",
-				"mobile detector",
-				"php mobile detect"
-			],
-			"support": {
-				"issues": "https://github.com/serbanghita/Mobile-Detect/issues",
-				"source": "https://github.com/serbanghita/Mobile-Detect/tree/3.74.3"
-			},
-			"funding": [
-				{
-					"url": "https://github.com/serbanghita",
-					"type": "github"
-				}
-			],
-			"time": "2023-10-27T16:28:04+00:00"
-		}
-	],
-	"packages-dev": [],
-	"aliases": [],
-	"minimum-stability": "stable",
-	"stability-flags": [],
-	"prefer-stable": false,
-	"prefer-lowest": false,
-	"platform": [],
-	"platform-dev": [],
-	"plugin-api-version": "2.6.0"
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "33373da0bd324c84a72a3119476be3ef",
+    "packages": [
+        {
+            "name": "kucrut/vite-for-wp",
+            "version": "v0.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kucrut/vite-for-wp.git",
+                "reference": "df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kucrut/vite-for-wp/zipball/df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a",
+                "reference": "df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "wp-coding-standards/wpcs": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "vite-for-wp.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Dzikri Aziz"
+                }
+            ],
+            "description": "Vite integration for WordPress plugins and themes development.",
+            "support": {
+                "issues": "https://github.com/kucrut/vite-for-wp/issues",
+                "source": "https://github.com/kucrut/vite-for-wp/tree/v0.9.3"
+            },
+            "time": "2024-06-30T17:46:55+00:00"
+        },
+        {
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "3.74.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "39582ab62f86b40e4edb698159f895929a29c346"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/39582ab62f86b40e4edb698159f895929a29c346",
+                "reference": "39582ab62f86b40e4edb698159f895929a29c346",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "phpunit/phpunit": "^9.6",
+                "squizlabs/php_codesniffer": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Detection\\": "src/"
+                },
+                "classmap": [
+                    "src/MobileDetect.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "https://mobiledetect.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "support": {
+                "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/3.74.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/serbanghita",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-10-27T16:28:04+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

@@ -73,6 +73,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-addonify-quick-view.php';
  */
 require plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
+/**
+ * Load the admin vue app.
+ */
+require_once plugin_dir_path( __FILE__ ) . 'admin/app.php';
+
 if ( ! function_exists( 'addonify_quick_view_run' ) ) {
 	/**
 	 * Begins execution of the plugin.

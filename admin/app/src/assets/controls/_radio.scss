@@ -1,0 +1,24 @@
+/**----------------------------------------------
+-  Control radio.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="radio"] {
+		.is-icons {
+			.el-radio-group {
+				@apply flex flex-row gap-6 flex-wrap;
+
+				.el-radio {
+					@apply m-0 p-6 inline-flex items-center gap-3 text-gray-600 fill-gray-600 border border-gray-200 ring-2 ring-transparent ring-offset-4 rounded-full transition-all duration-300 ease-in leading-3;
+
+					&:is(.is-checked) {
+						@apply text-blue-500 fill-blue-600 border-gray-200 ring-blue-500;
+					}
+
+					.el-radio__label {
+						@apply p-0 m-0 leading-3;
+					}
+				}
+			}
+		}
+	}
+}

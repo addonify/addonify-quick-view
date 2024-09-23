@@ -45,7 +45,7 @@ class Addonify_Quick_View_Admin {
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
-	private $settings_page_slug = 'addonify_quick_view';
+	private $settings_page_slug = 'addonify-quick-view';
 
 
 	/**
@@ -86,6 +86,7 @@ class Addonify_Quick_View_Admin {
 	 * @since 1.0.0
 	 */
 	public function enqueue_scripts() {
+
 
 		wp_register_script(
 			"{$this->plugin_name}-manifest",
@@ -235,7 +236,7 @@ class Addonify_Quick_View_Admin {
 	 */
 	public function get_settings_screen_contents() {
 		?>
-		<div id="___adfy-quickview-app___"></div>
+		<div id="addonify-quick-view-app"></div>
 		<?php
 	}
 }

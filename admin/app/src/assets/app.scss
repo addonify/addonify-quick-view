@@ -1,0 +1,27 @@
+/**----------------------------------------------
+-  Tailwind base, components, utilities.
+-----------------------------------------------*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**----------------------------------------------
+-  Base style specific to wp.
+-----------------------------------------------*/
+@import "./base/doc";
+@import "./base/links";
+@import "./base/forms";
+@import "./base/swal";
+
+/**----------------------------------------------
+-  Input controls.
+-----------------------------------------------*/
+@import "./controls/text";
+@import "./controls/color";
+@import "./controls/radio";
+@import "./controls/upload";
+@import "./controls/select";
+@import "./controls/slider";
+@import "./controls/textarea";
+@import "./controls/checkbox";
+

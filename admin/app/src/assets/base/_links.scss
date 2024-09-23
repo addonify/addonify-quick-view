@@ -1,0 +1,12 @@
+/**----------------------------------------------
+-  Links.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	a {
+		@apply transition-all duration-300 ease-in;
+
+		&:is(:hover, :focus) {
+			@apply no-underline shadow-none outline-offset-0 outline-0;
+		}
+	}
+}
