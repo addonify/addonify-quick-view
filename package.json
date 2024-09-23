@@ -19,6 +19,7 @@
 		"@wordpress/i18n": "^5.7.0",
 		"lucide-vue-next": "^0.441.0",
 		"pinia": "^2.2.2",
+		"sweetalert2": "^11.14.1",
 		"vue": "^3.5.6",
 		"vue-router": "^4.4.5"
 	},

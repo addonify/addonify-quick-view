@@ -28,6 +28,8 @@ const widthClass = (item: Option): string => {
 		? "grid-cols-1 gap-4"
 		: "grid-cols-2 gap-10 justify-between";
 };
+
+//console.log(sections);
 </script>
 
 <template>

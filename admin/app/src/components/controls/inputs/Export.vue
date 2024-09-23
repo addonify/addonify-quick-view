@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { __ } from "@wordpress/i18n";
-import { ArrowDownToLine } from "lucide-vue-next";
+import { Download } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { useSettingsStore } from "@/stores/settings";
 
@@ -53,7 +53,7 @@ const handleExport = async (): Promise<void> => {
 		:disabled="loading"
 		@click="handleExport()"
 	>
-		<ArrowDownToLine v-if="!loading" :size="18" />
+		<Download v-if="!loading" :size="18" />
 
 		{{ buttonLabel ?? __("Export", "addonify-quick-view") }}
 	</Button>

@@ -35,11 +35,11 @@ const value = computed({
 			<el-radio-group v-model="value">
 				<el-radio
 					v-for="(v, k) in choices"
-					:label="k"
+					:value="k"
 					size="large"
 					:border="true"
 				>
-					<span class="size-6 inline-flex" v-html="v"></span>
+					<span class="size-[22px] inline-flex" v-html="v"></span>
 				</el-radio>
 			</el-radio-group>
 		</div>
@@ -47,7 +47,7 @@ const value = computed({
 
 	<template v-else>
 		<el-radio-group v-model="value" v-for="(v, k) in choices">
-			<el-radio :label="k">{{ v }}</el-radio>
+			<el-radio :value="k">{{ v }}</el-radio>
 		</el-radio-group>
 	</template>
 </template>
