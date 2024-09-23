@@ -110,9 +110,6 @@ class Addonify_Quick_View_Public {
 		}
 
 		$this->quick_view_button_label = addonify_quick_view_get_option( 'quick_view_btn_label' );
-		if ( ! $this->quick_view_button_label ) {
-			$this->quick_view_button_label = esc_html__( 'Quick view', 'addonify-quick-view' );
-		}
 
 		$this->display_quick_view_button_icon  = addonify_quick_view_get_option( 'enable_quick_view_btn_icon' );
 		$this->quick_view_button_icon_position = addonify_quick_view_get_option( 'quick_view_btn_icon_position' );
@@ -147,6 +144,21 @@ class Addonify_Quick_View_Public {
 		if ( 'after_add_to_cart_button' === $quick_view_btn_position ) {
 
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'render_addonify_quick_view_button' ), 15 );
+		}
+
+		if ( 'over_image' === $quick_view_btn_position ) {
+
+			add_action(
+				'body_class',
+				function ( $classes ) {
+
+					$classes[] = 'addonify-qv-btn-over-image';
+
+					return $classes;
+				}
+			);
+
+			add_action( 'woocommerce_before_shop_loop_item_title', array( $this, 'render_addonify_quick_view_button' ), 15 );
 		}
 
 		// Add custom markup into footer.
@@ -322,7 +334,15 @@ class Addonify_Quick_View_Public {
 
 		global $product;
 
-		if ( apply_filters( 'addonify_quick_view_render_button', true, $product ) ) {
+		if (
+			$product instanceof WC_Product &&
+			apply_filters( 'addonify_quick_view_render_button', true, $product ) &&
+			(
+				! empty( $this->quick_view_button_label ) ||
+				'1' === $this->display_quick_view_button_icon
+			)
+		) {
+
 			$button_icon        = '';
 			$icon_position      = '';
 			$button_css_classes = array( 'button', 'addonify-qvm-button' );
@@ -387,7 +407,13 @@ class Addonify_Quick_View_Public {
 
 		$product = wc_get_product( $product_id );
 
-		if ( apply_filters( 'addonify_quick_view_render_button', true, $product ) ) {
+		if (
+			apply_filters( 'addonify_quick_view_render_button', true, $product ) &&
+			(
+				! empty( $shortcode_atts['label'] ) ||
+				! empty( $shortcode_atts['icon'] )
+			)
+		) {
 
 			$icon          = false;
 			$icon_position = false;
@@ -403,13 +429,14 @@ class Addonify_Quick_View_Public {
 			$classes = array(
 				'button',
 				'addonify-qvm-button',
+				'addonify-qv-shortcode-button',
 				$shortcode_atts['classes'],
 			);
 
 			return apply_filters(
 				'addonify_quick_view_shortcode_button_html',
 				sprintf(
-					'<button class="%s" data-product_id="%s" %s><span class="label">%s</span>%s</button>',
+					'<button type="button" class="%s" data-product_id="%s" %s><span class="label">%s</span>%s</button>',
 					esc_attr( implode( ' ', $classes ) ),
 					esc_attr( $product_id ),
 					( $icon_position ) ? 'data-icon_position="' . esc_attr( $icon_position ) . '"' : '',
@@ -516,7 +543,6 @@ class Addonify_Quick_View_Public {
 			'modal_general_text_font_size'                => addonify_quick_view_get_option( 'modal_general_text_font_size' ) . 'px',
 			'product_title_font_size'                     => addonify_quick_view_get_option( 'modal_product_title_font_size' ) . 'px',
 			'product_title_font_weight'                   => addonify_quick_view_get_option( 'modal_product_title_font_weight' ),
-			'product_title_line_height'                   => addonify_quick_view_get_option( 'modal_product_title_line_height' ),
 			'product_title_line_height'                   => addonify_quick_view_get_option( 'modal_product_title_line_height' ),
 			'product_price_font_size'                     => addonify_quick_view_get_option( 'modal_product_price_font_size' ) . 'px',
 			'product_price_font_weight'                   => addonify_quick_view_get_option( 'modal_product_price_font_weight' ),
