@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { SlidersHorizontal } from "lucide-vue-next";
 import { useSettingsStore } from "@/stores/settings";
+import { Coffee, SlidersHorizontal } from "lucide-vue-next";
 
 const store = useSettingsStore();
 
@@ -43,6 +43,20 @@ const getLink = (path: number): string => "/s/" + path;
 					</span>
 
 					<span>{{ item.title }}</span>
+				</RouterLink>
+			</li>
+
+			<li class="w-full flex flex-row items-center gap-x-2">
+				<RouterLink
+					to="/products"
+					activeClass="bg-white text-blue-500 fill-blue-500 shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
+					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
+				>
+					<span class="size-6 inline-flex items-center relative leading-3">
+						<Coffee :size="24" :stroke-width="2" class="leading-3" />
+					</span>
+
+					<span>Products</span>
 				</RouterLink>
 			</li>
 		</ul>

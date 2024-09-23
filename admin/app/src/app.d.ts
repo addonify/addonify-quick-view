@@ -56,3 +56,45 @@ export interface SettingTab {
 		};
 	};
 }
+
+export interface InstalledAddon {
+	name: string;
+	plugin: string;
+	status: string;
+	author: string;
+	author_uri: string;
+	plugin_uri: string;
+	description: {
+		raw: string;
+		rendered: string;
+	};
+	version: string;
+	textdomain: string;
+	requires_wp: string;
+	requires_php: string;
+	network_only: boolean;
+	_links: {
+		self: [
+			{
+				[key: string]: string;
+			}
+		];
+	};
+}
+
+export interface Products {
+	name: string;
+	description: string;
+	thumbnail: string;
+	category: string;
+	status: string;
+}
+
+export interface RecommendationData {
+	author: string;
+	version: string;
+	license: string;
+	data: {
+		hot: Products[];
+	};
+}
