@@ -150,9 +150,29 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * Callback function to get all settings options values.
 		 *
 		 * @since 1.2.17
+		 *
+		 * @param \WP_REST_Request $request    The request object.
+		 * @return \WP_REST_Response $return_data   The response object.
 		 */
-		public function rest_handler_get_setting_sections_fields() {
-			return addonify_quick_view_get_settings_sections_fields();
+		public function rest_handler_get_setting_sections_fields( $request ) {
+
+			$return_data = array(
+				'success' => false,
+				'message' => esc_html__( 'Oops, error getting settings!!!', 'addonify-quick-view' ),
+			);
+
+			$nonce = $request->get_param( 'nonce' );
+
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
+
+			$return_data['success'] = true;
+			$return_data['message'] = esc_html__( 'successfully fetched data.', 'addonify-quick-view' );
+			$return_data['data']    = addonify_quick_view_get_settings_sections_fields();
+
+			return rest_ensure_response( $return_data );
 		}
 
 
@@ -172,6 +192,11 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			);
 
 			$params = $request->get_params();
+
+			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
 			if ( ! isset( $params['settings_values'] ) ) {
 
@@ -205,6 +230,11 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$params = $request->get_params();
 
+			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
+
 			if ( ! isset( $params['settings_values'] ) ) {
 
 				$return_data['message'] = esc_html__( 'No settings values to update!!!', 'addonify-quick-view' );
@@ -227,15 +257,27 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 */
 		public function reset_settings() {
 
+			$return_data = array(
+				'success' => false,
+				'message' => esc_html__( 'Ooops, error while resetting settings!!!', 'addonify-quick-view' ),
+			);
+
+			$params = $request->get_params();
+
+			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
+
 			$setting_defaults = addonify_quick_view_setting_defaults();
 			foreach ( $setting_defaults as $key => $value ) {
 				update_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $key, $value );
 			}
 
-			return array(
-				'success' => true,
-				'message' => esc_html__( 'Options resetted sucessfully', 'addonify-quick-view' ),
-			);
+			$return_data['success'] = true;
+			$return_data['message'] = esc_html__( 'Options resetted sucessfully', 'addonify-quick-view' );
+
+			return rest_ensure_response( $return_data );
 		}
 
 		/**
@@ -244,6 +286,18 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * @since 1.2.17
 		 */
 		public function export_settings() {
+			$return_data = array(
+				'success' => false,
+				'message' => esc_html__( 'Unable to write on server.', 'addonify-quick-view' ),
+			);
+
+
+			$params = $request->get_params();
+
+			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
 			global $wpdb;
 
@@ -267,12 +321,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				);
 			}
 
-			return new WP_REST_Response(
-				array(
-					'success' => false,
-					'message' => esc_html__( 'Unable to write on server.', 'addonify-quick-view' ),
-				)
-			);
+			return rest_ensure_response( $return_data );
 		}
 
 		/**
@@ -281,6 +330,18 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * @since 1.2.17
 		 */
 		public function import_settings() {
+			$return_data = array(
+				'success' => false,
+				'message' => esc_html__( 'Unable to import settings.', 'addonify-quick-view' ),
+			);
+
+
+			$nonce = $request->get_params( 'nonce' );
+
+			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid nonce', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
 			if ( empty( $_FILES ) ) {
 				return new WP_REST_Response(

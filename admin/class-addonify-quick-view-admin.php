@@ -126,6 +126,7 @@ class Addonify_Quick_View_Admin {
 				'adfy_wp_locolizer',
 				array(
 					'admin_url'      => esc_url( admin_url( '/' ) ),
+					'admin_nonce'    => wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
 					'ajax_url'       => esc_url( admin_url( 'admin-ajax.php' ) ),
 					'rest_namespace' => 'addonify_quick_view_options_api',
 					'version_number' => $this->version,
