@@ -10,7 +10,10 @@ const store = useSettingsStore();
 </script>
 
 <template>
-	<main id="app-divider" class="w-full flex flex-row relative">
+	<main
+		id="app-divider"
+		class="w-full max-w-[1600px] mx-auto flex flex-row relative"
+	>
 		<template v-if="store.settings && store.data">
 			<Tabs v-if="store.settings" />
 			<Primary v-if="store.data && store.settings">
