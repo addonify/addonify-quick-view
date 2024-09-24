@@ -28,9 +28,9 @@ const renderBox = computed(() => {
 		return false;
 	}
 
-	const section = store.settings[slug.value];
+	const section = store.settings[slug.value] || null;
 
-	return section && Object.keys(section).length > 0;
+	return section && Object.keys(section).length > 0 ? true : false;
 });
 </script>
 <template>
@@ -41,7 +41,6 @@ const renderBox = computed(() => {
 					v-for="(sections, key) in store.settings[slug]?.sections"
 					:key="key"
 					:sections="sections"
-					:reactive="store.data"
 				/>
 			</form>
 		</template>
