@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { __ } from "@wordpress/i18n";
+import { useRouter } from "vue-router";
 import { Upload } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
+import { useSettingsStore } from "@/stores/settings";
 
 interface Props {
 	note?: string | null;
@@ -24,14 +26,18 @@ const fileList = ref([]);
 
 const importing = ref(false);
 
+const router = useRouter();
+
+const store = useSettingsStore();
+
 /**
  * Process the JSON file and upload it.
  *
  * @param {File} raw
- * @return {void} void
+ * @return {Promise<void>}
  * @since: 2.0.0
  */
-const processUpload = (raw: string): void => {
+const handleUpload = async (raw: string): Promise<void> => {
 	const blob = new Blob([raw], {
 		type: "application/json",
 	});
@@ -41,33 +47,64 @@ const processUpload = (raw: string): void => {
 	const name = "addonify-quick-view-settings-backup";
 
 	formData.append(name + "_import_file", blob, name + "_import_file.json");
+
+	/**
+	 * Send the form data to the store.
+	 */
+	importing.value = true;
+
+	const options = {
+		duration: 5000,
+		position: "top-center",
+	};
+
+	const success = await store.import(formData).catch((message) => {
+		toast({
+			...options,
+			type: "error",
+			message: message,
+		});
+	});
+
+	if (success) {
+		toast({
+			...options,
+			type: "success",
+			message: __("Success! options imported.", "addonify-quick-view"),
+		});
+	}
+
+	importing.value = false;
+
+	window.location.reload();
 };
 
 /**
- * Verify file type.
+ * Verify the uploaded file.
  *
  * @param {File} raw
  * @return {void}
  * @since: 2.0.0
  */
 const verify = (raw: string): void => {
-	if (raw.type == "application/json") {
-		/**
-		 * Case: File is JSON.
-		 * Handle the file upload.
-		 */
-		processUpload(raw);
+	if (!raw || raw.type !== "application/json") {
+		return toast({
+			type: "error",
+			duration: 10000,
+			position: "top-center",
+			message: __("Failed, please upload JSON file.", "addonify-quick-view"),
+		});
 	}
 
-	// Clear the upload list
-	fileList.value = [];
+	/**
+	 * Send the uploaded file to the handle method.
+	 */
+	handleUpload(raw);
 
-	toast({
-		type: "error",
-		duration: 5000,
-		position: "top-center",
-		message: __("Failed, please upload JSON file.", "addonify-quick-view"),
-	});
+	/**
+	 * Clear the upload list
+	 */
+	fileList.value = [];
 };
 </script>
 

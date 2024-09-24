@@ -73,7 +73,9 @@ export const useSettingsStore = defineStore("settings", {
 
 	actions: {
 		/**
-		 * Function to get the settings.
+		 * Get the settings reactive data and settings fields.
+		 *
+		 * Updates the states.
 		 *
 		 * @returns {Promise<ISettings>}
 		 * @since 2.0.0
@@ -91,22 +93,26 @@ export const useSettingsStore = defineStore("settings", {
 			 */
 			const [e, res]: [Error | null, ISettings] = await useFetch(url, "GET");
 
-			if (res && Object.keys(res).length > 0) {
-				/**
-				 * Set the settings.
-				 */
-				this.settings = res.tabs;
-
-				/**
-				 * Set settings defaults and user defined values.
-				 */
-				this.data = res.settings_values;
-
-				/**
-				 * Clone the data to compare with the settings.
-				 */
-				this.dataStatic = clone(this.data);
+			if (e || !res || !Object.keys(res).length) {
+				throw new Error(
+					__("Failed, fetching settings.", "addonify-quick-view")
+				);
 			}
+
+			/**
+			 * Set the settings.
+			 */
+			this.settings = res.tabs;
+
+			/**
+			 * Set settings defaults and user defined values.
+			 */
+			this.data = res.settings_values;
+
+			/**
+			 * Clone the data to compare with the settings.
+			 */
+			this.dataStatic = clone(this.data);
 
 			/**
 			 * Set the loading state.
@@ -176,22 +182,85 @@ export const useSettingsStore = defineStore("settings", {
 		/**
 		 * Export settings.
 		 *
-		 * @returns {Promise<any>}
+		 * Get the JSON file link to download.
+		 *
+		 * Init the download process programmatically.
+		 *
+		 * @returns {Promise<boolean>}
+		 * @since 2.0.0
 		 */
-		async export(): Promise<void> {},
+		async export(): Promise<boolean> {
+			/**
+			 * Export the settings.
+			 */
+			const endpoint = "addonify_wishlist_options_api/v2/export";
+
+			const [e, res]: [Error | null, any] = await useFetch(endpoint, "GET");
+
+			if (e || !res || !res.success) {
+				throw new Error(
+					__("Failed, exporting settings.", "addonify-quick-view")
+				);
+			}
+
+			const url: string = res.url;
+
+			/**
+			 * Create the JSON file link.
+			 */
+			let link = document.createElement("a");
+
+			link.href = url;
+
+			const name = `addonify-quick-view-settings-${new Date().getDate()}.json`;
+
+			link.setAttribute("download", name);
+
+			document.body.appendChild(link);
+
+			link.click();
+
+			return true;
+		},
 
 		/**
 		 * Import settings.
 		 *
-		 * @returns {Promise<any>}
+		 * Upload the JSON file to the rest api endpoint.
+		 *
+		 * @param {FormData} data
+		 * @returns {Promise<boolean>}
+		 * @since 2.0.0
 		 */
-		async import(): Promise<void> {},
+		async import(data: FormData): Promise<boolean> {
+			/**
+			 * Import the settings.
+			 */
+			const endpoint = "addonify_wishlist_options_api/v2/import";
+
+			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST", {
+				data: data,
+			});
+
+			if (e || !res || !res.success) {
+				throw new Error(
+					__("Failed, importing settings.", "addonify-quick-view")
+				);
+			}
+
+			return true;
+		},
 
 		/**
 		 * Reset settings.
 		 *
-		 * @returns {Promise<any>}
+		 * Sets the settings to default values.
+		 *
+		 * @returns {Promise<boolean>}
+		 * @since 2.0.0
 		 */
-		async reset(): Promise<void> {},
+		async reset(): Promise<boolean> {
+			return true;
+		},
 	},
 });
