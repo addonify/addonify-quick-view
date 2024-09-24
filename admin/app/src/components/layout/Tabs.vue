@@ -16,11 +16,11 @@ const getLink = (path: number): string => "/s/" + path;
 
 <template>
 	<div id="app-tabs" class="w-full max-w-[250px] flex flex-col">
-		<ul class="p-0 m-0 w-full flex flex-col gap-2 list-none">
+		<ul class="p-0 m-0 w-full flex flex-col gap-1 list-none">
 			<li
 				v-for="(item, key) in store.settings"
 				:key="key"
-				class="w-full flex flex-row items-center gap-x-2"
+				class="p-0 m-0 w-full flex flex-row items-center gap-x-2"
 			>
 				<RouterLink
 					:to="getLink(key)"
@@ -46,7 +46,7 @@ const getLink = (path: number): string => "/s/" + path;
 				</RouterLink>
 			</li>
 
-			<li class="w-full flex flex-row items-center gap-x-2">
+			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
 				<RouterLink
 					to="/products"
 					activeClass="bg-white text-blue-500 fill-blue-500 shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"

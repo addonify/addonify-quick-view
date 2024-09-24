@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
+import { __ } from "@wordpress/i18n";
 import { useFetch } from "@/utils/http";
-import { sleep, isEqual } from "@/utils/helpers";
+import { isEqual, clone } from "@/utils/helpers";
 
 import type { ISettings, SettingValue } from "@/app";
 
@@ -11,6 +12,7 @@ import type { ISettings, SettingValue } from "@/app";
  */
 interface State {
 	data: SettingValue | null;
+	dataStatic: SettingValue | null;
 	settings: ISettings | null;
 	loading: boolean;
 	saving: boolean;
@@ -29,8 +31,15 @@ export const useSettingsStore = defineStore("settings", {
 		<State>{
 			/**
 			 * Option defaults/values data.
+			 * This is a reactive state and will be updated when the user changes the settings.
 			 */
 			data: null,
+
+			/**
+			 * Non reactive data.
+			 * This state is the initial clone of "data" state.
+			 */
+			dataStatic: null,
 
 			/**
 			 * All settings.
@@ -58,7 +67,7 @@ export const useSettingsStore = defineStore("settings", {
 		 * @since 2.0.0
 		 */
 		haveChanges: (state: State): boolean => {
-			return isEqual(state.data, state.settings) ? false : true;
+			return isEqual(state.data, state.dataStatic) ? false : true;
 		},
 	},
 
@@ -92,6 +101,11 @@ export const useSettingsStore = defineStore("settings", {
 				 * Set settings defaults and user defined values.
 				 */
 				this.data = res.settings_values;
+
+				/**
+				 * Clone the data to compare with the settings.
+				 */
+				this.dataStatic = clone(this.data);
 			}
 
 			/**
@@ -105,25 +119,70 @@ export const useSettingsStore = defineStore("settings", {
 		/**
 		 * Update settings.
 		 *
-		 * @param {any} data
-		 * @returns {Promise<any>}
+		 * Check for the changes and update the settings.
+		 *
+		 * If the update is successful, update the "data" and "dataStatic" states.
+		 *
+		 * @returns {Promise<boolean>}
+		 * @since 2.0.0
 		 */
-		async update(): Promise<void> {},
+		async update(): Promise<boolean> {
+			/**
+			 * Set the saving state.
+			 */
+			this.saving = true;
+
+			/**
+			 * Find the options to be updated comparing with the dataStatic.
+			 */
+			const data: SettingValue = new Object();
+
+			for (const k in this.data) {
+				if (!isEqual(this.data[k], this.dataStatic[k])) {
+					data[k] = this.data[k];
+				}
+			}
+
+			console.log(data);
+
+			/**
+			 * Update the settings.
+			 */
+			const endpoint = "addonify_wishlist_options_api/v2/update_options";
+
+			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST", {
+				data: data,
+			});
+
+			/**
+			 * Set the saving state.
+			 */
+			this.saving = false;
+
+			if (e || !res || !res.success) {
+				throw new Error(__("Failed updating settings.", "addonify-quick-view"));
+			}
+
+			/**
+			 * Update the "dataStatic" states.
+			 */
+			this.dataStatic = new Object();
+
+			this.dataStatic = clone(this.data);
+
+			return true;
+		},
 
 		/**
 		 * Export settings.
 		 *
-		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
-		async export(): Promise<void> {
-			await sleep(3000);
-		},
+		async export(): Promise<void> {},
 
 		/**
 		 * Import settings.
 		 *
-		 * @param {any} data
 		 * @returns {Promise<any>}
 		 */
 		async import(): Promise<void> {},

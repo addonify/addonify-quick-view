@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watchEffect } from "vue";
 import { __ } from "@wordpress/i18n";
 import { Save } from "lucide-vue-next";
+import { toast } from "@steveyuowo/vue-hot-toast";
+import { useSettingsStore } from "@/stores/settings";
 
 import Logo from "@/components/global/Logo.vue";
 import Button from "@/components/global/Button.vue";
+
+const store = useSettingsStore();
 
 /**
  * Get the WordPress localized data.
@@ -12,14 +16,49 @@ import Button from "@/components/global/Button.vue";
 const { version } = window.addonifyQuickViewLocals;
 
 /**
- * Computed function to check if the save button is disabled.
+ * Get the button text.
  *
- * @returns {boolean}
+ * @returns {string}
  * @since 2.0.0
  */
-const disableCompute = computed(() => {
-	return true;
+const btnLabel = computed((): string => {
+	return store.saving
+		? __("Saving...", "addonify-quick-view")
+		: __("Save options", "addonify-quick-view");
 });
+
+/**
+ * Handle the button click event.
+ *
+ * @returns {Promise<void>}
+ * @since 2.0.0
+ */
+const handleUpdate = async (): Promise<void> => {
+	if (store.loading) {
+		return;
+	}
+
+	const options = {
+		duration: 5000,
+		position: "top-center",
+	};
+
+	const success = await store.update().catch((message) => {
+		toast({
+			...options,
+			type: "error",
+			message: message,
+		});
+	});
+
+	if (success) {
+		toast({
+			...options,
+			type: "success",
+			message: __("Success! options updated.", "addonify-quick-view"),
+		});
+	}
+};
 </script>
 
 <template>
@@ -36,10 +75,16 @@ const disableCompute = computed(() => {
 				v{{ version }}
 			</span>
 		</div>
+
 		<div class="flex flex-row items-center gap-x-3">
-			<Button :disabled="disableCompute">
-				{{ __("Save Options", "addonify-quick-view") }}
-				<Save :size="18" />
+			<Button
+				:loading="store.saving"
+				:disabled="store.saving || !store.haveChanges"
+				@click="handleUpdate()"
+			>
+				{{ btnLabel }}
+
+				<Save v-if="!store.saving" :size="18" />
 			</Button>
 		</div>
 	</header>
