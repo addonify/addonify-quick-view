@@ -126,8 +126,6 @@ class Addonify_Quick_View {
 
 		require_once plugin_dir_path( __DIR__ ) . 'includes/plugin-setting-defaults.php';
 
-		require_once plugin_dir_path( __DIR__ ) . 'includes/functions/settings.php';
-
 		require_once plugin_dir_path( __DIR__ ) . 'includes/functions/settings-v2.php';
 
 		require_once plugin_dir_path( __DIR__ ) . 'includes/addonify-quick-view-template-functions.php';
