@@ -11,6 +11,7 @@ import Switch from "@/components/controls/inputs/Switch.vue";
 import Number from "@/components/controls/inputs/Number.vue";
 import Upload from "@/components/controls/inputs/Upload.vue";
 import Export from "@/components/controls/inputs/Export.vue";
+import Checkbox from "@/components/controls/inputs/Checkbox.vue";
 import Textarea from "@/components/controls/inputs/Textarea.vue";
 
 import type { Option } from "@/app";
@@ -70,6 +71,13 @@ const store = useSettingsStore();
 
 	<Radio
 		v-else-if="input === 'radio'"
+		v-model="store.data[k]"
+		:design="control.design"
+		:choices="control.choices || []"
+	/>
+
+	<Checkbox
+		v-else-if="input === 'checkbox'"
 		v-model="store.data[k]"
 		:design="control.design"
 		:choices="control.choices || []"

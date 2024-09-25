@@ -38,16 +38,12 @@ if ( ! function_exists( 'addonify_quick_view_general_fields' ) ) {
 					'label'       => esc_html__( 'Enable Quick View', 'addonify-quick-view' ),
 					'description' => esc_html__( 'If disabled, quick view features will be disabled completely.', 'addonify-quick-view' ),
 					'type'        => 'switch',
-					'classname'   => '',
-					'badge'       => 'Required',
 					'value'       => addonify_quick_view_get_option( 'enable_quick_view' ),
 				),
 				'disable_quick_view_on_mobile_device' => array(
 					'label'       => esc_html__( 'Disable on Mobile Devices', 'addonify-quick-view' ),
 					'description' => esc_html__( 'If enabled, quick view will be disabled on mobile devices.', 'addonify-quick-view' ),
 					'type'        => 'switch',
-					'classname'   => '',
-					'dependent'   => array( 'enable_quick_view' ),
 					'value'       => addonify_quick_view_get_option( 'disable_quick_view_on_mobile_device' ),
 				),
 			)
@@ -67,7 +63,6 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_fields' ) ) {
 					'label'       => esc_html__( 'Enable dymanic styles', 'addonify-quick-view' ),
 					'description' => esc_html__( 'Once enabled, below selected option will overwrite the default plugin stylesheet.', 'addonify-quick-view' ),
 					'type'        => 'switch',
-					'classname'   => '',
 					'value'       => addonify_quick_view_get_option( 'enable_plugin_styles' ),
 				),
 				'custom_css'           => array(
@@ -76,7 +71,6 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_fields' ) ) {
 					'type'           => 'textarea',
 					'width'					 => 'full',
 					'placeholder'    => '#app { color: blue; }',
-					'dependent'      => array( 'enable_plugin_styles' ),
 					'value'          => addonify_quick_view_get_option( 'custom_css' ),
 				),
 			)

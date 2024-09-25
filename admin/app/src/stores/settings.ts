@@ -95,8 +95,6 @@ export const useSettingsStore = defineStore("settings", {
 			 */
 			const [e, res]: [Error | null, ISettings] = await useFetch(url, "GET");
 
-			console.log(res);
-
 			if (e || !res || !Object.keys(res).length) {
 				throw new Error(
 					__("Failed, fetching settings.", "addonify-quick-view")
