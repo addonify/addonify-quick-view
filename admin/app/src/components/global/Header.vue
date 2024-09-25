@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watchEffect } from "vue";
+import { computed } from "vue";
 import { __ } from "@wordpress/i18n";
 import { Save } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
