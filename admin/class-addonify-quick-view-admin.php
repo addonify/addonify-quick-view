@@ -68,16 +68,16 @@ class Addonify_Quick_View_Admin {
 	 */
 	public function enqueue_styles() {
 
-		if ( isset( $_GET['page'] ) && $_GET['page'] === $this->settings_page_slug ) { // phpcs:ignore
+		//if ( isset( $_GET['page'] ) && $_GET['page'] === $this->settings_page_slug ) { // phpcs:ignore
 
-			wp_enqueue_style(
-				$this->plugin_name,
-				plugin_dir_url( __FILE__ ) . 'assets/css/admin.css',
-				array(),
-				$this->version,
-				'all'
-			);
-		}
+		//	wp_enqueue_style(
+		//		$this->plugin_name,
+		//		plugin_dir_url( __FILE__ ) . 'admin.css',
+		//		array(),
+		//		$this->version,
+		//		'all'
+		//	);
+		//}
 	}
 
 	/**

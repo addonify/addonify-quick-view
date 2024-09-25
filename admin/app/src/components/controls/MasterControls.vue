@@ -4,13 +4,13 @@ import { useSettingsStore } from "@/stores/settings";
 
 import Text from "@/components/controls/inputs/Text.vue";
 import Color from "@/components/controls/inputs/Color.vue";
+import Radio from "@/components/controls/inputs/Radio.vue";
+import Reset from "@/components/controls/inputs/Reset.vue";
 import Select from "@/components/controls/inputs/Select.vue";
 import Switch from "@/components/controls/inputs/Switch.vue";
 import Number from "@/components/controls/inputs/Number.vue";
 import Upload from "@/components/controls/inputs/Upload.vue";
 import Export from "@/components/controls/inputs/Export.vue";
-import Radio from "@/components/controls/inputs/Radio.vue";
-import Reset from "@/components/controls/inputs/Reset.vue";
 import Textarea from "@/components/controls/inputs/Textarea.vue";
 
 import type { Option } from "@/app";
