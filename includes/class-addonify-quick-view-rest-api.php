@@ -211,12 +211,13 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			}
 
 			$setting_defaults = addonify_quick_view_setting_defaults();
+
 			foreach ( $setting_defaults as $key => $value ) {
 				update_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $key, $value );
 			}
 
 			$return_data['success'] = true;
-			$return_data['message'] = esc_html__( 'Options resetted sucessfully', 'addonify-quick-view' );
+			$return_data['message'] = esc_html__( 'Settings reset successfully!', 'addonify-quick-view' );
 
 			return rest_ensure_response( $return_data );
 		}
