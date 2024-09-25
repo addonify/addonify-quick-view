@@ -59,19 +59,13 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_fields' ) ) {
 		return apply_filters(
 			'addonify_quick_view_general_styles_fields',
 			array(
-				'enable_plugin_styles' => array(
-					'label'       => esc_html__( 'Enable dymanic styles', 'addonify-quick-view' ),
-					'description' => esc_html__( 'Once enabled, below selected option will overwrite the default plugin stylesheet.', 'addonify-quick-view' ),
-					'type'        => 'switch',
-					'value'       => addonify_quick_view_get_option( 'enable_plugin_styles' ),
-				),
-				'custom_css'           => array(
-					'label'          => esc_html__( 'Additional CSS', 'addonify-quick-view' ),
-					'description'    => esc_html__( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
-					'type'           => 'textarea',
-					'width'					 => 'full',
-					'placeholder'    => '#app { color: blue; }',
-					'value'          => addonify_quick_view_get_option( 'custom_css' ),
+				'custom_css' => array(
+					'label'       => esc_html__( 'Additional CSS', 'addonify-quick-view' ),
+					'description' => esc_html__( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
+					'type'        => 'textarea',
+					'width'       => 'full',
+					'placeholder' => '#app { color: blue; }',
+					'value'       => addonify_quick_view_get_option( 'custom_css' ),
 				),
 			)
 		);

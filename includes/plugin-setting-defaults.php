@@ -57,9 +57,6 @@ if ( ! function_exists( 'addonify_quick_view_setting_defaults' ) ) {
 				'wc_gallery_trigger_icon_border_radius'  => 10, // since 1.2.8.
 				'read_more_button_label'                 => esc_html__( 'View Detail', 'addonify-quick-view' ),
 
-				// Styles.
-				'enable_plugin_styles'                   => '1',
-
 				// Quick view button.
 				'quick_view_button_text_color'           => 'rgba(255, 255, 255, 1)',
 				'quick_view_button_text_color_hover'     => 'rgba(255, 255, 255, 1)',

@@ -57,7 +57,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'rest_handler_get_setting_sections_fields' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
 					),
 				)
 			);
