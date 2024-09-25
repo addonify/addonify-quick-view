@@ -29,6 +29,8 @@ const value = computed({
 	get: () => modelValue,
 	set: (val) => emit("update:modelValue", val),
 });
+
+console.log(value.value);
 </script>
 
 <template>
