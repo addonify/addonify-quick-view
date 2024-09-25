@@ -2,8 +2,17 @@ const { apiFetch } = window.wp;
 
 interface FetchArgs {
 	data?: any;
+	body?: any;
 	headers?: Record<string, string>;
 }
+
+/**
+ * Get the nonce from the wp_localize script.
+ *
+ * @var $nonce
+ * @since 2.0.0
+ */
+const nonce = window.addonifyQuickViewLocals.nonce;
 
 /**
  * Function that wraps apiFetch function.
@@ -24,8 +33,13 @@ export const useFetch = async (
 	const [e, res] = await apiFetch({
 		path,
 		method,
-		headers: { "cache-control": "no-cache", ...arg?.headers },
 		data: arg?.data ? arg.data : null,
+		body: arg?.body ? arg.body : null,
+		headers: {
+			"X-WP-ADMIN-NONCE": nonce,
+			"cache-control": "no-cache",
+			...arg?.headers,
+		},
 	})
 		.then((result: any) => {
 			return [null, result || null];
