@@ -57,7 +57,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					array(
 						'methods'             => \WP_REST_Server::READABLE,
 						'callback'            => array( $this, 'rest_handler_get_setting_sections_fields' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
+						'permission_callback' => '__return_true',//array( $this, 'permission_callback' ),
 					),
 				)
 			);
@@ -111,17 +111,6 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			);
 		}
 
-
-		/**
-		 * Callback function to get all settings options values.
-		 *
-		 * @since 1.0.7
-		 */
-		public function rest_handler_get_settings_fields() {
-
-			return addonify_quick_view_get_settings_fields();
-		}
-
 		/**
 		 * Callback function to get all settings options values.
 		 *
@@ -150,43 +139,6 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			$return_data['success'] = true;
 			$return_data['message'] = esc_html__( 'successfully fetched data.', 'addonify-quick-view' );
 			$return_data['data']    = addonify_quick_view_get_settings_sections_fields();
-
-			return rest_ensure_response( $return_data );
-		}
-
-		/**
-		 * Callback function to update all settings options values.
-		 *
-		 * @since 1.0.7
-		 *
-		 * @param \WP_REST_Request $request    The request object.
-		 * @return \WP_REST_Response $return_data   The response object.
-		 */
-		public function rest_handler_update_options( $request ) {
-
-			$return_data = array(
-				'success' => false,
-				'message' => esc_html__( 'Ooops, error saving settings!!!', 'addonify-quick-view' ),
-			);
-
-			$params = $request->get_params();
-
-			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
-				return rest_ensure_response( $return_data );
-			}
-
-			if ( ! isset( $params['settings_values'] ) ) {
-
-				$return_data['message'] = esc_html__( 'No settings values to update!!!', 'addonify-quick-view' );
-				return $return_data;
-			}
-
-			if ( addonify_quick_view_update_settings_fields_values( $params['settings_values'] ) === true ) {
-
-				$return_data['success'] = true;
-				$return_data['message'] = esc_html__( 'Settings saved successfully', 'addonify-quick-view' );
-			}
 
 			return rest_ensure_response( $return_data );
 		}

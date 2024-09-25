@@ -211,7 +211,7 @@ class Addonify_Quick_View_Public {
 			'all'
 		);
 
-		if ( (int) addonify_quick_view_get_option( 'enable_plugin_styles' ) === 1 ) {
+		if ( addonify_quick_view_get_option( 'custom_css' ) ) {
 
 			$inline_css = $this->dynamic_css();
 
