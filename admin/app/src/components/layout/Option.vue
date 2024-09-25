@@ -28,8 +28,6 @@ const widthClass = (item: Option): string => {
 		? "grid-cols-1 gap-4"
 		: "grid-cols-2 gap-10 justify-between";
 };
-
-//console.log(sections);
 </script>
 
 <template>
@@ -37,8 +35,8 @@ const widthClass = (item: Option): string => {
 		<div
 			v-for="(item, k) in sections"
 			:key="k"
-			class="addonify-option pb-10 w-full grid last:pb-0 border-b last:border-b-0 border-dashed border-gray-200"
 			:class="widthClass(item)"
+			class="addonify-option pb-10 w-full grid last:pb-0 border-b last:border-b-0 border-dashed border-gray-200"
 		>
 			<OptionTitle :label="item.label" :description="item.description" />
 

@@ -32,8 +32,6 @@ const renderBox = computed(() => {
 
 	return section && Object.keys(section).length > 0 ? true : false;
 });
-
-console.log(renderBox);
 </script>
 <template>
 	<div id="app-primary" class="m-0 p-0 w-full flex flex-col">

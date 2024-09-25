@@ -38,7 +38,6 @@ if ( ! function_exists( 'addonify_quick_view_button_fields' ) ) {
 					'label'       => esc_html__( 'Button Position', 'addonify-quick-view' ),
 					'description' => esc_html__( 'Choose where you want to display the quick view button.', 'addonify-quick-view' ),
 					'type'        => 'select',
-					'dependent'   => array( 'enable_quick_view' ),
 					'placeholder' => esc_html__( 'Select Position', 'addonify-quick-view' ),
 					'choices'     => array(
 						'after_add_to_cart_button'  => esc_html__( 'After Add to Cart Button', 'addonify-quick-view' ),
@@ -49,18 +48,16 @@ if ( ! function_exists( 'addonify_quick_view_button_fields' ) ) {
 					'label'       => esc_html__( 'Button Label', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( 'Quick View', 'addonify-quick-view' ),
 					'type'        => 'text',
-					'dependent'   => array( 'enable_quick_view' ),
 				),
 				'enable_quick_view_btn_icon'   => array(
 					'label'     => esc_html__( 'Enable icon in quick view button', 'addonify-quick-view' ),
 					'type'      => 'switch',
-					'dependent' => array( 'enable_quick_view' ),
 				),
 				'quick_view_btn_icon'          => array(
 					'label'     => esc_html__( 'Quick view button icons', 'addonify-quick-view' ),
-					'type'      => 'radio-icons',
-					'className' => 'fullwidth',
-					'dependent' => array( 'enable_quick_view', 'enable_quick_view_btn_icon' ),
+					'type'      => 'radio',
+					'design'    => 'icons',
+					'width'     => 'full',
 					'choices'   => addonify_quick_view_get_button_icons( 'all' ),
 				),
 				'quick_view_btn_icon_position' => array(

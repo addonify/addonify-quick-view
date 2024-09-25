@@ -24,10 +24,24 @@ const { control } = defineProps<Props>();
 const input = computed((): string => {
 	return control.type.toString().trim();
 });
+
+/**
+ * Justify class.
+ *
+ * @return {string} class name
+ * @since 2.0.0
+ */
+const justifyClass = computed((): string => {
+	return control?.width === "full" ? "w-full justify-start" : "justify-end";
+});
 </script>
 
 <template>
-	<div :data-input="input" class="flex-1 flex flex-row justify-end relative">
+	<div
+		:data-input="input"
+		class="relative flex-1 flex flex-row flex-wrap"
+		:class="justifyClass"
+	>
 		<slot />
 	</div>
 </template>
