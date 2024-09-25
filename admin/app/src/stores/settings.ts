@@ -18,8 +18,6 @@ interface State {
 	saving: boolean;
 }
 
-const nonce = window.addonifyQuickViewLocals.nonce;
-
 /**
  * Settings store.
  *
@@ -143,23 +141,23 @@ export const useSettingsStore = defineStore("settings", {
 			/**
 			 * Find the options to be updated comparing with the dataStatic.
 			 */
-			const data: SettingValue = new Object();
+			const data: SettingValue = {
+				settings_values: {},
+			};
 
 			for (const k in this.data) {
 				if (!isEqual(this.data[k], this.dataStatic[k])) {
-					data[k] = this.data[k];
+					data.settings_values[k] = this.data[k];
 				}
 			}
 
 			/**
 			 * Update the settings.
 			 */
-			const endpoint = "addonify_wishlist_options_api/v2/update_options";
+			const endpoint = "addonify-quick-view/v2/options";
 
-			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST", {
-				data: {
-					settings_values: data,
-				},
+			const [e, res]: [Error | null, any] = await useFetch(endpoint, "PATCH", {
+				data: data,
 			});
 
 			/**
@@ -195,7 +193,7 @@ export const useSettingsStore = defineStore("settings", {
 			/**
 			 * Export the settings.
 			 */
-			const endpoint = "addonify_wishlist_options_api/v2/export";
+			const endpoint = "addonify-quick-view/v2/options/export";
 
 			const [e, res]: [Error | null, any] = await useFetch(endpoint, "GET");
 
@@ -214,7 +212,7 @@ export const useSettingsStore = defineStore("settings", {
 
 			link.href = url;
 
-			const name = `addonify-quick-view-settings-${new Date().getDate()}.json`;
+			const name = `addonify-quick-view-settings-${new Date().getTime()}.json`;
 
 			link.setAttribute("download", name);
 
@@ -238,10 +236,10 @@ export const useSettingsStore = defineStore("settings", {
 			/**
 			 * Import the settings.
 			 */
-			const endpoint = "addonify_wishlist_options_api/v2/import";
+			const endpoint = "addonify-quick-view/v2/options/import";
 
 			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST", {
-				data: data,
+				body: data,
 			});
 
 			if (e || !res || !res.success) {

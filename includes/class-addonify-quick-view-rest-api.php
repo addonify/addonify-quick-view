@@ -67,7 +67,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				'/options',
 				array(
 					array(
-						'methods'             => \WP_REST_Server::CREATABLE,
+						'methods'             => \WP_REST_Server::EDITABLE,
 						'callback'            => array( $this, 'rest_handler_update_options_v2' ),
 						'permission_callback' => array( $this, 'permission_callback' ),
 					),
@@ -155,18 +155,24 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$return_data = array(
 				'success' => false,
-				'message' => esc_html__( 'Oops, error saving settings!!!', 'addonify-quick-view' ),
+				'message' => esc_html__( 'Failed! to update options.', 'addonify-quick-view' ),
 			);
 
-			$params = $request->get_params();
+			$nonce  = $request->get_header('x_wp_admin_nonce');
 
-			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
+			if ( ! $nonce || empty( $nonce ) ) {
+				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
-			if ( ! isset( $params['settings_values'] ) ) {
+			if ( ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid security token!', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
+			$params = $request->get_params();
+
+			if ( ! isset( $params['settings_values'] ) ) {
 				$return_data['message'] = esc_html__( 'No settings values to update!!!', 'addonify-quick-view' );
 				return $return_data;
 			}
@@ -185,17 +191,22 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 *
 		 * @since 1.2.17
 		 */
-		public function reset_settings() {
+		public function reset_settings( $request) {
 
 			$return_data = array(
 				'success' => false,
-				'message' => esc_html__( 'Ooops, error while resetting settings!!!', 'addonify-quick-view' ),
+				'message' => esc_html__( 'Failed! to reset options.', 'addonify-quick-view' ),
 			);
 
-			$params = $request->get_params();
+			$nonce  = $request->get_header('x_wp_admin_nonce');
 
-			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
+			if ( ! $nonce || empty( $nonce ) ) {
+				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
+
+			if ( ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid security token!', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -215,17 +226,21 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 *
 		 * @since 1.2.17
 		 */
-		public function export_settings() {
+		public function export_settings( $request) {
 			$return_data = array(
 				'success' => false,
 				'message' => esc_html__( 'Unable to write on server.', 'addonify-quick-view' ),
 			);
 
+			$nonce  = $request->get_header('x_wp_admin_nonce');
 
-			$params = $request->get_params();
+			if ( ! $nonce || empty( $nonce ) ) {
+				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
-			if ( ! $params['nonce'] || ! wp_verify_nonce( $params['nonce'], 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
+			if ( ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid security token!', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -235,7 +250,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_QUICK_VIEW_DB_INITIALS . '%' ), ARRAY_A ); //phpcs:ignore
 
-			$json_file = 'adfy-qv-' . time() . '.json';
+			$json_file = 'addonify-quick-view-settings-' . time() . '.json';
 
 			if (
 				file_put_contents( //phpcs:ignore
@@ -259,17 +274,21 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 *
 		 * @since 1.2.17
 		 */
-		public function import_settings() {
+		public function import_settings( $request ) {
 			$return_data = array(
 				'success' => false,
 				'message' => esc_html__( 'Unable to import settings.', 'addonify-quick-view' ),
 			);
 
+			$nonce  = $request->get_header('x_wp_admin_nonce');
 
-			$nonce = $request->get_params( 'nonce' );
+			if ( ! $nonce || empty( $nonce ) ) {
+				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
+				return rest_ensure_response( $return_data );
+			}
 
-			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
+			if ( ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+				$return_data['message'] = esc_html__( 'Invalid security token!', 'addonify-quick-view' );
 				return rest_ensure_response( $return_data );
 			}
 
@@ -281,9 +300,12 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 					)
 				);
 			}
-			$file_contents = file_get_contents( $_FILES['gocart_import_file']['tmp_name'] ); //phpcs:ignore
 
-			if ( isset( $_FILES['gocart_import_file']['type'] ) && 'application/json' !== $_FILES['gocart_import_file']['type'] ) {
+			$file_contents = file_get_contents( $_FILES['addonify-quick-view-settings-backup']['tmp_name'] ); //phpcs:ignore
+
+			if ( isset( $_FILES['addonify-quick-view-settings-backup']['type'] ) &&
+					'application/json' !== $_FILES['addonify-quick-view-settings-backup']['type']
+				) {
 				return new WP_REST_Response(
 					array(
 						'success' => false,
@@ -316,6 +338,33 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		}
 
 		/**
+		 * Converts json data to array.
+		 *
+		 * @param mixed $data JSON Data to convert to array format.
+		 * @return array|false Array if correct json format, false otherwise
+		 */
+		private function json_to_array( $data ) {
+			if ( ! is_string( $data ) ) {
+				return false;
+			}
+
+			try {
+				$return_data = json_decode( $data );
+				if ( JSON_ERROR_NONE === json_last_error() ) {
+					if ( gettype( $return_data ) === 'array' ) {
+						return $return_data;
+					} elseif ( gettype( $return_data ) === 'object' ) {
+						return (array) $return_data;
+					}
+				} else {
+					return false;
+				}
+			} catch ( Exception $e ) {
+				error_log( $e->getMessage() ); //phpcs:ignore
+			}
+		}
+
+		/**
 		 * Permission callback function to check if current user can access the rest api route.
 		 *
 		 * @since 1.0.7
@@ -324,7 +373,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			if ( ! current_user_can( 'manage_options' ) ) {
 
-				return new WP_Error( 'rest_forbidden', esc_html__( 'Ooops, you are not allowed to manage options.', 'addonify-quick-view' ), array( 'status' => 401 ) );
+				return new WP_Error( 'rest_forbidden', esc_html__( 'Oops, you are not allowed to manage options.', 'addonify-quick-view' ), array( 'status' => 401 ) );
 			}
 
 			return true;

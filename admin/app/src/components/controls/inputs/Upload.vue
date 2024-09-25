@@ -46,7 +46,7 @@ const handleUpload = async (raw: string): Promise<void> => {
 
 	const name = "addonify-quick-view-settings-backup";
 
-	formData.append(name + "_import_file", blob, name + "_import_file.json");
+	formData.append(name, blob, name + ".json");
 
 	/**
 	 * Send the form data to the store.
@@ -60,23 +60,28 @@ const handleUpload = async (raw: string): Promise<void> => {
 
 	const success = await store.import(formData).catch((message) => {
 		toast({
-			...options,
 			type: "error",
+			duration: 5000,
 			message: message,
+			position: "top-center",
 		});
 	});
 
 	if (success) {
 		toast({
-			...options,
 			type: "success",
+			duration: 5000,
+			position: "top-center",
 			message: __("Success! options imported.", "addonify-quick-view"),
 		});
+
+		window.location.reload();
 	}
 
+	/**
+	 * Set the importing state.
+	 */
 	importing.value = false;
-
-	window.location.reload();
 };
 
 /**
