@@ -50,15 +50,15 @@ if ( ! function_exists( 'addonify_quick_view_button_fields' ) ) {
 					'type'        => 'text',
 				),
 				'enable_quick_view_btn_icon'   => array(
-					'label'     => esc_html__( 'Enable icon in quick view button', 'addonify-quick-view' ),
-					'type'      => 'switch',
+					'label' => esc_html__( 'Enable icon in quick view button', 'addonify-quick-view' ),
+					'type'  => 'switch',
 				),
 				'quick_view_btn_icon'          => array(
-					'label'     => esc_html__( 'Quick view button icons', 'addonify-quick-view' ),
-					'type'      => 'radio',
-					'design'    => 'icons',
-					'width'     => 'full',
-					'choices'   => addonify_quick_view_get_button_icons( 'all' ),
+					'label'   => esc_html__( 'Quick view button icons', 'addonify-quick-view' ),
+					'type'    => 'radio',
+					'design'  => 'icons',
+					'width'   => 'full',
+					'choices' => addonify_quick_view_get_button_icons( 'all' ),
 				),
 				'quick_view_btn_icon_position' => array(
 					'label'     => esc_html__( 'Quick view button icon position', 'addonify-quick-view' ),
@@ -76,72 +76,65 @@ if ( ! function_exists( 'addonify_quick_view_button_fields' ) ) {
 
 
 if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
-
+	/**
+	 * Function to return quick view button styles fields.
+	 */
 	function addonify_quick_view_button_style_fields() {
 
 		return apply_filters(
 			'addonify_quick_view_button_style_fields',
 			array(
 				'quick_view_button_text_color'         => array(
-					'label'     => esc_html__( 'Text color', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Text color', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_text_color_hover'   => array(
-					'label'     => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_bg_color'           => array(
-					'label'     => esc_html__( 'Background color', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Background color', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_bg_color_hover'     => array(
-					'label'     => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_border_color'       => array(
-					'label'     => esc_html__( 'Border color', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Border color', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_border_color_hover' => array(
-					'label'     => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
-					'type'      => 'color',
-					'isAlpha'   => true,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
+					'type'    => 'color',
+					'isAlpha' => true,
 				),
 				'quick_view_button_border_width'       => array(
-					'label'     => esc_html__( 'Border width', 'addonify-quick-view' ),
-					'type'      => 'number',
-					'style'     => 'slider',
-					'min'       => 0,
-					'max'       => 10,
-					'step'      => 1,
-					'unix'      => 'px',
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label' => esc_html__( 'Border width', 'addonify-quick-view' ),
+					'type'  => 'number',
+					'style' => 'slider',
+					'min'   => 0,
+					'max'   => 10,
+					'step'  => 1,
+					'unix'  => 'px',
 				),
 				'quick_view_button_border_style'       => array(
-					'label'     => esc_html__( 'Border style', 'addonify-quick-view' ),
-					'type'      => 'select',
-					'choices'   => addonify_quick_view_get_border_styles(),
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label'   => esc_html__( 'Border style', 'addonify-quick-view' ),
+					'type'    => 'select',
+					'choices' => addonify_quick_view_get_border_styles(),
 				),
 				'quick_view_button_border_radius'      => array(
-					'label'     => esc_html__( 'Border radius (unit: px)', 'addonify-quick-view' ),
-					'type'      => 'number',
-					'style'     => 'buttons-plus-minus',
-					'min'       => 0,
-					'max'       => 100,
-					'step'      => 2,
-					'dependent' => array( 'enable_plugin_styles' ),
+					'label' => esc_html__( 'Border radius (unit: px)', 'addonify-quick-view' ),
+					'type'  => 'number',
+					'style' => 'buttons-plus-minus',
+					'min'   => 0,
+					'max'   => 100,
+					'step'  => 2,
 				),
 			)
 		);
