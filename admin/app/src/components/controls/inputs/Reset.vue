@@ -47,18 +47,33 @@ const handleReset = async (): Promise<void> => {
 		return;
 	}
 
+	/**
+	 * Set loading to true.
+	 */
 	loading.value = true;
 
-	await toast
-		.promise(store.export(), {
-			loading: __("Resetting...", "addonify-quick-view"),
-			success: __("Success!.", "addonify-quick-view"),
-			error: __("Failed!.", "addonify-quick-view"),
+	const result = await store.reset().catch((e) => {
+		toast({
+			type: "error",
+			duration: 5000,
 			position: "top-center",
-		})
-		.finally(() => {
-			loading.value = false;
+			message: e.message,
 		});
+	});
+
+	if (result) {
+		toast({
+			type: "success",
+			duration: 3000,
+			position: "top-center",
+			message: __("Success! options reset.", "addonify-quick-view"),
+		});
+	}
+
+	/**
+	 * Set loading to false.
+	 */
+	loading.value = false;
 };
 </script>
 

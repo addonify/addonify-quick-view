@@ -260,6 +260,21 @@ export const useSettingsStore = defineStore("settings", {
 		 * @since 2.0.0
 		 */
 		async reset(): Promise<boolean> {
+			const endpoint = "addonify-quick-view/v2/options/reset";
+
+			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST");
+
+			if (e || !res || !res.success) {
+				throw new Error(
+					__("Failed, resetting settings.", "addonify-quick-view")
+				);
+			}
+
+			/**
+			 * Get the settings.
+			 */
+			await this.get();
+
 			return true;
 		},
 	},
