@@ -32,8 +32,8 @@ const { modelValue, min, max, step, precision, sliderTipText, sliderInput } =
 const emit = defineEmits(["update:modelValue"]);
 
 const value = computed({
-	get: () => Number(modelValue),
-	set: (val) => emit("update:modelValue", val),
+	get: () => Number(modelValue) || 0,
+	set: (val) => emit("update:modelValue", val.toString()),
 });
 
 /**
