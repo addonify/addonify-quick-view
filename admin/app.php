@@ -39,8 +39,9 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 				array(
 					'adminURL'      	=> admin_url( '/' ),
 					'siteURL'       	=> site_url( '/' ),
-					'restNamespace' 	=> 'addonify-quick-view/v2/options',
+					'restNamespace' 	=> 'addonify-quick-view/v2',
 					'version' 				=> ADDONIFY_QUICK_VIEW_VERSION,
+					'nonce'    				=> wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
 				)
 			);
 		}

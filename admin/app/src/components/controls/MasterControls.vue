@@ -72,7 +72,7 @@ const store = useSettingsStore();
 		v-else-if="input === 'radio'"
 		v-model="store.data[k]"
 		:design="control.design"
-		:choices="control.choices as Record<any, unknown>"
+		:choices="control.choices || []"
 	/>
 
 	<Color v-else-if="input === 'color'" v-model="store.data[k]" />

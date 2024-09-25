@@ -5,8 +5,13 @@ import Tabs from "@/components/layout/Tabs.vue";
 import Sidebar from "@/components/layout/Sidebar.vue";
 import Primary from "@/components/layout/Primary.vue";
 import Skeleton from "@/components/global/Skeleton.vue";
+import { watchEffect } from "vue";
 
 const store = useSettingsStore();
+
+watchEffect(() => {
+	console.log(store.settings, store.data);
+});
 </script>
 
 <template>

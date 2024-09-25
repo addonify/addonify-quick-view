@@ -18,6 +18,8 @@ interface State {
 	saving: boolean;
 }
 
+const nonce = window.addonifyQuickViewLocals.nonce;
+
 /**
  * Settings store.
  *
@@ -86,12 +88,14 @@ export const useSettingsStore = defineStore("settings", {
 			 */
 			this.loading = true;
 
-			const url = "addonify_wishlist_options_api/v2/get_options";
+			const url = "addonify-quick-view/v2/options";
 
 			/**
 			 * Use apiFetch to get the settings.
 			 */
 			const [e, res]: [Error | null, ISettings] = await useFetch(url, "GET");
+
+			console.log(res);
 
 			if (e || !res || !Object.keys(res).length) {
 				throw new Error(
@@ -102,12 +106,12 @@ export const useSettingsStore = defineStore("settings", {
 			/**
 			 * Set the settings.
 			 */
-			this.settings = res.tabs;
+			this.settings = res.data.tabs;
 
 			/**
 			 * Set settings defaults and user defined values.
 			 */
-			this.data = res.settings_values;
+			this.data = res.data.settings_values;
 
 			/**
 			 * Clone the data to compare with the settings.
@@ -149,15 +153,15 @@ export const useSettingsStore = defineStore("settings", {
 				}
 			}
 
-			console.log(data);
-
 			/**
 			 * Update the settings.
 			 */
 			const endpoint = "addonify_wishlist_options_api/v2/update_options";
 
 			const [e, res]: [Error | null, any] = await useFetch(endpoint, "POST", {
-				data: data,
+				data: {
+					settings_values: data,
+				},
 			});
 
 			/**
