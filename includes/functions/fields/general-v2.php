@@ -9,13 +9,13 @@ if ( ! function_exists( 'addonify_quick_view_general_tab_general_section' ) ) {
 	function addonify_quick_view_general_tab_general_section( $sections ) {
 
 		$sections['general_options'] = array(
-			'title'        => esc_html__( 'General Options', 'addonify-quick-view' ),
+			'title'        => esc_html__( 'General', 'addonify-quick-view' ),
 			'type'         => 'sub_section',
 			'sub_sections' => addonify_quick_view_general_fields(),
 		);
 
 		$sections['style_options'] = array(
-			'title'        => esc_html__( 'Style Options', 'addonify-quick-view' ),
+			'title'        => esc_html__( 'Custom CSS', 'addonify-quick-view' ),
 			'type'         => 'sub_section',
 			'sub_sections' => addonify_quick_view_general_styles_fields(),
 		);
@@ -74,10 +74,8 @@ if ( ! function_exists( 'addonify_quick_view_general_styles_fields' ) ) {
 					'label'          => esc_html__( 'Additional CSS', 'addonify-quick-view' ),
 					'description'    => esc_html__( 'If necessary, you can add your own custom CSS code from here.', 'addonify-quick-view' ),
 					'type'           => 'textarea',
-					'className'      => 'custom-css-box fullwidth',
-					'inputClassName' => 'custom-css-textarea',
+					'width'					 => 'full',
 					'placeholder'    => '#app { color: blue; }',
-					'width'          => 'full',
 					'dependent'      => array( 'enable_plugin_styles' ),
 					'value'          => addonify_quick_view_get_option( 'custom_css' ),
 				),

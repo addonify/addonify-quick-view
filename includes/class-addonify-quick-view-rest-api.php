@@ -28,7 +28,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * @access   protected
 		 * @var      string    $rest_namespace.
 		 */
-		protected $rest_namespace = 'addonify_quick_view_options_api';
+		protected $rest_namespace = 'addonify-quick-view/v2';
 
 
 		/**
@@ -52,18 +52,6 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			register_rest_route(
 				$this->rest_namespace,
-				'/get_options',
-				array(
-					array(
-						'methods'             => \WP_REST_Server::READABLE,
-						'callback'            => array( $this, 'rest_handler_get_settings_fields' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
-					),
-				)
-			);
-
-			register_rest_route(
-				$this->rest_namespace,
 				'/options',
 				array(
 					array(
@@ -76,23 +64,11 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			register_rest_route(
 				$this->rest_namespace,
-				'/options/update',
+				'/options',
 				array(
 					array(
 						'methods'             => \WP_REST_Server::CREATABLE,
 						'callback'            => array( $this, 'rest_handler_update_options_v2' ),
-						'permission_callback' => array( $this, 'permission_callback' ),
-					),
-				)
-			);
-
-			register_rest_route(
-				$this->rest_namespace,
-				'/update_options',
-				array(
-					array(
-						'methods'             => \WP_REST_Server::CREATABLE,
-						'callback'            => array( $this, 'rest_handler_update_options' ),
 						'permission_callback' => array( $this, 'permission_callback' ),
 					),
 				)
@@ -161,11 +137,14 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				'message' => esc_html__( 'Oops, error getting settings!!!', 'addonify-quick-view' ),
 			);
 
-			$nonce = $request->get_param( 'nonce' );
+			// Check nonce if the request is not a "GET" request.
+			if ( $request->get_method() !== 'GET' ) {
+				$nonce = $request->get_param( 'nonce' );
 
-			if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
-				$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
-				return rest_ensure_response( $return_data );
+				if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
+					$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
+					return rest_ensure_response( $return_data );
+				}
 			}
 
 			$return_data['success'] = true;
@@ -174,7 +153,6 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			return rest_ensure_response( $return_data );
 		}
-
 
 		/**
 		 * Callback function to update all settings options values.
@@ -225,7 +203,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$return_data = array(
 				'success' => false,
-				'message' => esc_html__( 'Ooops, error saving settings!!!', 'addonify-quick-view' ),
+				'message' => esc_html__( 'Oops, error saving settings!!!', 'addonify-quick-view' ),
 			);
 
 			$params = $request->get_params();

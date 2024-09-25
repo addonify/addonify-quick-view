@@ -38,24 +38,21 @@ const handleUpdate = async (): Promise<void> => {
 		return;
 	}
 
-	const options = {
-		duration: 5000,
-		position: "top-center",
-	};
-
 	const success = await store.update().catch((message) => {
 		toast({
-			...options,
 			type: "error",
+			duration: 5000,
 			message: message,
+			position: "top-center",
 		});
 	});
 
 	if (success) {
 		toast({
-			...options,
 			type: "success",
-			message: __("Success! options updated.", "addonify-quick-view"),
+			duration: 3000,
+			position: "top-center",
+			message: __("Success! settings updated.", "addonify-quick-view"),
 		});
 	}
 };
