@@ -94,8 +94,8 @@ const store = useSettingsStore();
 		:design="control?.design"
 		:precision="control?.precision"
 		:sliderInput="control?.sliderInput"
+		:unit="control?.unit"
 		:placeholder="control?.placeholder"
-		:sliderTipText="control?.sliderTipText"
 	/>
 
 	<Upload

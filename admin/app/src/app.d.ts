@@ -36,7 +36,7 @@ export interface Option {
 	max?: number;
 	step?: number;
 	precision?: number;
-	sliderTipText?: string;
+	unit?: string;
 	sliderInput?: boolean;
 	sliderSteps?: number;
 	note?: string;
