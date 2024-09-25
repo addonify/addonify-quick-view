@@ -121,7 +121,7 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 				'quick_view_button_border_width'       => array(
 					'label'     => esc_html__( 'Border width', 'addonify-quick-view' ),
 					'type'      => 'number',
-					'style'     => 'slider',
+					'design'    => 'slider',
 					'min'       => 0,
 					'max'       => 10,
 					'step'      => 1,
@@ -137,7 +137,7 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 				'quick_view_button_border_radius'      => array(
 					'label'     => esc_html__( 'Border radius (unit: px)', 'addonify-quick-view' ),
 					'type'      => 'number',
-					'style'     => 'buttons-plus-minus',
+					'design'    => 'plus-minus',
 					'min'       => 0,
 					'max'       => 100,
 					'step'      => 2,

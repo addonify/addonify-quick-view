@@ -9,7 +9,7 @@ interface Props {
 	max: number | null | undefined;
 	step: number | null | undefined;
 	precision: number | null | undefined;
-	sliderTipText: string | null | undefined;
+	unit: string | null | undefined;
 	sliderInput: boolean | null | undefined;
 	placeholder: string | null | undefined;
 }
@@ -20,7 +20,7 @@ interface Props {
  * @ref https://vuejs.org/api/sfc-script-setup#reactive-props-destructure
  * @since 2.0.0
  */
-const { modelValue, min, max, step, precision, sliderTipText, sliderInput } =
+const { modelValue, min, max, step, precision, unit, sliderInput } =
 	defineProps<Props>();
 
 /**
@@ -43,7 +43,7 @@ const value = computed({
  * @since: 2.0.0
  */
 const tooltip = (val: number): string => {
-	return `${val} ${sliderTipText}`;
+	return `${val} ${unit || ""}`;
 };
 </script>
 
@@ -55,7 +55,7 @@ const tooltip = (val: number): string => {
 		:min="Number(min) || 0"
 		:max="Number(max) || 10000000000000"
 		:step="Number(step) || 1"
-		:precision="Number(precision) || 2"
+		:precision="Number(precision) || 0"
 	/>
 
 	<el-slider
@@ -66,6 +66,7 @@ const tooltip = (val: number): string => {
 		:step="Number(step) || 1"
 		:show-input="sliderInput ? true : false"
 		:format-tooltip="tooltip"
+		tooltip-class="inline-flex items-center text-xs font-sans font-normal text-gray-200 bg:zinc-800"
 		size="large"
 	/>
 
