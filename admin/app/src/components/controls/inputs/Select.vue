@@ -36,7 +36,7 @@ const value = computed({
  * @since: 2.0.0
  */
 const placeholderX = computed((): string => {
-	const def = __("Something...", "addonify-quick-view");
+	const def = __("Choose option...", "addonify-quick-view");
 	return placeholder && placeholder.length > 0 ? placeholder : def;
 });
 </script>
