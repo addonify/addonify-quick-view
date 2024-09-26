@@ -164,13 +164,13 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_option_fields' ) ) {
 				),
 				'read_more_button_label'           => array(
 					'type'        => 'text',
-					'label'       => esc_html__( 'View Detail Button Label', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'View detail button label', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( 'View Detail', 'addonify-quick-view' ),
 					'dependent'   => array( 'enable_quick_view', 'display_read_more_button' ),
 				),
 				'display_read_more_button'         => array(
 					'type'        => 'switch',
-					'label'       => esc_html__( 'Display View Detail Button', 'addonify-quick-view' ),
+					'label'       => esc_html__( 'Display view detail button', 'addonify-quick-view' ),
 					'description' => esc_html__( 'Enable to display link to product single page button', 'addonify-quick-view' ),
 					'dependent'   => array( 'enable_quick_view' ),
 				),

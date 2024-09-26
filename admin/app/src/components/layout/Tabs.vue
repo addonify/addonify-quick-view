@@ -26,20 +26,19 @@ const getLink = (path: number): string => "/s/" + path;
 					:to="getLink(k)"
 					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
 				>
-					<span class="size-6 inline-flex items-center relative leading-3">
-						<span
-							v-if="item.icon && item.icon.length > 0"
-							v-html="item.icon"
-						></span>
-
-						<template v-else>
-							<SlidersHorizontal
-								:size="20"
-								:stroke-width="2"
-								class="leading-3"
-							/>
-						</template>
+					<span
+						v-if="item.icon && item.icon.length > 0"
+						v-html="item.icon"
+						class="size-6 inline-flex items-center relative leading-3"
+					>
 					</span>
+					<template v-else>
+						<SlidersHorizontal
+							:size="20"
+							:stroke-width="2"
+							class="size-6 inline-flex items-center relative leading-3"
+						/>
+					</template>
 
 					<span>{{ item.title }}</span>
 				</RouterLink>
