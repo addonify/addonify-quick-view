@@ -270,7 +270,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 				),
 				'modal_gallery_thumbs_columns'           => array(
 					'label'       => esc_html__( 'Gallery thumbnail items row', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( '4', 'addonify-quick-view' ),
 					'type'        => 'number',
 					'design'      => 'slider',
 					'min'         => 1,
@@ -290,14 +289,10 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 				'wc_gallery_trigger_icon_color'          => array(
 					'label'     => esc_html__( 'Gallery trigger button color', 'addonify-quick-view' ),
 					'type'      => 'color',
-					'isAlpha'   => true,
-					'className' => 'fullwidth',
 				),
 				'wc_gallery_trigger_icon_hover_color'    => array(
 					'label'     => esc_html__( 'Gallery trigger button color on hover', 'addonify-quick-view' ),
 					'type'      => 'color',
-					'isAlpha'   => true,
-					'className' => 'fullwidth',
 				),
 				'wc_gallery_trigger_icon_bg_color'       => array(
 					'label' => esc_html__( 'Gallery trigger button background color', 'addonify-quick-view' ),

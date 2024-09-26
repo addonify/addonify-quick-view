@@ -8,18 +8,6 @@ import { useSettingsStore } from "@/stores/settings";
 
 import Button from "@/components/global/Button.vue";
 
-interface Props {
-	buttonLabel?: string | null;
-}
-
-/**
- * Define props.
- *
- * @ref https://vuejs.org/api/sfc-script-setup#reactive-props-destructure
- * @since 2.0.0
- */
-const { buttonLabel } = defineProps<Props>();
-
 const loading = ref(false);
 
 const store = useSettingsStore();
@@ -30,7 +18,7 @@ const store = useSettingsStore();
  * @returns {Promise<void>}
  * @since 2.0.0
  */
-const handleReset = async (): Promise<void> => {
+const handleClick = async (): Promise<void> => {
 	const swal = await Swal.fire({
 		title: __("Sure?", "addonify-quick-view"),
 		text: __(
@@ -39,8 +27,8 @@ const handleReset = async (): Promise<void> => {
 		),
 		icon: "question",
 		showCancelButton: false,
-		confirmButtonText: __("Yes, reset", "addonify-quick-view"),
 		showCloseButton: true,
+		confirmButtonText: __("Yes, reset", "addonify-quick-view"),
 	});
 
 	if (!swal.isConfirmed) {
@@ -82,11 +70,11 @@ const handleReset = async (): Promise<void> => {
 		type="button"
 		:loading="loading"
 		:disabled="loading"
-		@click="handleReset()"
+		@click="handleClick()"
 		class="bg-red-500 hover:bg-red-600 focus:bg-red-600 focus:ring-red-500"
 	>
 		<RotateCcw v-if="!loading" :size="18" />
 
-		{{ buttonLabel ?? __("Reset", "addonify-quick-view") }}
+		{{ __("Reset", "addonify-quick-view") }}
 	</Button>
 </template>
