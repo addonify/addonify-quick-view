@@ -258,38 +258,23 @@ if ( ! function_exists( 'addonify_quick_view_get_settings_sections_fields' ) ) {
 											'buttonLabel' => esc_html__( 'Export', 'addonify-quick-view' ),
 										),
 										'import-options' => array(
+											'type'        => 'import-option',
 											'label'       => esc_html__( 'Import settings', 'addonify-quick-view' ),
 											'caption'     => esc_html__( 'Drop a file here or click here to upload.', 'addonify-quick-view' ),
 											'note'        => esc_html__( 'Only .json file is permitted.', 'addonify-quick-view' ),
 											'description' => esc_html__( 'Drag or upload the .json file that you had exported.', 'addonify-quick-view' ),
-											'type'        => 'import-option',
 											'width'       => 'full',
 										),
 										'reset-options'  => array(
+											'type'        => 'reset-option',
 											'label'       => esc_html__( 'Reset settings', 'addonify-quick-view' ),
-											'type'        => 'action-button',
 											'description' => esc_html__( 'All the settings will be set to default.', 'addonify-quick-view' ),
-											'task'        => array(
-												'type'        => 'POST',
-												'endpoint'    => 'reset_options',
-												'opperation'  => 'reset',
-												'buttonLabel' => esc_html__( 'Reset', 'addonify-quick-view' ),
-												'buttonIcon'  => '',
-												'buttonClass' => 'danger',
-												'confirm'     => array(
-													'required' => true,
-													'confirmBtnLabel' => esc_html__( 'Yes', 'addonify-quick-view' ),
-													'cancelBtnLabel' => esc_html__( 'No, cancel', 'addonify-quick-view' ),
-													'content'  => esc_html__( 'Are you sure you would like to reset all settings?', 'addonify-quick-view' ),
-													'size'     => '200px',
-												),
-											),
 										),
 										'delete_plugin_data_on_deactivation' => array(
 											'label'       => esc_html__( 'Delete plugin data on plugin deactivation', 'addonify-quick-view' ),
 											'description' => apply_filters(
 												'addonify_quick_view_delete_plugin_data_on_deactivation_option_desc',
-												esc_html__( 'Enable this option to remove all data related to the plugin on plugin unistallation.', 'addonify-quick-view' )
+												esc_html__( 'Enable this option to remove all data related to the plugin on plugin uninstallation.', 'addonify-quick-view' )
 											),
 											'type'        => 'switch',
 											'className'   => '',

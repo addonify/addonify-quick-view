@@ -104,14 +104,10 @@ const store = useSettingsStore();
 		:caption="control?.caption"
 	/>
 
-	<Export
-		v-else-if="input === 'export-option'"
-		:label="control?.label"
-		:buttonLabel="control?.buttonLabel"
-	/>
+	<Export v-else-if="input === 'export-option'" />
 
 	<Reset
-		v-else-if="input === 'action-button'"
+		v-else-if="input === 'reset-option'"
 		:label="control?.label"
 		:buttonLabel="control?.buttonLabel"
 	/>
