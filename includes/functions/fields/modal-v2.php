@@ -249,7 +249,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 					'max'         => 100,
 					'step'        => 2,
 				),
-				'modal_image_radius'                     => array(
 			)
 		);
 	}
