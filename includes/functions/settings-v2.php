@@ -173,17 +173,22 @@ if ( ! function_exists( 'addonify_quick_view_get_fields_values' ) ) {
  */
 function addonify_quick_view_add_setting_fields( $fields ) {
 
-	return array_merge(
-		$fields,
-		addonify_quick_view_button_fields(),
-		addonify_quick_view_button_style_fields(),
-		addonify_quick_view_general_fields(),
-		addonify_quick_view_general_styles_fields(),
-		addonify_quick_view_modal_box_option_fields(),
-		addonify_quick_view_modal_box_ui_option_fields(),
-		addonify_quick_view_product_content_option_fields(),
-		addonify_quick_view_modal_box_close_button_option_fields(),
-		addonify_quick_view_misc_button_inside_modal_box_fields(),
+	return apply_filters(
+		'addonify_quick_view_add_setting_fields',
+		array_merge(
+			$fields,
+			addonify_quick_view_button_fields(),
+			addonify_quick_view_button_style_fields(),
+			addonify_quick_view_general_fields(),
+			addonify_quick_view_general_styles_fields(),
+			addonify_quick_view_modal_box_option_fields(),
+			addonify_quick_view_modal_box_ui_option_fields(),
+			addonify_quick_view_product_content_option_fields(),
+			addonify_quick_view_modal_box_close_button_option_fields(),
+			addonify_quick_view_misc_button_inside_modal_box_fields(),
+			addonify_quick_view_product_option_fields(),
+			addonify_quick_view_product_option_styles_fields(),
+		),
 	);
 }
 add_filter( 'addonify_quick_view_settings_fields', 'addonify_quick_view_add_setting_fields' );
