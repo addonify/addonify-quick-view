@@ -87,32 +87,26 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 				'quick_view_button_text_color'         => array(
 					'label'   => esc_html__( 'Text color', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_text_color_hover'   => array(
 					'label'   => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_bg_color'           => array(
 					'label'   => esc_html__( 'Background color', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_bg_color_hover'     => array(
 					'label'   => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_border_color'       => array(
 					'label'   => esc_html__( 'Border color', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_border_color_hover' => array(
 					'label'   => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
 					'type'    => 'color',
-					'isAlpha' => true,
 				),
 				'quick_view_button_border_width'       => array(
 					'label' => esc_html__( 'Border width', 'addonify-quick-view' ),
