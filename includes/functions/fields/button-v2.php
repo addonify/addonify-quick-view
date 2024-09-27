@@ -85,28 +85,28 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 			'addonify_quick_view_button_style_fields',
 			array(
 				'quick_view_button_text_color'         => array(
-					'label'   => esc_html__( 'Text color', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Text color', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_text_color_hover'   => array(
-					'label'   => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Text color on hover', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_bg_color'           => array(
-					'label'   => esc_html__( 'Background color', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Background color', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_bg_color_hover'     => array(
-					'label'   => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_border_color'       => array(
-					'label'   => esc_html__( 'Border color', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Border color', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_border_color_hover' => array(
-					'label'   => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
-					'type'    => 'color',
+					'label' => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 				'quick_view_button_border_width'       => array(
 					'label' => esc_html__( 'Border width', 'addonify-quick-view' ),

@@ -152,24 +152,24 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_option_fields' ) ) {
 						'zoom-out'        => esc_html__( 'Zoom out', 'addonify-quick-view' ),
 					),
 				),
-				'read_more_button_label'           => array(
-					'type'        => 'text',
-					'label'       => esc_html__( 'View detail button label', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( 'View Detail', 'addonify-quick-view' ),
-					'dependent'   => array( 'enable_quick_view', 'display_read_more_button' ),
-				),
 				'display_read_more_button'         => array(
 					'type'        => 'switch',
 					'label'       => esc_html__( 'Display view detail button', 'addonify-quick-view' ),
 					'description' => esc_html__( 'Enable to display link to product single page button', 'addonify-quick-view' ),
 					'dependent'   => array( 'enable_quick_view' ),
 				),
+				'read_more_button_label'           => array(
+					'type'        => 'text',
+					'label'       => esc_html__( 'View detail button label', 'addonify-quick-view' ),
+					'placeholder' => esc_html__( 'View Detail', 'addonify-quick-view' ),
+					'dependent'   => array( 'enable_quick_view', 'display_read_more_button' ),
+				),
 				'spinner_icons'                    => array(
 					'type'        => 'radio',
 					'design'      => 'icons',
 					'label'       => esc_html__( 'Spinner icon', 'addonify-quick-view' ),
 					'description' => esc_html__( 'Choose modal box loading spinner icon', 'addonify-quick-view' ),
-					'width'   		=> 'full',
+					'width'       => 'full',
 					'dependent'   => array( 'enable_quick_view' ),
 					'choices'     => addonify_quick_view_get_spinner_icon( 'all' ),
 				),
@@ -186,7 +186,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 		return apply_filters(
 			'addonify_quick_view_modal_box_ui_option_fields',
 			array(
-				'modal_general_text_font_size'           => array(
+				'modal_general_text_font_size'       => array(
 					'label'       => esc_html__( 'General text font size inside modal box', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( '28', 'addonify-quick-view' ),
 					'type'        => 'number',
@@ -195,7 +195,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 					'max'         => 32,
 					'step'        => 1,
 				),
-				'modal_zindex'                           => array(
+				'modal_zindex'                       => array(
 					'label'       => esc_html__( 'Modal CSS z-index', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( '10000000000000000', 'addonify-quick-view' ),
 					'type'        => 'number',
@@ -203,7 +203,7 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 					'max'         => 1000000000000000000,
 					'step'        => 10,
 				),
-				'modal_border_radius'                    => array(
+				'modal_border_radius'                => array(
 					'label'       => esc_html__( 'Modal border radius (unit: px)', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( '10', 'addonify-quick-view' ),
 					'type'        => 'number',
@@ -212,35 +212,35 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 					'max'         => 100,
 					'step'        => 1,
 				),
-				'modal_box_overlay_background_color'     => array(
+				'modal_box_overlay_background_color' => array(
 					'label' => esc_html__( 'Modal overlay background', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_background_color'             => array(
+				'modal_box_background_color'         => array(
 					'label' => esc_html__( 'Modal box inner background', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_general_text_color'           => array(
+				'modal_box_general_text_color'       => array(
 					'label' => esc_html__( 'Text color inside modal box', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_general_border_color'         => array(
+				'modal_box_general_border_color'     => array(
 					'label' => esc_html__( 'General border color', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_inputs_background_color'      => array(
+				'modal_box_inputs_background_color'  => array(
 					'label' => esc_html__( 'Input fields background color', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_inputs_text_color'            => array(
+				'modal_box_inputs_text_color'        => array(
 					'label' => esc_html__( 'Input fields text color', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'modal_box_spinner_icon_color'           => array(
+				'modal_box_spinner_icon_color'       => array(
 					'label' => esc_html__( 'Modal box spinner icon color', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'spinner_size'                           => array(
+				'spinner_size'                       => array(
 					'label'       => esc_html__( 'Spinner icon font size (unit: px)', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( '28', 'addonify-quick-view' ),
 					'type'        => 'number',
@@ -381,12 +381,12 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_close_button_option_field
 					'type'  => 'color',
 				),
 				'mobile_close_button_font_size'       => array(
-					'label'     => esc_html__( 'Mobile close button font size (unit: px)', 'addonify-quick-view' ),
-					'type'      => 'number',
-					'design'      => 'plus-minus',
-					'min'       => 12,
-					'max'       => 18,
-					'step'      => 1,
+					'label'  => esc_html__( 'Mobile close button font size (unit: px)', 'addonify-quick-view' ),
+					'type'   => 'number',
+					'design' => 'plus-minus',
+					'min'    => 12,
+					'max'    => 18,
+					'step'   => 1,
 				),
 			),
 		);
