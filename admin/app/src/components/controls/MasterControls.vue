@@ -67,6 +67,7 @@ const store = useSettingsStore();
 		v-model="store.data[k]"
 		:choices="control.choices"
 		:placeholder="control?.placeholder"
+		:multiple="control?.multiple"
 	/>
 
 	<Radio

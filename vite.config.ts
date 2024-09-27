@@ -25,5 +25,7 @@ export default {
 		},
 	},
 	publicDir: false,
-	build: { sourcemap: false },
+	build: {
+		sourcemap: false,
+	},
 };

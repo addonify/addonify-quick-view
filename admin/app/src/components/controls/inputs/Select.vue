@@ -5,6 +5,7 @@ import { __ } from "@wordpress/i18n";
 interface Props {
 	modelValue: string | null | undefined;
 	choices: Record<any, any> | undefined;
+	multiple: boolean | undefined;
 	placeholder: string | null | undefined;
 }
 
@@ -14,7 +15,7 @@ interface Props {
  * @ref https://vuejs.org/api/sfc-script-setup#reactive-props-destructure
  * @since 2.0.0
  */
-const { modelValue, placeholder, choices } = defineProps<Props>();
+const { modelValue, placeholder, choices, multiple } = defineProps<Props>();
 
 /**
  * Define emits for v-model usage.
@@ -47,7 +48,10 @@ const placeholderX = computed((): string => {
 		size="large"
 		filterable
 		clearable
+		collapse-tags
+		collapse-tags-tooltip
 		:placeholder="placeholderX"
+		:multiple="multiple ? true : false"
 	>
 		<el-option
 			v-for="(label, k) in choices"
