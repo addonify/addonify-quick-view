@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { __ } from "@wordpress/i18n";
-import { useRouter } from "vue-router";
-import { Upload } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { useSettingsStore } from "@/stores/settings";
+
+import { Vue3Lottie } from "vue3-lottie";
+import UploadAnimation from "@/components/lottie/Upload.json";
 
 interface Props {
 	note?: string | null;
@@ -26,8 +27,6 @@ const fileList = ref([]);
 
 const importing = ref(false);
 
-const router = useRouter();
-
 const store = useSettingsStore();
 
 /**
@@ -37,7 +36,7 @@ const store = useSettingsStore();
  * @return {Promise<void>}
  * @since: 2.0.0
  */
-const handleUpload = async (raw: string): Promise<void> => {
+const handleUpload = async (raw: File): Promise<void> => {
 	const blob = new Blob([raw], {
 		type: "application/json",
 	});
@@ -91,14 +90,15 @@ const handleUpload = async (raw: string): Promise<void> => {
  * @return {void}
  * @since: 2.0.0
  */
-const verify = (raw: string): void => {
+const verify = (raw: File): void => {
 	if (!raw || raw.type !== "application/json") {
-		return toast({
+		toast({
 			type: "error",
 			duration: 10000,
 			position: "top-center",
 			message: __("Failed, please upload JSON file.", "addonify-quick-view"),
 		});
+		return;
 	}
 
 	/**
@@ -132,7 +132,7 @@ const verify = (raw: string): void => {
 		:multiple="false"
 		:before-upload="verify"
 	>
-		<Upload :size="62" :stroke-width="1" />
+		<Vue3Lottie :animationData="UploadAnimation" :height="200" :width="200" />
 
 		<div
 			v-if="caption && caption.length > 0"
