@@ -128,7 +128,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			// Check nonce if the request is not a "GET" request.
 			if ( $request->get_method() !== 'GET' ) {
-				$nonce = $request->get_param( 'nonce' );
+				$nonce = $request->get_header( 'x_wp_admin_nonce' );
 
 				if ( ! $nonce || ! wp_verify_nonce( $nonce, 'addonify-quick-view-admin-nonce' ) ) {
 					$return_data['message'] = esc_html__( 'Invalid security token', 'addonify-quick-view' );
@@ -158,7 +158,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				'message' => esc_html__( 'Failed! to update options.', 'addonify-quick-view' ),
 			);
 
-			$nonce  = $request->get_header('x_wp_admin_nonce');
+			$nonce = $request->get_header( 'x_wp_admin_nonce' );
 
 			if ( ! $nonce || empty( $nonce ) ) {
 				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
@@ -190,15 +190,17 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * API callback handler for resetting plugin settings.
 		 *
 		 * @since 1.2.17
+		 *
+		 * @param \WP_REST_Request $request    The request object.
 		 */
-		public function reset_settings( $request) {
+		public function reset_settings( $request ) {
 
 			$return_data = array(
 				'success' => false,
 				'message' => esc_html__( 'Failed! to reset options.', 'addonify-quick-view' ),
 			);
 
-			$nonce  = $request->get_header('x_wp_admin_nonce');
+			$nonce = $request->get_header( 'x_wp_admin_nonce' );
 
 			if ( ! $nonce || empty( $nonce ) ) {
 				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
@@ -226,14 +228,16 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * API callback handler for exporting saved plugin settings.
 		 *
 		 * @since 1.2.17
+		 *
+		 * @param \WP_REST_Request $request    The request object.
 		 */
-		public function export_settings( $request) {
+		public function export_settings( $request ) {
 			$return_data = array(
 				'success' => false,
 				'message' => esc_html__( 'Unable to write on server.', 'addonify-quick-view' ),
 			);
 
-			$nonce  = $request->get_header('x_wp_admin_nonce');
+			$nonce = $request->get_header( 'x_wp_admin_nonce' );
 
 			if ( ! $nonce || empty( $nonce ) ) {
 				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
@@ -249,12 +253,12 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 
 			$query = 'SELECT option_name, option_value FROM ' . $wpdb->options . ' WHERE option_name LIKE %s';
 
-			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_QUICK_VIEW_DB_INITIALS . '%' ), ARRAY_A ); //phpcs:ignore
+			$query_results = $wpdb->get_results( $wpdb->prepare( $query, '%' . ADDONIFY_QUICK_VIEW_DB_INITIALS . '%' ) ); // phpcs:ignore
 
 			$json_file = 'addonify-quick-view-settings-' . time() . '.json';
 
 			if (
-				file_put_contents( //phpcs:ignore
+				file_put_contents( //phpcs:ignore.
 					trailingslashit( wp_upload_dir()['path'] ) . $json_file,
 					wp_json_encode( $query_results )
 				)
@@ -274,6 +278,8 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 		 * API callback handler for exporting saved plugin settings.
 		 *
 		 * @since 1.2.17
+		 *
+		 * @param \WP_REST_Request $request    The request object.
 		 */
 		public function import_settings( $request ) {
 			$return_data = array(
@@ -281,7 +287,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 				'message' => esc_html__( 'Unable to import settings.', 'addonify-quick-view' ),
 			);
 
-			$nonce  = $request->get_header('x_wp_admin_nonce');
+			$nonce = $request->get_header( 'x_wp_admin_nonce' );
 
 			if ( ! $nonce || empty( $nonce ) ) {
 				$return_data['message'] = esc_html__( 'Security token is missing!', 'addonify-quick-view' );
@@ -327,7 +333,11 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			}
 
 			foreach ( $settings_values as $setting_value ) {
-				update_option( $setting_value->option_name, $setting_value->option_value );
+				$value = wp_unslash( $setting_value->option_value );
+				if ( is_serialized( $setting_value->option_value ) ) {
+					$value = unserialize( $setting_value->option_value ); // phpcs:ignore
+				}
+				update_option( $setting_value->option_name, $value );
 			}
 
 			return new WP_REST_Response(
