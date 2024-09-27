@@ -2,8 +2,8 @@
 import { onMounted } from "vue";
 import { useSettingsStore } from "@/stores/settings";
 
-import { Toaster } from "@steveyuowo/vue-hot-toast";
 import "@steveyuowo/vue-hot-toast/vue-hot-toast.css";
+import { Toaster } from "@steveyuowo/vue-hot-toast";
 
 import Header from "@/components/global/Header.vue";
 

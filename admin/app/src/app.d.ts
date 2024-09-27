@@ -36,6 +36,7 @@ export interface Option {
 	value: string | number | boolean;
 	isAlphaPicker?: boolean;
 	placeholder?: string;
+	multiple?: boolean;
 	width?: string;
 	design?: string;
 	min?: number;

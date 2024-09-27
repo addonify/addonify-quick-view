@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { Check, Close } from "@element-plus/icons-vue";
 
 interface Props {
-	modelValue: boolean | null | undefined;
+	modelValue: string | boolean | null | undefined;
 }
 
 /**
@@ -23,7 +23,17 @@ const { modelValue } = defineProps<Props>();
 const emit = defineEmits(["update:modelValue"]);
 
 const value = computed({
-	get: () => (modelValue ? true : false) as boolean,
+	get: (): boolean => {
+		if (typeof modelValue === "boolean") {
+			return modelValue;
+		} else if (typeof modelValue === "number") {
+			return modelValue > 0;
+		} else if (typeof modelValue === "string") {
+			return modelValue === "1" ? true : false;
+		} else {
+			return false;
+		}
+	},
 	set: (newValue) => emit("update:modelValue", newValue),
 });
 </script>
