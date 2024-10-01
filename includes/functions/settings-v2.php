@@ -12,10 +12,10 @@
 /**
  * Include required files for v2.
  */
-require_once plugin_dir_path( __DIR__ ) . 'functions/fields/general-V2.php';
-require_once plugin_dir_path( __DIR__ ) . 'functions/fields/button-V2.php';
-require_once plugin_dir_path( __DIR__ ) . 'functions/fields/modal-V2.php';
-require_once plugin_dir_path( __DIR__ ) . 'functions/fields/product-V2.php';
+require_once plugin_dir_path( __DIR__ ) . 'functions/fields/general-v2.php';
+require_once plugin_dir_path( __DIR__ ) . 'functions/fields/button-v2.php';
+require_once plugin_dir_path( __DIR__ ) . 'functions/fields/modal-v2.php';
+require_once plugin_dir_path( __DIR__ ) . 'functions/fields/product-v2.php';
 
 if ( ! function_exists( 'addonify_quick_view_update_fields_values' ) ) {
 	/**
