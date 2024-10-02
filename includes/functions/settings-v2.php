@@ -136,7 +136,6 @@ if ( ! function_exists( 'addonify_quick_view_get_fields_values' ) ) {
 							if ( isset( $value['multiselect'] ) && $value['multiselect'] ) {
 
 								$setting_value = addonify_quick_view_get_option( $id );
-
 								if ( is_array( $setting_value ) ) {
 									$settings_values[ $id ] = $setting_value;
 								} else {
