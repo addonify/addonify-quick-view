@@ -2,6 +2,7 @@
 import Title from "@/components/analytics/Title.vue";
 import Section from "@/components/analytics/Section.vue";
 import Chart from "@/components/analytics/chart/Chart.vue";
+import Table from "@/components/analytics/table/List.vue";
 </script>
 
 <template>
@@ -12,7 +13,8 @@ import Chart from "@/components/analytics/chart/Chart.vue";
 		</Section>
 
 		<Section>
-			<Title title="Products View Count" />
+			<Title title="Products Views" />
+			<Table />
 		</Section>
 	</div>
 </template>
