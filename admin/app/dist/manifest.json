@@ -4,12 +4,12 @@
     "src": "admin/app/src/components/shapes/Waves.svg"
   },
   "admin/app/src/main.ts": {
-    "file": "assets/main-C9fA03Z6.js",
+    "file": "assets/main-COIWQAci.js",
     "name": "main",
     "src": "admin/app/src/main.ts",
     "isEntry": true,
     "css": [
-      "assets/main-BpRnvfL6.css"
+      "assets/main-BIMpHv8l.css"
     ],
     "assets": [
       "assets/Waves-Bq1FD3eC.svg",

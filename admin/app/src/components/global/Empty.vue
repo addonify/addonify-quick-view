@@ -17,7 +17,7 @@ const { content = __("No data available.", "addonify-quick-view") } =
 
 <template>
 	<div
-		class="p-16 flex flex-col gap-6 items-center justify-center bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl"
+		class="p-16 w-full flex flex-col gap-6 items-center justify-center bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl"
 	>
 		<PackageOpen
 			:size="82"
