@@ -27,7 +27,6 @@ if ( ! function_exists( 'addonify_quick_view_update_fields_values' ) ) {
 	 * @return bool true on success, false otherwise.
 	 */
 	function addonify_quick_view_update_fields_values( $settings = '' ) {
-
 		if (
 			is_array( $settings ) &&
 			count( $settings ) > 0
@@ -140,7 +139,7 @@ if ( ! function_exists( 'addonify_quick_view_get_fields_values' ) ) {
 							break;
 
 						case 'select':
-							if ( isset( $value['multiple'] ) && $value['multiple'] ) {
+							if ( isset( $setting_fields[ $id ]['multiple'] ) && $setting_fields[ $id ]['multiple'] ) {
 
 								$setting_value = addonify_quick_view_get_option( $id );
 								if ( is_array( $setting_value ) ) {
