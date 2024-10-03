@@ -50,6 +50,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</section>
 			<?php do_action( 'addonify_quick_view_after_modal_content' ); ?>
 		</div>
-		<?php do_action( 'addonify_quick_view_after_modal' ); ?>
 	</div>
+	<?php do_action( 'addonify_quick_view_after_modal' ); ?>
 </aside>
