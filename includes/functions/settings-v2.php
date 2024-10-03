@@ -58,22 +58,29 @@ if ( ! function_exists( 'addonify_quick_view_update_fields_values' ) ) {
 
 					case 'select':
 						$choices     = $setting_fields[ $id ]['choices'];
-						$multiselect = isset( $setting_fields[ $id ]['multiselect'] ) ? $settings_fields[ $id ]['multiselect'] : false;
+						$multiselect = isset( $setting_fields[ $id ]['multiple'] ) ? $setting_fields[ $id ]['multiple'] : false;
 
 						if ( $multiselect ) {
-							$values_exit = true;
+
+							$sanitized_values = array();
+
+							$values_exist = true;
 							if ( is_array( $value ) && $value ) {
 								foreach ( $value as $val ) {
 									if ( ! array_key_exists( $val, $choices ) ) {
-										$values_exit = false;
+										$values_exist = false;
 										break;
+									} else {
+										$sanitized_values[] = sanitize_key( $val );
 									}
 								}
 							}
 
-							$sanitized_value = ! $values_exit ? $defaults[ $id ] : $value;
+							if ( ! $values_exist ) {
+								$sanitized_values = $defaults[ $id ];
+							}
 
-							$sanitized_value = wp_json_encode( $sanitized_value );
+							$sanitized_value = wp_json_encode( $sanitized_values );
 						} else { // phpcs:ignore
 							if ( array_key_exists( $value, $choices ) ) {
 								$sanitized_value = sanitize_text_field( $value );
@@ -133,7 +140,7 @@ if ( ! function_exists( 'addonify_quick_view_get_fields_values' ) ) {
 							break;
 
 						case 'select':
-							if ( isset( $value['multiselect'] ) && $value['multiselect'] ) {
+							if ( isset( $value['multiple'] ) && $value['multiple'] ) {
 
 								$setting_value = addonify_quick_view_get_option( $id );
 								if ( is_array( $setting_value ) ) {
