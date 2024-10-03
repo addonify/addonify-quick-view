@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Index from "@/views/Index.vue";
 import Error from "@/views/404.vue";
 import Products from "@/views/Products.vue";
+import Analytics from "@/views/Analytics.vue";
 
 /**
  * Define the default routes for our app.
@@ -25,6 +26,11 @@ const defaults = [
 		path: "/products",
 		name: "Products",
 		component: Products,
+	},
+	{
+		path: "/analytics",
+		name: "Analytics",
+		component: Analytics,
 	},
 	{
 		path: "/:catchAll(.*)*",

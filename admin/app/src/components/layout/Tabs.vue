@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSettingsStore } from "@/stores/settings";
-import { Coffee, SlidersHorizontal } from "lucide-vue-next";
+import { Coffee, SlidersHorizontal, ChartSpline } from "lucide-vue-next";
 
 const store = useSettingsStore();
 
@@ -41,6 +41,19 @@ const getLink = (path: number): string => "/s/" + path;
 					</template>
 
 					<span>{{ item.title }}</span>
+				</RouterLink>
+			</li>
+
+			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
+				<RouterLink
+					to="/analytics"
+					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
+				>
+					<span class="size-6 inline-flex items-center relative leading-3">
+						<ChartSpline :size="24" :stroke-width="2" class="leading-3" />
+					</span>
+
+					<span>Analytics</span>
 				</RouterLink>
 			</li>
 

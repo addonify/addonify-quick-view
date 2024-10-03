@@ -105,3 +105,24 @@ export interface RecommendationData {
 		hot: Products[];
 	};
 }
+
+export interface ProductsViewsCount {
+	id: number;
+	name: string;
+	image: string;
+	link: string;
+	viewsCount: number;
+}
+
+export interface ProductsViewsCountResponse {
+	totalItems: number;
+	limit: number;
+	offset: number;
+	productsViews: ProductsViewsCount[];
+}
+
+export interface ViewCountChartDataResponse {
+	from: string | null;
+	to: string | null;
+	views: Record<string, number>[] | null;
+}
