@@ -1,9 +1,3 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
-
-import App from "./App.vue";
-import router from "./routes";
-
 import "@/assets/app.scss";
 
 import "@fontsource/inter";
@@ -12,7 +6,13 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 import Vue3Lottie from "vue3-lottie";
+import VueApexCharts from "vue3-apexcharts";
+
+import App from "./App.vue";
+import router from "./routes";
 
 /**
  * Use the plugins.
@@ -25,6 +25,7 @@ const app = createApp(App);
 app.use(pinia);
 app.use(router);
 app.use(Vue3Lottie);
+app.use(VueApexCharts);
 
 /**
  * Mount the vue app.

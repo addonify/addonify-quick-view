@@ -20,6 +20,9 @@ importers:
       '@wordpress/i18n':
         specifier: ^5.7.0
         version: 5.7.0
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       lucide-vue-next:
         specifier: ^0.441.0
         version: 0.441.0(vue@3.5.6(typescript@5.6.2))
@@ -69,6 +72,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.1.3
         version: 5.1.3(vite@5.4.6(@types/node@22.5.5)(sass@1.75.0)(terser@5.33.0))(vue@3.5.6(typescript@5.6.2))
+      apexcharts:
+        specifier: ^3.54.0
+        version: 3.54.0
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -132,6 +138,9 @@ importers:
       vue-tsc:
         specifier: ^2.1.6
         version: 2.1.6(typescript@5.6.2)
+      vue3-apexcharts:
+        specifier: ^1.6.0
+        version: 1.6.0(apexcharts@3.54.0)(vue@3.5.6(typescript@5.6.2))
       vue3-lottie:
         specifier: ^3.3.1
         version: 3.3.1(vue@3.5.6(typescript@5.6.2))
@@ -1538,6 +1547,9 @@ packages:
   '@xtuc/long@4.2.2':
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
 
+  '@yr/monotone-cubic-spline@1.0.3':
+    resolution: {integrity: sha512-FQXkOta0XBSUPHndIKON2Y9JeQz5ZeMqLYZVVK93FliNBFm7LNMIZmY6FrMEB9XPcDbE2bekMbZD6kzDkxwYjA==}
+
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
     peerDependencies:
@@ -1603,6 +1615,9 @@ packages:
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
+
+  apexcharts@3.54.0:
+    resolution: {integrity: sha512-ZgI/seScffjLpwNRX/gAhIkAhpCNWiTNsdICv7qxnF0xisI23XSsaENUKIcMlyP1rbe8ECgvybDnp7plZld89A==}
 
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
@@ -1834,8 +1849,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -3009,6 +3024,37 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  svg.draggable.js@2.2.2:
+    resolution: {integrity: sha512-JzNHBc2fLQMzYCZ90KZHN2ohXL0BQJGQimK1kGk6AvSeibuKcIdDX9Kr0dT9+UJ5O8nYA0RB839Lhvk4CY4MZw==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.easing.js@2.0.0:
+    resolution: {integrity: sha512-//ctPdJMGy22YoYGV+3HEfHbm6/69LJUTAqI2/5qBvaNHZ9uUFVC82B0Pl299HzgH13rKrBgi4+XyXXyVWWthA==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.filter.js@2.0.2:
+    resolution: {integrity: sha512-xkGBwU+dKBzqg5PtilaTb0EYPqPfJ9Q6saVldX+5vCRy31P6TlRCP3U9NxH3HEufkKkpNgdTLBJnmhDHeTqAkw==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.js@2.7.1:
+    resolution: {integrity: sha512-ycbxpizEQktk3FYvn/8BH+6/EuWXg7ZpQREJvgacqn46gIddG24tNNe4Son6omdXCnSOaApnpZw6MPCBA1dODA==}
+
+  svg.pathmorphing.js@0.1.3:
+    resolution: {integrity: sha512-49HWI9X4XQR/JG1qXkSDV8xViuTLIWm/B/7YuQELV5KMOPtXjiwH4XPJvr/ghEDibmLQ9Oc22dpWpG0vUDDNww==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.resize.js@1.4.3:
+    resolution: {integrity: sha512-9k5sXJuPKp+mVzXNvxz7U0uC9oVMQrrf7cFsETznzUDDm0x8+77dtZkWdMfRlmbkEEYvUn9btKuZ3n41oNA+uw==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.select.js@2.1.2:
+    resolution: {integrity: sha512-tH6ABEyJsAOVAhwcCjF8mw4crjXSI1aa7j2VQR8ZuJ37H2MBUbyeqYr5nEO7sSN3cy9AR9DUwNg0t/962HlDbQ==}
+    engines: {node: '>= 0.8.0'}
+
+  svg.select.js@3.0.1:
+    resolution: {integrity: sha512-h5IS/hKkuVCbKSieR9uQCj9w+zLHoPh+ce19bBYyqF53g6mnPB8sAtIbe1s9dh2S2fCmYX2xel1Ln3PJBbK4kw==}
+    engines: {node: '>= 0.8.0'}
+
   svgo@3.2.0:
     resolution: {integrity: sha512-4PP6CMW/V7l/GmKRKzsLR8xxjdHTV4IMvhTnpuHwwBazSIlw5W/5SmPjN8Dwyt7lKbSJrRDgp4t9ph0HgChFBQ==}
     engines: {node: '>=14.0.0'}
@@ -3260,6 +3306,12 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
+
+  vue3-apexcharts@1.6.0:
+    resolution: {integrity: sha512-gemKFXpw4TuVcllwyKJGYjTwiJQxxCUwbXsiiEEZjs0zc9jvOHvreN8frXz7QbnYqMqOHF9D1TBqwENvoPNjLw==}
+    peerDependencies:
+      apexcharts: '> 3.0.0'
+      vue: '> 3.0.0'
 
   vue3-lottie@3.3.1:
     resolution: {integrity: sha512-60uQmx4eefi3FdPjAxWnblrgJJjnVTXUA6e4BAI3jGzgOSR76pyzL1rrWDiyPmMFo4mTw4wGTW6Gbkg3HR1mYw==}
@@ -4846,6 +4898,8 @@ snapshots:
 
   '@xtuc/long@4.2.2': {}
 
+  '@yr/monotone-cubic-spline@1.0.3': {}
+
   acorn-import-assertions@1.9.0(acorn@8.12.1):
     dependencies:
       acorn: 8.12.1
@@ -4901,6 +4955,16 @@ snapshots:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+
+  apexcharts@3.54.0:
+    dependencies:
+      '@yr/monotone-cubic-spline': 1.0.3
+      svg.draggable.js: 2.2.2
+      svg.easing.js: 2.0.0
+      svg.filter.js: 2.0.2
+      svg.pathmorphing.js: 0.1.3
+      svg.resize.js: 1.4.3
+      svg.select.js: 3.0.1
 
   arg@5.0.2: {}
 
@@ -5162,7 +5226,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  dayjs@1.11.10: {}
+  dayjs@1.11.13: {}
 
   de-indent@1.0.2: {}
 
@@ -5214,7 +5278,7 @@ snapshots:
       '@types/lodash-es': 4.17.12
       '@vueuse/core': 9.13.0(vue@3.5.6(typescript@5.6.2))
       async-validator: 4.2.5
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21
@@ -6325,6 +6389,37 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  svg.draggable.js@2.2.2:
+    dependencies:
+      svg.js: 2.7.1
+
+  svg.easing.js@2.0.0:
+    dependencies:
+      svg.js: 2.7.1
+
+  svg.filter.js@2.0.2:
+    dependencies:
+      svg.js: 2.7.1
+
+  svg.js@2.7.1: {}
+
+  svg.pathmorphing.js@0.1.3:
+    dependencies:
+      svg.js: 2.7.1
+
+  svg.resize.js@1.4.3:
+    dependencies:
+      svg.js: 2.7.1
+      svg.select.js: 2.1.2
+
+  svg.select.js@2.1.2:
+    dependencies:
+      svg.js: 2.7.1
+
+  svg.select.js@3.0.1:
+    dependencies:
+      svg.js: 2.7.1
+
   svgo@3.2.0:
     dependencies:
       '@trysound/sax': 0.2.0
@@ -6581,6 +6676,11 @@ snapshots:
       '@vue/language-core': 2.1.6(typescript@5.6.2)
       semver: 7.6.0
       typescript: 5.6.2
+
+  vue3-apexcharts@1.6.0(apexcharts@3.54.0)(vue@3.5.6(typescript@5.6.2)):
+    dependencies:
+      apexcharts: 3.54.0
+      vue: 3.5.6(typescript@5.6.2)
 
   vue3-lottie@3.3.1(vue@3.5.6(typescript@5.6.2)):
     dependencies:
