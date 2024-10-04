@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { __ } from "@wordpress/i18n";
+import { slice } from "@/utils/helpers";
 import type { ProductsViewsCount } from "@/app";
 
 interface Props {
@@ -36,7 +37,7 @@ const { data = null } = defineProps<Props>();
 			</th>
 		</thead>
 
-		<tbody class="w-full">
+		<tbody class="w-full relation">
 			<tr
 				v-for="(product, index) in data"
 				:key="product.id"
@@ -52,14 +53,14 @@ const { data = null } = defineProps<Props>();
 					<a
 						:href="product.link"
 						target="_blank"
-						class="m-0 p-0 flex flex-row items-center gap-x-4 text-md text-gray-700 hover:text-emerald-500"
+						class="m-0 p-0 inline-flex items-center gap-x-4 text-md text-gray-700 hover:text-emerald-500"
 					>
 						<img
 							:src="product.image"
 							class="w-full max-w-[60px] inline-flex rounded-lg"
 						/>
 
-						{{ product.name }}
+						{{ slice(product.name, 130) }}
 					</a>
 				</td>
 

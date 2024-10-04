@@ -5,6 +5,7 @@ import { useAnalyticsStore } from "@/stores/analytics";
 
 import Skeleton from "@/components/global/Skeleton.vue";
 import Table from "@/components/analytics/table/Table.vue";
+import Toolbar from "@/components/analytics/table/Toolbar.vue";
 
 const store = useAnalyticsStore();
 
@@ -26,6 +27,7 @@ const data = computed(() => {
 </script>
 
 <template>
+	<Toolbar />
 	<div
 		v-if="!store.loading.product && store.product?.productsViews"
 		class="flex flex-col border border-gray-200 overflow-hidden rounded-xl shadow-sm"
