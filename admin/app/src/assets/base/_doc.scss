@@ -17,4 +17,12 @@ body[class*="addonify-quick-view"] {
 	.VueHotToast__toast {
 		@apply p-4 font-sans text-sm font-normal rounded-lg shadow;
 	}
+
+	.el-picker__popper.el-popper {
+		@apply rounded-xl overflow-hidden border border-gray-200 shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)];
+
+		.el-date-range-picker {
+			@apply font-sans;
+		}
+	}
 }

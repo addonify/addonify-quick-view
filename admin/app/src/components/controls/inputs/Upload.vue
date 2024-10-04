@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { __ } from "@wordpress/i18n";
+import { Upload } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { useSettingsStore } from "@/stores/settings";
-
-import { Vue3Lottie } from "vue3-lottie";
-import UploadAnimation from "@/components/lottie/Upload.json";
 
 interface Props {
 	note?: string | null;
@@ -132,7 +130,7 @@ const verify = (raw: File): void => {
 		:multiple="false"
 		:before-upload="verify"
 	>
-		<Vue3Lottie :animationData="UploadAnimation" :height="200" :width="200" />
+		<Upload :size="62" :stroke-width="1" />
 
 		<div
 			v-if="caption && caption.length > 0"
