@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { __ } from "@wordpress/i18n";
-import { Coffee, PackageOpen } from "lucide-vue-next";
+import { mc } from "@/utils/tailwind";
+import { PackageOpen } from "lucide-vue-next";
 
 interface Props {
-	content: string | undefined | null;
+	content?: string | undefined | null;
+	class?: string | undefined | null;
 }
 
 /**
@@ -11,13 +13,25 @@ interface Props {
  *
  * @since 2.0.0
  */
-const { content = __("No data available.", "addonify-quick-view") } =
-	defineProps<Props>();
+const { content, class: clasX } = defineProps<Props>();
+
+/**
+ * Define props.
+ *
+ * @since 2.0.0
+ */
+const label = __("No data available.", "addonify-quick-view");
 </script>
 
 <template>
 	<div
-		class="p-16 w-full flex flex-col gap-6 items-center justify-center bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl"
+		:class="
+			mc(
+				`p-16 w-full flex flex-col gap-6 items-center justify-center bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl ${
+					clasX || ''
+				}`
+			)
+		"
 	>
 		<PackageOpen
 			:size="82"
@@ -26,7 +40,7 @@ const { content = __("No data available.", "addonify-quick-view") } =
 		/>
 
 		<span class="p-0 m-0 block text-base font-normal text-gray-700">
-			{{ content }}
+			{{ content && content.length > 0 ? content : label }}
 		</span>
 	</div>
 </template>

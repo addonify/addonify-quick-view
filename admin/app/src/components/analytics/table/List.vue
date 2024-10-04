@@ -7,6 +7,8 @@ import Skeleton from "@/components/global/Skeleton.vue";
 import Table from "@/components/analytics/table/Table.vue";
 import Toolbar from "@/components/analytics/table/Toolbar.vue";
 
+import type { ProductsViewsCount } from "@/app";
+
 const store = useAnalyticsStore();
 
 /**
@@ -22,7 +24,15 @@ const data = computed(() => {
 	) {
 		return null;
 	}
-	return store.product.productsViews;
+
+	/**
+	 * Filter the search result with the product name.
+	 */
+	const search = store.search.toLowerCase();
+
+	return store.product.productsViews.filter((product: ProductsViewsCount) => {
+		return product.name.toLowerCase().includes(search);
+	});
 });
 </script>
 
