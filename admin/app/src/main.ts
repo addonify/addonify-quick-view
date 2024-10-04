@@ -8,7 +8,6 @@ import "@fontsource/inter/700.css";
 
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import Vue3Lottie from "vue3-lottie";
 import VueApexCharts from "vue3-apexcharts";
 
 import App from "./App.vue";
@@ -24,7 +23,6 @@ const app = createApp(App);
 
 app.use(pinia);
 app.use(router);
-app.use(Vue3Lottie);
 app.use(VueApexCharts);
 
 /**
