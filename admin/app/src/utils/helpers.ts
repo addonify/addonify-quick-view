@@ -30,3 +30,14 @@ export const clone = <T>(arg: T): T => {
 export const sleep = (ms: number): Promise<unknown> => {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 };
+
+/**
+ * Slice the string to the given length.
+ *
+ * @param {string} str.
+ * @param {number} chars.
+ * @returns {string}
+ */
+export const slice = (str: string, chars: number): string => {
+	return str.length > chars ? `${str.slice(0, chars)}...` : str;
+};
