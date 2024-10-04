@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { __ } from "@wordpress/i18n";
 import { slice } from "@/utils/helpers";
+
+import Empty from "@/components/global/Empty.vue";
+
 import type { ProductsViewsCount } from "@/app";
 
 interface Props {
@@ -18,23 +21,25 @@ const { data = null } = defineProps<Props>();
 <template>
 	<table class="w-fll border-none shadow-none">
 		<thead class="border-b border-b-gray-200">
-			<th
-				class="p-4 m-0 w-[60px] text-sm uppercase font-semibold font-sans text-left text-gray-600"
-			>
-				{{ __("SN", "addonify-quick-view") }}
-			</th>
+			<tr>
+				<th
+					class="p-4 m-0 w-[60px] text-sm uppercase font-semibold font-sans text-left text-gray-600"
+				>
+					{{ __("SN", "addonify-quick-view") }}
+				</th>
 
-			<th
-				class="p-4 m-0 text-sm uppercase font-semibold font-sans text-left text-gray-600"
-			>
-				{{ __("Product name", "addonify-quick-view") }}
-			</th>
+				<th
+					class="p-4 m-0 text-sm uppercase font-semibold font-sans text-left text-gray-600"
+				>
+					{{ __("Product name", "addonify-quick-view") }}
+				</th>
 
-			<th
-				class="p-4 m-0 w-[150px] text-sm uppercase font-semibold font-sans text-left text-gray-600"
-			>
-				{{ __("Views", "addonify-quick-view") }}
-			</th>
+				<th
+					class="p-4 m-0 w-[150px] text-sm uppercase font-semibold font-sans text-left text-gray-600"
+				>
+					{{ __("Views", "addonify-quick-view") }}
+				</th>
+			</tr>
 		</thead>
 
 		<tbody class="w-full relation">
@@ -70,4 +75,10 @@ const { data = null } = defineProps<Props>();
 			</tr>
 		</tbody>
 	</table>
+
+	<Empty
+		v-if="!data || !data.length"
+		class="my-[20px] max-w-[calc(100%-40px)] mx-auto"
+		:content="__('No data!', 'addonify-quick-view')"
+	/>
 </template>

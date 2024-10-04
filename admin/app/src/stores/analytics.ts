@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { defineStore } from "pinia";
 import { useFetch } from "@/utils/http";
 
@@ -15,6 +16,7 @@ import type {
 interface State {
 	chart: ViewCountChartDataResponse | null;
 	product: ProductsViewsCountResponse | null;
+	search: string;
 	loading: {
 		chart: boolean;
 		product: boolean;
@@ -39,6 +41,11 @@ export const useAnalyticsStore = defineStore("analytics", {
 			 * State that stores the product views count data.
 			 */
 			product: null,
+
+			/**
+			 * Search for the tabular data.
+			 */
+			search: "",
 
 			/**
 			 * Loading state.
@@ -98,22 +105,45 @@ export const useAnalyticsStore = defineStore("analytics", {
 		/**
 		 * Get product view counts.
 		 *
-		 * @param {string} start - The start date.
-		 * @param {string} end - The end date.
+		 * @param {string | number} limit
+		 * @param {string | number} offset
+		 * @param {string | null} start - The start date.
+		 * @param {string | null} end - The end date.
 		 * @returns {Promise<Response>}
 		 * @since 2.0.0
 		 */
-		async getProductViewCount(): Promise<Response> {
+		async getProductViewCount(
+			limit: string | number = 20,
+			offset: string | number = 0,
+			start: string | null = null,
+			end: string | null = null
+		): Promise<Response> {
 			/**
 			 * Set the loading state to true.
 			 */
 			this.loading.product = true;
 
 			/**
+			 * Prepare the query params.
+			 */
+			const query = new URLSearchParams({
+				limit: limit.toString(),
+				offset: offset.toString(),
+			});
+
+			if (start && start.length > 0) {
+				query.set("start", dayjs(start).format("YYYY-MM-DD"));
+			}
+
+			if (end && end.length > 0) {
+				query.set("end", dayjs(end).format("YYYY-MM-DD"));
+			}
+
+			/**
 			 * Endpoint to get the views.
 			 * Requires the pro version.
 			 */
-			const endpoint = "addonify-quick-view-pro/stats/products";
+			const endpoint = `addonify-quick-view-pro/stats/products?${query.toString()}`;
 
 			/**
 			 * Use apiFetch to get the views count.
