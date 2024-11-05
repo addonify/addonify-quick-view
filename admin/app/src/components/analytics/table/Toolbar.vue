@@ -109,6 +109,13 @@ const shortcuts = computed(() => {
  * @since 2.0.0
  */
 const handleFilter = async (val: string[]): Promise<void> => {
+	/**
+	 * Get the date.
+	 *
+	 * @param {string} str
+	 * @returns {string | null}
+	 * @since 2.0.0
+	 */
 	const date = (str: string): string | null => {
 		return dayjs(str).format("YYYY-MM-DD") || null;
 	};

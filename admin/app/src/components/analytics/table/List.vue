@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { __ } from "@wordpress/i18n";
 import { useAnalyticsStore } from "@/stores/analytics";
 
+import Empty from "@/components/global/Empty.vue";
 import Skeleton from "@/components/global/Skeleton.vue";
 import Table from "@/components/analytics/table/Table.vue";
 import Toolbar from "@/components/analytics/table/Toolbar.vue";
@@ -46,4 +47,10 @@ const data = computed(() => {
 	</div>
 
 	<Skeleton v-if="store.loading.product" :size="25" />
+
+	<Empty
+		v-if="!store.loading.product && (!data || !data.length)"
+		class="my-[20px] max-w-[calc(100%-40px)] mx-auto"
+		:content="__('No data!', 'addonify-quick-view')"
+	/>
 </template>
