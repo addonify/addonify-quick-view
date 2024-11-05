@@ -75,29 +75,42 @@ export const useAnalyticsStore = defineStore("analytics", {
 			this.loading.chart = true;
 
 			/**
+			 * Prepare the query params.
+			 */
+			const query = new URLSearchParams();
+
+			if (start && start.length > 0) {
+				query.set("start", dayjs(start).format("YYYY-MM-DD"));
+			}
+
+			if (end && end.length > 0) {
+				query.set("end", dayjs(end).format("YYYY-MM-DD"));
+			}
+
+			/**
 			 * Endpoint to get the views.
 			 * Requires the pro version.
 			 */
-			const endpoint = "addonify-quick-view-pro/stats/chart";
+			const endpoint = `addonify-quick-view-pro/stats/chart?${query.toString()}`;
 
 			/**
 			 * Use apiFetch to get the views count.
 			 */
 			const [e, res]: [Error | null, any] = await useFetch(endpoint, "GET");
 
-			if (e || !res || !res.success || !res.data) {
-				throw new Error(e.message || "Failed to get chart data.");
-			}
-
 			/**
 			 * Set the chart data.
 			 */
-			this.chart = res.data;
+			this.chart = res?.data || null;
 
 			/**
 			 * Set the loading state to false.
 			 */
 			this.loading.chart = false;
+
+			if (e || !res || !res.success || !res.data) {
+				return null;
+			}
 
 			return res.data;
 		},
