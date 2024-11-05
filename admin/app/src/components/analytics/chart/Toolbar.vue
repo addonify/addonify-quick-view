@@ -81,7 +81,7 @@ const handleFilter = async (val: string): Promise<void> => {
 				class="m-0 p-0 inline-flex items-center gap-x-2 font-normal text-sm text-gray-400"
 			>
 				<CalendarFold size="18" />
-				{{ range }}
+				<span>{{ range }}</span>
 			</p>
 
 			<el-dropdown>
@@ -98,35 +98,35 @@ const handleFilter = async (val: string): Promise<void> => {
 							@click="handleFilter('today')"
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							Today
+							{{ __("Today", "addonify-quick-view") }}
 						</el-dropdown-item>
 
 						<el-dropdown-item
 							@click="handleFilter('yesterday')"
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							Yesterday
+							{{ __("Yesterday", "addonify-quick-view") }}
 						</el-dropdown-item>
 
 						<el-dropdown-item
 							@click="handleFilter('this-week')"
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							This week
+							{{ __("This week", "addonify-quick-view") }}
 						</el-dropdown-item>
 
 						<el-dropdown-item
 							@click="handleFilter('last-week')"
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							Last week
+							{{ __("Last week", "addonify-quick-view") }}
 						</el-dropdown-item>
 
 						<el-dropdown-item
 							@click="handleFilter('last-month')"
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							Last month
+							{{ __("Last month", "addonify-quick-view") }}
 						</el-dropdown-item>
 
 						<el-dropdown-item
@@ -134,7 +134,7 @@ const handleFilter = async (val: string): Promise<void> => {
 							divided
 							class="font-sans font-normal text-sm text-gray-600 hover:text-blue-600 transition-colors duration-300 ease"
 						>
-							This month
+							{{ __("This month", "addonify-quick-view") }}
 						</el-dropdown-item>
 					</el-dropdown-menu>
 				</template>
