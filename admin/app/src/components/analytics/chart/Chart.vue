@@ -5,6 +5,7 @@ import { useAnalyticsStore } from "@/stores/analytics";
 
 import Empty from "@/components/global/Empty.vue";
 import Skeleton from "@/components/global/Skeleton.vue";
+import Toolbar from "@/components/analytics/chart/Toolbar.vue";
 
 const store = useAnalyticsStore();
 
@@ -128,6 +129,8 @@ const renderChart = computed(() => {
 </script>
 
 <template>
+	<Toolbar />
+
 	<apexchart
 		v-if="renderChart"
 		:series="series"
@@ -141,7 +144,7 @@ const renderChart = computed(() => {
 
 	<Empty
 		v-if="!store.loading.chart && !renderChart"
-		content="Oops! not enough data to render a chart."
+		content="Not enough data to render a chart."
 	/>
 </template>
 
