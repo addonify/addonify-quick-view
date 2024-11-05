@@ -2,8 +2,6 @@
 import { __ } from "@wordpress/i18n";
 import { slice } from "@/utils/helpers";
 
-import Empty from "@/components/global/Empty.vue";
-
 import type { ProductsViewsCount } from "@/app";
 
 interface Props {
@@ -75,10 +73,4 @@ const { data = null } = defineProps<Props>();
 			</tr>
 		</tbody>
 	</table>
-
-	<Empty
-		v-if="!data || !data.length"
-		class="my-[20px] max-w-[calc(100%-40px)] mx-auto"
-		:content="__('No data!', 'addonify-quick-view')"
-	/>
 </template>

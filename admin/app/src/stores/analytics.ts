@@ -150,19 +150,19 @@ export const useAnalyticsStore = defineStore("analytics", {
 			 */
 			const [e, res]: [Error | null, any] = await useFetch(endpoint, "GET");
 
-			if (e || !res || !res.success || !res.data) {
-				throw new Error(e.message || "Failed to get products view count.");
-			}
-
-			/**
-			 * Set the chart data.
-			 */
-			this.product = res.data;
-
 			/**
 			 * Set the loading state to false.
 			 */
 			this.loading.product = false;
+
+			/**
+			 * Set the chart data.
+			 */
+			this.product = res?.data || null;
+
+			if (e || !res || !res.success || !res.data) {
+				return null;
+			}
 
 			return res.data;
 		},

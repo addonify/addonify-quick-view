@@ -1,10 +1,10 @@
 {
   "admin/app/src/components/shapes/Waves.svg": {
-    "file": "assets/Waves-Bq1FD3eC.svg",
+    "file": "assets/Waves-QswcORtq.svg",
     "src": "admin/app/src/components/shapes/Waves.svg"
   },
   "admin/app/src/main.ts": {
-    "file": "assets/main-BnZZMF07.js",
+    "file": "assets/main-BDaElqaB.js",
     "name": "main",
     "src": "admin/app/src/main.ts",
     "isEntry": true,
@@ -12,7 +12,7 @@
       "assets/main-Dlf6YIa3.css"
     ],
     "assets": [
-      "assets/Waves-Bq1FD3eC.svg",
+      "assets/Waves-QswcORtq.svg",
       "assets/inter-cyrillic-ext-400-normal-Dc4VJyIJ.woff2",
       "assets/inter-cyrillic-ext-400-normal-BPnxn4xp.woff",
       "assets/inter-cyrillic-400-normal-BLGc9T1a.woff2",

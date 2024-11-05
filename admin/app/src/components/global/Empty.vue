@@ -20,7 +20,7 @@ const { content, class: clasX } = defineProps<Props>();
  *
  * @since 2.0.0
  */
-const label = __("No data available.", "addonify-quick-view");
+const label = __("No data!", "addonify-quick-view");
 </script>
 
 <template>
