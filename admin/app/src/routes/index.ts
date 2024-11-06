@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 import Index from "@/views/Index.vue";
 import Error from "@/views/404.vue";
+import License from "@/views/License.vue";
 import Products from "@/views/Products.vue";
 import Analytics from "@/views/Analytics.vue";
 
@@ -31,6 +32,11 @@ const defaults = [
 		path: "/analytics",
 		name: "Analytics",
 		component: Analytics,
+	},
+	{
+		path: "/license",
+		name: "License",
+		component: License,
 	},
 	{
 		path: "/:catchAll(.*)*",
