@@ -5,7 +5,7 @@ import { __ } from "@wordpress/i18n";
 interface Props {
 	modelValue: string | null | undefined;
 	placeholder: string | null | undefined;
-	className: string | null | undefined;
+	className?: string | null | undefined;
 }
 
 /**
