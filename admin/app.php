@@ -19,9 +19,17 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 
 	$is_pro_active = false;
 
-	if ( class_exists( 'Addonify_Quick_View_Pro' ) ) {
-		$is_pro_active = true;
+	/**
+	 * Function to check pro version is active or not.
+	 */
+	function is_pro_active_callback() {
+
+		if ( class_exists( 'Addonify_Quick_View_Pro' ) ) {
+			$is_pro_active = true;
+		}
 	}
+
+	add_action( 'admin_init', 'is_pro_active_callback' );
 
 	add_action(
 		'admin_enqueue_scripts',
