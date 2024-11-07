@@ -17,6 +17,12 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 
 	$handle = 'addonify-quick-view-admin';
 
+	$is_pro_active = false;
+
+	if ( class_exists( 'Addonify_Quick_View_Pro' ) ) {
+		$is_pro_active = true;
+	}
+
 	add_action(
 		'admin_enqueue_scripts',
 		function () use ( $handle ): void {
@@ -25,7 +31,7 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 				'admin/app/src/main.ts',
 				array(
 					'handle'           => $handle,
-					'dependencies'     => array( 'lodash', 'wp-api-fetch'), // Dependencies.
+					'dependencies'     => array( 'lodash', 'wp-api-fetch' ), // Dependencies.
 					'css-dependencies' => array(), // Optional style dependencies. Defaults to empty array.
 					'css-media'        => 'all', // Optional.
 					'css-only'         => false, // Optional. Set to true to only load style assets in production mode.
@@ -37,11 +43,12 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 				$handle,
 				'addonifyQuickViewLocals',
 				array(
-					'adminURL'      	=> admin_url( '/' ),
-					'siteURL'       	=> site_url( '/' ),
-					'restNamespace' 	=> 'addonify-quick-view/v2',
-					'version' 				=> ADDONIFY_QUICK_VIEW_VERSION,
-					'nonce'    				=> wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
+					'adminURL'      => admin_url( '/' ),
+					'siteURL'       => site_url( '/' ),
+					'restNamespace' => 'addonify-quick-view/v2',
+					'version'       => ADDONIFY_QUICK_VIEW_VERSION,
+					'nonce'         => wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
+					'is_pro_active' => $is_pro_active,
 				)
 			);
 		}
