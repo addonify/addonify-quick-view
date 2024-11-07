@@ -13,7 +13,12 @@ const store = useSettingsStore();
 /**
  * Get the WordPress localized data.
  */
-const { version } = window.addonifyQuickViewLocals;
+const version = computed(() => {
+	return {
+		free: window?.addonifyQuickViewLocals?.version || null,
+		pro: window?.addonifyQuickViewLocals?.proVersion || null,
+	};
+});
 
 /**
  * Get the button text.
@@ -63,14 +68,32 @@ const handleUpdate = async (): Promise<void> => {
 		id="app-header"
 		class="px-6 py-4 flex flex-row items-center justify-between gap-5 fixed left-[180px] right-[20px] top-[40px] z-50 bg-white rounded-full shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)]"
 	>
-		<div class="flex flex-row items-center gap-x-3">
+		<div class="flex flex-row items-center gap-6">
 			<Logo />
 
-			<span
-				class="py-1.5 px-4 inline-flex items-center rounded-full text-xs font-normal bg-orange-100 text-orange-400"
+			<div
+				class="ps-4 min-h-8 flex-basis-0 flex items-center gap-2 text-sm font-normal text-gray-300 border-l border-gray-200"
 			>
-				v{{ version }}
-			</span>
+				<div
+					type="button"
+					class="flex items-center gap-x-1 font-system bg-gradient-to-r from-[#12c2e9] via-[#c471ed] to-[#f64f59] bg-clip-text text-transparent leading-3"
+				>
+					<p
+						class="p-0 m-0 flex text-xs font-system font-normal tracking-[3px] uppercase leading-3"
+					>
+						Active Version -
+					</p>
+					<span>
+						<template v-if="version.free && version.free.length > 0">
+							v{{ version.free }}
+						</template>
+
+						<template v-if="version.pro && version.pro.length > 0">
+							& v{{ version.pro }}
+						</template>
+					</span>
+				</div>
+			</div>
 		</div>
 
 		<div class="flex flex-row items-center gap-6">

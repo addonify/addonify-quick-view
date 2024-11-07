@@ -79,13 +79,31 @@ export const useAnalyticsStore = defineStore("analytics", {
 			 */
 			const query = new URLSearchParams();
 
-			if (start && start.length > 0) {
-				query.set("start", dayjs(start).format("YYYY-MM-DD"));
-			}
+			/**
+			 * Get the start date.
+			 * If the start date is not provided, then get the date 15 days ago.
+			 *
+			 * @returns {string} The start date.
+			 */
+			const startDate = (): string => {
+				const date = start || dayjs().subtract(15, "day").format("YYYY-MM-DD");
+				return dayjs(date).format("YYYY-MM-DD");
+			};
 
-			if (end && end.length > 0) {
-				query.set("end", dayjs(end).format("YYYY-MM-DD"));
-			}
+			/**
+			 * Get the end date.
+			 * If the end date is not provided, then get the current date.
+			 *
+			 * @returns {string} The end date.
+			 */
+			const endDate = (): string => {
+				const date = end || dayjs().format("YYYY-MM-DD");
+				return dayjs(date).format("YYYY-MM-DD");
+			};
+
+			query.set("start", startDate());
+
+			query.set("end", endDate());
 
 			/**
 			 * Endpoint to get the views.
@@ -125,7 +143,7 @@ export const useAnalyticsStore = defineStore("analytics", {
 		 * @returns {Promise<Response>}
 		 * @since 2.0.0
 		 */
-		async getProductViewCount(
+		async getViewCount(
 			limit: string | number = 20,
 			offset: string | number = 0,
 			start: string | null = null,

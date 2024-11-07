@@ -228,7 +228,6 @@ class Addonify_Quick_View_Admin {
 		return array_merge( $links, $row_meta );
 	}
 
-
 	/**
 	 * Get contents from settings page templates and print it
 	 *
