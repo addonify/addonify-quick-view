@@ -2,11 +2,14 @@
 import { computed } from "vue";
 import { __ } from "@wordpress/i18n";
 import { Save, Star } from "lucide-vue-next";
+import { useProStore } from "@/stores/pro";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { useSettingsStore } from "@/stores/settings";
 
 import Logo from "@/components/global/Logo.vue";
 import Button from "@/components/global/Button.vue";
+
+const ps = useProStore();
 
 const store = useSettingsStore();
 
@@ -15,8 +18,8 @@ const store = useSettingsStore();
  */
 const version = computed(() => {
 	return {
+		pro: ps.version || null,
 		free: window?.addonifyQuickViewLocals?.version || null,
-		pro: window?.addonifyQuickViewLocals?.proVersion || null,
 	};
 });
 
