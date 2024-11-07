@@ -127,7 +127,7 @@ const handleFilter = async (val: string[]): Promise<void> => {
 	/**
 	 * Fetch the data.
 	 */
-	await store.getProductViewCount(20, 0, start, end);
+	await store.getViewCount(20, 0, start, end);
 };
 </script>
 <template>
