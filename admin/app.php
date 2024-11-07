@@ -17,12 +17,6 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 
 	$handle = 'addonify-quick-view-admin';
 
-	$is_pro_active = false;
-
-	if ( class_exists( 'Addonify_Quick_View_Pro' ) ) {
-		$is_pro_active = true;
-	}
-
 	add_action(
 		'admin_enqueue_scripts',
 		function () use ( $handle ): void {
@@ -47,8 +41,8 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 					'siteURL'       => site_url( '/' ),
 					'restNamespace' => 'addonify-quick-view/v2',
 					'version'       => ADDONIFY_QUICK_VIEW_VERSION,
+					'isProActive' 	=> Addonify_Quick_View_Admin::is_pro_active(),
 					'nonce'         => wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
-					'is_pro_active' => $is_pro_active,
 				)
 			);
 		}
