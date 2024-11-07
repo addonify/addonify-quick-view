@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 import { __ } from "@wordpress/i18n";
 import { Key, ExternalLink } from "lucide-vue-next";
 import { useLicenseStore } from "@/stores/license";
@@ -25,22 +25,6 @@ const badge = computed(() => {
 	return license.value
 		? "bg-green-200 text-green-800"
 		: "bg-red-100 text-red-800";
-});
-
-/**
- * Hook: onMounted.
- * Fired when the component is mounted.
- *
- * @ref https://vuejs.org/api/composition-api-lifecycle
- * @since 2.0.0
- */
-onMounted(() => {
-	/**
-	 * Get the license data.
-	 *
-	 * @since 2.0.0
-	 */
-	store.get();
 });
 </script>
 

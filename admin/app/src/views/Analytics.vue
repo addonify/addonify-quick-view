@@ -22,7 +22,7 @@ onMounted(async () => {
 	 *
 	 * @since 2.0.0
 	 */
-	const methods = [store.getChart(), store.getProductViewCount()];
+	const methods = [store.getChart(), store.getViewCount()];
 
 	Promise.all(methods).catch(() => null);
 });
