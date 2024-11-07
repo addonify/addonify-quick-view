@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { __ } from "@wordpress/i18n";
-import { Save } from "lucide-vue-next";
+import { Save, Star } from "lucide-vue-next";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { useSettingsStore } from "@/stores/settings";
 
@@ -73,7 +73,25 @@ const handleUpdate = async (): Promise<void> => {
 			</span>
 		</div>
 
-		<div class="flex flex-row items-center gap-x-3">
+		<div class="flex flex-row items-center gap-6">
+			<a
+				target="_blank"
+				href="https://wordpress.org/support/plugin/addonify-quick-view/reviews/?filter=5"
+				class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm hover:bg-gray-50 hover:text-blue-500 focus:outline-none focus:bg-gray-50 focus:text-gray-500"
+			>
+				<span class="inline-flex items-center text-yellow-500 leading-3">
+					<Star :size="14" />
+					<Star :size="14" />
+					<Star :size="14" />
+					<Star :size="14" />
+					<Star :size="14" />
+				</span>
+
+				<span class="text-sm font-sans font-normal leading-3">
+					{{ __("[ Rate AQV ]", "addonify-quick-view") }}
+				</span>
+			</a>
+
 			<Button
 				:loading="store.saving"
 				:disabled="store.saving || !store.haveChanges"

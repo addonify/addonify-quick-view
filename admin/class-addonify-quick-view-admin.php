@@ -239,4 +239,13 @@ class Addonify_Quick_View_Admin {
 		<div id="addonify-quick-view-app"></div>
 		<?php
 	}
+
+	/**
+	 * Check if the pro version is active
+	 *
+	 * @since 1.0.0
+	 */
+	public static function is_pro_active() {
+		return class_exists( 'Addonify_Quick_View_Pro' );
+	}
 }

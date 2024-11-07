@@ -79,7 +79,7 @@ onMounted(() => {
 				<button
 					:disabled="!license"
 					type="button"
-					class="p-2 w-full flex items-center justify-center gap-x-2 text-base font-normal rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-100 disabled:text-gray-300 disabled:bg-gray-200 disabled:cursor-not-allowed shadow-none transition-all duration-300 ease"
+					class="p-2 w-full flex items-center justify-center gap-x-2 text-base font-normal rounded-lg border border-transparent bg-blue-600 text-white hover:bg-emerald-500 focus:outline-none focus:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-100 disabled:text-gray-300 disabled:bg-gray-200 disabled:cursor-not-allowed shadow-none transition-all duration-300 ease"
 				>
 					{{ __("Save", "addonify-quick-view") }}
 				</button>
@@ -100,7 +100,7 @@ onMounted(() => {
 				<a
 					href="https://docs.addonify.com/"
 					target="_blank"
-					class="inline-flex items-center gap-x-1 text-blue-600 hover:text-green-500"
+					class="inline-flex items-center gap-x-1 text-blue-600 hover:text-green-500 focus:text-blue-600"
 				>
 					{{ __("documentation", "addonify-quick-view") }}
 
