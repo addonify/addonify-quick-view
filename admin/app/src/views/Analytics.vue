@@ -1,13 +1,30 @@
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import { __ } from "@wordpress/i18n";
+import { useRouter } from "vue-router";
+import { useProStore } from "@/stores/pro";
+import { isProActive } from "@/utils/helpers";
 import { useAnalyticsStore } from "@/stores/analytics";
 
 import Tabs from "@/components/layout/Tabs.vue";
 import Sidebar from "@/components/layout/Sidebar.vue";
 import Sections from "@/components/analytics/Sections.vue";
 
+const router = useRouter();
+
+const ps = useProStore();
+
 const store = useAnalyticsStore();
+
+/**
+ * Check if we need to load this route.
+ *
+ * @returns {boolean}
+ * @since 2.0.0
+ */
+const proAccess = computed(() => {
+	return ps.active && isProActive();
+});
 
 /**
  * Hook: onMounted.
@@ -18,13 +35,22 @@ const store = useAnalyticsStore();
  */
 onMounted(async () => {
 	/**
-	 * Get the views count.
+	 * Redirect to "/" page if pro is not active.
 	 *
 	 * @since 2.0.0
 	 */
-	const methods = [store.getChart(), store.getViewCount()];
+	if (!proAccess.value) {
+		router.push("/");
+	} else {
+		/**
+		 * Get the views count.
+		 *
+		 * @since 2.0.0
+		 */
+		const methods = [store.getChart(), store.getViewCount()];
 
-	Promise.all(methods).catch(() => null);
+		await Promise.all(methods).catch(() => null);
+	}
 });
 </script>
 

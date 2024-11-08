@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Index from "@/views/Index.vue";
 import Error from "@/views/404.vue";
 import License from "@/views/License.vue";
-import Products from "@/views/Products.vue";
+import Explore from "@/views/Explore.vue";
 import Analytics from "@/views/Analytics.vue";
 
 /**
@@ -24,9 +24,9 @@ const defaults = [
 		component: Index,
 	},
 	{
-		path: "/products",
-		name: "Products",
-		component: Products,
+		path: "/explore",
+		name: "Explore",
+		component: Explore,
 	},
 	{
 		path: "/analytics",

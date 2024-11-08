@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { __ } from "@wordpress/i18n";
+import { isProActive } from "@/utils/helpers";
 import { useSettingsStore } from "@/stores/settings";
 import {
+	Rocket,
 	FileLock2,
-	Coffee,
-	SlidersHorizontal,
 	ChartSpline,
+	SlidersHorizontal,
 } from "lucide-vue-next";
 
 const store = useSettingsStore();
@@ -38,6 +39,7 @@ const getLink = (path: number): string => "/s/" + path;
 						class="size-6 inline-flex items-center relative leading-3"
 					>
 					</span>
+
 					<template v-else>
 						<SlidersHorizontal
 							:size="20"
@@ -50,7 +52,10 @@ const getLink = (path: number): string => "/s/" + path;
 				</RouterLink>
 			</li>
 
-			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
+			<li
+				v-if="isProActive()"
+				class="p-0 m-0 w-full flex flex-row items-center gap-x-2"
+			>
 				<RouterLink
 					to="/analytics"
 					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
@@ -63,20 +68,10 @@ const getLink = (path: number): string => "/s/" + path;
 				</RouterLink>
 			</li>
 
-			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
-				<RouterLink
-					to="/products"
-					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
-				>
-					<span class="size-6 inline-flex items-center relative leading-3">
-						<Coffee :size="24" :stroke-width="2" class="leading-3" />
-					</span>
-
-					<span>{{ __("Products", "addonify-quick-view") }}</span>
-				</RouterLink>
-			</li>
-
-			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
+			<li
+				v-if="isProActive()"
+				class="p-0 m-0 w-full flex flex-row items-center gap-x-2"
+			>
 				<RouterLink
 					to="/license"
 					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
@@ -86,6 +81,19 @@ const getLink = (path: number): string => "/s/" + path;
 					</span>
 
 					<span>{{ __("License", "addonify-quick-view") }}</span>
+				</RouterLink>
+			</li>
+
+			<li class="p-0 m-0 w-full flex flex-row items-center gap-x-2">
+				<RouterLink
+					to="/explore"
+					class="p-4 w-full flex flex-row items-center gap-x-2 relative text-md font-normal font-sans fill-gray-600 text-gray-700 hover:text-blue-500 hover:fill-blue-500 transition-colors duration-300 ease rounded-lg rounded-e-none focus:outline-none focus:shadow-none"
+				>
+					<span class="size-6 inline-flex items-center relative leading-3">
+						<Rocket :size="24" :stroke-width="2" class="leading-3" />
+					</span>
+
+					<span>{{ __("Explore", "addonify-quick-view") }}</span>
 				</RouterLink>
 			</li>
 		</ul>

@@ -147,6 +147,10 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 == Changelog ==
 
+= 2.0.0 - ? November, 2024 =
+
+
+
 = 1.2.17 - 19 July, 2024 =
 
 - Added:   New quick view button position - Over Product Image.
