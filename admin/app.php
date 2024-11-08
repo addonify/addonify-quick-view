@@ -41,7 +41,7 @@ if ( isset( $_GET['page'] ) && 'addonify-quick-view' === $_GET['page'] ) { //php
 					'siteURL'       => site_url( '/' ),
 					'restNamespace' => 'addonify-quick-view/v2',
 					'version'       => ADDONIFY_QUICK_VIEW_VERSION,
-					'isProActive' 	=> Addonify_Quick_View_Admin::is_pro_active(),
+					'isProActive'   => Addonify_Quick_View_Admin::is_pro_active(),
 					'nonce'         => wp_create_nonce( 'addonify-quick-view-admin-nonce' ),
 				)
 			);
