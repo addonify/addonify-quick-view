@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { __ } from "@wordpress/i18n";
 import { useAnalyticsStore } from "@/stores/analytics";
 
@@ -7,50 +6,30 @@ import Empty from "@/components/global/Empty.vue";
 import Skeleton from "@/components/global/Skeleton.vue";
 import Table from "@/components/analytics/table/Table.vue";
 import Toolbar from "@/components/analytics/table/Toolbar.vue";
-
-import type { ProductsViewsCount } from "@/app";
+import Pagination from "@/components/analytics/table/Pagination.vue";
 
 const store = useAnalyticsStore();
-
-/**
- * Render table.
- *
- * @since 2.0.0
- */
-const data = computed(() => {
-	if (
-		!store.product ||
-		!store.product.productsViews ||
-		!store.product.productsViews.length
-	) {
-		return null;
-	}
-
-	/**
-	 * Filter the search result with the product name.
-	 */
-	const search = store.search.toLowerCase();
-
-	return store.product.productsViews.filter((product: ProductsViewsCount) => {
-		return product.name.toLowerCase().includes(search);
-	});
-});
 </script>
 
 <template>
 	<Toolbar />
+
 	<div
 		v-if="!store.loading.product && store.product?.productsViews"
 		class="flex flex-col border border-gray-200 overflow-hidden rounded-xl shadow-sm"
 	>
-		<Table :data="data" />
+		<Table :data="store.data" />
 	</div>
+
+	<Pagination
+		v-if="!store.loading.product && store.data && store.data.length > 0"
+	/>
 
 	<Skeleton v-if="store.loading.product" :size="25" />
 
 	<Empty
-		v-if="!store.loading.product && (!data || !data.length)"
-		class="my-[20px] max-w-[calc(100%-40px)] mx-auto"
+		v-if="!store.loading.product && (!store.data || !store.data.length)"
 		:content="__('No data!', 'addonify-quick-view')"
+		class="my-[20px] max-w-[calc(100%-40px)] mx-auto"
 	/>
 </template>
