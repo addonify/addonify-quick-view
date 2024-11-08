@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { __ } from "@wordpress/i18n";
 import { slice } from "@/utils/helpers";
+import { useAnalyticsStore } from "@/stores/analytics";
 
 import type { ProductsViewsCount } from "@/app";
 
@@ -14,6 +15,11 @@ interface Props {
  * @since 2.0.0
  */
 const { data = null } = defineProps<Props>();
+
+/**
+ * Use analytics store.
+ */
+const as = useAnalyticsStore();
 </script>
 
 <template>
@@ -49,7 +55,7 @@ const { data = null } = defineProps<Props>();
 				<td
 					class="p-4 m-0 w-[60px] text-sm font-sans text-left border border-none text-gray-600"
 				>
-					{{ index + 1 }}
+					{{ as.serial(index) }}
 				</td>
 
 				<td class="p-4 m-0 text-sm font-sans text-left text-gray-600">

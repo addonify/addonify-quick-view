@@ -14,7 +14,7 @@ interface State {
  *
  * @since 1.0.0
  */
-export const useProStore = defineStore("useProStore", {
+export const useProStore = defineStore("proAddon", {
 	state: () =>
 		<State>{
 			/**

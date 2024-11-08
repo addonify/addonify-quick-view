@@ -120,14 +120,17 @@ const handleFilter = async (val: string[]): Promise<void> => {
 		return dayjs(str).format("YYYY-MM-DD") || null;
 	};
 
-	const start = (val && date(val[0])) || null;
+	/**
+	 * Set the pagination start and end state.
+	 */
+	store.pagination.start = (val && date(val[0])) || null;
 
-	const end = (val && date(val[1])) || null;
+	store.pagination.end = (val && date(val[1])) || null;
 
 	/**
 	 * Fetch the data.
 	 */
-	await store.getViewCount(20, 0, start, end);
+	await store.getViewCount(20, 0, store.pagination.start, store.pagination.end);
 };
 </script>
 <template>

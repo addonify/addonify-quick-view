@@ -17,6 +17,12 @@ interface State {
 	chart: ViewCountChartDataResponse | null;
 	product: ProductsViewsCountResponse | null;
 	search: string;
+	pagination: {
+		start: string | null;
+		end: string | null;
+		max: number;
+		cursor: number;
+	};
 	loading: {
 		chart: boolean;
 		product: boolean;
@@ -48,6 +54,16 @@ export const useAnalyticsStore = defineStore("analytics", {
 			search: "",
 
 			/**
+			 * Pagination state for the tabular data.
+			 */
+			pagination: {
+				start: null,
+				end: null,
+				cursor: 1,
+				max: 20, // max number of items to show in the table.
+			},
+
+			/**
 			 * Loading state.
 			 */
 			loading: {
@@ -55,6 +71,80 @@ export const useAnalyticsStore = defineStore("analytics", {
 				product: false,
 			},
 		},
+
+	getters: {
+		/**
+		 * Filter and sort tabular data based on the search query and pagination.
+		 *
+		 * @param {State} state - The store state.
+		 * @returns {ProductsViewsCount[]} The filtered and sorted data.
+		 * @since 2.0.0
+		 */
+		data: (state: State): ProductsViewsCount[] => {
+			if (
+				!state.product ||
+				!state.product.productsViews ||
+				!state.product.productsViews.length
+			) {
+				return [];
+			}
+
+			/**
+			 * Filter the data based on the search query.
+			 */
+			const search = state.search?.toLowerCase();
+
+			let items: ProductsViewsCount[] = [];
+
+			items = state.product.productsViews.filter((item: ProductsViewsCount) => {
+				return item?.name?.toLowerCase().includes(search);
+			});
+
+			/**
+			 * If the items is greater than max items, then slice the items.
+			 */
+			if (items.length > state.pagination.max) {
+				const start = (state.pagination.cursor - 1) * state.pagination.max;
+
+				const end = start + state.pagination.max;
+
+				items = items.slice(start, end);
+			}
+
+			return items;
+		},
+
+		/**
+		 * Generate the pagination links.
+		 *
+		 * @param {State} state - The store state.
+		 * @returns {number[]} The pagination items.
+		 * @since 2.0.0
+		 */
+		links: (state: State): number[] => {
+			const total = state.product?.productsViews.length || 0;
+
+			const max = state.pagination.max;
+
+			const pages = Math.ceil(total / max);
+
+			return Array.from({ length: pages }, (_, i) => i + 1);
+		},
+
+		/**
+		 * Generate the serial number for the tabular data.
+		 *
+		 * @param {State} state - The store state.
+		 * @returns {(index: number) => number} The serial number generator.
+		 * @since 2.0.0
+		 */
+		serial: (state: State): ((index: number) => number) => {
+			return (index: number) => {
+				const start = (state.pagination.cursor - 1) * state.pagination.max;
+				return start + index + 1;
+			};
+		},
+	},
 
 	actions: {
 		/**
@@ -153,6 +243,11 @@ export const useAnalyticsStore = defineStore("analytics", {
 			 * Set the loading state to true.
 			 */
 			this.loading.product = true;
+
+			/**
+			 * Reset the pagination cursor.
+			 */
+			this.pagination.cursor = 1;
 
 			/**
 			 * Prepare the query params.
