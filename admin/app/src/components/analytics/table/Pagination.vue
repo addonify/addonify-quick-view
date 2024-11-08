@@ -3,6 +3,22 @@ import { __ } from "@wordpress/i18n";
 import { useAnalyticsStore } from "@/stores/analytics";
 
 const as = useAnalyticsStore();
+
+/**
+ * Handle change event.
+ *
+ * @param {number} value
+ * @returns {Promise<void>}
+ * @since 2.0.0
+ */
+const handleChange = async (value: number): Promise<void> => {
+	const offset = value - 1 || 0;
+
+	/**
+	 * Fetch the data.
+	 */
+	await as.getViewCount(20, offset, as.pagination.start, as.pagination.end);
+};
 </script>
 
 <template>
@@ -20,6 +36,7 @@ const as = useAnalyticsStore();
 
 		<div class="flex items-center relative">
 			<el-select
+				@change="handleChange($event)"
 				v-model="as.pagination.cursor"
 				size="large"
 				filterable

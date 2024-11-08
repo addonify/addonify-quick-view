@@ -122,7 +122,7 @@ export const useAnalyticsStore = defineStore("analytics", {
 		 * @since 2.0.0
 		 */
 		links: (state: State): number[] => {
-			const total = state.product?.productsViews.length || 0;
+			const total = state.product?.totalItems || 0;
 
 			const max = state.pagination.max;
 
@@ -243,11 +243,6 @@ export const useAnalyticsStore = defineStore("analytics", {
 			 * Set the loading state to true.
 			 */
 			this.loading.product = true;
-
-			/**
-			 * Reset the pagination cursor.
-			 */
-			this.pagination.cursor = 1;
 
 			/**
 			 * Prepare the query params.
