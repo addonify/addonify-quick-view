@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { useFetch } from "@/utils/http";
 
+type Status = "active" | "invalid" | "expired";
+
 interface State {
-	status: null | string;
+	status: Status | null;
 	key: null | string;
 	loading: boolean;
 }
@@ -17,8 +19,19 @@ interface State {
 export const useLicenseStore = defineStore("license", {
 	state: () =>
 		<State>{
+			/**
+			 * The license status.
+			 */
 			status: null,
+
+			/**
+			 * The license key.
+			 */
 			key: null,
+
+			/**
+			 * The loading state.
+			 */
 			loading: true,
 		},
 
@@ -50,6 +63,8 @@ export const useLicenseStore = defineStore("license", {
 			 * Set the states.
 			 */
 			this.loading = false;
+
+			this.status = res?.status || null;
 		},
 
 		/**

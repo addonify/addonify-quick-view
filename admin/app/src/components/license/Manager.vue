@@ -41,6 +41,7 @@ const badge = computed(() => {
 			class="py-1.5 px-3 absolute left-10px top-[-15px] inline-flex items-center gap-x-2 text-xs font-normal rounded-full"
 		>
 			<Key :size="14" />
+
 			{{
 				license
 					? __("Active", "addonify-quick-view")

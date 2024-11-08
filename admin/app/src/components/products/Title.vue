@@ -10,7 +10,7 @@ import { __ } from "@wordpress/i18n";
 			<h3
 				class="p-0 m-0 flex font-sans text-lg font-medium text-gray-600 bg-gradient-to-r from-[#12c2e9] via-[#c471ed] to-[#f64f59] bg-clip-text text-transparent"
 			>
-				{{ __("Recommended Products", "addonify-quick-view") }}
+				{{ __("Explore must-have WooCommerce addons", "addonify-quick-view") }}
 			</h3>
 		</div>
 	</div>
