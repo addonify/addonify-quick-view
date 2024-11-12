@@ -18,8 +18,6 @@ const store = useLicenseStore();
 
 const license = ref<string>("");
 
-const error = ref<string | null>(null);
-
 /**
  * Get the border color of the license box.
  *
@@ -101,7 +99,7 @@ const getLabel = computed((): string => {
  * @since 2.0.0
  */
 const activate = async (): Promise<void> => {
-	const result = await store.activate(license.value as string);
+	const result = await store.activate(license.value.trim() as string);
 
 	if (!result || !result?.success) {
 		toast({
@@ -132,7 +130,7 @@ const activate = async (): Promise<void> => {
  * @since 2.0.0
  */
 const deactivate = async (): Promise<void> => {
-	const result = await store.deactivate(license.value as string);
+	const result = await store.deactivate(license.value.trim() as string);
 
 	if (!result || !result?.success) {
 		toast({
