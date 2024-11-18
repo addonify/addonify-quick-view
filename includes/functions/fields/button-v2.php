@@ -116,6 +116,11 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 					'label' => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
+				'quick_view_button_border_style'       => array(
+					'label'   => esc_html__( 'Border style', 'addonify-quick-view' ),
+					'type'    => 'select',
+					'choices' => addonify_quick_view_get_border_styles(),
+				),
 				'quick_view_button_border_width'       => array(
 					'label' => esc_html__( 'Border width', 'addonify-quick-view' ),
 					'type'  => 'number',
@@ -124,11 +129,6 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 					'max'   => 10,
 					'step'  => 1,
 					'unix'  => 'px',
-				),
-				'quick_view_button_border_style'       => array(
-					'label'   => esc_html__( 'Border style', 'addonify-quick-view' ),
-					'type'    => 'select',
-					'choices' => addonify_quick_view_get_border_styles(),
 				),
 				'quick_view_button_border_radius'      => array(
 					'label' => esc_html__( 'Border radius (unit: px)', 'addonify-quick-view' ),

@@ -109,3 +109,16 @@ if ( ! function_exists( 'addonify_quick_view_run' ) ) {
 
 	add_action( 'plugins_loaded', 'addonify_quick_view_run' );
 }
+
+add_action(
+	'wp_body_open',
+	function () {
+		//var_dump(addonify_quick_view_get_option('modal_box_content'));
+		$text = addonify_quick_view_get_option('modal_box_content');
+		if (str_contains($text, "image")) {
+			echo "Substring found!";
+		} else {
+			echo "Substring not found.";
+		}
+	}
+);
