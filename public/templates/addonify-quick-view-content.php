@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 do_action( 'addoify_quick_view_before_single_content', $product );
-$modal_post_class  = 'woocommerce single-product';
+$modal_post_class  = 'product';
 $modal_box_content = unserialize( addonify_quick_view_get_option( 'modal_box_content' ) ); // phpcs:ignore
 
 if ( is_array( $modal_box_content ) && ! in_array( 'image', $modal_box_content, true ) ) {
