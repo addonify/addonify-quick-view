@@ -149,12 +149,13 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 = 2.0.0 - ? November, 2024 =
 - Added : Nonce verification for REST API.
-- Added : addonify_quick_view_add_setting_fields hook to add setting fields from pro version.
+- Added : `addonify_quick_view_add_setting_fields` hook to add setting fields from pro version.
 - Added : is_pro_active boolean variable is localized.
 - Added : is_pro_active static method is added on admin.php file.
 - Added : Default color for quick_view_button_bg_color_hover and wc_gallery_trigger_icon_bg_color.
-- Removed : Enable Dynamic Style option.
-- Modified : API Structure.
+- Tweak: Complete revamp of plugins's admin dashboard setting page.
+- Tweak : Settings page REST API structure (v2).
+- Removed : Option to enable dynamic style.
 - Tested:  WordPress version 6.6.2.
 - Tested:  WooCommerce version 9.3.3.
 
