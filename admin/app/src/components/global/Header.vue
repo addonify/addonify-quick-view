@@ -84,7 +84,7 @@ const handleUpdate = async (): Promise<void> => {
 					<p
 						class="p-0 m-0 flex text-xs font-system font-normal tracking-[3px] uppercase leading-3"
 					>
-						Addon Version -
+						{{ __("Addon Version", "addonify-quick-view") }} -
 					</p>
 					<span>
 						<template v-if="version.free && version.free.length > 0">
