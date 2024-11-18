@@ -1,4 +1,10 @@
 <?php
+/**
+ * Return modal box option fields.
+ *
+ * @since 1.0.0.
+ * @package addonify_quick_view.
+ */
 
 if ( ! function_exists( 'addonify_quick_view_modal_section' ) ) {
 	/**
@@ -18,12 +24,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_section' ) ) {
 			'title'        => esc_html__( 'Modal Box UI Options', 'addonify-quick-view' ),
 			'type'         => 'sub_section',
 			'sub_sections' => addonify_quick_view_modal_box_ui_option_fields(),
-		);
-
-		$sections['product_content_options'] = array(
-			'title'        => esc_html__( 'Product Content Options', 'addonify-quick-view' ),
-			'type'         => 'sub_section',
-			'sub_sections' => addonify_quick_view_product_content_option_fields(),
 		);
 
 		$sections['modal_box_close_button_options'] = array(
@@ -88,12 +88,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_option_fields' ) ) {
 					'max'         => 150,
 					'step'        => 5,
 				),
-				'enable_lightbox'                  => array(
-					'label'       => esc_html__( 'Enable Lightbox', 'addonify-quick-view' ),
-					'description' => esc_html__( 'May not work with all the themes.', 'addonify-quick-view' ),
-					'dependent'   => array( 'enable_quick_view' ),
-					'type'        => 'switch',
-				),
 				'hide_modal_close_button'          => array(
 					'label'       => esc_html__( 'Hide modal close button', 'addonify-quick-view' ),
 					'description' => esc_html__( 'If enabled, close button will be hidden for all media screen except mobile device.', 'addonify-quick-view' ),
@@ -151,18 +145,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_option_fields' ) ) {
 						'slide-out-right' => esc_html__( 'Slide out to right', 'addonify-quick-view' ),
 						'zoom-out'        => esc_html__( 'Zoom out', 'addonify-quick-view' ),
 					),
-				),
-				'display_read_more_button'         => array(
-					'type'        => 'switch',
-					'label'       => esc_html__( 'Display view detail button', 'addonify-quick-view' ),
-					'description' => esc_html__( 'Enable to display link to product single page button', 'addonify-quick-view' ),
-					'dependent'   => array( 'enable_quick_view' ),
-				),
-				'read_more_button_label'           => array(
-					'type'        => 'text',
-					'label'       => esc_html__( 'View detail button label', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( 'View Detail', 'addonify-quick-view' ),
-					'dependent'   => array( 'enable_quick_view', 'display_read_more_button' ),
 				),
 				'spinner_icons'                    => array(
 					'type'        => 'radio',
@@ -250,108 +232,6 @@ if ( ! function_exists( 'addonify_quick_view_modal_box_ui_option_fields' ) ) {
 					'step'        => 2,
 				),
 			)
-		);
-	}
-}
-
-if ( ! function_exists( 'addonify_quick_view_product_content_option_fields' ) ) {
-	/**
-	 * Function to return modal box options fields.
-	 */
-	function addonify_quick_view_product_content_option_fields() {
-		return apply_filters(
-			'addonify_quick_view_product_content_option_fields',
-			array(
-				'product_title_color'              => array(
-					'label' => esc_html__( 'Title text', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'modal_product_title_font_size'    => array(
-					'label'       => esc_html__( 'Title font size (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( '32', 'addonify-quick-view' ),
-					'type'        => 'number',
-					'design'      => 'plus-minus',
-					'min'         => 14,
-					'max'         => 42,
-					'step'        => 2,
-				),
-				'modal_product_title_font_weight'  => array(
-					'label'   => esc_html__( 'Title font weight', 'addonify-quick-view' ),
-					'type'    => 'select',
-					'choices' => array(
-						'400' => esc_html__( 'Normal', 'addonify-quick-view' ),
-						'500' => esc_html__( 'Medium', 'addonify-quick-view' ),
-						'600' => esc_html__( 'Semi bold', 'addonify-quick-view' ),
-						'700' => esc_html__( 'Bold', 'addonify-quick-view' ),
-					),
-				),
-				'modal_product_title_line_height'  => array(
-					'label'       => esc_html__( 'Title line height (unit: em)', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( '1.2', 'addonify-quick-view' ),
-					'type'        => 'number',
-					'design'      => 'plus-minus',
-					'min'         => 1,
-					'max'         => 3,
-					'step'        => 0.1,
-					'precision'   => 2,
-				),
-				'product_price_color'              => array(
-					'label' => esc_html__( 'Regular price', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'modal_product_price_font_size'    => array(
-					'label'       => esc_html__( 'Price font size (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( '22', 'addonify-quick-view' ),
-					'type'        => 'number',
-					'design'      => 'plus-minus',
-					'min'         => 13,
-					'max'         => 32,
-					'step'        => 1,
-				),
-				'modal_product_price_font_weight'  => array(
-					'label'   => esc_html__( 'Price font weight', 'addonify-quick-view' ),
-					'type'    => 'select',
-					'choices' => array(
-						'400' => esc_html__( 'Normal', 'addonify-quick-view' ),
-						'500' => esc_html__( 'Medium', 'addonify-quick-view' ),
-						'600' => esc_html__( 'Semi bold', 'addonify-quick-view' ),
-						'700' => esc_html__( 'Bold', 'addonify-quick-view' ),
-					),
-				),
-				'product_on_sale_price_color'      => array(
-					'label' => esc_html__( 'On-sale price', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'modal_on_sale_badge_font_size'    => array(
-					'label'       => esc_html__( 'Sale badge font size (unit: px)', 'addonify-quick-view' ),
-					'placeholder' => esc_html__( '14', 'addonify-quick-view' ),
-					'type'        => 'number',
-					'design'      => 'plus-minus',
-					'min'         => 11,
-					'max'         => 20,
-					'step'        => 1,
-				),
-				'product_rating_star_empty_color'  => array(
-					'label' => esc_html__( 'Rating star empty', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'product_rating_star_filled_color' => array(
-					'label' => esc_html__( 'Rating star filled', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'product_excerpt_text_color'       => array(
-					'label' => esc_html__( 'Excerpt text', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'product_meta_text_color'          => array(
-					'label' => esc_html__( 'Meta text', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'product_meta_text_hover_color'    => array(
-					'label' => esc_html__( 'Meta text on hover', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-			),
 		);
 	}
 }

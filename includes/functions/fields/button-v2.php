@@ -1,8 +1,16 @@
 <?php
+/**
+ * Return quick view button option fields.
+ *
+ * @since 1.0.0.
+ * @package addonify_quick_view.
+ */
 
 if ( ! function_exists( 'addonify_quick_view_button_section' ) ) {
 	/**
 	 * Function to return quick view button control fields.
+	 *
+	 * @param array $sections section fields.
 	 */
 	function addonify_quick_view_button_section( $sections ) {
 
