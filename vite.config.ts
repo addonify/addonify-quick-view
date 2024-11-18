@@ -28,7 +28,7 @@ export default {
 	},
 	publicDir: false,
 	esbuild: {
-		//keepNames: true, // Prevent mangling function names
+		keepNames: true, // Prevent mangling function names
 		minifyIdentifiers: false, // Keep function names like `__` intact
 	},
 	build: {
