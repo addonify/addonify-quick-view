@@ -1,4 +1,10 @@
 <?php
+/**
+ * Return general option fields.
+ *
+ * @since 1.0.0.
+ * @package addonify_quick_view.
+ */
 
 if ( ! function_exists( 'addonify_quick_view_general_tab_general_section' ) ) {
 	/**
