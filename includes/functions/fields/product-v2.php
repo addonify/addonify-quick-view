@@ -123,6 +123,10 @@ if ( ! function_exists( 'addonify_quick_view_product_content_option_fields' ) ) 
 					'label' => esc_html__( 'Regular price', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
+				'product_on_sale_price_color'      => array(
+					'label' => esc_html__( 'Sale price', 'addonify-quick-view' ),
+					'type'  => 'color',
+				),
 				'modal_product_price_font_size'    => array(
 					'label'       => esc_html__( 'Price font size (unit: px)', 'addonify-quick-view' ),
 					'placeholder' => esc_html__( '22', 'addonify-quick-view' ),
@@ -141,10 +145,6 @@ if ( ! function_exists( 'addonify_quick_view_product_content_option_fields' ) ) 
 						'600' => esc_html__( 'Semi bold', 'addonify-quick-view' ),
 						'700' => esc_html__( 'Bold', 'addonify-quick-view' ),
 					),
-				),
-				'product_on_sale_price_color'      => array(
-					'label' => esc_html__( 'On-sale price', 'addonify-quick-view' ),
-					'type'  => 'color',
 				),
 				'modal_on_sale_badge_font_size'    => array(
 					'label'       => esc_html__( 'Sale badge font size (unit: px)', 'addonify-quick-view' ),

@@ -50,6 +50,7 @@ if ( ! function_exists( 'addonify_quick_view_button_fields' ) ) {
 					'choices'     => array(
 						'after_add_to_cart_button'  => esc_html__( 'After Add to Cart Button', 'addonify-quick-view' ),
 						'before_add_to_cart_button' => esc_html__( 'Before Add to Cart Button', 'addonify-quick-view' ),
+						'over_image'                => esc_html__( 'Over Product Image', 'addonify-quick-view' ),
 					),
 				),
 				'quick_view_btn_label'         => array(
