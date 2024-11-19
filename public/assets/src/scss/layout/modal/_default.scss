@@ -10,6 +10,11 @@
 			column-gap: var(--addonify_qv_modal_content_column_gap);
 			position: relative;
 
+			&.aqv-no-product-image  {
+				column-gap: 0;
+				grid-template-columns: repeat(1, 1fr);
+			}
+
 			&::after,
 			&::before {
 				content: "";
