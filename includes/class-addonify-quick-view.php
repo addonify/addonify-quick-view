@@ -156,8 +156,7 @@ class Addonify_Quick_View {
 
 		$plugin_i18n = new Addonify_Quick_View_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$this->loader->add_action( 'init', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 
 	/**
