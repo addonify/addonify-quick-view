@@ -243,7 +243,7 @@ if ( ! function_exists( 'addonify_quick_view_get_text_transforms' ) ) {
 	function addonify_quick_view_get_text_transforms() {
 
 		return array(
-			'default'    => esc_html__( 'Default', 'addonify-quick-view' ),
+			'inherit'    => esc_html__( 'Inherit', 'addonify-quick-view' ),
 			'capitalize' => esc_html__( 'Capitalize', 'addonify-quick-view' ),
 			'lowercase'  => esc_html__( 'Lowercase', 'addonify-quick-view' ),
 			'uppercase'  => esc_html__( 'Uppercase', 'addonify-quick-view' ),
