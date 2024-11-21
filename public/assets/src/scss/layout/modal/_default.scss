@@ -6,9 +6,10 @@
 	.woocommerce {
 		.product {
 			@include grid();
+			position: relative;
 			grid-template-columns: repeat(2, 1fr);
 			column-gap: var(--addonify_qv_modal_content_column_gap);
-			position: relative;
+			align-items: start;
 
 			&.aqv-no-product-image  {
 				column-gap: 0;
