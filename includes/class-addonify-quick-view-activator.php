@@ -30,7 +30,7 @@ class Addonify_Quick_View_Activator {
 	 */
 	public static function activate() {
 
-		require plugin_dir_path( dirname( __FILE__ ) ) . 'includes/plugin-setting-defaults.php';
+		require plugin_dir_path( __DIR__ ) . 'includes/plugin-setting-defaults.php';
 
 		$setting_defaults = addonify_quick_view_setting_defaults();
 
