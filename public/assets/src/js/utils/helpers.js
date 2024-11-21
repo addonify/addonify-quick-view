@@ -107,7 +107,7 @@ export const helper = {
 	wcGallery: function () {
 
 		const { flexSliderArgs } = addonifyQuickViewPublicScriptObject;
-	
+
 		const gallery = $("#addonify-quick-view-modal .woocommerce-product-gallery");
 
 		if (gallery && gallery.length > 0) {
@@ -145,16 +145,24 @@ export const helper = {
 	*/
 	loadScrollbar: function () {
 		if (typeof PerfectScrollbar !== "undefined") {
-			// Use vanilla to query the DOM. jQuery won't work.
-			const scrollEle = document.getElementById("adfy-quick-view-model-inner");
+			const ele = document.getElementById("adfy-quick-view-model-inner");
 
-			if (scrollEle) {
-				new PerfectScrollbar(scrollEle, {
+			let ps;
+
+			if (ele) {
+				ps = new PerfectScrollbar(ele, {
 					wheelSpeed: 0.25,
 					wheelPropagation: true,
 					minScrollbarLength: 20
 				});
 			}
+
+			// Add a event listener to recalculate the height of the modal once,
+			// the content is loaded.
+			document.addEventListener("addonifyQuickViewModalContentLoaded", function () {
+				// Force perfect scrollbar to re-calculate the height and width.
+				if (ps) ps.update();
+			});
 		}
 	},
 
