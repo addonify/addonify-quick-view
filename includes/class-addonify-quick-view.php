@@ -140,7 +140,6 @@ class Addonify_Quick_View {
 		require_once plugin_dir_path( __DIR__ ) . 'includes/udp/init.php';
 
 		$this->loader = new Addonify_Quick_View_Loader();
-
 	}
 
 	/**
@@ -170,14 +169,10 @@ class Addonify_Quick_View {
 
 		$plugin_admin = new Addonify_Quick_View_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		// enqueue admin styles and scripts.
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
-		// admin menu.
+		// Admin menu.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
-		// custom link in all plugin page.
+		// Custom link in all plugin page.
 		$this->loader->add_action( 'plugin_action_links_' . ADDONIFY_QUICK_VIEW_BASENAME, $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
 
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'plugin_row_meta', 10, 2 );
