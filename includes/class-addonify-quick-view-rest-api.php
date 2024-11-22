@@ -137,7 +137,7 @@ if ( ! class_exists( 'Addonify_Quick_View_Rest_API' ) ) {
 			}
 
 			$return_data['success'] = true;
-			$return_data['message'] = esc_html__( 'successfully fetched data.', 'addonify-quick-view' );
+			$return_data['message'] = esc_html__( 'Successfully fetched data.', 'addonify-quick-view' );
 			$return_data['data']    = addonify_quick_view_get_settings_sections_fields();
 
 			return rest_ensure_response( $return_data );

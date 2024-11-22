@@ -109,14 +109,6 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 					'label' => esc_html__( 'Background color on hover', 'addonify-quick-view' ),
 					'type'  => 'color',
 				),
-				'quick_view_button_border_color'       => array(
-					'label' => esc_html__( 'Border color', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
-				'quick_view_button_border_color_hover' => array(
-					'label' => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
-					'type'  => 'color',
-				),
 				'quick_view_button_border_style'       => array(
 					'label'   => esc_html__( 'Border style', 'addonify-quick-view' ),
 					'type'    => 'select',
@@ -138,6 +130,14 @@ if ( ! function_exists( 'addonify_quick_view_button_style_fields' ) ) {
 					'min'   => 0,
 					'max'   => 100,
 					'step'  => 2,
+				),
+				'quick_view_button_border_color'       => array(
+					'label' => esc_html__( 'Border color', 'addonify-quick-view' ),
+					'type'  => 'color',
+				),
+				'quick_view_button_border_color_hover' => array(
+					'label' => esc_html__( 'Border color on hover', 'addonify-quick-view' ),
+					'type'  => 'color',
 				),
 			)
 		);
