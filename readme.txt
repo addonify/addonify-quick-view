@@ -5,8 +5,8 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.6
-Stable tag: 1.2.17
+Tested up to: 6.7
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -142,18 +142,18 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 == Changelog ==
 
 = 2.0.0 - ? November, 2024 =
-- Added : Nonce verification for REST API.
-- Added : `addonify_quick_view_add_setting_fields` hook to add setting fields from pro version.
-- Added : is_pro_active boolean variable is localized.
-- Added : is_pro_active static method is added on admin.php file.
-- Added : Default color for quick_view_button_bg_color_hover and wc_gallery_trigger_icon_bg_color.
-- Fix: Design issues [#344](https://github.com/addonify/addonify-quick-view/issues/344)
-- Fix: Container height issue inside the quick view modal when the content changes.
-- Tweak: Complete revamp of plugins's admin dashboard setting page.
-- Tweak : Settings page REST API structure (v2).
-- Removed : Option to enable dynamic style.
-- Tested:  WordPress version 6.6.2.
-- Tested:  WooCommerce version 9.3.3.
+- Added:   Nonce verification for REST API.
+- Added:   `addonify_quick_view_add_setting_fields` hook to add setting fields from pro version.
+- Added:   `is_pro_active` boolean variable is localized.
+- Added:   `is_pro_active` static method is added on admin.php file.
+- Added:   Default color for `quick_view_button_bg_color_hover` and `wc_gallery_trigger_icon_bg_color`.
+- Fix:     Design issues [#344](https://github.com/addonify/addonify-quick-view/issues/344)
+- Fix:     Container height issue inside the quick view modal when the content changes.
+- Tweak:   Complete revamp of plugins's admin dashboard setting page.
+- Tweak:   Settings page REST API structure (v2).
+- Removed: Option to enable dynamic style.
+- Tested:  WordPress version 6.7.1.
+- Tested:  WooCommerce version 9.4.2.
 
 
 = 1.2.17 - 19 July, 2024 =
