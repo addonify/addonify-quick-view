@@ -2,65 +2,68 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Addonify - Quick View For WooCommerce 1.2.17\n"
+"Project-Id-Version: Addonify - Quick View For WooCommerce 2.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/addonify-quick-view\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-19T05:54:23+00:00\n"
+"POT-Creation-Date: 2024-11-25T05:44:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: addonify-quick-view\n"
 
 #. Plugin Name of the plugin
+#: addonify-quick-view.php
 msgid "Addonify - Quick View For WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: addonify-quick-view.php
 msgid "https://addonify.com/downloads/woocommerce-quick-view/"
 msgstr ""
 
 #. Description of the plugin
+#: addonify-quick-view.php
 msgid "Addonify WooCommerce Quick View plugin adds functionality to have a WooCommerce product quick preview on a modal window."
 msgstr ""
 
 #. Author of the plugin
+#: addonify-quick-view.php
 msgid "Addonify"
 msgstr ""
 
 #. Author URI of the plugin
+#: addonify-quick-view.php
 msgid "https://addonify.com"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:197
-#: admin/assets/js/main.js:2956
+#: admin/class-addonify-quick-view-admin.php:122
 msgid "Settings"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:221
+#: admin/class-addonify-quick-view-admin.php:146
 msgid "View Addonify Quick View documentation"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:221
-#: admin/assets/js/main.js:2861
+#: admin/class-addonify-quick-view-admin.php:146
 msgid "Documentation"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:222
+#: admin/class-addonify-quick-view-admin.php:147
 msgid "View Addonify Quick View GitHub link"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:222
+#: admin/class-addonify-quick-view-admin.php:147
 msgid "GitHub"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:223
+#: admin/class-addonify-quick-view-admin.php:148
 msgid "Visit community forums"
 msgstr ""
 
-#: admin/class-addonify-quick-view-admin.php:223
+#: admin/class-addonify-quick-view-admin.php:148
 msgid "Community support"
 msgstr ""
 
@@ -69,709 +72,772 @@ msgstr ""
 msgid "%s does not exist."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:138
-msgid "Ooops, error saving settings!!!"
+#: includes/class-addonify-quick-view-rest-api.php:126
+msgid "Oops, error getting settings!!!"
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:145
+#: includes/class-addonify-quick-view-rest-api.php:134
+msgid "Invalid security token"
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:140
+msgid "Successfully fetched data."
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:158
+msgid "Failed! to update options."
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:164
+#: includes/class-addonify-quick-view-rest-api.php:206
+#: includes/class-addonify-quick-view-rest-api.php:243
+#: includes/class-addonify-quick-view-rest-api.php:293
+msgid "Security token is missing!"
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:169
+#: includes/class-addonify-quick-view-rest-api.php:211
+#: includes/class-addonify-quick-view-rest-api.php:248
+#: includes/class-addonify-quick-view-rest-api.php:298
+msgid "Invalid security token!"
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:176
 msgid "No settings values to update!!!"
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:152
+#: includes/class-addonify-quick-view-rest-api.php:183
 msgid "Settings saved successfully"
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:172
-msgid "Error resetting options"
+#: includes/class-addonify-quick-view-rest-api.php:200
+msgid "Failed! to reset options."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:179
-msgid "Options resetted sucessfully"
+#: includes/class-addonify-quick-view-rest-api.php:222
+msgid "Settings reset successfully!"
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:215
+#: includes/class-addonify-quick-view-rest-api.php:237
 msgid "Unable to write on server."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:231
+#: includes/class-addonify-quick-view-rest-api.php:287
+msgid "Unable to import settings."
+msgstr ""
+
+#: includes/class-addonify-quick-view-rest-api.php:306
 msgid "Import file not found."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:241
+#: includes/class-addonify-quick-view-rest-api.php:319
 msgid "Unsupported file format of uploaded file."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:252
+#: includes/class-addonify-quick-view-rest-api.php:330
 msgid "Invalid json content."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:264
+#: includes/class-addonify-quick-view-rest-api.php:346
 msgid "Settings imported successfully."
 msgstr ""
 
-#: includes/class-addonify-quick-view-rest-api.php:278
-msgid "Ooops, you are not allowed to manage options."
+#: includes/class-addonify-quick-view-rest-api.php:387
+msgid "Oops, you are not allowed to manage options."
 msgstr ""
 
-#: includes/functions/fields/button.php:23
-msgid "Button Position"
+#: includes/functions/fields/button-v2.php:18
+msgid "Button Options"
 msgstr ""
 
-#: includes/functions/fields/button.php:24
+#: includes/functions/fields/button-v2.php:24
+msgid "Button Style Options"
+msgstr ""
+
+#: includes/functions/fields/button-v2.php:46
+msgid "Button position"
+msgstr ""
+
+#: includes/functions/fields/button-v2.php:47
 msgid "Choose where you want to display the quick view button."
 msgstr ""
 
-#: includes/functions/fields/button.php:27
-msgid "Select Position"
+#: includes/functions/fields/button-v2.php:49
+msgid "Select position"
 msgstr ""
 
-#: includes/functions/fields/button.php:29
+#: includes/functions/fields/button-v2.php:51
 msgid "After Add to Cart Button"
 msgstr ""
 
-#: includes/functions/fields/button.php:30
+#: includes/functions/fields/button-v2.php:52
 msgid "Before Add to Cart Button"
 msgstr ""
 
-#: includes/functions/fields/button.php:31
+#: includes/functions/fields/button-v2.php:53
 msgid "Over Product Image"
 msgstr ""
 
-#: includes/functions/fields/button.php:35
-msgid "Button Label"
+#: includes/functions/fields/button-v2.php:57
+msgid "Button label"
 msgstr ""
 
-#: includes/functions/fields/button.php:36
+#: includes/functions/fields/button-v2.php:58
 msgid "Quick View"
 msgstr ""
 
-#: includes/functions/fields/button.php:41
+#: includes/functions/fields/button-v2.php:62
 msgid "Enable icon in quick view button"
 msgstr ""
 
-#: includes/functions/fields/button.php:46
+#: includes/functions/fields/button-v2.php:66
 msgid "Quick view button icons"
 msgstr ""
 
-#: includes/functions/fields/button.php:53
+#: includes/functions/fields/button-v2.php:73
 msgid "Quick view button icon position"
 msgstr ""
 
-#: includes/functions/fields/button.php:57
+#: includes/functions/fields/button-v2.php:77
 msgid "Before Label"
 msgstr ""
 
-#: includes/functions/fields/button.php:58
+#: includes/functions/fields/button-v2.php:78
 msgid "After Label"
 msgstr ""
 
-#: includes/functions/fields/button.php:79
-#: includes/functions/fields/misc-buttons.php:25
+#: includes/functions/fields/button-v2.php:97
+#: includes/functions/fields/modal-v2.php:285
 msgid "Text color"
 msgstr ""
 
-#: includes/functions/fields/button.php:85
-#: includes/functions/fields/misc-buttons.php:31
+#: includes/functions/fields/button-v2.php:101
+#: includes/functions/fields/modal-v2.php:289
 msgid "Text color on hover"
 msgstr ""
 
-#: includes/functions/fields/button.php:91
-#: includes/functions/fields/misc-buttons.php:37
+#: includes/functions/fields/button-v2.php:105
+#: includes/functions/fields/modal-v2.php:293
 msgid "Background color"
 msgstr ""
 
-#: includes/functions/fields/button.php:97
+#: includes/functions/fields/button-v2.php:109
 msgid "Background color on hover"
 msgstr ""
 
-#: includes/functions/fields/button.php:103
-msgid "Border color"
-msgstr ""
-
-#: includes/functions/fields/button.php:109
-msgid "Border color on hover"
-msgstr ""
-
-#: includes/functions/fields/button.php:115
-msgid "Border width"
-msgstr ""
-
-#: includes/functions/fields/button.php:125
+#: includes/functions/fields/button-v2.php:113
 msgid "Border style"
 msgstr ""
 
-#: includes/functions/fields/button.php:131
-#: includes/functions/fields/misc-buttons.php:111
+#: includes/functions/fields/button-v2.php:118
+msgid "Border width"
+msgstr ""
+
+#: includes/functions/fields/button-v2.php:127
+#: includes/functions/fields/modal-v2.php:359
 msgid "Border radius (unit: px)"
 msgstr ""
 
+#: includes/functions/fields/button-v2.php:135
+msgid "Border color"
+msgstr ""
+
+#: includes/functions/fields/button-v2.php:139
+msgid "Border color on hover"
+msgstr ""
+
 #: includes/functions/fields/custom-css.php:23
+#: includes/functions/fields/general-v2.php:69
 msgid "Additional CSS"
 msgstr ""
 
 #: includes/functions/fields/custom-css.php:24
+#: includes/functions/fields/general-v2.php:70
 msgid "If necessary, you can add your own custom CSS code from here."
 msgstr ""
 
-#: includes/functions/fields/custom-css.php:39
+#: includes/functions/fields/custom-css.php:38
 msgid "Developer"
 msgstr ""
 
-#: includes/functions/fields/general.php:25
-msgid "Enable Quick View"
+#: includes/functions/fields/general-v2.php:18
+#: includes/functions/settings-v2.php:243
+msgid "General"
 msgstr ""
 
-#: includes/functions/fields/general.php:26
+#: includes/functions/fields/general-v2.php:24
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/functions/fields/general-v2.php:44
+msgid "Enable quick view"
+msgstr ""
+
+#: includes/functions/fields/general-v2.php:45
 msgid "If disabled, quick view features will be disabled completely."
 msgstr ""
 
-#: includes/functions/fields/general.php:30
-msgid "Disable on Mobile Devices"
+#: includes/functions/fields/general-v2.php:50
+msgid "Disable on mobile devices"
 msgstr ""
 
-#: includes/functions/fields/general.php:31
+#: includes/functions/fields/general-v2.php:51
 msgid "If enabled, quick view will be disabled on mobile devices."
 msgstr ""
 
-#: includes/functions/fields/general.php:36
-msgid "Delete plugin data on plugin deactivation"
+#: includes/functions/fields/modal-v2.php:18
+msgid "Modal Box Options"
 msgstr ""
 
-#: includes/functions/fields/general.php:61
-msgid "Enable dymanic styles"
+#: includes/functions/fields/modal-v2.php:24
+msgid "Modal Box UI Options"
 msgstr ""
 
-#: includes/functions/fields/general.php:62
-msgid "Once enabled, below selected option will overwrite the default plugin stylesheet."
+#: includes/functions/fields/modal-v2.php:30
+msgid "Modal Box Close Button Options"
 msgstr ""
 
-#: includes/functions/fields/misc-buttons.php:43
-msgid "Background on hover"
+#: includes/functions/fields/modal-v2.php:36
+msgid "Misc Button Inside Modal Box"
 msgstr ""
 
-#: includes/functions/fields/misc-buttons.php:49
-msgid "Font size (unit: px)"
+#: includes/functions/fields/modal-v2.php:56
+msgid "Content to display"
 msgstr ""
 
-#: includes/functions/fields/misc-buttons.php:50
-msgid "15"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:59
-msgid "Font weight"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:62
-#: includes/functions/fields/modal-box.php:486
-#: includes/functions/fields/modal-box.php:524
-#: includes/functions/helpers.php:228
-msgid "Normal"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:63
-#: includes/functions/fields/modal-box.php:487
-#: includes/functions/fields/modal-box.php:525
-#: includes/functions/helpers.php:229
-msgid "Medium"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:64
-#: includes/functions/fields/modal-box.php:488
-#: includes/functions/fields/modal-box.php:526
-#: includes/functions/helpers.php:230
-msgid "Semi bold"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:65
-#: includes/functions/fields/modal-box.php:489
-#: includes/functions/fields/modal-box.php:527
-#: includes/functions/helpers.php:231
-msgid "Bold"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:70
-msgid "Text transform"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:73
-#: includes/functions/fields/modal-box.php:74
-#: includes/functions/helpers.php:246
-#: includes/functions/helpers.php:264
-msgid "Default"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:74
-#: includes/functions/helpers.php:247
-msgid "Capitalize"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:75
-#: includes/functions/helpers.php:248
-msgid "Lowercase"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:76
-#: includes/functions/helpers.php:249
-msgid "Uppercase"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:81
-msgid "Letter spacing (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:82
-msgid "0"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:91
-msgid "Line height (unit: em)"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:92
-msgid "1"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:101
-msgid "Height (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:102
-msgid "50"
-msgstr ""
-
-#: includes/functions/fields/misc-buttons.php:112
-msgid "5"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:50
-msgid "Content to Display"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:51
+#: includes/functions/fields/modal-v2.php:57
 msgid "Choose content that you want to display in quick view modal box."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:57
+#: includes/functions/fields/modal-v2.php:62
 msgid "Image"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:58
+#: includes/functions/fields/modal-v2.php:63
 msgid "Title"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:59
+#: includes/functions/fields/modal-v2.php:64
 msgid "Price"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:60
+#: includes/functions/fields/modal-v2.php:65
 msgid "Rating"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:61
+#: includes/functions/fields/modal-v2.php:66
 msgid "Excerpt"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:62
+#: includes/functions/fields/modal-v2.php:67
 msgid "Meta"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:63
+#: includes/functions/fields/modal-v2.php:68
 msgid "Add to Cart"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:67
+#: includes/functions/fields/modal-v2.php:72
 msgid "Content column layout inside modal"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:68
+#: includes/functions/fields/modal-v2.php:73
 msgid "Choose how content column should appear inside the modal box."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:75
-msgid "Row reversed"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:79
+#: includes/functions/fields/modal-v2.php:82
 msgid "Modal content column gap"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:80
+#: includes/functions/fields/modal-v2.php:83
 msgid "Specify the gap for the modal content inner column in px."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:81
+#: includes/functions/fields/modal-v2.php:84
 msgid "40"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:90
-msgid "Product Thumbnail"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:92
-msgid "Choose option"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:95
-msgid "Product Image only"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:96
-msgid "Product Image or Gallery"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:100
-msgid "Enable Lightbox"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:101
-msgid "May not work with all the themes."
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:124
+#: includes/functions/fields/modal-v2.php:92
 msgid "Hide modal close button"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:125
+#: includes/functions/fields/modal-v2.php:93
 msgid "If enabled, close button will be hidden for all media screen except mobile device."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:130
+#: includes/functions/fields/modal-v2.php:98
 msgid "Close modal if ESC key is pressed"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:131
+#: includes/functions/fields/modal-v2.php:99
 msgid "Enable to close modal if ESC key is pressed on keyboard."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:136
+#: includes/functions/fields/modal-v2.php:104
 msgid "Close modal if clicked outside"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:137
+#: includes/functions/fields/modal-v2.php:105
 msgid "Enable to close modal if clicked outside of modal box."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:142
+#: includes/functions/fields/modal-v2.php:110
 msgid "Close button label on mobile device"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:143
+#: includes/functions/fields/modal-v2.php:111
 msgid "Check docs to learn about mobile close button."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:145
+#: includes/functions/fields/modal-v2.php:113
 #: includes/plugin-setting-defaults.php:41
 msgid "Close"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:167
+#: includes/functions/fields/modal-v2.php:117
 msgid "Modal opening animation"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:168
+#: includes/functions/fields/modal-v2.php:118
 msgid "Choose animation effect when modal opens."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:172
-#: includes/functions/fields/modal-box.php:190
+#: includes/functions/fields/modal-v2.php:122
+#: includes/functions/fields/modal-v2.php:140
 #: includes/functions/helpers.php:209
 msgid "None"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:173
+#: includes/functions/fields/modal-v2.php:123
 msgid "Fade in"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:174
+#: includes/functions/fields/modal-v2.php:124
 msgid "Fade in from up"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:175
+#: includes/functions/fields/modal-v2.php:125
 msgid "Bounce in"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:176
+#: includes/functions/fields/modal-v2.php:126
 msgid "Slide in from left"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:177
+#: includes/functions/fields/modal-v2.php:127
 msgid "Slide in from right"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:178
+#: includes/functions/fields/modal-v2.php:128
 msgid "Zoom in"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:179
+#: includes/functions/fields/modal-v2.php:129
 msgid "Swing effect"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:180
+#: includes/functions/fields/modal-v2.php:130
 msgid "Jello effect"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:181
+#: includes/functions/fields/modal-v2.php:131
 msgid "Rubber band effect"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:185
+#: includes/functions/fields/modal-v2.php:135
 msgid "Modal closing animation"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:186
+#: includes/functions/fields/modal-v2.php:136
 msgid "Choose animation effect when modal close."
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:191
+#: includes/functions/fields/modal-v2.php:141
 msgid "Fade out"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:192
+#: includes/functions/fields/modal-v2.php:142
 msgid "Fade out down"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:193
+#: includes/functions/fields/modal-v2.php:143
 msgid "Bounce out"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:194
+#: includes/functions/fields/modal-v2.php:144
 msgid "Slide out to left"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:195
+#: includes/functions/fields/modal-v2.php:145
 msgid "Slide out to right"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:196
+#: includes/functions/fields/modal-v2.php:146
 msgid "Zoom out"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:218
-msgid "Display View Detail Button"
+#: includes/functions/fields/modal-v2.php:152
+msgid "Spinner icon"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:219
+#: includes/functions/fields/modal-v2.php:153
+msgid "Choose modal box loading spinner icon"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:172
+msgid "General text font size inside modal box"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:173
+#: includes/functions/fields/modal-v2.php:227
+msgid "28"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:181
+msgid "Modal CSS z-index"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:182
+msgid "10000000000000000"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:189
+msgid "Modal border radius (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:190
+#: includes/functions/fields/product-v2.php:193
+#: includes/functions/fields/product-v2.php:250
+msgid "10"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:198
+msgid "Modal overlay background"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:202
+msgid "Modal box inner background"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:206
+msgid "Text color inside modal box"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:210
+msgid "General border color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:214
+msgid "Input fields background color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:218
+msgid "Input fields text color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:222
+msgid "Modal box spinner icon color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:226
+msgid "Spinner icon font size (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:248
+msgid "Icon color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:252
+msgid "Icon color on hover"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:256
+msgid "Icon background color"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:260
+msgid "Icon background color hover"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:264
+msgid "Mobile close button font size (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:297
+msgid "Background on hover"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:301
+msgid "Font size (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:302
+msgid "15"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:310
+msgid "Font weight"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:313
+#: includes/functions/fields/product-v2.php:106
+#: includes/functions/fields/product-v2.php:143
+#: includes/functions/helpers.php:228
+msgid "Normal"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:314
+#: includes/functions/fields/product-v2.php:107
+#: includes/functions/fields/product-v2.php:144
+#: includes/functions/helpers.php:229
+msgid "Medium"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:315
+#: includes/functions/fields/product-v2.php:108
+#: includes/functions/fields/product-v2.php:145
+#: includes/functions/helpers.php:230
+msgid "Semi bold"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:316
+#: includes/functions/fields/product-v2.php:109
+#: includes/functions/fields/product-v2.php:146
+#: includes/functions/helpers.php:231
+msgid "Bold"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:320
+msgid "Text transform"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:323
+#: includes/functions/helpers.php:264
+msgid "Default"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:324
+#: includes/functions/helpers.php:247
+msgid "Capitalize"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:325
+#: includes/functions/helpers.php:248
+msgid "Lowercase"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:326
+#: includes/functions/helpers.php:249
+msgid "Uppercase"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:330
+msgid "Letter spacing (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:331
+msgid "0"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:340
+msgid "Line height (unit: em)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:341
+msgid "1"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:350
+msgid "Height (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:351
+msgid "50"
+msgstr ""
+
+#: includes/functions/fields/modal-v2.php:360
+msgid "5"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:18
+msgid "Product Options"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:24
+msgid "Product Content Options"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:30
+msgid "Product Options Styles"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:48
+msgid "Product Thumbnail"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:50
+msgid "Choose option"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:53
+msgid "Product Image only"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:54
+msgid "Product Image or Gallery"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:58
+msgid "Enable Lightbox"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:59
+msgid "May not work with all the themes."
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:65
+msgid "Display view detail button"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:66
 msgid "Enable to display link to product single page button"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:224
-msgid "View Detail Button Label"
+#: includes/functions/fields/product-v2.php:71
+msgid "View detail button label"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:225
+#: includes/functions/fields/product-v2.php:72
 #: includes/plugin-setting-defaults.php:58
 msgid "View Detail"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:248
-msgid "Spinner icon"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:249
-msgid "Choose modal box loading spinner icon"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:274
-msgid "General text font size inside modal box"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:275
-#: includes/functions/fields/modal-box.php:354
-msgid "28"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:284
-msgid "Modal CSS z-index"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:285
-msgid "10000000000000000"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:294
-msgid "Modal border radius (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:295
-#: includes/functions/fields/modal-box.php:364
-#: includes/functions/fields/modal-box.php:439
-msgid "10"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:304
-msgid "Modal overlay background"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:311
-msgid "Modal box inner background"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:318
-msgid "Text color inside modal box"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:325
-msgid "General border color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:332
-msgid "Input fields background color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:339
-msgid "Input fields text color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:346
-msgid "Modal box spinner icon color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:353
-msgid "Spinner icon font size (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:363
-msgid "Modal image border radius (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:373
-msgid "Gallery thumbnail items row"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:374
-msgid "4"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:380
-msgid "items"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:384
-msgid "Gallery thumbnail column gap (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:393
-msgid "Gallery trigger button color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:400
-msgid "Gallery trigger button color on hover"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:407
-msgid "Gallery trigger button background color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:414
-msgid "Gallery trigger button background color on hover"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:421
-msgid "Gallery image border color"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:428
-msgid "Gallery trigger icon font size (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:429
-msgid "18"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:438
-msgid "Gallery trigger icon border radius (unit: px)"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:466
+#: includes/functions/fields/product-v2.php:90
 msgid "Title text"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:473
+#: includes/functions/fields/product-v2.php:94
 msgid "Title font size (unit: px)"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:474
+#: includes/functions/fields/product-v2.php:95
 msgid "32"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:483
+#: includes/functions/fields/product-v2.php:103
 msgid "Title font weight"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:494
+#: includes/functions/fields/product-v2.php:113
 msgid "Title line height (unit: em)"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:495
+#: includes/functions/fields/product-v2.php:114
 msgid "1.2"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:504
+#: includes/functions/fields/product-v2.php:123
 msgid "Regular price"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:511
+#: includes/functions/fields/product-v2.php:127
+msgid "Sale price"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:131
 msgid "Price font size (unit: px)"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:512
+#: includes/functions/fields/product-v2.php:132
 msgid "22"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:521
+#: includes/functions/fields/product-v2.php:140
 msgid "Price font weight"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:532
-msgid "On-sale price"
-msgstr ""
-
-#: includes/functions/fields/modal-box.php:539
+#: includes/functions/fields/product-v2.php:150
 msgid "Sale badge font size (unit: px)"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:540
+#: includes/functions/fields/product-v2.php:151
 msgid "14"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:549
+#: includes/functions/fields/product-v2.php:159
 msgid "Rating star empty"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:556
+#: includes/functions/fields/product-v2.php:163
 msgid "Rating star filled"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:563
+#: includes/functions/fields/product-v2.php:167
 msgid "Excerpt text"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:571
+#: includes/functions/fields/product-v2.php:171
 msgid "Meta text"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:578
+#: includes/functions/fields/product-v2.php:175
 msgid "Meta text on hover"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:603
-msgid "Icon color"
+#: includes/functions/fields/product-v2.php:192
+msgid "Modal image border radius (unit: px)"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:610
-msgid "Icon color on hover"
+#: includes/functions/fields/product-v2.php:201
+msgid "Gallery thumbnail items row"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:617
-msgid "Icon background color"
+#: includes/functions/fields/product-v2.php:202
+msgid "4"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:624
-msgid "Icon background color hover"
+#: includes/functions/fields/product-v2.php:208
+msgid "items"
 msgstr ""
 
-#: includes/functions/fields/modal-box.php:631
-msgid "Mobile close button font size (unit: px)"
+#: includes/functions/fields/product-v2.php:211
+msgid "Gallery thumbnail column gap (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:217
+msgid "px"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:220
+msgid "Gallery trigger button color"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:224
+msgid "Gallery trigger button color on hover"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:228
+msgid "Gallery trigger button background color"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:232
+msgid "Gallery trigger button background color on hover"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:236
+msgid "Gallery image border color"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:240
+msgid "Gallery trigger icon font size (unit: px)"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:241
+msgid "18"
+msgstr ""
+
+#: includes/functions/fields/product-v2.php:249
+msgid "Gallery trigger icon border radius (unit: px)"
 msgstr ""
 
 #: includes/functions/helpers.php:210
@@ -790,68 +856,96 @@ msgstr ""
 msgid "Double"
 msgstr ""
 
+#: includes/functions/helpers.php:246
+msgid "Deafult"
+msgstr ""
+
 #: includes/functions/helpers.php:265
 msgid "Italic"
 msgstr ""
 
-#: includes/functions/settings.php:238
-msgid "General"
+#: includes/functions/settings-v2.php:214
+msgid "Remove all data on deactivation"
 msgstr ""
 
-#: includes/functions/settings.php:243
-msgid "Button Options"
+#: includes/functions/settings-v2.php:215
+msgid "If enabled, all of plugin's data will be removed without leaving a footprint."
 msgstr ""
 
-#: includes/functions/settings.php:248
-msgid "Modal Box Options"
+#: includes/functions/settings-v2.php:248
+msgid "Button"
 msgstr ""
 
-#: includes/functions/settings.php:260
-msgid "Interface Design"
+#: includes/functions/settings-v2.php:253
+msgid "Modal box"
 msgstr ""
 
-#: includes/functions/settings.php:265
-msgid "Quick view button"
+#: includes/functions/settings-v2.php:258
+msgid "Product"
 msgstr ""
 
-#: includes/functions/settings.php:266
-msgid "Change how quick view button should appear in the WooCommerce products listing."
+#: includes/functions/settings-v2.php:282
+msgid "Tools"
 msgstr ""
 
-#: includes/functions/settings.php:271
-msgid "Modal box UI options"
+#: includes/functions/settings-v2.php:290
+msgid "Export settings"
 msgstr ""
 
-#: includes/functions/settings.php:272
-msgid "Customize the look and feel of quick view modal box."
+#: includes/functions/settings-v2.php:291
+msgid "Backup all settings that can be imported in future."
 msgstr ""
 
-#: includes/functions/settings.php:277
-msgid "Product content options"
+#: includes/functions/settings-v2.php:293
+msgid "Export"
 msgstr ""
 
-#: includes/functions/settings.php:278
-msgid "Product content inside modal box options."
+#: includes/functions/settings-v2.php:297
+msgid "Import settings"
 msgstr ""
 
-#: includes/functions/settings.php:283
-msgid "Modal box close button options"
+#: includes/functions/settings-v2.php:298
+msgid "Drop a file here or click here to upload."
 msgstr ""
 
-#: includes/functions/settings.php:284
-msgid "Customize how modal close button should appear."
+#: includes/functions/settings-v2.php:299
+msgid "Only .json file is permitted."
 msgstr ""
 
-#: includes/functions/settings.php:289
-msgid "Misc buttons inside modal box"
+#: includes/functions/settings-v2.php:300
+msgid "Drag or upload the .json file that you had exported."
 msgstr ""
 
-#: includes/functions/settings.php:290
-msgid "This option will be applied to all the buttons inside the modal box except close button."
+#: includes/functions/settings-v2.php:305
+msgid "Reset settings"
 msgstr ""
 
-#: includes/functions/settings.php:300
-msgid "Coming soon...."
+#: includes/functions/settings-v2.php:306
+msgid "All the settings will be set to default."
+msgstr ""
+
+#: includes/functions/settings-v2.php:311
+msgid "Reset"
+msgstr ""
+
+#: includes/functions/settings-v2.php:316
+msgid "Yes"
+msgstr ""
+
+#: includes/functions/settings-v2.php:317
+msgid "No, cancel"
+msgstr ""
+
+#: includes/functions/settings-v2.php:318
+msgid "Are you sure you would like to reset all settings?"
+msgstr ""
+
+#: includes/functions/settings-v2.php:324
+msgid "Delete plugin data on plugin deactivation"
+msgstr ""
+
+#: includes/functions/settings-v2.php:327
+msgid "Enable this option to remove all data related to the plugin on plugin uninstallation."
 msgstr ""
 
 #: includes/plugin-setting-defaults.php:25
@@ -887,124 +981,187 @@ msgstr ""
 msgid "Later"
 msgstr ""
 
-#: public/class-addonify-quick-view-public.php:464
+#: public/class-addonify-quick-view-public.php:461
 msgid "Invalid security token."
 msgstr ""
 
-#: public/class-addonify-quick-view-public.php:475
+#: public/class-addonify-quick-view-public.php:472
 msgid "Missing product id."
 msgstr ""
 
-#: public/class-addonify-quick-view-public.php:516
+#: public/class-addonify-quick-view-public.php:513
 msgid "There is no product with the id."
 msgstr ""
 
-#: admin/assets/js/main.js:1351
-msgid "Activate now"
+#: admin/app/dist/assets/main-BNvOhh9m.js:817
+msgid "Failed, fetching settings."
 msgstr ""
 
-#: admin/assets/js/main.js:1352
-msgid "Activating..."
+#: admin/app/dist/assets/main-BNvOhh9m.js:817
+msgid "Failed updating settings."
 msgstr ""
 
-#: admin/assets/js/main.js:1353
-msgid "Install now"
+#: admin/app/dist/assets/main-BNvOhh9m.js:817
+msgid "Failed, exporting settings."
 msgstr ""
 
-#: admin/assets/js/main.js:1354
-msgid "Installing..."
+#: admin/app/dist/assets/main-BNvOhh9m.js:817
+msgid "Failed, importing settings."
 msgstr ""
 
-#: admin/assets/js/main.js:1355
-msgid "Installed"
+#: admin/app/dist/assets/main-BNvOhh9m.js:817
+msgid "Failed, resetting settings."
 msgstr ""
 
-#: admin/assets/js/main.js:2410
-msgid "Check docs"
+#: admin/app/dist/assets/main-BNvOhh9m.js:837
+msgid "Saving..."
 msgstr ""
 
-#: admin/assets/js/main.js:2621
-msgid "Select"
+#: admin/app/dist/assets/main-BNvOhh9m.js:837
+msgid "Save options"
 msgstr ""
 
-#: admin/assets/js/main.js:2685
-#: admin/assets/js/main.js:2713
-msgid "Enter text here..."
+#: admin/app/dist/assets/main-BNvOhh9m.js:837
+msgid "Success! settings updated."
 msgstr ""
 
-#: admin/assets/js/main.js:2761
-msgid "Version"
+#: admin/app/dist/assets/main-BNvOhh9m.js:850
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Something..."
 msgstr ""
 
-#: admin/assets/js/main.js:2761
-msgid "Rate"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Sure?"
 msgstr ""
 
-#: admin/assets/js/main.js:2869
-msgid "Save Options"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "All the options will be reset. Are you sure you would like to proceed?"
 msgstr ""
 
-#: admin/assets/js/main.js:2963
-msgid "Design"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Yes, reset"
 msgstr ""
 
-#: admin/assets/js/main.js:2970
-msgid "Products"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success! options reset."
 msgstr ""
 
-#: admin/assets/js/main.js:3454
-msgid "404"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Choose option..."
 msgstr ""
 
-#: admin/assets/js/main.js:3454
-msgid "Oops, page not found!"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success! options imported."
 msgstr ""
 
-#: admin/assets/js/main.js:3459
-msgid "Go Back"
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Failed, please upload JSON file."
 msgstr ""
 
-#: admin/assets/js/main.js:5799
-#: admin/src/stores/options.js:65
-msgid "Something went wrong while fetching settings."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Exporting..."
 msgstr ""
 
-#: admin/assets/js/main.js:5855
-#: admin/src/stores/options.js:136
-msgid "Something went wrong while updating settings."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success! exported."
 msgstr ""
 
-#: admin/assets/js/main.js:5964
-#: admin/src/stores/product.js:76
-msgid "Error: couldn't fetch recommended plugins list."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Failed! exporting."
 msgstr ""
 
-#: admin/assets/js/main.js:6008
-#: admin/src/stores/product.js:124
-msgid "Error: couldn't process the recommended plugins list."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Unlimited"
 msgstr ""
 
-#: admin/assets/js/main.js:6047
-#: admin/src/stores/product.js:161
-msgid "Error: Couldn't retrive the list of installed plugins."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Never"
 msgstr ""
 
-#: admin/assets/js/main.js:6122
-#: admin/src/stores/product.js:240
-msgid "Plugin installed successfully."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Active"
 msgstr ""
 
-#: admin/assets/js/main.js:6139
-#: admin/src/stores/product.js:254
-msgid "Error: couldn't install plugin."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Expired"
 msgstr ""
 
-#: admin/assets/js/main.js:6187
-#: admin/src/stores/product.js:293
-msgid "Plugin activated successfully."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Inactive"
 msgstr ""
 
-#: admin/assets/js/main.js:6204
-#: admin/src/stores/product.js:307
-msgid "Error: Couldn't activate the plugin."
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Disabled"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success! license activated."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Failed to activate the license."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success! license deactivated."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Failed to deactivate the license."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Activate plugin"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Install plugin"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success, installed."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Success, activated."
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "No data!"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Total views"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Today"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Yesterday"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "This Week"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Last Week"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "This Month"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Last Month"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "This Year"
+msgstr ""
+
+#: admin/app/dist/assets/main-BNvOhh9m.js:914
+msgid "Last Year"
 msgstr ""

@@ -5,8 +5,8 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.6
-Stable tag: 1.2.17
+Tested up to: 6.7
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,7 +21,6 @@ Addonify WooCommerce Quick View plugin adds functionality to have a quick previe
 📜 Documentation: [Doc Link](https://docs.addonify.com/kb/woocommerce-quick-view/)
 
 If you run an online e-commerce shop, then you must be familiar with the number of products that your users will see in your store page. This plugin allows your website visitors to quickly view the product summary instead of going through each product's detail page. This could save the time of your visitors & increase your revenue.
-
 
 
 **🦄 MAIN FEATURES:**
@@ -47,7 +46,6 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 ✅ Add custom CSS if required from admin setting page.
 ✅ Clean setting page design.
 ✅ Friendly support.
-
 
 
 **🌈 DESIGN OPTIONS:**
@@ -81,7 +79,6 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 ✅ More customization options, give it a try.
 
 
-
 **📄 SHORTCODE**
 
 The shortcode below can used to display quick view button.
@@ -89,13 +86,14 @@ The shortcode below can used to display quick view button.
 ```php
 [addonify_quick_view_button id="1" label="Quick View" classes="btn" icon="icon_one" icon_position="left"]
 ```
+
 The shortcode attributes used are as follows:
+
 - **id**: Product id.
 - **label**: Button label.
 - **classes**: CSS classes.
 - **icon**: Button icon. Use any one attribute value from `icon_one`, `icon_two`, `icon_three`, ..., `icon_six`.
 - **icon_position**: Button icon position if `icon` attribute is set. Use either `left` or `right`.
-
 
 
 **👨‍💻 DEVELOPER:**
@@ -110,7 +108,6 @@ Developers, we got you. Follow the links below to easily customize Addonify Quic
 Still not sure how to start? Create [a new discussion](https://github.com/addonify/addonify-quick-view/discussions) and we will help you out.
 
 
-
 **🤎 FEEDBACK & SUPPORT:**
 
 Let's make Addonify Quick View better together. We are open to discuss how we can improve our plugin. You're always welcome to join the discussion and share your ideas with us.
@@ -119,14 +116,11 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 🪲 Report BUG - [Option - 1](https://github.com/addonify/addonify-quick-view/issues) or [Option - 2](https://wordpress.org/support/plugin/addonify-quick-view/).
 
 
-
 **📦 UPCOMING FEATURES:**
 
 - Modal width with responsive control.
 - Modal padding with responsive control.
 - Modal content gap with responsive control.
-- Content/Modal layouts.
-- Reset / Backup / Restore settings.
 - Quick view for Gutenberg WooCommerce products blocks.
 - More customization options.
 - Do you have any requests to make? [Let's discuss](https://github.com/addonify/addonify-quick-view/discussions) on what you would like to see in the next version.
@@ -142,10 +136,28 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 == Screenshots ==
 
 1. Addonify Quick View in action.
-2. Addonify Quick View admin setting page - General options tab.
-3. Addonify Quick View admin setting page - Design options tab.
+2. Addonify Quick View admin setting 1.
+3. Addonify Quick View admin setting 2.
+4. Addonify Quick View admin setting 3.
+5. Addonify Quick View admin setting 4.
+
 
 == Changelog ==
+
+= 2.0.0 - 25 November, 2024 =
+- Added:   Nonce verification for REST API.
+- Added:   `addonify_quick_view_add_setting_fields` hook to add setting fields from pro version.
+- Added:   `is_pro_active` boolean variable is localized.
+- Added:   `is_pro_active` static method is added on admin.php file.
+- Added:   Default color for `quick_view_button_bg_color_hover` and `wc_gallery_trigger_icon_bg_color`.
+- Fix:     Design issues [#344](https://github.com/addonify/addonify-quick-view/issues/344)
+- Fix:     Container height issue inside the quick view modal when the content changes.
+- Tweak:   Complete revamp of plugins's admin dashboard setting page.
+- Tweak:   Settings page REST API structure (v2).
+- Removed: Option to enable dynamic style.
+- Tested:  WordPress version 6.7.1.
+- Tested:  WooCommerce version 9.4.2.
+
 
 = 1.2.17 - 19 July, 2024 =
 

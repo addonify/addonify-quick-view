@@ -1,0 +1,15 @@
+/**----------------------------------------------
+-  Date picker
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="datepicker"] {
+		.el-date-editor {
+			@apply py-2 px-4 h-12 max-w-[300px] rounded-lg border border-gray-200 bg-white text-gray-600 shadow-sm;
+
+			&:is(.is-active) {
+				@apply ring-1 ring-blue-500 ring-offset-2;
+			}
+		}
+	}
+}
+

@@ -1,0 +1,16 @@
+/**----------------------------------------------
+-  Links.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	a {
+		@apply transition-all duration-300;
+
+		&:is(:hover, :focus) {
+			@apply no-underline shadow-none outline-offset-0 outline-0;
+		}
+
+		&:is(.router-link-exact-active) {
+			@apply bg-white text-blue-500 fill-blue-500 shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)];
+		}
+	}
+}

@@ -1,0 +1,80 @@
+/* --------------------------------------------------------------------------
+	Sweet Alerts 2
+  -------------------------------------------------------------------------- */
+body[class*="addonify-quick-view"] {
+	.swal2-modal {
+		@apply relative m-0 p-6;
+
+		.swal2-close {
+			@apply inline-flex items-center justify-center size-8 text-gray-500 hover:text-blue-600 rounded-full bg-transparent text-2xl font-normal absolute top-4 left-auto right-4 cursor-pointer no-underline border-none shadow-none transition-colors duration-300 ease-in focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+
+			&:is(:hover, :focus) {
+				@apply text-gray-600 border-none shadow-none;
+			}
+
+			&:is(:focus) {
+				@apply outline-none no-underline border-none shadow-none;
+			}
+		}
+
+		.swal2-icon {
+			@apply mb-8;
+		}
+
+		.swal2-title {
+			@apply m-0 p-0 mb-6 font-bold font-sans text-2xl text-gray-600;
+		}
+
+		.swal2-text {
+			@apply m-0 p-0 text-base w-full max-w-full font-sans font-normal text-gray-600;
+		 }
+
+		.swal2-html-container {
+			@apply relative m-0 p-0 mx-auto font-sans text-base font-normal max-w-[350px] text-gray-600;
+		}
+
+		.swal2-actions {
+			@apply flex flex-row items-center justify-center w-full gap-4;
+		}
+	}
+
+	.swal2-modal.swal2-popup {
+		@apply p-10 rounded-xl;
+	}
+
+	.swal2-modal.swal2-popup.wide {
+		@apply w-full max-w-[600px] rounded-xl;
+	}
+
+	.swal2-container.swal2-backdrop-show,
+	.swal2-container.swal2-noanimation {
+		@apply z-[100000] backdrop-blur-sm bg-[rgba(255,255,255,0.8)];
+	}
+
+	div:where(.swal2-container).swal2-center>.swal2-popup {
+		@apply shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)];
+	}
+
+	.swal2-shown div:where(.swal2-container) button:where(.swal2-styled),
+	.swal2-shown div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm,
+	div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled {
+		@apply inline-flex items-center justify-center m-0 px-10 py-5 font-sans text-base font-normal leading-3 bg-transparent rounded-lg transition-all duration-300 ease-in;
+
+		&:is(:focus) {
+			@apply shadow-none outline-none border-none ring-2 ring-offset-2 ring-blue-500;
+		}
+	}
+
+	.swal2-shown div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm,
+	div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled {
+		@apply text-white fill-white bg-blue-500 transition-all duration-300 ease-in;
+
+		&:is(:hover, :focus) {
+			@apply text-white fill-white bg-blue-600;
+		}
+
+		&:is(:focus) {
+			@apply shadow-none outline-none border-none ring-2 ring-offset-2 ring-blue-500;
+		}
+	}
+}

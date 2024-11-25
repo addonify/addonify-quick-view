@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"strict": true,
+		"jsx": "preserve",
+		"jsxImportSource": "vue",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM"],
+		"skipLibCheck": true,
+		"noEmit": true,
+		"types": ["element-plus/global"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./admin/app/src/*"]
+		}
+	},
+	"include": [
+		"admin/app/src/**/*.vue",
+		"admin/app/src/**/*.ts",
+		"admin/app/src/**/*.tsx",
+		"admin/app/src/**/*.d.ts"
+	],
+	"exclude": ["node_modules"],
+	"references": [{ "path": "./tsconfig.node.json" }]
+}

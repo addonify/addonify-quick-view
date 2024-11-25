@@ -57,14 +57,11 @@ if ( ! function_exists( 'addonify_quick_view_setting_defaults' ) ) {
 				'wc_gallery_trigger_icon_border_radius'  => 10, // since 1.2.8.
 				'read_more_button_label'                 => esc_html__( 'View Detail', 'addonify-quick-view' ),
 
-				// Styles.
-				'enable_plugin_styles'                   => '1',
-
 				// Quick view button.
 				'quick_view_button_text_color'           => 'rgba(255, 255, 255, 1)',
 				'quick_view_button_text_color_hover'     => 'rgba(255, 255, 255, 1)',
 				'quick_view_button_bg_color'             => 'rgba(0, 0, 0, 1)',
-				'quick_view_button_bg_color_hover'       => 'rgb(14, 86, 255)',
+				'quick_view_button_bg_color_hover'       => 'rgba(14, 86, 255)',
 				'quick_view_button_border_color'         => 'rgba(255, 255, 255, 0)',
 				'quick_view_button_border_color_hover'   => 'rgba(255, 255, 255, 0)',
 				'quick_view_button_border_width'         => 0,
@@ -83,7 +80,7 @@ if ( ! function_exists( 'addonify_quick_view_setting_defaults' ) ) {
 
 				// WC Gallery.
 				'wc_gallery_trigger_icon_color'          => '#9F9F9F', // since 1.2.8.
-				'wc_gallery_trigger_icon_hover_color'    => 'rgb(54, 91, 255)', // since 1.2.8.
+				'wc_gallery_trigger_icon_hover_color'    => 'rgba(54, 91, 255)', // since 1.2.8.
 				'wc_gallery_trigger_icon_bg_color'       => 'rgba(255, 255, 255, 1)', // since 1.2.8.
 				'wc_gallery_trigger_icon_bg_hover_color' => 'rgba(255, 255, 255, 1)', // since 1.2.8.
 				'wc_gallery_image_border_color'          => 'rgba(238, 238, 238, 1)', // since 1.2.8.

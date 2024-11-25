@@ -243,7 +243,7 @@ if ( ! function_exists( 'addonify_quick_view_get_text_transforms' ) ) {
 	function addonify_quick_view_get_text_transforms() {
 
 		return array(
-			'default'    => esc_html__( 'Default', 'addonify-quick-view' ),
+			'inherit'    => esc_html__( 'Deafult', 'addonify-quick-view' ),
 			'capitalize' => esc_html__( 'Capitalize', 'addonify-quick-view' ),
 			'lowercase'  => esc_html__( 'Lowercase', 'addonify-quick-view' ),
 			'uppercase'  => esc_html__( 'Uppercase', 'addonify-quick-view' ),
@@ -286,5 +286,21 @@ if ( ! function_exists( 'addonify_quick_view_minify_css' ) ) {
 		$css = preg_replace( '/(:| )(\.?)0(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}0', $css );
 
 		return trim( $css );
+	}
+}
+
+if ( ! function_exists( 'addonify_quick_view_get_option' ) ) {
+	/**
+	 * Retrieve the value of a settings field.
+	 *
+	 * @since 1.0.7
+	 *
+	 * @param string $setting_id Setting ID.
+	 */
+	function addonify_quick_view_get_option( $setting_id ) {
+
+		$defaults = addonify_quick_view_setting_defaults();
+
+		return get_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $setting_id, $defaults[ $setting_id ] );
 	}
 }

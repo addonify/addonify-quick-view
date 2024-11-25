@@ -1,5 +1,6 @@
 {
 	"require": {
-		"mobiledetect/mobiledetectlib": "^3.74"
+		"mobiledetect/mobiledetectlib": "^3.74",
+		"kucrut/vite-for-wp": "^0.9.3"
 	}
 }

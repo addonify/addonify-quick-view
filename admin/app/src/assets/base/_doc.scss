@@ -1,0 +1,28 @@
+/**----------------------------------------------
+-  Document.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	@apply p-0 m-0 relative block min-h-screen font-sans text-base box-border antialiased;
+}
+
+body[class*="addonify-quick-view"] {
+	.VueHotToast__top-center {
+		@apply top-8;
+	}
+
+	.VueHotToast__bottom-center {
+		@apply bottom-4;
+	}
+
+	.VueHotToast__toast {
+		@apply p-4 font-sans text-sm font-normal rounded-lg shadow;
+	}
+
+	.el-picker__popper.el-popper {
+		@apply rounded-xl overflow-hidden border border-gray-200 shadow-[0_10px_40px_10px_rgba(0,0,0,0.08)];
+
+		.el-date-range-picker {
+			@apply font-sans;
+		}
+	}
+}
