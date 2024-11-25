@@ -103,42 +103,43 @@ class Addonify_Quick_View {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-addonify-quick-view-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-addonify-quick-view-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-addonify-quick-view-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-addonify-quick-view-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-addonify-quick-view-rest-api.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-addonify-quick-view-rest-api.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/helpers.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/functions/helpers.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/functions/settings.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/plugin-setting-defaults.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/addonify-quick-view-template-functions.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/functions/settings-v2.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/addonify-quick-view-template-hooks.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/addonify-quick-view-template-functions.php';
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-addonify-quick-view-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/addonify-quick-view-template-hooks.php';
+
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-addonify-quick-view-public.php';
 
 		/**
 		 * User data processing functions.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/udp/init.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/udp/init.php';
 
 		$this->loader = new Addonify_Quick_View_Loader();
-
 	}
 
 	/**
@@ -154,8 +155,7 @@ class Addonify_Quick_View {
 
 		$plugin_i18n = new Addonify_Quick_View_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$this->loader->add_action( 'init', $plugin_i18n, 'load_plugin_textdomain' );
 	}
 
 	/**
@@ -169,14 +169,10 @@ class Addonify_Quick_View {
 
 		$plugin_admin = new Addonify_Quick_View_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		// enqueue admin styles and scripts.
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
-		// admin menu.
+		// Admin menu.
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu_callback' );
 
-		// custom link in all plugin page.
+		// Custom link in all plugin page.
 		$this->loader->add_action( 'plugin_action_links_' . ADDONIFY_QUICK_VIEW_BASENAME, $plugin_admin, 'custom_plugin_link_callback', 10, 2 );
 
 		$this->loader->add_filter( 'plugin_row_meta', $plugin_admin, 'plugin_row_meta', 10, 2 );

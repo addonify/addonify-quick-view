@@ -1,0 +1,15 @@
+/**----------------------------------------------
+-  Input type textarea.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="textarea"] {
+		@apply w-full;
+
+		.el-textarea {
+
+			.el-textarea__inner {
+				@apply p-8 w-full min-h-36 font-sans text-gray-600 resize rounded-lg overflow-hidden;
+			}
+		}
+	}
+}

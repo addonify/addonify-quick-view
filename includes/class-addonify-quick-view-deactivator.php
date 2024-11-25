@@ -30,16 +30,16 @@ class Addonify_Quick_View_Deactivator {
 	 */
 	public static function deactivate() {
 
-		require plugin_dir_path( dirname( __FILE__ ) ) . 'includes/plugin-setting-defaults.php';
+		require plugin_dir_path( __DIR__ ) . 'includes/plugin-setting-defaults.php';
 
 		$setting_defaults = addonify_quick_view_setting_defaults();
 
 		if (
 			is_array( $setting_defaults ) && $setting_defaults &&
-			get_option( ADDONIFY_DB_INITIALS . 'delete_plugin_data_on_deactivation', false )
+			get_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . 'delete_plugin_data_on_deactivation', false )
 		) {
 			foreach ( $setting_defaults as $setting_id => $setting_default ) {
-				delete_option( ADDONIFY_DB_INITIALS . $setting_id );
+				delete_option( ADDONIFY_QUICK_VIEW_DB_INITIALS . $setting_id );
 			}
 		}
 	}

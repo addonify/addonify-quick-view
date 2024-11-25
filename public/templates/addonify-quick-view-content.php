@@ -19,11 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 global $product;
+$modal_post_class  = 'product';
+$modal_box_content = unserialize( addonify_quick_view_get_option( 'modal_box_content' ) ); // phpcs:ignore
+
+if ( is_array( $modal_box_content ) && ! in_array( 'image', $modal_box_content, true ) ) {
+	$modal_post_class .= ' aqv-no-product-image';
+}
 
 do_action( 'addoify_quick_view_before_single_content', $product );
 ?>
 <div class="woocommerce single-product">
-	<div id="product-<?php echo esc_attr( $product->get_id() ); ?>" <?php post_class( 'product' ); ?>>
+	<div id="product-<?php echo esc_attr( $product->get_id() ); ?>" <?php post_class( $modal_post_class ); ?>>
 		<?php do_action( 'addonify_quick_view_product_image' ); ?>
 		<div class="summary entry-summary">
 			<?php do_action( 'addonify_quick_view_before_product_summary_content', $product ); ?>

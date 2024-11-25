@@ -1,6 +1,48 @@
 {
     "packages": [
         {
+            "name": "kucrut/vite-for-wp",
+            "version": "v0.9.3",
+            "version_normalized": "0.9.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kucrut/vite-for-wp.git",
+                "reference": "df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kucrut/vite-for-wp/zipball/df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a",
+                "reference": "df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a",
+                "shasum": ""
+            },
+            "require-dev": {
+                "wp-coding-standards/wpcs": "^3.0"
+            },
+            "time": "2024-06-30T17:46:55+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "vite-for-wp.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Dzikri Aziz"
+                }
+            ],
+            "description": "Vite integration for WordPress plugins and themes development.",
+            "support": {
+                "issues": "https://github.com/kucrut/vite-for-wp/issues",
+                "source": "https://github.com/kucrut/vite-for-wp/tree/v0.9.3"
+            },
+            "install-path": "../kucrut/vite-for-wp"
+        },
+        {
             "name": "mobiledetect/mobiledetectlib",
             "version": "3.74.3",
             "version_normalized": "3.74.3.0",

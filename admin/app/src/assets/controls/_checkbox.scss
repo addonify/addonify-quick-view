@@ -1,0 +1,18 @@
+/**----------------------------------------------
+-  Input control checkbox.
+-----------------------------------------------*/
+#addonify-quick-view-app {
+	[data-input="checkbox"] {
+		.el-checkbox-group {
+			@apply flex flex-row flex-wrap justify-start items-center;
+
+			.el-checkbox {
+				@apply p-0 m-0 inline-flex items-center gap-x-1 font-sans font-normal text-sm text-gray-600;
+
+				.el-checkbox__label {
+					@apply p-0 m-0 font-sans text-sm leading-3;
+				}
+			}
+		}
+	}
+}

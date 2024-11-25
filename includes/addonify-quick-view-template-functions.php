@@ -32,7 +32,7 @@ function addonify_quick_view_locate_template( $template_name, $template_path = '
 
 	// Set default plugin templates path.
 	if ( ! $default_path ) {
-		$default_path = plugin_dir_path( dirname( __FILE__ ) ) . 'public/templates/'; // Path to the template folder.
+		$default_path = plugin_dir_path( __DIR__ ) . 'public/templates/'; // Path to the template folder.
 	}
 
 	// Search template file in theme folder.

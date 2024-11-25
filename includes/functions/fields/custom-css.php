@@ -25,7 +25,6 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
 				'type'        => 'textarea',
 				'className'   => 'fullwidth custom-css-box',
 				'placeholder' => '#app { color: blue; }',
-				'dependent'   => array( 'enable_plugin_styles' ),
 			),
 		);
 	}
@@ -33,7 +32,7 @@ if ( ! function_exists( 'addonify_quick_view_custom_css_settings_fields' ) ) {
 
 	add_filter(
 		'addonify_quick_view_style_sections',
-		function( $sections ) {
+		function ( $sections ) {
 
 			$sections['custom_css'] = array(
 				'title'       => esc_html__( 'Developer', 'addonify-quick-view' ),

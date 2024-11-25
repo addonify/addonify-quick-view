@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-development',
-        'version' => 'dev-development',
-        'reference' => '3f98deb750ae51196bf37555730141de8dee373c',
+        'pretty_version' => 'dev-sniper',
+        'version' => 'dev-sniper',
+        'reference' => '04a76073af71964a753032011f38adf45bbea953',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,11 +11,20 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-development',
-            'version' => 'dev-development',
-            'reference' => '3f98deb750ae51196bf37555730141de8dee373c',
+            'pretty_version' => 'dev-sniper',
+            'version' => 'dev-sniper',
+            'reference' => '04a76073af71964a753032011f38adf45bbea953',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'kucrut/vite-for-wp' => array(
+            'pretty_version' => 'v0.9.3',
+            'version' => '0.9.3.0',
+            'reference' => 'df5a0a7f8aae1eed2d03a3fa4d33f5b6a5fb484a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kucrut/vite-for-wp',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
