@@ -136,12 +136,15 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 == Screenshots ==
 
 1. Addonify Quick View in action.
-2. Addonify Quick View admin setting page - General options tab.
-3. Addonify Quick View admin setting page - Design options tab.
+2. Addonify Quick View admin setting 1.
+3. Addonify Quick View admin setting 2.
+4. Addonify Quick View admin setting 3.
+5. Addonify Quick View admin setting 4.
+
 
 == Changelog ==
 
-= 2.0.0 - ? November, 2024 =
+= 2.0.0 - 25 November, 2024 =
 - Added:   Nonce verification for REST API.
 - Added:   `addonify_quick_view_add_setting_fields` hook to add setting fields from pro version.
 - Added:   `is_pro_active` boolean variable is localized.
