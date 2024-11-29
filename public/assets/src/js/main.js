@@ -14,7 +14,7 @@ import { initEventListeners } from "./events/listeners";
 * addonifyQuickView.action.open(100);
 *	addonifyQuickView.action.close();
 *
-* Check doc: https://docs.addonify.com/kb/woocommerce-quick-view/
+* Check doc: https://docs.addonify.com/kb/quick-view/
 *
 * @since 1.2.17
 */
