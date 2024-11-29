@@ -20,7 +20,7 @@ const props = defineProps({
  *
  * @since 2.0.0
  */
-const docLink = "https://docs.addonify.com/kb/woocommerce-quick-view/";
+const docLink = "https://docs.addonify.com/kb/quick-view/";
 </script>
 
 <template>

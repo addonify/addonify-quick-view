@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-11-25T05:44:02+00:00\n"
+"POT-Creation-Date: 2024-11-29T11:40:59+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: addonify-quick-view\n"
@@ -993,175 +993,175 @@ msgstr ""
 msgid "There is no product with the id."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:817
+#: admin/app/dist/assets/main-4osb432d.js:817
 msgid "Failed, fetching settings."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:817
+#: admin/app/dist/assets/main-4osb432d.js:817
 msgid "Failed updating settings."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:817
+#: admin/app/dist/assets/main-4osb432d.js:817
 msgid "Failed, exporting settings."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:817
+#: admin/app/dist/assets/main-4osb432d.js:817
 msgid "Failed, importing settings."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:817
+#: admin/app/dist/assets/main-4osb432d.js:817
 msgid "Failed, resetting settings."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:837
+#: admin/app/dist/assets/main-4osb432d.js:837
 msgid "Saving..."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:837
+#: admin/app/dist/assets/main-4osb432d.js:837
 msgid "Save options"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:837
+#: admin/app/dist/assets/main-4osb432d.js:837
 msgid "Success! settings updated."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:850
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:850
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Something..."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Sure?"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "All the options will be reset. Are you sure you would like to proceed?"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Yes, reset"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success! options reset."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Choose option..."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success! options imported."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Failed, please upload JSON file."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Exporting..."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success! exported."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Failed! exporting."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Unlimited"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Never"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Active"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Expired"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Inactive"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Disabled"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success! license activated."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Failed to activate the license."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success! license deactivated."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Failed to deactivate the license."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Activate plugin"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Install plugin"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success, installed."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Success, activated."
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "No data!"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Total views"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Today"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Yesterday"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "This Week"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Last Week"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "This Month"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Last Month"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "This Year"
 msgstr ""
 
-#: admin/app/dist/assets/main-BNvOhh9m.js:914
+#: admin/app/dist/assets/main-4osb432d.js:914
 msgid "Last Year"
 msgstr ""
