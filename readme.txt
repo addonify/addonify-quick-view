@@ -78,26 +78,24 @@ If you run an online e-commerce shop, then you must be familiar with the number 
 ✅ Customize misc buttons inside modal box color.
 ✅ More customization options, give it a try.
 
-** 💎 PRO **
+**💎 PRO**
 
-[Addonify Quick View Pro](https://addonify.com/products/quick-view-for-woocommerce/) version comes with more advanced features and customization options. Some of the features are:
+[Addonify Quick View Pro](https://addonify.com/product/addonify-quick-view-for-woocommerce/) version comes with more advanced features and customization options. Some of the features are:
 
 ✅ Track the viewed products with analytics.
 ✅ Add the related products in quick view modal.
 ✅ Add product navigation.
 ✅ Enable social sharing from quick view modal.
 ✅ Enable AJAX add to cart in quick view modal.
-✅ Unlock additional options to customize the modal.
 ✅ Unlock additional color options.
+✅ Unlock additional options to customize the modal.
 
 
 **📄 SHORTCODE**
 
 The shortcode below can used to display quick view button.
 
-```
-[addonify_quick_view_button id="1" label="Quick View" classes="btn" icon="icon_one" icon_position="left"]
-```
+**[addonify_quick_view_button id="1" label="Quick View" classes="btn" icon="icon_one" icon_position="left"]**
 
 The shortcode attributes used are as follows:
 
@@ -155,6 +153,10 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 
 == Changelog ==
+
+= 2.0.2 - 29 November, 2024 =
+
+- Fix: readme.
 
 = 2.0.1 - 29 November, 2024 =
 
