@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, watchEffect } from "vue";
 import { __ } from "@wordpress/i18n";
+import { ref, computed, watchEffect } from "vue";
 import { useLicenseStore } from "@/stores/license";
 import { toast } from "@steveyuowo/vue-hot-toast";
 import { Key, ExternalLink } from "lucide-vue-next";
@@ -248,7 +248,7 @@ watchEffect(async () => {
 				}}
 
 				<a
-					href="https://docs.addonify.com/"
+					href="https://docs.addonify.com/kb/license"
 					target="_blank"
 					class="inline-flex items-center gap-x-1 text-blue-600 hover:text-green-500 focus:text-blue-600"
 				>

@@ -143,7 +143,7 @@ class Addonify_Quick_View_Admin {
 		}
 
 		$row_meta = array(
-			'docs'    => '<a href="https://docs.addonify.com/kb/woocommerce-quick-view/" aria-label="' . esc_attr__( 'View Addonify Quick View documentation', 'addonify-quick-view' ) . '" target="_blank">' . esc_html__( 'Documentation', 'addonify-quick-view' ) . '</a>',
+			'docs'    => '<a href="https://docs.addonify.com/kb/quick-view/" aria-label="' . esc_attr__( 'View Addonify Quick View documentation', 'addonify-quick-view' ) . '" target="_blank">' . esc_html__( 'Documentation', 'addonify-quick-view' ) . '</a>',
 			'github'  => '<a href="https://github.com/addonify/addonify-quick-view" aria-label="' . esc_attr__( 'View Addonify Quick View GitHub link', 'addonify-quick-view' ) . '" target="_blank">' . esc_html__( 'GitHub', 'addonify-quick-view' ) . '</a>',
 			'support' => '<a href="https://wordpress.org/support/plugin/addonify-quick-view/" aria-label="' . esc_attr__( 'Visit community forums', 'addonify-quick-view' ) . '" target="_blank">' . esc_html__( 'Community support', 'addonify-quick-view' ) . '</a>',
 		);
