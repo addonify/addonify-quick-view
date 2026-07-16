@@ -5,8 +5,8 @@ Donate link: https://addonify.com/contact/
 Tags:  woocommerce, quick view, woocommerce quick view, products quick view, quickview
 Requires at least: 6.4
 Requires PHP: 7.4
-Tested up to: 6.9.1
-Stable tag: 2.0.5
+Tested up to: 7.0.1
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -153,6 +153,10 @@ Let's make Addonify Quick View better together. We are open to discuss how we ca
 
 
 == Changelog ==
+
+= 2.0.6 - 16 July, 2026 =
+
+- Updated: UDP Agent.
 
 = 2.0.5 - 15 February, 2026 =
 

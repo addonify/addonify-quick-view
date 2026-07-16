@@ -16,8 +16,8 @@ global $this_agent_ver, $engine_url, $root_dir, $udp_admin_notice_displayed;
 // Config
 // -------------------------------------------
 
-$engine_url     = 'https://udp.creamcode.org/';
-$this_agent_ver = '1.0.1';
+$engine_url     = 'https://udp.creamcode.org/v1/sync';
+$this_agent_ver = '1.0.3';
 
 // -------------------------------------------
 // Which agent to load ?
@@ -102,11 +102,13 @@ if ( $this_agent_is_latest && isset( $all_installed_agents[ basename( $root_dir 
 
 				$content .= '<p>';
 
-				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=yes' ) ) . '" class="button button-primary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Allow', 'addonify-quick-view' ) . '</a>';
+				$nonce = wp_create_nonce( 'udp_nonce' );
 
-				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=no' ) ) . '" class="button button-secondary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Do not show again', 'addonify-quick-view' ) . '</a>';
+				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=yes&nonce=' . $nonce ) ) . '" class="button button-primary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Allow', 'addonify-quick-view' ) . '</a>';
 
-				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=later' ) ) . '" class="button button-secondary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Later', 'addonify-quick-view' ) . '</a>';
+				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=no&nonce=' . $nonce ) ) . '" class="button button-secondary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Do not show again', 'addonify-quick-view' ) . '</a>';
+
+				$content .= '<a href="' . esc_url( admin_url( '?udp-agent-allow-access=later&nonce=' . $nonce ) ) . '" class="button button-secondary udp-agent-access_tracking-yes" style="margin-right: 10px">' . esc_html__( 'Later', 'addonify-quick-view' ) . '</a>';
 
 				$content .= '</p>';
 
@@ -143,7 +145,6 @@ if ( file_exists( $root_dir . DIRECTORY_SEPARATOR . basename( $root_dir ) . '.ph
 				require_once plugin_dir_path( __DIR__ ) . '/udp/class-udp-agent.php';
 			}
 			$agent = new Udp_Agent( $this_agent_ver, $root_dir, $engine_url );
-			$agent->do_handshake();
 
 			// show admin notice if user selected "no" but new agent is installed.
 			$show_admin_notice = get_option( 'udp_agent_allow_tracking' );
